@@ -1,10 +1,18 @@
-import './style.css'
+
+
 const Menu =() =>{
 
 return(
-    <div>
+    <>
     
+    <div>
+    <p className="dados">oi</p>
     </div>
+    
+    </>
+ 
+   
+    
 );
 
 
