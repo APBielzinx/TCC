@@ -1,17 +1,19 @@
 import './App.css';
-import Menu from './components/navBar/menu';
-import './components/navBar/style.css'
+import NavBar from "./components/layout/NavBar.js"
+import Footer from "./components/layout/Footer"
 
 
 
 
 function App() {
   return ( 
-    <div className="App">
-   <h1>Bora começar esse negócio </h1>
-   <Menu/>
-
+    <div>
+        <NavBar/>
+        <Footer/>
     </div>
+   
+   
+   
   );
 
 
