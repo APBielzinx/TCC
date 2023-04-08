@@ -3,17 +3,18 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Logo from '../../../img/logo.jpg'
-import QuemSomos from '../quemSomos';
+
 import {Routes, Route, Link} from 'react-router-dom'
 import './style.css'
+
 
 function NavBar()  {
   return (
     <>
- 
+  
       <Navbar bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
             <img
               src={Logo}
               width="30"
@@ -22,25 +23,17 @@ function NavBar()  {
               alt="React Bootstrap logo"
             />
           </Navbar.Brand>
-          <Navbar.Brand href="#home">Up</Navbar.Brand>
           <Nav className="me-auto">
-            <Link className='link' to="/">Home</Link>
-            <Link className='link' to="/quemSomos" >Quem Somos</Link>
-            <Link className='link'>fale conosco</Link>
+            <Link className='link'>UP</Link>
+            <Link className='link'>Home</Link>
+            <Link className='link'>Quem Somos</Link>
+            <Link className='link' >fale conosco</Link>
           </Nav>
         </Container>
       </Navbar>
-    
+    <br/>
 
 
-    <main>
-
-    <Routes>
-      <Route path='/' element={<Navbar/>} />
-      <Route path='/quemSomos' element={<QuemSomos/>} />
-    </Routes>
-
-    </main>
     </>
   );
 }
