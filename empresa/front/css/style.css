@@ -35,3 +35,8 @@
     background-color: rgb(24, 139, 233);
 }
 
+nav,footer{
+    background-color: rgb(37, 37, 39);
+    color: white;
+}
+
