@@ -10,7 +10,7 @@
 #menu-h{
     align-items: center;
     justify-content: center;
-    background-color: rgb(37, 37, 39);
+    background-color: #10162e;
 }
 
 #menu-h ul {
@@ -24,19 +24,29 @@
 }
 
 #menu-h ul li a {
-    color: #FFF;
+    color: #b3cfff;
     padding: 20px;
     display: inline-block;
     text-decoration: none;
-    transition: background .4s;
+    transition: 300ms ease-in-out;
 }
 
 #menu-h ul li a:hover {
-    background-color: rgb(24, 139, 233);
+    background-color: #1565ed;
+    color: #FFF;
+    transition: 300ms ease-in-out;
 }
 
-nav,footer{
-    background-color: rgb(37, 37, 39);
-    color: white;
+#rodápe footer ul li a {
+    color: #b3cfff;
 }
 
+#rodápe footer{
+    background-color: #10162e;
+    color: #fff;
+}
+
+#rodápe footer ul li a:hover {
+    color: #FFF;
+    transition: 300ms ease-in-out;
+}
