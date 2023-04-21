@@ -93,13 +93,12 @@
   
   .home .slide .content h3 {
     padding-top: .5rem;
-    color: #333;
+    color: rgb(0, 0, 0);
     font-size: 3rem;
   }
   
   .swiper-button-next::after,
   .swiper-button-prev::after {
     font-size: 3rem;
-    color: #333;
+    color: rgb(0, 0, 0);
   }
-  

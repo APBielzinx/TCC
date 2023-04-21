@@ -1,8 +1,18 @@
-let sideBar = document.querySelector('.side-bar');
+let swiperhomeslider = document.querySelector('.swiper home-slider');
+
+document.querySelector('#close-swiper').onclick = () =>{
+  swiperhomeslider.classList.remove('active');
+}
+
+let swiperwrapper = document.querySelector('.swiper-wrapper');
+
+document.querySelector('#swiper-close').onclick = () =>{
+  swiperwrapper.classList.toggle('active');
+}
 
 window.onscroll = () =>{
-    sideBar.classList.remove('active');
-    searchForm.classList.remove('active');
+    swiperhomeslider.classList.remove('active');
+    swiperwrapper.classList.remove('active');
 };
 
 document.querySelectorAll('.accordion-container .accordion').forEach(accordion =>{
