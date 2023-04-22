@@ -51,64 +51,54 @@
     transition: 300ms ease-in-out;
 }
 
-#slider-container {
-  width: 100%;
-  height: 400px;
-  position: relative;
+#main-banner {
+	background: url('../images/1.jpg') no-repeat;
+	background-size: cover;
+	background-position: 0 55%;
+	position: relative;
+	margin-top: 0,5px;
 }
 
-#slider-container img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+#search-form {
+	position: relative;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 15em;
+	padding-bottom: 15em;
+	text-align: center;
 }
 
-#prev-button, #next-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-#prev-button  {
-  left: 0;
-  border-radius: 70px;
-  background-color: #00000000;
-  height: 400px;
-  width: 200px;
-}
-
-#next-button {
-  right: 0;
-  border-radius: 70px;
-  background-color: #00000000;
-  height: 400px;
-  width: 200px;
-}
-
-#prev-button:hover, #next-button:hover {
-  background-color: #00000000;
+#search-form h1 {
+	font-size: 40px;
   color: #FFF;
 }
 
-#slider-container img {
-  transition: opacity 1s ease-in-out;
+#search-form p {
+	margin-top: 30px;
+	margin-bottom: 60px;
+	font-size: 18px;
+	font-weight: 300;
+  color: #FFF;
 }
 
-#slider-container img:first-child {
-  opacity: 1;
+#search-form input, #search-form select, #sendjobs input, #sendjobs select, #sendjobs textarea {
+	background-color: #FFF;
+	border-radius: 5px;
+	border-color: transparent;
+	padding: 10px 20px;
+	font-size: 18px;
+	margin: 0 10px;
 }
 
-#slider-container img:not(:first-child) {
-  opacity: 0;
+#search-form input[type=submit], #sendjobs input[type=submit] {
+	background-color: #3381f3;
+	text-transform: uppercase;
+	color: #FFF;
+	cursor: pointer;
+	transition: 0.5s;
 }
 
-#slider-container img.active {
-  opacity: 1;
+#search-form input[type=submit]:hover, #sendjobs input[type=submit]:hover {
+	background-color: #2B79EB;
 }
