@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <title>Empresa Up</title>
 </head>
 <body>
@@ -19,41 +18,13 @@
             
         </ul>
     </nav>
-    <section  class='home'>
-
-        <div class='swiper home-slider'>
-
-            <div id="close-swiper"></div>
-    
-            <div class='swiper-wrapper'>
-
-                <div id="swiper-close"></div>
-    
-                <div class='swiper-slide slide'>
-                    <div class='image'>
-                        <img src='../images/1.jpg' alt=''>
-                    </div>
-                </div>
-        
-                <div class='swiper-slide slide'>
-                    <div class='image'>
-                        <img src='../images/2.jpg' alt=''>
-                    </div>
-                </div>
-        
-                <div class='swiper-slide slide'>
-                    <div class='image'>
-                        <img src='../images/3.jpg' alt=''>
-                    </div>
-    
-            </div>
-    
-            <div class='swiper-button-next'></div>
-            <div class='swiper-button-prev'></div>
-    
-        </div>
-    
-    </section>
+    <div id="slider-container">
+        <img decoding="async" src="../images/1.jpg" alt="Image 1" width="600" height="400">
+        <img decoding="async" loading="lazy" src="../images/2.jpg" alt="Image 2" width="600" height="400">
+        <img decoding="async" loading="lazy" src="../images/3.jpg" alt="Image 3" width="600" height="400">
+        <button id="prev-button">Voltar</button>
+        <button id="next-button">Próximo</button>
+      </div>
     <br>
     <br>
     <nav id="rodápe">
