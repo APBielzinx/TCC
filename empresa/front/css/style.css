@@ -59,6 +59,14 @@
 	margin-top: 0,5px;
 }
 
+#banner {
+	background-color: #3381f3;
+	background-size: cover;
+	background-position: 0 55%;
+	position: relative;
+	margin-top: 0,5px;
+}
+
 #search-form {
 	position: relative;
 	width: 80%;
@@ -101,4 +109,13 @@
 
 #search-form input[type=submit]:hover, #sendjobs input[type=submit]:hover {
 	background-color: #2B79EB;
+}
+
+#VRD{
+	color: #FFF;
+	background-color: #10162e;
+	border-radius:10px;
+	border-color: #FFF;
+	width: 20%;
+	height: 20%;
 }
