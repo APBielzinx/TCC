@@ -165,6 +165,7 @@ nav .close-icon{
 .cards{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .depoimentos .card-item  {
     background-color: #d3e6fd;
@@ -214,12 +215,13 @@ nav .close-icon{
 .clientes h3,
 .clientes p{
     text-align: center;
+    width: 100%;
 }
-.clientes .conteiner div{
+.clientes .conteiner div img{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+    width: 100%;
 }
 /*fotter*/
 .footer{
@@ -239,35 +241,296 @@ nav .close-icon{
     margin-top: 10px;
     color: white;
 }
+
+/*Pagina sobre*/
+.sobre .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sobre .sobre-text{
+    width: 50%;
+    padding-right: 40px;
+}
+
+.sobre .sobre-text p{
+    margin: 18px 0;
+    color: #000000a6;
+}
+
+.sobre .sobre-img{
+    width: 50%;
+}
+
+.sobre .sobre-img img{
+    width: 100%;
+    border-radius: 10px;
+}
+/*end Pagina sobre*/
+
+/*Pagina servicos*/
+.servicos h3{
+    text-align: center;
+}
+
+.servicos .container > p{
+    text-align: center;
+}
+
+.servicos .rows-cards{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.servicos .row-card-item{
+    background-color: #d3e6fd;
+    width: 350px;
+    padding: 20px;
+    border-radius: 14px;
+    margin: 20px;
+    transition: 0.3s;
+}
+
+.servicos .row-card-item:hover{
+    background-color: #4f9cf9;
+}
+
+.servicos .row-card-item:hover p{
+    color: white;
+}
+
+.servicos .row-card-item img{
+    background-color: #4f9cf9;
+    border-radius: 14px;
+    width: 70px;
+    padding: 9px;
+}
+
+.servicos .row-card-item p.nome-servico{
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.servicos .row-card-item p.descricao-servico{
+    transition: 0.3s;
+}
+/*dados*/
+.dados{
+    background-color: #d3e6fd;
+}
+
+.dados .container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dados .dados-item{
+    text-align: center;
+    margin: 15px;
+    color: #000000be;
+}
+
+.dados .dados-item img{
+    background-color: #4f9cf9;
+    border-radius: 14px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 80px;
+}
+
+.dados .dados-item p{
+    font-size: 17px;
+}
+
+.dados .dados-item p strong{
+    font-size: 28px;
+}
+/*end dados*/
+
+/* end Pagina servicos*/
+
+/*Pagina contato*/
+.contato-info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.contato-info .left-side{
+    width: 50%;
+    padding: 50px;
+    background-color: #4f9cf9;
+    border-radius: 14px;
+    margin-right: 50px;
+    height: fit-content;
+}
+
+.contato-info .left-side div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contato-info .left-side div i{
+    font-size: 24px;
+    margin-right: 20px;
+    color: white;
+}
+
+.contato-info .left-side p{
+    font-size: 18px;
+    color: white;
+}
+
+.contato-info .right-side{
+    width: 50%;
+}
+
+.contato-info .right-side input{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 47px;
+    padding: 15px;
+    border-radius: 9px;
+    transition: 0.3s;
+    border: 1px solid #f1f1f1;
+    color: #212121;
+    font-weight: lighter;
+}
+
+.contato-info .right-side input:focus,
+.contato-info .right-side textarea:focus{
+    border-color: #4f9cf9;
+}
+
+.contato-info .right-side textarea{
+    border: 1px solid #f1f1f1;
+    color: #212121;
+    border-radius: 9px;
+    margin-bottom: 10px;
+    padding: 15px;
+    width: 100%;
+    transition: 0.3s;
+    resize: none;
+}
+
+.contato-info .right-side button{
+    border: none;
+}
+
+/* end Pagina contato*/
+
 @media(max-width: 830px) {
     /*menu mobile*/
-    .ul{
-        position: fixed;
-        top: 0;
-        left: 0;
-        background:#184b88;
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        clip-path: circle(0.4% at 100% 0);
-        transition: 0.7s;
-    }
-    .ul.open{
-        clip-path: circle(141.2% at 100% 0);
-    }
-    .ul a{
-        margin: 10px 0;
-        font-size: 16px;
-    }
-   nav .menu-icon{
+.ul{
+     position: fixed;
+     top: 0;
+     left: 0;
+     background:#184b88;
+     width: 100%;
+     height: 100%;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     clip-path: circle(0.4% at 100% 0);
+     transition: 0.7s;
+}
+.ul.open{
+     clip-path: circle(141.2% at 100% 0);
+}
+.ul a{
+     margin: 10px 0;
+     font-size: 16px;
+}
+nav .menu-icon{
     display: block;
-   }
-   nav .close-icon{
+}
+nav .close-icon{
     display: block;
     position: absolute;
     top: 46px;
     right: 28px;
-   }
+}
+/*Pagina home responsivo*/
+.faca-mais .faca-mais-text{
+    margin-top: 10px;
+    padding: 0 20px;
+    order: 1;
+}
+
+.faca-mais .container{
+    flex-direction: column;
+}
+
+.faca-mais .faca-mais-text h3{
+    font-size: 48px;
+}
+
+.faca-mais .faca-mais-text,
+.faca-mais .faca-mais-img{
+    width: 100%;
+}
+
+/* end Pagina home responsivo*/
+
+/*banner responsivo*/
+.banner .banner-text{
+    padding: 0;
+    margin: 80px;
+}
+
+.banner .banner-text h1{
+    font-size: 80px;
+}
+
+.banner .banner-text p{
+    font-size: 15px;
+}
+
+.depoimentos .card-item{
+    width: 100%;
+}
+
+/*sobre responsivo*/
+.sobre .container{
+    flex-direction: column-reverse;
+}
+
+.sobre .sobre-img,
+.sobre .sobre-text{
+    width: 100%;
+}
+
+.sobre .sobre-text{
+    margin-top: 40px;
+}
+
+/*Pagina contato responsivo*/
+.contato .contato-info{
+    flex-direction: column-reverse;
+}
+
+.contato-info .right-side,
+.contato-info .left-side{
+    width: 100%;
+}
+
+.contato-info .right-side{
+    margin-bottom: 30px;
+}
+}
+
+@media (max-width:500px){
+    .banner .banner-text h1{
+        font-size: 50px;
+    }
+
+    .faca-mais .faca-mais-text h3{
+        font-size: 40px;
+    }
 }
