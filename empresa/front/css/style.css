@@ -165,7 +165,7 @@ nav .close-icon{
 .cards{
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 .depoimentos .card-item  {
     background-color: #d3e6fd;
@@ -217,9 +217,17 @@ nav .close-icon{
     text-align: center;
     width: 100%;
 }
-.clientes .conteiner div img{
+.clientes .container div{
     display: flex;
     align-items: center;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.clientes .container div img{
+    display: flex;
+    align-items: center;
+    text-align: center;
     justify-content: space-around;
     width: 100%;
 }
