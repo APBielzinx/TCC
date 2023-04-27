@@ -208,7 +208,12 @@ nav .close-icon{
 }
 .depoimentos .card-item:hover .nome-user,
 .depoimentos .card-item:hover .depoimentos-user,
-.depoimentos .card-item:hover .estrelas i{
+.depoimentos .card-item:hover .estrelas i {
+    color: white;
+    transition: 0.3s;
+}
+
+.depoimentos .card-item:hover p{
     color: white;
 }
 /*clientes*/
