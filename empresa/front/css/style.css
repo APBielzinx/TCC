@@ -547,3 +547,9 @@ nav .close-icon{
         font-size: 40px;
     }
 }
+
+
+.dark-mode {
+    background-color: #10121f;
+    color: white;
+  }
