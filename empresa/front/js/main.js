@@ -22,4 +22,7 @@ function darkMode() {
     p4.classList.toggle("dark-mode")
     var footer = document.querySelector('#footer')
     footer.classList.toggle("dark-mode")
+   
+
+    
 }
