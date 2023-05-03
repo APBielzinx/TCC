@@ -32,10 +32,9 @@
             </nav>
             <section class="banner">
                 <div class="banner-text">
-                    <h1>Nos contate</h1>
+                    <h1>Nosso contato</h1>
                     <p>
-                        Entre em contato com o nosso time e eles irão te retornar em
-                         tempo recorde, para tirar o seu negócio do papel!
+                        Entre em contato com a nossa equipe para tirar qualquer dúvida e enviar sujestões.
                     </p>
                 </div>
             </section>
@@ -62,10 +61,28 @@
                         <i class="fa fa-phone"></i>
                         <p>+55 11 97881-3200</p>
                     </div>
-                    <div>
-                        <i class="fa fa-phone"></i>
+                    <div class="links">
+                        <i href="https://wa.me/5511999504903" class="fa fa-phone"></i>
+
                         <p>+55 11 99950-4903</p>
                     </div>
+
+
+                    <div onclick="fazerAlgo('5511999504903')">
+                        <i href="https://wa.me/5511999504903" class="fa fa-phone"></i>
+                        <p>+55 11 97881-3200</p>
+                    </div>
+
+
+                    <!-- <footer class="footer">
+                        <div class="conteiner">
+                            <div class="links">
+                                <a href="https://wa.me/5511999504903" style="color: black;"><i class="fa fa-linkedin"> +55 11 99950-4903 </i></a>
+                            </div>
+                        </div>
+                     </footer>  -->
+
+
                 </div>
                 <div class="right-side">
                     <form action="">
@@ -84,7 +101,7 @@
             <div class="conteiner">
                 <div class="links">
                     <a href="#"><i class="fa fa-facebook">  </i></a>
-                    <a href="#"><i class="fa fa-instagram">  </i></a>
+                    <a href="https://www.instagram.com/empresa__up/"><i class="fa fa-instagram"> </i></a>
                     <a href="#"><i class="fa fa-github">  </i></a>
                     <a href="#"><i class="fa fa-linkedin">  </i></a>
                 </div>
@@ -93,5 +110,14 @@
          </footer>   
          <!--end footer-->
          <script src="js/main.js"></script>
+         <script>
+
+            function fazerAlgo(number){
+
+                window.location.href = "https://wa.me/"number
+
+            }
+
+         </script>
    </body>
 </html>
