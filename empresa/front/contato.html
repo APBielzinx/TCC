@@ -57,41 +57,31 @@
                         <i class="fa fa-envelope"></i>
                         <p>empresaupping@gmail.com</p>
                     </div>
-                    <div>
-                        <i class="fa fa-phone"></i>
-                        <p>+55 11 97881-3200</p>
-                    </div>
-                    <div class="links">
-                        <i href="https://wa.me/5511999504903" class="fa fa-phone"></i>
-
+                
+                    <div onclick="whatsappRedirect('5511999504903')" class="links">
+                        <i  class="fa fa-phone"></i>
                         <p>+55 11 99950-4903</p>
                     </div>
 
 
-                    <div onclick="fazerAlgo('5511999504903')">
-                        <i href="https://wa.me/5511999504903" class="fa fa-phone"></i>
+                    <div onclick="whatsappRedirect('5511978813200')" class="links">
+                        <i class="fa fa-phone"></i>
                         <p>+55 11 97881-3200</p>
                     </div>
 
 
-                    <!-- <footer class="footer">
-                        <div class="conteiner">
-                            <div class="links">
-                                <a href="https://wa.me/5511999504903" style="color: black;"><i class="fa fa-linkedin"> +55 11 99950-4903 </i></a>
-                            </div>
-                        </div>
-                     </footer>  -->
 
 
                 </div>
                 <div class="right-side">
-                    <form action="">
-                        <input type="text" placeholder="Nome" required>
-                        <input type="email" placeholder="E-mail" required>
-                        <input type="text" placeholder="Assunto" required>
-                        <textarea  cols="30" rows="10" placeholder="Sua Mensagem"></textarea>
-                        <button class="btn">Enviar Mensagem</button>
-                    </form>
+                        <input type="text" placeholder="nome"  name="name" id="name" >
+                        <input type="email" placeholder="E-mail"  name="from" id="from" >
+                        <input type="hidden" name="to" id="to">
+                        <input type="text" placeholder="Assunto"  name="subject" id="subject">
+                        <textarea  cols="30" rows="10" placeholder="Sua Mensagem" name="text" id="text"></textarea>
+                        <input type="hidden" name="mailSend" id="mailSend">
+                        <button class="btn" onclick="enviarMensagem()">Enviar Mensagem</button>
+                   
                 </div>
             </div>
         </div>
@@ -110,11 +100,12 @@
          </footer>   
          <!--end footer-->
          <script src="js/main.js"></script>
+         <script src="js/emailScript.js"></script>
          <script>
 
-            function fazerAlgo(number){
+            function whatsappRedirect(number){
 
-                window.location.href = "https://wa.me/"number
+                window.location.href = "https://wa.me/"+number
 
             }
 
