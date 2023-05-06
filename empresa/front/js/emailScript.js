@@ -9,7 +9,6 @@ function enviarMensagem() {
     let text = document.getElementById('text').value
     let mailSend = document.getElementById('mailSend').value
 
-    alert("enviando dados...")
     let dados = {
         name,
         from,
@@ -19,16 +18,6 @@ function enviarMensagem() {
         mailSend,
 
     }
-
-    console.log(name)
-    if(name || from || subject || text == "" ){
-
-       
-       return alert(" é necessario preencher todos os campos");
-        
-
-    }
-
 
 
     const options = {
@@ -42,13 +31,30 @@ function enviarMensagem() {
 
     fetch(url, options)
         .then(data => {
-            if (!data.ok) {
-                alert("Falha ao enviar a mensagem")
+            if (data.status == 204) {
+                alert("é necessario preencher todos os campos")
+                limpar()
+                throw Error(data.status);
+            } else if (data.status == 400) {
+                alert("enviando dados...")
+                alert("Você já enviou emails de mais hoje, volte novamente mais tarde")
+                limpar()
                 throw Error(data.status);
 
-            } else {
+            } else if (data.status == 201) {
+                alert("enviando dados...")
+                alert("dados criados e enviados com sucesso")
+                limpar()
+            } else if (data.status == 200) {
+                alert("enviando dados...")
                 alert("dados enviados com sucesso")
                 limpar()
+            } else if (data.status == 500) {
+                alert("enviando dados...")
+                alert("ocorreu um erro no servidor")
+                limpar()
+                throw Error(data.status);
+
             }
             return data.text;
         }).catch(e => {
