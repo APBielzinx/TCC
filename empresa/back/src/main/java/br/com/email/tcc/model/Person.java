@@ -3,6 +3,8 @@ package br.com.email.tcc.model;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 @Table(name = "Pessoa")
 @Entity
@@ -14,7 +16,7 @@ public class Person {
      @Column(nullable = false)
      private String Email;
      @Column(nullable = false)
-     private String Date;
+     private Date Date;
      @Column(nullable = false)
      private int EmailEnviado;
 
@@ -22,7 +24,7 @@ public class Person {
      public Person() {
      }
 
-     public Person(Long id, String email, String date, int emailEnviado) {
+     public Person(Long id, String email, Date date, int emailEnviado) {
           Id = id;
           Email = email;
           Date = date;
@@ -33,9 +35,6 @@ public class Person {
           return Id;
      }
 
-     public void setId(Long id) {
-          Id = id;
-     }
 
      public String getEmail() {
           return Email;
@@ -45,12 +44,12 @@ public class Person {
           Email = email;
      }
 
-     public String getDate() {
+     public Date getDate() {
           return Date;
      }
 
-     public void setDate(String date) {
-          Date = date;
+     public void setDate(Date date) {
+          this.Date = date;
      }
 
      public int getEmailEnviado() {
