@@ -22,7 +22,10 @@ function darkMode() {
     p4.classList.toggle("dark-mode")
     var footer = document.querySelector('#footer')
     footer.classList.toggle("dark-mode")
-   
-
-    
+    var p5 = document.querySelector('#text5')
+    p5.classList.toggle("dark-mode")
+    var p6 = document.querySelector('#text6')
+    p6.classList.toggle("dark-mode")
+    var p7 = document.querySelector('#text7')
+    p7.classList.toggle("dark-mode")
 }

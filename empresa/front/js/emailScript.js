@@ -6,9 +6,10 @@ function enviarMensagem() {
     let from = document.getElementById('from').value
     let to = document.getElementById('to').value
     let subject = document.getElementById('subject').value
-    let text = document.getElementById('text').value
+    var text = document.getElementById('text').value
     let mailSend = document.getElementById('mailSend').value
 
+    console.log(text)
     let dados = {
         name,
         from,
@@ -19,6 +20,7 @@ function enviarMensagem() {
 
     }
 
+    
 
     const options = {
         method: 'POST',

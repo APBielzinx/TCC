@@ -20,7 +20,6 @@ public class ControllerRouter {
     private PersonService personService;
 
     private EmailService emailService;
-    private PessoaRepository pessoaRepository;
 
 
 
