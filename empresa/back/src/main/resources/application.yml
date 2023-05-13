@@ -10,25 +10,4 @@ spring:
     generate-ddl: true
     show-sql: true
 
-
-  mail:
-    host: email-smtp.us-east-1.amazonaws.com
-    port: 587
-    username: AKIASEURN6UTZZSEB2OY
-    password: BEGDHIJL0mLJlh7lh3PGgYD/OA4r04EAHp1qi1zrdLHX
-
-
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-          connectiontimeout: 5000
-          timeout: 3000
-          writetimeout: 5000
-
-server:
-  port: 8080
-
   #senaisp

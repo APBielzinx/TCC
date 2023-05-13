@@ -20,7 +20,6 @@ public class PersonService {
 
 
     public ResponseEntity<?> cadastrar(String email) {
-        System.out.println(email);
         person.setEmail(email);
         var entity = pessoaRepository.findByEmail(person.getEmail());
         System.out.println(entity);
@@ -47,7 +46,6 @@ public class PersonService {
 
             person.setEmailEnviado(entitys+1);
             person.setDate(new Date());
-            System.out.println(entity);
             System.out.println(person.getEmailEnviado());
             pessoaRepository.updatePerson(person.getEmailEnviado(), person.getEmail());
             return new ResponseEntity<>("atualizado com sucesso", HttpStatus.OK);

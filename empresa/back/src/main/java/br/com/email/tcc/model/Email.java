@@ -11,11 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Email {
 
-    private String name;
     private  String from;
-    private  String to;
-    private String subject;
-    private String text;
-    private int mailSend;
+
 
 }

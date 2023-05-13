@@ -1,26 +1,23 @@
 
 function enviarMensagem() {
-    const url = 'http://192.168.1.192:8080/faleConosco/enviar';
+    const url = 'http://10.83.142.19:8080/faleConosco/enviar';
 
-    let name = document.getElementById('name').value
-    let from = document.getElementById('from').value
-    let to = document.getElementById('to').value
-    let subject = document.getElementById('subject').value
-    var text = document.getElementById('text').value
-    let mailSend = document.getElementById('mailSend').value
+  
+    let from = document.getElementById('email').value
 
-    console.log(text)
+    if(validateEmail(from) == false){
+        return alert("inscira um email valido")
+    }
+
+  
     let dados = {
-        name,
-        from,
-        to,
-        subject,
-        text,
-        mailSend,
+     
+        from
+     
 
     }
 
-    
+    console.log(from)
 
     const options = {
         method: 'POST',
@@ -45,11 +42,13 @@ function enviarMensagem() {
 
             } else if (data.status == 201) {
                 alert("enviando dados...")
-                alert("dados criados e enviados com sucesso")
+                alert("email verificado com sucesso")
+                toType()
                 limpar()
             } else if (data.status == 200) {
                 alert("enviando dados...")
-                alert("dados enviados com sucesso")
+                alert("verificado com sucesso")
+                toType()
                 limpar()
             } else if (data.status == 500) {
                 alert("enviando dados...")
@@ -67,9 +66,41 @@ function enviarMensagem() {
 }
 function limpar() {
 
-    this.name.value = ""
-    this.from.value = ""
-    this.subject.value = ""
-    this.text.value = ""
 
 }
+
+function toType(){
+    let name = document.getElementById('name')
+    let subject = document.getElementById('subject')
+    let text = document.getElementById('text')
+    let button = document.getElementById('botao')
+    let buttonVerifica = document.getElementById('botaoVerifica')
+    let from = document.getElementById('email')
+
+
+   name.type = "text"
+   name.ariaPlaceholder = "nome"
+
+   subject.type = "text"
+   subject.ariaPlaceholder = "Assunto"
+
+   text.style.display = ""
+
+
+   button.style.display =""
+
+   buttonVerifica.style.display="none"
+
+   from.type = "hidden"
+}
+
+
+function validateEmail(email)
+{
+ var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+ if (reg.test(email)){
+ return true; }
+ else{
+ return false;
+ }
+} 

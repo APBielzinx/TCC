@@ -50,7 +50,7 @@
     <div class= "container">
        <div class= "faca-mais-text">
          <h3> Texto </h3>
-         <p id="text" > 
+         <p id="textt" > 
             texto
          </p>
         
@@ -258,13 +258,19 @@
                 </div>
             </div>
             <div class="right-side">
-                <input type="text" placeholder="nome"  name="name" id="name" >
-                <input type="email" placeholder="E-mail"  name="from" id="from" >
-                <input type="hidden" name="to" id="to">
-                <input type="text" placeholder="Assunto"  name="subject" id="subject">
-                <textarea  cols="30" rows="10" placeholder="Sua Mensagem" name="text" id="text"></textarea>
-                <input type="hidden" name="mailSend" id="mailSend">
-                <button class="btn" onclick="enviarMensagem()">Enviar Mensagem</button>
+                <form action="https://api.staticforms.xyz/submit" method="post">
+                    <input type="hidden" placeholder="nome"  name="name" id="name" >
+                    <input type="hidden" placeholder="Assunto"  name="subject" id="subject">
+                    <input type="hidden" placeholder="E-mail"  name="email" >
+                    <textarea name="message" id="text" style="display: none;" placeholder="Digite a sua mensagem" ></textarea> <!-- Optional -->
+                    <input type="hidden" name="accessKey" value="da64ef00-79d4-4285-9889-bed1e74470c0">
+                    <input type="hidden" name="subject" value="Sugestão de Cliente" />
+                    <input type="hidden" name="replyTo" value="gabrielbtcyt@gmail.com">
+                    <button class="btn" type="submit" style="display: none;" id="botao">Enviar Mensagem</button>
+                    <input type="hidden" name="redirectTo" value="http://127.0.0.1:5500/empresa/front/index.html"> <!-- Optional -->
+                </form>
+                <input type="email" placeholder="E-mail"  name="from" id="email" >
+                <button class="btn" type="submit" onclick="enviarMensagem()" id="botaoVerifica">Verificar email</button>
             </div>
         </div>
     </div>
@@ -293,6 +299,8 @@
 window.location.href = "https://wa.me/"+number
 
 }
+
+
          </script>
    </body>
 </html>

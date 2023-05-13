@@ -8,7 +8,7 @@ function closeMenu(){
 }
 
 function darkMode() {
-    var p = document.querySelector('#text');
+    var p = document.querySelector('#textt');
     var element = document.body;
     element.classList.toggle("dark-mode");
     p.classList.toggle("dark-mode")
