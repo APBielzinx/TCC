@@ -27,7 +27,9 @@ h3 {
 
 p{ 
     color: #0000009c;
-    text-align: center;
+    
+    width: 646px;
+
 }
 
 .container {
@@ -273,6 +275,7 @@ nav .close-icon{
 
 .sobre .sobre-text p{
     margin: 18px 0;
+    align-items: center;
 }
 
 .sobre .sobre-img{
@@ -332,6 +335,7 @@ nav .close-icon{
 
 .servicos .row-card-item p.descricao-servico{
     transition: 0.3s;
+    width: 321px;
 }
 /*dados*/
 .dados{
