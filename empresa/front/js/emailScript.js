@@ -1,6 +1,6 @@
 
 function enviarMensagem() {
-    const url = 'http://10.83.142.19:8080/faleConosco/enviar';
+    const url = 'http0://10.83.142.19:8080/faleConosco/enviar';
 
   
     let from = document.getElementById('email').value
@@ -11,10 +11,9 @@ function enviarMensagem() {
 
   
     let dados = {
-     
+
         from
      
-
     }
 
     console.log(from)
@@ -32,42 +31,38 @@ function enviarMensagem() {
         .then(data => {
             if (data.status == 204) {
                 alert("é necessario preencher todos os campos")
-                limpar()
                 throw Error(data.status);
             } else if (data.status == 400) {
                 alert("enviando dados...")
                 alert("Você já enviou emails de mais hoje, volte novamente mais tarde")
-                limpar()
                 throw Error(data.status);
-
             } else if (data.status == 201) {
                 alert("enviando dados...")
                 alert("email verificado com sucesso")
                 toType()
-                limpar()
+
+
             } else if (data.status == 200) {
                 alert("enviando dados...")
                 alert("verificado com sucesso")
                 toType()
-                limpar()
+            
             } else if (data.status == 500) {
                 alert("enviando dados...")
                 alert("ocorreu um erro no servidor")
-                limpar()
+               
                 throw Error(data.status);
 
             }
             return data.text;
         }).catch(e => {
             console.log(e);
+            alert("Não foi poissivel verificar o seu email tente novamente mais tarde")
         });
 
 
 }
-function limpar() {
 
-
-}
 
 function toType(){
     let name = document.getElementById('name')
