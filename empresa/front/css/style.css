@@ -276,6 +276,7 @@ nav .close-icon{
 .sobre .sobre-text p{
     margin: 18px 0;
     align-items: center;
+    width: 600px;
 }
 
 .sobre .sobre-img{
