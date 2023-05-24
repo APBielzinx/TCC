@@ -27,8 +27,8 @@ h3 {
 
 p{ 
     color: #0000009c;
-    
-    width: 646px;
+    font-size: 20px;
+    width: 700px;
 
 }
 
@@ -123,7 +123,7 @@ nav .close-icon{
 }
 
 .banner .banner-text {
-    margin: 180px;
+    margin: 300px;
     text-align: center;
     padding: 0 90px;
 }
