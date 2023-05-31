@@ -1,6 +1,6 @@
 
 function enviarMensagem() {
-    const url = 'http0://10.83.142.19:8080/faleConosco/enviar';
+    const url = 'http://192.168.1.189:8080/faleConosco/enviar';
 
   
     let from = document.getElementById('email').value

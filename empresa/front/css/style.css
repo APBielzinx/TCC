@@ -273,10 +273,17 @@ nav .close-icon{
     padding-right: 40px;
 }
 
+.sobre .sobre-text h3{
+    text-align: center;
+    width: 1208px;
+}
+
 .sobre .sobre-text p{
     margin: 18px 0;
     align-items: center;
-    width: 600px;
+    width: 1096px;
+    text-align: center;
+
 }
 
 .sobre .sobre-img{
