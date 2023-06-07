@@ -286,7 +286,25 @@
 
                     <a href="#"><i class="fa fa-github">  </i></a>
                     <a href="#"><i class="fa fa-linkedin">  </i></a>
+                    <button onclick="voltarAoTopo()" id="btnVoltarTopo">Voltar para o topo</button>
                 </div>
+                <script>
+                    function voltarAoTopo() {
+                        document.body.scrollTop = 0; 
+                        document.documentElement.scrollTop = 0; 
+                    }
+                    </script>
+                    <script>
+                        window.onscroll = function() { exibirBotaoVoltarTopo() };
+                        
+                        function exibirBotaoVoltarTopo() {
+                            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                                document.getElementById("btnVoltarTopo").style.display = "block";
+                            } else {
+                                document.getElementById("btnVoltarTopo").style.display = "none";
+                            }
+                        }
+                        </script>
               <!--<p>Desenvolvido por...</p>-->  
             </div>
          </footer>   

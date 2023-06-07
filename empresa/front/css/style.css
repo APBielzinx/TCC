@@ -568,3 +568,17 @@ nav .close-icon{
     background-color: #10121f;
     color: white;
   }
+  #btnVoltarTopo {
+    display: none; /* Oculta o botão por padrão */
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 20px; /* Distância em relação à parte inferior da janela */
+    right: 30px; /* Distância em relação à parte direita da janela */
+    z-index: 99; /* Define a ordem de empilhamento do botão */
+    font-size: 16px;
+    padding: 10px;
+}
+
+#btnVoltarTopo:hover {
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+}
