@@ -31,7 +31,7 @@ public class PersonService {
 
             person.setEmailEnviado(1);
             person.setDate(new Date());
-            pessoaRepository.save(person);
+            pessoaRepository.insertPerson(person.getDate(), person.getEmail(), person.getEmailEnviado());
 
             return new ResponseEntity<>("Adicionado com sucesso", HttpStatus.CREATED);
 
