@@ -576,6 +576,12 @@ nav .close-icon{
     z-index: 99; /* Define a ordem de empilhamento do botão */
     font-size: 16px;
     padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #btnVoltarTopo:hover {
