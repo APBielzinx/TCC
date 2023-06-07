@@ -1,6 +1,6 @@
 
 function enviarMensagem() {
-    const url = 'http://192.168.1.189:8080/faleConosco/enviar';
+    const url = 'https://testecontroller-production.up.railway.app/faleConosco/enviar';
 
   
     let from = document.getElementById('email').value
