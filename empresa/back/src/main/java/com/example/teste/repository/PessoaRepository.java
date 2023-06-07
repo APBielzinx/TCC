@@ -1,6 +1,6 @@
-package br.com.email.tcc.repository;
+package com.example.teste.repository;
 
-import br.com.email.tcc.model.Person;
+import com.example.teste.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

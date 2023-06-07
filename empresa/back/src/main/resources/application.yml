@@ -1,0 +1,10 @@
+# database configs
+spring:
+  datasource:
+    url: jdbc:mysql://root:qZvCiBlIBTFJyhzMErrp@containers-us-west-138.railway.app:6011/railway
+    username: root
+    password: "qZvCiBlIBTFJyhzMErrp"
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true

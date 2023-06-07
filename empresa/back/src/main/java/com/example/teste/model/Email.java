@@ -1,4 +1,4 @@
-package br.com.email.tcc.model;
+package com.example.teste.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

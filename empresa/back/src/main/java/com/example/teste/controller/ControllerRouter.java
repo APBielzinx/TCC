@@ -1,8 +1,8 @@
-package br.com.email.tcc.controller;
+package com.example.teste.controller;
 
-import br.com.email.tcc.model.Email;
-import br.com.email.tcc.model.Person;
-import br.com.email.tcc.service.PersonService;
+
+import com.example.teste.model.Email;
+import com.example.teste.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

@@ -1,5 +1,4 @@
-package br.com.email.tcc.config;
-
+package com.example.teste.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

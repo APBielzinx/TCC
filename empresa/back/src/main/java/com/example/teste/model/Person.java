@@ -1,4 +1,4 @@
-package br.com.email.tcc.model;
+package com.example.teste.model;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;

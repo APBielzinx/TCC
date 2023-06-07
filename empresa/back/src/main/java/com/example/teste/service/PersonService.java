@@ -1,7 +1,7 @@
-package br.com.email.tcc.service;
+package com.example.teste.service;
 
-import br.com.email.tcc.model.Person;
-import br.com.email.tcc.repository.PessoaRepository;
+import com.example.teste.model.Person;
+import com.example.teste.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
