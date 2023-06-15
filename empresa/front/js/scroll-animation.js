@@ -1,8 +1,6 @@
 const scrollAnima = document.querySelector('[data-anima="scroll"]')
 
-const metadeWindow = window.innerHeight * 3.5
-
-console.log(metadeWindow)
+const metadeWindow = window.innerHeight * 3.0
 
 function animarScroll(){
     const topoItem = scrollAnima.getBoundingClientRect().top

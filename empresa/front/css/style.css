@@ -9,6 +9,7 @@
     font-family: 'Inter', sans-serif;
 }
 
+
 body {
     background-color: #10121f;
 }
@@ -615,9 +616,9 @@ nav .close-icon{
     position: fixed;
     bottom: 20px;
     right: -500px;
-    height: 50px;
-    width: 50px;
-    border-radius: 30%;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
     color: white;
     display: flex;
     justify-content: center;
@@ -625,8 +626,17 @@ nav .close-icon{
     transition: .4s all;
 }
 
+.imgBtnVoltarAoTopo{
+    height: 70%;
+    width: 70%;
+}
+
 .show-button .topo{
     right: 20px;
+    transition: .4s all;
+}
+.show-buttontirar .topo{
+    right: -500px;
     transition: .4s all;
 }
 

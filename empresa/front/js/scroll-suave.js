@@ -1,4 +1,4 @@
-const linkInterno = document.querySelector('[data-scroll="suave"] a[href^="#"]')
+const linkInterno = document.querySelector('[data-scroll="suave"] a[href^="#topo"]')
 
 function ScrollTop(event){
     event.preventDefault()
@@ -9,7 +9,7 @@ function ScrollTop(event){
 
     topo.scrollIntoView({
         behavior: 'smooth',
-        block: 'start',
+        block: 'center',
     })
 
     console.log(href)
