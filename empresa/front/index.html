@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Link CSS  -->
@@ -19,10 +20,11 @@
                     <img src="img/logo.png" alt="Logo">
                 </a>
                 <ul class="ul">
-                    <a href="#index">Início</a>
                     <a href="#sobre">Sobre</a>
+                    <a href="#quemsomos">Quem somos</a>
                     <a href="#projetos">Projetos</a>
                     <a href="#contato">Contato</a>
+                   
 
                     <div class ="close-icon" onclick="closeMenu()">
                         <i class="fa fa-times-circle"></i>
@@ -44,7 +46,7 @@
     </header>
     <!--end header-->
     <!--Faça Mais-->
-    <section class="faca-mais ">
+    <section class="faca-mais " id="sobre">
     <!--conteiner-->
     <div class= "container">
        <div class= "faca-mais-text">
@@ -104,7 +106,7 @@
     </div>
 
     <!--section sobre-->
-<section class="sobre" id="sobre">
+<section class="sobre" id="quemsomos">
     <div class="container">
     <div class="sobre-text">
         <h3> Nossa História</h3>
@@ -122,13 +124,27 @@
     <section class="servicos" id="projetos">
         <div class="container">
             <h3>Nossos Projetos</h3>
+            <br>
+            <br>
            <!-- <p id="text5">Veja um pouco dos nossos trabalhos</p>-->
             <!--rows cards-->
             <div class="rows-cards">
                 <!--row card item 1-->
-                <div class="row-card-item">
-                    <img src="img/cloud.png" alt="">
-                    <p class="nome-servico"><strong>Serviço em Nuvem</strong></p>
+                <div class="row-card-item" >
+                    <img src="img/tree.png" alt="">
+                    <p class="nome-servico"><strong>Linked Park</strong></p>
+                    <p class="descricao-servico">
+                        Texto é uma produção, verbal ou não verbal, que se constitui com algum código,
+                         no intuito de comunicar algo a alguém, em determinado tempo e espaço. Sua definição
+                          ampla se deve ao fato de também abranger diversos formatos.
+                    </p>
+                </div>
+            </div>
+            <div class="rows-cards">
+                <!--row card item 1-->
+                <div class="row-card-item" id="projeto01"> 
+                    <i class="fas fa-store" style="color: #ffd700;"></i>
+                    <p class="nome-servico"><strong>Loja de Eletrônicos</strong></p>
                     <p class="descricao-servico">
                         Texto é uma produção, verbal ou não verbal, que se constitui com algum código,
                          no intuito de comunicar algo a alguém, em determinado tempo e espaço. Sua definição
@@ -325,6 +341,11 @@ window.location.href = "https://wa.me/"+number
 
 }
 
+const projeto01 = document.getElementById("projeto01");
+
+projeto01.addEventListener("click", (event) => {
+    window.location.href = "http://etec199-2021-mariaeduardaresolino.atwebpages.com/2ano/TrabalhoDePW/home.php"
+});
 
          </script>
    </body>

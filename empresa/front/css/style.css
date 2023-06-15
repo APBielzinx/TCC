@@ -168,7 +168,7 @@ nav .close-icon{
 .depoimentos p{
     margin-bottom: 20px ;
     text-align: center;
-     
+     color: #10121f;
 }
 .cards{
     display: flex;
@@ -194,11 +194,13 @@ nav .close-icon{
     font-size: 20px;
     margin-bottom: 15px;
     transition: 0.3s;
+    color: #10121f;
 }
 .depoimentos .card-item .depoimentos-user{
     font-size: 15px;
     padding: 0 15px;
     transition: 0.3s;
+    color: #10121f;
 }
 .depoimentos .card-item .estrelas{
     margin: 15px 0 ;
@@ -311,8 +313,7 @@ nav .close-icon{
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    flex-wrap: wrap;
-}
+    display: table-cell;}
 
 .servicos .row-card-item{
     background-color: #d3e6fd;
@@ -321,6 +322,8 @@ nav .close-icon{
     border-radius: 14px;
     margin: 20px;
     transition: 0.3s;
+  display: inline-block;
+  margin-left: 187px;
 }
 
 .servicos .row-card-item:hover{
@@ -328,24 +331,36 @@ nav .close-icon{
 }
 
 .servicos .row-card-item:hover p{
-    color: white;
+    color: rgb(32, 26, 26);
 }
 
 .servicos .row-card-item img{
     background-color: #4f9cf9;
     border-radius: 14px;
-    width: 70px;
+    width: 55px;
     padding: 9px;
+    display: inline-block;
+}
+
+.servicos .row-card-item i{
+    background-color: #4f9cf9;
+    border-radius: 14px;
+    width: 55px;
+    padding: 9px;
+    font-size: 2rem;
+    display: inline-block;
 }
 
 .servicos .row-card-item p.nome-servico{
     margin: 5px 0;
     transition: 0.3s;
+    color: #10121f;
 }
 
 .servicos .row-card-item p.descricao-servico{
     transition: 0.3s;
     width: 321px;
+    color: #10121f;
 }
 /*dados*/
 .dados{
