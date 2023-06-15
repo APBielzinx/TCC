@@ -277,7 +277,7 @@
 
          <!--footer-->
          <footer class="footer" id="footer">
-             <div data-scroll="suave" class="show-button" data-anima="scroll">
+             <div data-scroll="suave" data-anima="scroll">
                 <a href="#topo"></a>
                 <div class="topo">
                     <span class="material-symbols-outlined">
@@ -297,13 +297,7 @@
                     
                 </div>
                 </div>
-                <script>
-                    function voltarAoTopo() {
-                        document.body.scrollTop = 0; 
-                        document.documentElement.scrollTop = 0; 
-                    }
-                    </script>
-                    <script>
+                    <!--                     <script>
                         window.onscroll = function() { exibirBotaoVoltarTopo() };
                         
                         function exibirBotaoVoltarTopo() {
@@ -313,13 +307,16 @@
                                 document.getElementById("btnVoltarTopo").style.display = "none";
                             }
                         }
-                        </script>
+                        </script>-->
+
               <!--<p>Desenvolvido por...</p>-->  
             </div>
          </footer>   
          <!--end footer-->
          <script src="js/emailScript.js"></script>
          <script src="js/main.js"></script>
+         <script src="js/scroll-animation.js "></script>
+         <script src="js/scroll-suave.js"></script>
         
          <script>
              function whatsappRedirect(number){

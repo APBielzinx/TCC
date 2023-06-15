@@ -599,7 +599,7 @@ nav .close-icon{
     background-color: #4f9cf9;
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: -500px;
     height: 50px;
     width: 50px;
     border-radius: 30%;
@@ -607,10 +607,12 @@ nav .close-icon{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.1s;
+    transition: .4s all;
 }
+
 .show-button .topo{
     right: 20px;
+    transition: .4s all;
 }
 
 /*icone do botão voltar ao topo*/
