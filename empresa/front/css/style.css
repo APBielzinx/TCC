@@ -170,18 +170,18 @@ nav .close-icon{
     margin-bottom: 20px ;
     text-align: center;
      color: #10121f;
+     margin-left: -14%;
 }
 .cards{
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;
 }
 .depoimentos .card-item  {
     background-color: #d3e6fd;
     margin: 15px;
     border-radius: 14px;
     text-align: center;
-    width: 350%;
+    width: 550px;
     transition: 0.3s;
 }
 .depoimentos .card-item img {
@@ -616,8 +616,8 @@ nav .close-icon{
     position: fixed;
     bottom: 20px;
     right: -500px;
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     border-radius: 50%;
     color: white;
     display: flex;
@@ -627,8 +627,8 @@ nav .close-icon{
 }
 
 .imgBtnVoltarAoTopo{
-    height: 70%;
-    width: 70%;
+    height: 30%;
+    width: 30%;
 }
 
 .show-button .topo{
