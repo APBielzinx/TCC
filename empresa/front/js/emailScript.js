@@ -57,7 +57,6 @@ function enviarMensagem() {
             return data.text;
         }).catch(e => {
             console.log(e);
-            alert("Não foi poissivel verificar o seu email tente novamente mais tarde")
         });
 
 
