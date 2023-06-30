@@ -729,7 +729,7 @@ h2 {
   .fh5co-portfolio .bx-3 {
     width: 26.5%;
   }
-
+  
   .fh5co-portfolio .bx-middle {
     width: 67.5%;
   }
@@ -793,8 +793,8 @@ h2 {
 
 .activity .owl-carousel .owl-nav .owl-prev,
 .activity .owl-carousel .owl-nav .owl-next {
-  color: #212020;
-  border-color: #212020;
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
 .activity .owl-carousel .owl-nav .owl-prev:hover,
@@ -862,7 +862,7 @@ h2 {
 }
 
 .fh5co-about-me .card-img-overlay {
-  background-color: rgba(233, 14, 101, 0.902);
+  background-color: #10121f;
 }
 
 .fh5co-about-me h2 {
@@ -1083,8 +1083,9 @@ h2 {
 }
 
 footer {
-  background: #e90e65;
+  background: #21243a;
 }
+
 
 footer iframe {
   height: 100%;
@@ -1102,7 +1103,7 @@ footer .contact-form {
 }
 
 footer .contact-form h3 {
-  color: #e90e65;
+  color: #4f9cf9;
   font-size: 20px;
   text-align: center;
   margin-bottom: 20px;
@@ -1111,7 +1112,7 @@ footer .contact-form h3 {
 footer .contact-form .form-control {
   margin-bottom: 20px;
   border: none;
-  background-color: #ebd8df;
+  background-color:#d3e6fd;
   border-radius: 25px;
   font-size: 15px;
   padding: 25px 30px;
@@ -1128,7 +1129,7 @@ footer .contact-form textarea {
 }
 
 footer .contact-form button {
-  background: #e90e65;
+  background: #4f9cf9;
   width: 140px;
   padding: 13px 0;
   font-size: 15px;
@@ -1142,7 +1143,7 @@ footer .contact-form button {
 
 footer .contact-form button:hover,
 footer .contact-form button:visited {
-  background: #b90b50;
+  background: #4f9cf9;
 }
 
 footer .copy {
@@ -1161,7 +1162,7 @@ footer .copy a {
 }
 
 footer .copy a:hover {
-  color: #e90e65;
+  color: #4f9cf9;
 }
 
 @media (max-width: 1199px) {
