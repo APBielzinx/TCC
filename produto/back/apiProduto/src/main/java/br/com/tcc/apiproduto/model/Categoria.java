@@ -9,26 +9,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class AreaDeLazer {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAreDeLazer;
+    private int idCategoria;
 
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private String endereco;
-
-
+    @JoinColumn(nullable = false)
     @ManyToOne
-    @JoinColumn(name = "idUsuario",nullable = false)
-    private Usuario usuario;
-
-
-    @ManyToOne
-    @JoinColumn(name = "idEventos",nullable = false)
     private Eventos eventos;
 
 }
