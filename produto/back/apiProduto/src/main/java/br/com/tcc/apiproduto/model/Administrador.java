@@ -11,20 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Administrador {
+public class Administrador extends Pessoa{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAdm;
-
-    @Column(nullable = false)
-    private String nome;
-
-    @Column(nullable = false)
-    private String senha;
-
-    @Column(nullable = false)
-    private String email;
 
     @Column(nullable = false, unique = true )
     private String cnpj;
