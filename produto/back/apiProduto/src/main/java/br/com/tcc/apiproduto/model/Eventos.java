@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class Eventos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEventos;
+    private Long idEventos;
 
     @Column(nullable = false)
     private String nome;
@@ -30,9 +31,11 @@ public class Eventos {
     @Column(nullable = false)
     private String descricao;
 
-    @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
-    private Usuario usuario;
+    @ManyToMany
+    @JoinTable(name = "evento_usuario",
+            joinColumns = @JoinColumn(name = "evento_id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    private List<Usuario> usuarios;
 
     @ManyToOne
     @JoinColumn(name = "idAdm", nullable = false)

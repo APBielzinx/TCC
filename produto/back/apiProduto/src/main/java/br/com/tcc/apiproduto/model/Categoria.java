@@ -13,7 +13,7 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategoria;
+    private Long idCategoria;
 
     @Column(nullable = false)
     private String nome;

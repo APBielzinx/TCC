@@ -15,7 +15,7 @@ public class Administrador extends Pessoa{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAdm;
+    private Long idAdm;
 
     @Column(nullable = false, unique = true )
     private String cnpj;

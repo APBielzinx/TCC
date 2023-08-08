@@ -13,7 +13,7 @@ public class Lazer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAreDeLazer;
+    private Long Lazer;
 
     @Column(nullable = false)
     private String nome;

@@ -13,7 +13,7 @@ public class Usuario extends Pessoa{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private Long idUsuario;
 
     private String preferenciaDeEventos;
 

@@ -13,7 +13,7 @@ public class Chat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idChat;
+    private Long idChat;
 
 
     private String mensagens;
