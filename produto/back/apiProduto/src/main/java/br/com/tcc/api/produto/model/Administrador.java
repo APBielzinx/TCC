@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -22,6 +24,10 @@ public class Administrador extends Pessoa{
 
     @Column(nullable = false )
     private String tipo;
+
+    @OneToMany(mappedBy = "administrador")
+    private List<Lazer> Lazer;
+
 
 
 

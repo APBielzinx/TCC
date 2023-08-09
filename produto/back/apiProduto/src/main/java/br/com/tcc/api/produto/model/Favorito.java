@@ -17,7 +17,7 @@ public class Favorito {
 
     @ManyToOne
     @JoinColumn(name = "areadelazer_id", nullable = false)
-    private Lazer areaDeLazer;
+    private Lazer Lazer;
 
 
 }

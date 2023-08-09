@@ -23,6 +23,6 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "areadelazer_id", nullable = false)
-    private Lazer areaDeLazer;
+    private Lazer Lazer;
 
 }
