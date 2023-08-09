@@ -1,4 +1,4 @@
-package br.com.tcc.apiproduto.model;
+package br.com.tcc.api.produto.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,30 +9,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Lazer {
+public class Chat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Lazer;
+    private Long idChat;
+
+
+    private String mensagens;
+
+    @Column(nullable = false)
+    private String contato;
 
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private String endereco;
-
-
     @ManyToOne
     @JoinColumn(name = "idUsuario",nullable = false)
     private Usuario usuario;
-
-
-    @ManyToOne
-    @JoinColumn(name = "idEventos",nullable = false)
-    private Eventos eventos;
-
-    @ManyToOne
-    @JoinColumn(name = "idCategoria",nullable = false)
-    private Categoria categoria;
-
 }

@@ -1,4 +1,4 @@
-package br.com.tcc.apiproduto.model;
+package br.com.tcc.api.produto.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,12 +9,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Usuario extends Pessoa{
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private Long idCategoria;
 
-    private String preferenciaDeEventos;
+    @Column(nullable = false)
+    private String nome;
+
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Eventos eventos;
 
 }

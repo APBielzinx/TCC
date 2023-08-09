@@ -1,4 +1,4 @@
-package br.com.tcc.apiproduto.model;
+package br.com.tcc.api.produto.model;
 
 
 import jakarta.persistence.*;

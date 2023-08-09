@@ -1,7 +1,6 @@
-package br.com.tcc.apiproduto.controllers;
+package br.com.tcc.api.produto.controllers;
 
-import br.com.tcc.apiproduto.model.Eventos;
-import br.com.tcc.apiproduto.model.Usuario;
+import br.com.tcc.api.produto.model.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("eventos")
-public class EventosController {
+@RequestMapping("usuario")
+public class UsuarioController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody Eventos eventos) {
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
 
         try {
             return new ResponseEntity<>("cadastrado com sucesso", HttpStatus.CREATED);

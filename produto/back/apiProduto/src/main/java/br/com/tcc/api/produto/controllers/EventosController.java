@@ -1,7 +1,6 @@
-package br.com.tcc.apiproduto.controllers;
+package br.com.tcc.api.produto.controllers;
 
-import br.com.tcc.apiproduto.model.Lazer;
-import br.com.tcc.apiproduto.model.Usuario;
+import br.com.tcc.api.produto.model.Eventos;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,19 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("lazer")
-public class LazerController {
-
-
-
+@RequestMapping("eventos")
+public class EventosController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody Lazer lazer) {
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody Eventos eventos) {
 
         try {
             return new ResponseEntity<>("cadastrado com sucesso", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("erro no servidor", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("cadastrado com sucesso", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
