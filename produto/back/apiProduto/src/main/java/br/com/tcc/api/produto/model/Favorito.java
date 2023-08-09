@@ -19,9 +19,6 @@ public class Favorito {
     @JoinColumn(name = "areadelazer_id", nullable = false)
     private Lazer areaDeLazer;
 
-    @ManyToOne
-    @JoinColumn(name = "evento_id", nullable = false)
-    private Eventos evento;
 
 }
 
