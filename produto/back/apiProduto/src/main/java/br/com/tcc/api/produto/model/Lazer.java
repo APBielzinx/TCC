@@ -13,7 +13,7 @@ public class Lazer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Lazer;
+    private Long idLazer;
 
     @Column(nullable = false)
     private String nome;
@@ -26,10 +26,9 @@ public class Lazer {
     @JoinColumn(name = "idUsuario",nullable = false)
     private Usuario usuario;
 
-
     @ManyToOne
-    @JoinColumn(name = "idEventos",nullable = false)
-    private Eventos eventos;
+    @JoinColumn(name = "idAdm")
+    private Administrador administrador;
 
     @ManyToOne
     @JoinColumn(name = "idCategoria",nullable = false)

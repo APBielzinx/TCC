@@ -18,8 +18,6 @@ public class Categoria {
     @Column(nullable = false)
     private String nome;
 
-    @JoinColumn(nullable = false)
-    @ManyToOne
-    private Eventos eventos;
+
 
 }

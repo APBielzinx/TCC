@@ -21,10 +21,7 @@ public class Comentario {
 
     @ManyToOne
     @JoinColumn(name = "areadelazer_id")
-    private Lazer areaDeLazer;
+    private Lazer Lazer;
 
-    @ManyToOne
-    @JoinColumn(name = "evento_id")
-    private Eventos evento;
 
 }
