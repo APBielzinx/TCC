@@ -17,7 +17,7 @@ public class LazerController {
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody Lazer lazer) {
+    public ResponseEntity<?> cadastrarLazer(@RequestBody Lazer lazer) {
 
         try {
             return new ResponseEntity<>("cadastrado com sucesso", HttpStatus.CREATED);
