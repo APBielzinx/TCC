@@ -57,9 +57,11 @@ h2 {
 }
 
 .maine-menu {
-  position: absolute;
+  position: fixed;
   top: 20px;
 }
+
+
 
 .maine-menu .navbar-nav li .nav-link {
   font-family: "PT-Sans-Bold";
