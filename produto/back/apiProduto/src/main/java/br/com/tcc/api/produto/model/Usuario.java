@@ -15,6 +15,5 @@ public class Usuario extends Pessoa{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
-    private String preferenciaDeEventos;
 
 }

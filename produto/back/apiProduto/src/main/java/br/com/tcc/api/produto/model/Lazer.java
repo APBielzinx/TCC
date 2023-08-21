@@ -23,15 +23,8 @@ public class Lazer {
 
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario",nullable = false)
-    private Usuario usuario;
-
-    @ManyToOne
     @JoinColumn(name = "idAdm")
     private Administrador administrador;
 
-    @ManyToOne
-    @JoinColumn(name = "idCategoria",nullable = false)
-    private Categoria categoria;
 
 }
