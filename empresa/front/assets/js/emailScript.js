@@ -1,5 +1,14 @@
 import swal from 'sweetalert';
 
+function abrirAlerta(){
+    swal({
+        title: "Sucesso",
+        text: "o Email foi enviado",
+        icon: "success",
+      });
+}
+
+
 function enviarMensagem() {
     console.log("oi")
     const url = 'https://testecontroller-production.up.railway.app/faleConosco/enviar';
