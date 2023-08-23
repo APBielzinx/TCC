@@ -1,4 +1,5 @@
-console.log("oi")
+import swal from 'sweetalert';
+
 function enviarMensagem() {
     console.log("oi")
     const url = 'https://testecontroller-production.up.railway.app/faleConosco/enviar';
