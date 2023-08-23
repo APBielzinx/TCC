@@ -1,304 +1,298 @@
 <!DOCTYPE html>
-<!--
-  Girly by FreeHTML5.co
-  Twitter: https://twitter.com/fh5co
-  Facebook: https://fb.com/fh5co
-  URL: https://freehtml5.co
--->
 <html lang="pt-br">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <title>Empresa UP</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Link CSS  -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Empresa UP</title>
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-md  fixed-top maine-menu">
+    <header id="topo" style="background-image: url('img/background-home.jpg')">
+        <div class="container">
+            <nav>
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Logo">
+                </a>
+                <ul class="ul">
+                    <a href="#sobre">Sobre</a>
+                    <a href="#projetos">Projetos</a>
+                    <a href="#contato">Contato</a>
+                   
+
+                    <div class ="close-icon" onclick="closeMenu()">
+                        <i class="fa fa-times-circle"></i>
+                    </div>
+                </ul>
+                <div class="menu-icon" onclick= "openMenu()">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </nav>
+            <section class="banner">
+                <div class="banner-text">
+                    <h1>Empresa UP</h1>
+                    <p>Conectando você ao futuro</p>
+                    <a href="#contato" class="btn animate-btn"> Entrar em contato</a>
+                </div>
+            </section>
+        </div>
+        <!--end conteiner-->
+    </header>
+    <!--end header-->
+    <!--Faça Mais-->
+    <section class="faca-mais " id="sobre">
+    <!--conteiner-->
+    <div class= "container">
+       <div class= "faca-mais-text">
+         <h3> Sobre a nossa Empresa </h3>
+         <p> 
+            A empresa UP foi fundada em 09/02/2023 por Carlos Augusto Narciso Vieira, Gabriel Caique Rodrigues Gonçalves Santos, Gabriel Monção Ribeiro, Helder Alencar da Silva, Kauan Vinicius dos Santos, Kauê de Souza Gomes Montezuma, Rafael Satirio dos Santos Ribeiro, Richard Crozara, Maria Eduarda Lourenço Resolino e Maria Eduarda Silva Souza.
+            Nos juntamos com o objetivo de desenvolver o trabalho de conclusão do curso técnico de desenvolvimento de sistemas integrado com ensino médio da escola técnica estadual Cidade Tiradentes, em São Paulo, SP.  Nos reunimos para desenvolver o Trabalho de Conclusão de Curso. Nosso objetivo com a criação desta empresa é promover sistemas para ajudar no avanço da tecnologia e resoluções de problemas.        </p>
+        
+       </div>
+       <div class= "faca-mais-img">
+        <img src="img/img-1.png" alt ="">
+       </div>
+    </div>
+    <!--end conteiner-->
+    </section>
+     
+
+
+<!--section servicos-->
+    <section class="servicos" id="projetos">
+        <div class="container">
+            <h3>Nossos Projetos</h3>
+            <br>
+            <br>
+           <!-- <p id="text5">Veja um pouco dos nossos trabalhos</p>-->
+            <!--rows cards-->
+            <div class="rows-cards">
+                <!--row card item 1-->
+                <div class="row-card-item" >
+                    <img src="img/linked.png" alt="">
+                    <p class="nome-servico"><strong>Linked Park</strong></p>
+                    <p class="descricao-servico">
+                        O aplicativo perfeito para manter você informado sobre eventos de lazer.
+                        Com o Linked Park, você pode descobrir atividades
+                        divertidas e emocionantes para aproveitar em áreas de cultura e lazer mais proximo de seu bairro. 
+                        Mantenha-se atualizado e não perca nenhuma oportunidade de diversão.
+                        Baixe o Linked Park agora e comece a explorar o melhor do entretenimento local!
+                    </p>
+                </div>
+            </div>
+            <div class="rows-cards">
+                <!--row card item 1-->
+                <div class="row-card-item" id="projeto01"> 
+                    <i class="fas fa-store" style="color: #ffd700;"></i>
+                    <p class="nome-servico"><strong>Loja de Eletrônicos</strong></p>
+                    <p class="descricao-servico">
+                        Onde você encontrará uma variedade de eletrônicos de alta qualidade. Com produtos de marcas renomadas e uma equipe especializada,
+                        oferecemos uma experiência de compra confiável e satisfatória.
+                        Explore nosso site, descubra as últimas tendências tecnológicas e encontre o dispositivo perfeito para você.
+                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </p>
+                </div>
+            </div>
+            <!-- end rows cards-->
+        </div>
+    
+    </section>
+    <!--end section servicos-->
+
+</div>
+<!--end conteiner-->
+
+<!--end header-->
+         <!--Depoimentos-->
+       <!---->  <section class="depoimentos">
+        <div class="conteiner">
+            <h3>Avaliações </h3>
+            <p id="text2"> </p>
+            <div class="cards">
+                <!-- card item 1-->
+                <div class="card-item">
+                    <img src="img/up.png" alt="Kauan" >
+                    <p class="nome-user">Up</p>
+                    <p class="depoimento-user">
+                        texto
+                    </p>
+                <div class="estrelas">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i> 
+                </div>
+            </div>
+            <!-- end card item 1-->
+              <!-- card item 2-->
+              <div class="card-item">
+                <img src="img/up.png" alt="Up">
+                <p class="nome-user">Up</p>
+                <p class="depoimento-user">
+                    texto
+                </p>
+            <div class="estrelas">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i> 
+            </div>
+        </div>
+        <!-- end card item 2-->
+          <!-- card item 3-->
+          <div class="card-item">
+            <img src="img/up.png" alt="Kauan">
+            <p class="nome-user">Up</p>
+            <p class="depoimento-user">
+                texto
+            </p>
+        <div class="estrelas">
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i> 
+        </div>
+    </div>
+    <!-- end card item 3-->
+        </div>
+     </section>
+     <!--end Depoimentos-->
+     <!--Clientes-->
+
+      <!--  <div>
+            <img src="img/apple.png" alt="">
+            <img src="img/microsoft.png" alt="">
+            <img src="img/slack.png" alt="">
+            <img src="img/google.png " alt="">
+        </div>-->
+     </div>
+ </section>
+
+<!-- Começo Sobre -->
+</div>
+<!--end conteiner-->
+
+<!--end header-->
+
+<!-- Contato começo -->
+<section class="contato" id="contato">
     <div class="container">
-      <button class="navbar-toggler ml-auto" data-target="#my-nav" onclick="myFunction(this)" data-toggle="collapse"> <span class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span> </button>
-      <div id="my-nav" class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item active"> <a class="nav-link" href="#">Inicio</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#sobre" tabindex="-1" aria-disabled="true">Sobre</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#projetos" tabindex="-1" aria-disabled="true">Projetos</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#quemsomos" tabindex="-1" aria-disabled="true">Quem somos</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#contato" tabindex="-1" aria-disabled="true">Contato</a></li>
-        </ul>
-      </div>
+        <div class="banner-text">
+            <h3>Nosso contato</h3>
+          <!-- <p id="text6">
+                Entre em contato com a nossa equipe para tirar qualquer dúvida e enviar sugestões.
+            </p>--> 
+        </div>
+        <br>
+        <br>
+        <div class="mapa">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.3034486262304!2d-46.41053638823494!3d-23.59344777868924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6f7090183c91%3A0x7fafdf938dd0eb78!2sEscola%20T%C3%A9cnica%20Estadual%20de%20Cidade%20Tiradentes!5e0!3m2!1spt-BR!2sbr!4v1682540746119!5m2!1spt-BR!2sbr" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="contato-info">
+            <div class="left-side">
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p>R. Igarapé Água Azul, 70 - Conj. Hab. Santa Etelvina II, São Paulo - SP, 08485-310</p>
+                </div>
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p>empresaupping@gmail.com</p>
+                </div>
+            
+                <div onclick="whatsappRedirect('5511999504903')" class="links">
+                    <i  class="fa fa-phone"></i>
+                    <p>+55 11 99950-4903</p>
+                </div>
+    
+    
+                <div onclick="whatsappRedirect('5511978813200')" class="links">
+                    <i class="fa fa-phone"></i>
+                    <p>+55 11 97881-3200</p>
+                </div>
+            </div>
+            <div class="right-side">
+                <form action="https://api.staticforms.xyz/submit" method="post">
+                    <input type="hidden" placeholder="nome"  name="name" id="name" >
+                    <input type="hidden" placeholder="Assunto"  name="subject" id="subject">
+                    <input type="hidden" placeholder="E-mail"  name="email" >
+                    <textarea name="message" id="text" style="display: none;" placeholder="Digite a sua mensagem" ></textarea> <!-- Optional -->
+                    <input type="hidden" name="accessKey" value="d7137214-6bf6-48fb-ab69-e46bdcc950c3">
+                    <input type="hidden" name="subject" value="Sugestão de Cliente" />
+                    <input type="hidden" name="replyTo" value="gabrielbtcyt@gmail.com">
+                    <input type="hidden" name="redirectTo" value="https://tcc-dun.vercel.app/#contato"> <!-- Optional -->
+                    <button class="btn" type="submit" style="display: none;" id="botao">Enviar Mensagem</button>
+                </form>
+                <input type="email" placeholder="E-mail"  name="from" id="email" >
+                <button class="btn" type="submit" onclick="enviarMensagem()" id="botaoVerifica">Verificar email</button>
+            </div>
+        </div>
     </div>
-  </nav>
-  <div class="container-fluid fh5co-home-banner">
-    <div class="card"> <img class="card-img" src="assets/img/background-home.jpg" alt="">
-      <div class="card-img-overlay">
-        <div class="center-text">
-          <h1 class="card-title">Empresa UP</h1>
-          <p class="card-p">Conectando você ao futuro</p>
-          <a href="#sobre" class="btn">
-            <svg width="201" height="51" viewBox="0 0 201 51">
-              <defs>
-                <style>
-                .cls-1 {
-                  fill: none;
-                  stroke-width: 1px;
-                  stroke: url(#linear-gradient);
-                }
-              </style>
-              <linearGradient id="linear-gradient" x1="140.508" y1="50.5" x2="60.492" y2="0.5" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#4f9cf9"/>
-                <stop offset="1" stop-color="#05638f"/>
-              </linearGradient>
-            </defs>
-            <rect id="Rounded_Rectangle_1" data-name="Rounded Rectangle 1" class="cls-1" x="0.5" y="0.5" width="200" height="50" rx="25" ry="25"/>
-          </svg>
-        Saiba mais</a> </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="container-fluid fh5co-recent-work">
-    <div class="container contact-pop">
-      <div class="row">
-        <div class="col-md-6  pr-0">
-          <div class="card"> <img class="card-img w-100" src="assets/img/up.png" alt="">
-            <div class="card-img-overlay"> </div>
-          </div>
-        </div>
-        <div class="col-md-6 pl-0" id="sobre">
-          <div class="content">
-            <h3>Sobre nossa empresa</h3>
-            <h4>Empresa UP</h4>
-            <hr />
-            <p>A empresa UP foi fundada em 09/02/2023, Nos juntamos com o objetivo de desenvolver o trabalho de conclusão do curso técnico de desenvolvimento de sistemas integrado com ensino médio da escola técnica estadual Cidade Tiradentes,
-                 em São Paulo, SP. Nos reunimos para desenvolver o Trabalho de Conclusão de Curso.</p>
-            <a href="#contato" class="btn">CONTATO</a> </div>
-          </div>
-        </div>
-      </div>
-      <div class="container recent" id="projetos">
-        <div class="row">
-          <h2> Nossos Projetos</h2>
-          <div class="owl-carousel owl-carousel2 owl-theme">
-            <div>
-              <div class="card"> <img class="card-img" src="assets/img/LOGO_PROJETO3.0 (1).png" alt="">
-                <div class="card-img-overlay"> <a href="#"></a>
-                  <div class="bottom-text">
-                    <h5 class="card-title">Linked Park</h5>
-                    <p class="card-text">Lazer ligado a você</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-              <div class="card"> <img class="card-img" src="assets/img/ljjjjjjjjjjjj.png" alt="">
-                <div class="card-img-overlay"> <a href="#"></a>
-                  <div class="bottom-text">
-                    <h5 class="card-title">Loja de Eletrônicos</h5>
-                    <p class="card-text">Eletrônicos de alta qualidade</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card"> <img class="card-img" src="assets/img/grenery.png" alt="">
-                <div class="card-img-overlay"> <a href="#"></a>
-                  <div class="bottom-text">
-                    <h5 class="card-title">Greenery</h5>
-                    <p class="card-text">Uma vida saudável</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card"> <img class="card-img" src="assets/img/interpry.png" alt="">
-                <div class="card-img-overlay"> <a href="#"></a>
-                  <div class="bottom-text">
-                    <h5 class="card-title">Interpry</h5>
-                    <p class="card-text">Games de última qualidade</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="container-fluid fh5co-recent-work activity" id="quemsomos">
-    <div class="container recent">
-      <div class="row">
-        <h2>Integrantes</h2>
-        <div class="owl-carousel owl-carousel3 owl-theme">
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/kauan.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Kauan Vinicus dos Santos</h5>
-                  <a href="#">● Front-end</a> 
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/kaue.jpeg"  alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Kauê de Souza Gomes &nbsp; Montezuma</h5>
-                  <a href="#">● Front-end<br>● App</a> 
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/carlos.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Carlos Augusto Narciso Vieira</h5>
-                  <a href="#">● Design<br>● App</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/maria l.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Maria Eduarda Lourenço Resolino</h5>
-                  <a href="#">● Front-end<br>● Analista</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/helder.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Helder Alencar da Silva</h5>
-                  <a href="#">● Back-end<br>● DBA</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/maria s.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Maria Eduarda Silva Souza</h5>
-                  <a href="#">● Tester <br>● Analista</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/rafael.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Rafael Satirio dos Santos Ribeiro</h5>
-                  <a href="#">● Back-end</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/richard.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Richard Crozara</h5>
-                  <a href="#">● Tester</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/gabriel.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Gabriel Caique Rodrigues Gonçalves Santos</h5>
-                  <a href="#">● Back-end<br>● DBA</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"> <img class="card-img" src="assets/img/monicao.jpeg" alt="">
-              <div class="card-img-overlay">
-                <div class="bottom-text">
-                  <h5 class="card-title">Gabriel Monção Ribeiro</h5>
-                  <a href="#">● Analista</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid fh5co-about-me" id="avaliacoes">
-    <div id="my-carousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="card"> <img class="card-img d-block w-100" src="assets/img/about-me-img.jpg" alt="">
-          <div class="card-img-overlay">
-            <h2>Avaliações</h2>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="carousel-caption d-md-block"> <img src="assets/img/logo.png" alt="">
-            <p>UP</p>
-          </div>
-        </div>
-        <div class="carousel-item active">
-          <div class="carousel-caption d-md-block"> <img src="assets/img/logo.png" alt="">
-            <p>UP</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="carousel-caption d-md-block"> <img src="assets/img/logo.png" alt="">
-            <p>UP</p>
-          </div>
-        </div>
-      </div>
-      <ol class="carousel-indicators">
-        <li data-target="#my-carousel" data-slide-to="0" > <img src="assets/img/about-me-img1.png" alt=""> <span>Sherrie Rose</span> </li>
-        <li class="active" data-target="#my-carousel" data-slide-to="1" aria-current="location"> <img src="assets/img/about-me-img2.png" alt=""> <span>Sherrie Rose</span> </li>
-        <li data-target="#my-carousel" data-slide-to="2"> <img src="assets/img/about-me-img3.png" alt=""> <span>Sherrie Rose</span> </li>
-      </ol>
-    </div>
-  </div>
-  <footer class="container-fluid p-0 pr-0">
-    <div class="row mr-0 ml-0">
-      <div class="col-md-6 pr-0 pl-0 map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.3034486262304!2d-46.41053638823494!3d-23.59344777868924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6f7090183c91%3A0x7fafdf938dd0eb78!2sEscola%20T%C3%A9cnica%20Estadual%20de%20Cidade%20Tiradentes!5e0!3m2!1spt-BR!2sbr!4v1682540746119!5m2!1spt-BR!2sbr" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      
-      <div class="col-md-6 content-us">
-        <div class="contact-form" id="contato">
-          <h3 class="text-uppercase">Contato</h3>
-          <form action="https://api.staticforms.xyz/submit" method="post">
-            <input  class="form-control" type="hidden" placeholder="nome"  name="name" id="name" >
-            <input  class="form-control" type="hidden" placeholder="Assunto"  name="subject" id="subject">
-            <input  class="form-control" type="hidden" placeholder="E-mail"  name="email" >
-            <textarea  class="form-control" name="message" id="text" style="display: none;" placeholder="Digite a sua mensagem" ></textarea> <!-- Optional -->
-            <input  class="form-control" type="hidden" name="accessKey" value="d7137214-6bf6-48fb-ab69-e46bdcc950c3">
-            <input  class="form-control" type="hidden" name="subject" value="Sugestão de Cliente" />
-            <input  class="form-control" type="hidden" name="replyTo" value="gabrielbtcyt@gmail.com">
-            <input  class="form-control" type="hidden" name="redirectTo" value="https://tcc-dun.vercel.app/#contato"> <!-- Optional -->
-            <button class="btn" type="submit" style="display: none;" id="botao">Enviar Mensagem</button>
-        </form>
-        <input class="form-control" type="email" placeholder="E-mail"  name="from" id="email" >
-        <button class="btn" type="submit" onclick="enviarMensagem()" id="botaoVerifica">Verificar email</button>
-        </div>
-      </div>
-    </div>
-    <div class="copy pt-4 pb-4">
-      <p><a href="https://freehtml5.co/" target="_blank"> &copy; 2023</a>  &nbsp; &nbsp; | &nbsp;  Todos os Direitos Reservados</p>
-    </div>
-  </footer>
+         <!--footer-->
+         <footer class="footer" id="footer">
+             <div data-scroll="suave" data-anima="scroll">
+                <a href="#topo">
+                    <div class="topo">
+                        <img class="imgBtnVoltarAoTopo" src="img/setamonstra.png" alt="Voltar ao topo">
+                    </div>
+                </a>
+             </div>
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
-  <script src="assets/js/jquery-3.3.1.slim.min.js"></script> 
-  <script src="assets/js/popper.min.js" ></script> 
-  <script src="assets/js/bootstrap.min.js"></script> 
-  <script src="assets/js/owl.carousel.min.js"></script> 
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/emailScript.js"></script>
+            <div class="conteiner">
+                <div class="links">
+                    <a href="#"><i class="fa fa-facebook">  </i></a>
+                                      <a href="https://www.instagram.com/empresa__up/"><i class="fa fa-instagram">  </i></a>
 
-</body>
+                    <a href="#"><i class="fa fa-github">  </i></a>
+                    <a href="#"><i class="fa fa-linkedin">  </i></a>
+                    
+                </div>
+                </div>
+                    <!--                     <script>
+                        window.onscroll = function() { exibirBotaoVoltarTopo() };
+                        
+                        function exibirBotaoVoltarTopo() {
+                            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                                document.getElementById("btnVoltarTopo").style.display = "block";
+                            } else {
+                                document.getElementById("btnVoltarTopo").style.display = "none";
+                            }
+                        }
+                        </script>-->
+
+              <!--<p>Desenvolvido por...</p>-->  
+            </div>
+         </footer>   
+         <!--end footer-->
+         <script src="js/emailScript.js"></script>
+         <script src="js/main.js"></script>
+         <script src="js/scroll-animation.js "></script>
+         <script src="js/scroll-suave.js"></script>
+        
+         <script>
+             function whatsappRedirect(number){
+
+window.location.href = "https://wa.me/"+number
+
+}
+
+const projeto01 = document.getElementById("projeto01");
+
+projeto01.addEventListener("click", (event) => {
+    window.location.href = "http://etec199-2021-mariaeduardaresolino.atwebpages.com/2ano/TrabalhoDePW/home.php"
+});
+
+         </script>
+   </body>
 </html>
