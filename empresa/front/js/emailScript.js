@@ -1,4 +1,3 @@
-import swal from 'sweetalert';
 
 function enviarMensagem() {
     const url = 'https://testecontroller-production.up.railway.app/faleConosco/enviar';
