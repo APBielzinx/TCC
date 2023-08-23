@@ -45,7 +45,11 @@ function enviarMensagem() {
 
             } else if (data.status == 200) {
                 alert("enviando dados...")
-                alert("verificado com sucesso")
+                swal({
+                    title: "Sucesso",
+                    text: "o Email foi enviado",
+                    icon: "success",
+                  });
                 toType()
             
             } else if (data.status == 500) {
