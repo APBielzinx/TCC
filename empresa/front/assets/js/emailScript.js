@@ -1,4 +1,6 @@
-console.log("oi")
+
+
+
 function enviarMensagem() {
     console.log("oi")
     const url = 'https://testecontroller-production.up.railway.app/faleConosco/enviar';
@@ -45,7 +47,11 @@ function enviarMensagem() {
 
             } else if (data.status == 200) {
                 alert("enviando dados...")
-                alert("verificado com sucesso")
+                swal({
+                    title: "Sucesso",
+                    text: "o Email foi enviado",
+                    icon: "success",
+                  });
                 toType()
             
             } else if (data.status == 500) {
