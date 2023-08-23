@@ -7,7 +7,7 @@ function enviarMensagem() {
     let from = document.getElementById('email').value
 
     if(validateEmail(from) == false){
-        return alert("inscira um email valido")
+        return alert("insira um email valido")
     }
 
   
