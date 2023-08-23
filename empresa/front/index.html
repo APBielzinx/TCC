@@ -333,27 +333,39 @@ function enviarMensagem() {
                 alert("é necessario preencher todos os campos")
                 throw Error(data.status);
             } else if (data.status == 400) {
-                alert("enviando dados...")
-                alert("Você já enviou emails de mais hoje, volte novamente mais tarde")
+                swal("Aguarde!", "...os dados estão sendo enviados");
+                swal({
+                    title: "Erro",
+                    text: "Já enviou muitos emails hoje, envie mais tarde!",
+                    icon: "error",
+                  });
                 throw Error(data.status);
             } else if (data.status == 201) {
-                alert("enviando dados...")
-                alert("email verificado com sucesso")
+                swal("Aguarde!", "...os dados estão sendo enviados");
+                swal({
+                    title: "Sucesso",
+                    text: "Email verificado com sucesso",
+                    icon: "success",
+                  });
                 toType()
 
 
             } else if (data.status == 200) {
-                alert("enviando dados...")
+                swal("Aguarde!", "...os dados estão sendo enviados");
                 swal({
                     title: "Sucesso",
-                    text: "o Email foi enviado",
+                    text: "Email verificado com sucesso",
                     icon: "success",
                   });
                 toType()
             
             } else if (data.status == 500) {
-                alert("enviando dados...")
-                alert("ocorreu um erro no servidor")
+                swal("Aguarde!", "...os dados estão sendo enviados");
+                swal({
+                    title: "Erro",
+                    text: "Ocorreu um erro no servidor",
+                    icon: "error",
+                  });
                
                 throw Error(data.status);
 
