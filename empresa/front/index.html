@@ -280,7 +280,7 @@
             <input  class="form-control" type="hidden" name="subject" value="Sugestão de Cliente" />
             <input  class="form-control" type="hidden" name="replyTo" value="gabrielbtcyt@gmail.com">
             <input  class="form-control" type="hidden" name="redirectTo" value="https://tcc-dun.vercel.app/#contato"> <!-- Optional -->
-            <button class="btn" type="submit" style="display: none;" id="botao">Enviar Mensagem</button>
+            <button class="btn" type="submit" onclick="enviando()" style="display: none;" id="botao">Enviar Mensagem</button>
         </form>
         <input class="form-control" type="email" placeholder="E-mail"  name="from" id="email" >
         <button class="btn" type="submit" onclick="enviarMensagem()" id="botaoVerifica">Verificar email</button>
@@ -296,7 +296,15 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     
-
+function enviando(){
+  swal("Aguarde!", "...os dados estão sendo enviados");
+  swal({
+    title: "Sucesso",
+    text: "Mensagem enviada com sucesso",
+    icon: "success",
+  });
+  
+}
 
 function enviarMensagem() {
     console.log("oi")
@@ -423,7 +431,7 @@ function validateEmail(email)
   <script src="assets/js/bootstrap.min.js"></script> 
   <script src="assets/js/owl.carousel.min.js"></script> 
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/emailScript.js"></script>
+
 
 </body>
 </html>
