@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -54,6 +53,8 @@ public class AdministradorService {
             select.setSenha(administrador.getSenha());
             select.setCnpj(administrador.getCnpj());
 
+            administradorRepository.save(select);
+
             return new ResponseEntity<>("atualizado com sucesso", HttpStatus.OK);
 
         }else {
@@ -62,5 +63,14 @@ public class AdministradorService {
         }
 
    }
-   
+
+    public ResponseEntity<?> deletar(Administrador administrador) {
+        if(administradorRepository.existsByEmail(administrador.getEmail())){
+            administradorRepository.delete(administrador);
+            return new ResponseEntity<>("deletado com sucesso",HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("administrador não encontrado",HttpStatus.NO_CONTENT);
+
+        }
+    }
 }
