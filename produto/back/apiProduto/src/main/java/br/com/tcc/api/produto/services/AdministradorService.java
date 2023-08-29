@@ -45,7 +45,7 @@ public class AdministradorService {
 
         if (administradorRepository.existsByCnpj(administrador.getCnpj()) && administradorRepository.existsByEmail(administrador.getEmail())){
             var select = administradorRepository.findByEmail(administrador.getEmail());
-            
+
             select.setEmail(administrador.getEmail());
             String senhaCriptografada = criptografar.encode(administrador.getSenha());
             administrador.setSenha(senhaCriptografada);
