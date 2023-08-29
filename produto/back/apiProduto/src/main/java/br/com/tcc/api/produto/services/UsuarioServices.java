@@ -62,7 +62,6 @@ public class UsuarioServices {
             var select = usuarioRepository.findAllByEmail(usuario.getEmail());
             String senhaCriptografada = criptografar.encode(usuario.getSenha());
 
-            select.setNome(usuario.getNome());
             select.setEmail(usuario.getEmail());
             select.setSenha(senhaCriptografada);
 
