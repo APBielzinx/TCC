@@ -50,4 +50,11 @@ public class UsuarioController {
 
     }
 
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> login(@RequestBody Usuario usuario){
+
+        return usuarioServices.login(usuario);
+    }
+
+
 }

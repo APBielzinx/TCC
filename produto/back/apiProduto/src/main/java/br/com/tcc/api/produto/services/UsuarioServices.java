@@ -59,7 +59,7 @@ public class UsuarioServices {
     public ResponseEntity<?> atualizar(Usuario usuario) {
 
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
-            var select = usuarioRepository.findAllByEmail(usuario.getEmail());
+            var select = usuarioRepository.findByEmail(usuario.getEmail());
             String senhaCriptografada = criptografar.encode(usuario.getSenha());
 
             select.setEmail(usuario.getEmail());
@@ -87,7 +87,23 @@ public class UsuarioServices {
 
         }
     }
+    public ResponseEntity<?>login(Usuario usuario){
+        if (usuarioRepository.existsByEmail(usuario.getEmail())){
+         var select = usuarioRepository.findByEmail(usuario.getEmail());
+            boolean isPasswordMatches = criptografar.matches(usuario.getSenha(), select.getSenha());
+                if (isPasswordMatches){
+                  return new ResponseEntity<>(select, HttpStatus.OK);
+                }else {
+
+                    return new ResponseEntity<>("usuario não encontrado", HttpStatus.NO_CONTENT);
+
+
+                }
+    }
+        return new ResponseEntity<>("erro", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
+
 
 
 
