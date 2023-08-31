@@ -23,7 +23,7 @@ public class CorsConfig {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/administrador/**").denyAll());
+        http.authorizeHttpRequests((auth) -> auth.anyRequest().permitAll());
 
         return http.build();
     }
