@@ -11,10 +11,11 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class CorsConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -22,15 +23,20 @@ public class SecurityConfig {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeHttpRequests((auth) -> auth.anyRequest().permitAll());
+        http.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/administrador/**").denyAll());
 
         return http.build();
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+   CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
+        //configuration.setAllowedOrigins(Arrays.asList("http://localhost:19006", "http://allowed-origin2.com")); // Adicione os domínios permitidos aqui
         configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedHeader("*");
+
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
