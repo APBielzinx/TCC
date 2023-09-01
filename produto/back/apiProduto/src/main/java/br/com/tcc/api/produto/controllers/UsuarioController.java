@@ -4,8 +4,8 @@ import br.com.tcc.api.produto.model.Usuario;
 import br.com.tcc.api.produto.security.TokenService;
 import br.com.tcc.api.produto.services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -34,39 +34,39 @@ public class UsuarioController {
 
     }
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> buscarUsuarioPorId(@PathVariable("id") Long id) {
+    public HttpStatusCode buscarUsuarioPorId(@PathVariable("id") Long id) {
 
-        return usuarioServices.buscarUsuarioPorId(id);
+        return usuarioServices.buscarUsuarioPorId(id).getStatusCode();
 
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
+    public HttpStatusCode cadastrarUsuario(@RequestBody Usuario usuario) {
 
-        return usuarioServices.cadastrar(usuario);
+        return usuarioServices.cadastrar(usuario).getStatusCode();
 
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> atualizarUsuario(@RequestBody Usuario usuario){
+    public HttpStatusCode atualizarUsuario(@RequestBody Usuario usuario){
 
-        return usuarioServices.atualizar(usuario);
+        return usuarioServices.atualizar(usuario).getStatusCode();
 
     }
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<?> deletarUsuario(@RequestBody Usuario usuario){
+    public HttpStatusCode deletarUsuario(@RequestBody Usuario usuario){
 
-        return usuarioServices.deletar(usuario);
+        return usuarioServices.deletar(usuario).getStatusCode();
 
     }
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> login(@RequestBody Usuario usuario){
+    public HttpStatusCode login(@RequestBody Usuario usuario){
         var usernamePassword = new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateTokenUser((Usuario) auth.getPrincipal());
-        return usuarioServices.login(usuario,token);
+        return usuarioServices.login(usuario,token).getStatusCode();
     }
 
 
