@@ -28,9 +28,9 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/api/usuario/").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/usuario/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/administrador/").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/administrador").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/administrador/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/lazer/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/lazer").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

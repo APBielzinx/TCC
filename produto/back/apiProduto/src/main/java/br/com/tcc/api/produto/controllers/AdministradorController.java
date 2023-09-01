@@ -6,6 +6,7 @@ import br.com.tcc.api.produto.services.AdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class AdministradorController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured("ADM") // Anotação para restringir o acesso à role "ADM"
     public List<Administrador> buscarTodos(){
         return administradorService.buscarAdministrador();
     }

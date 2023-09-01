@@ -1,5 +1,6 @@
 package br.com.tcc.api.produto.security;
 
+import br.com.tcc.api.produto.repository.AdministradorRepository;
 import br.com.tcc.api.produto.repository.UsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,6 +21,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     TokenService tokenService;
     @Autowired
     UsuarioRepository userRepository;
+    @Autowired
+    AdministradorRepository administradorRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -27,7 +30,15 @@ public class SecurityFilter extends OncePerRequestFilter {
         if(token != null){
             var login = tokenService.validateToken(token);
             UserDetails user = userRepository.findByEmail(login);
+            if (user == null){
+                user = administradorRepository.findByEmail(login);
+                if (user == null){
+                    System.out.println("usuario não existe ");
+                }
+            }
 
+
+            assert user != null;
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
