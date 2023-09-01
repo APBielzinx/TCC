@@ -6,6 +6,7 @@ import br.com.tcc.api.produto.services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -62,11 +63,11 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatusCode login(@RequestBody Usuario usuario){
+    public ResponseEntity<?> login(@RequestBody Usuario usuario){
         var usernamePassword = new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateTokenUser((Usuario) auth.getPrincipal());
-        return usuarioServices.login(usuario,token).getStatusCode();
+        return usuarioServices.login(usuario,token);
     }
 
 
