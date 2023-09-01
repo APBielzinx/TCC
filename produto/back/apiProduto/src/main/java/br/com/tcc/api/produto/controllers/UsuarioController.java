@@ -1,10 +1,13 @@
 package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Usuario;
+import br.com.tcc.api.produto.security.TokenService;
 import br.com.tcc.api.produto.services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +20,12 @@ public class UsuarioController {
 
     @Autowired
     UsuarioServices usuarioServices;
+
+    @Autowired
+    private TokenService tokenService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Usuario> buscarUsuarios() {
@@ -52,10 +61,12 @@ public class UsuarioController {
 
     }
 
-    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> login(@RequestBody Usuario usuario){
-
-        return usuarioServices.login(usuario);
+        var usernamePassword = new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha());
+        var auth = this.authenticationManager.authenticate(usernamePassword);
+        var token = tokenService.generateTokenUser((Usuario) auth.getPrincipal());
+        return usuarioServices.login(usuario,token);
     }
 
 
