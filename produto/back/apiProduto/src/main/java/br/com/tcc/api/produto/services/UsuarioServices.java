@@ -6,7 +6,6 @@ import br.com.tcc.api.produto.model.Usuario;
 import br.com.tcc.api.produto.repository.UsuarioRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,8 +21,7 @@ public class UsuarioServices {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    @Value("${api.security.token.secret}")
-    private String secret;
+
 
     BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
 
@@ -105,7 +103,6 @@ public class UsuarioServices {
             if (isPasswordMatches) {
                 select.setIdUsuario(null);
                 LoginResponse response = new LoginResponse(select, token);
-                System.out.println(secret);
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("usuario não encontrado", HttpStatus.NO_CONTENT);
