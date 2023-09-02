@@ -18,7 +18,7 @@ public class Avaliacao {
     private LocalDate dataAvaliacao;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
     @ManyToOne

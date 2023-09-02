@@ -1,9 +1,6 @@
 package br.com.tcc.api.produto.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,9 +17,11 @@ import java.util.List;
 @Entity
 public class Usuario implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String idUsuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idUsuario;
+    @Column(nullable = false, unique = true )
     private String email;
+    @Column(nullable = false )
     private String senha;
     private UserRole role;
 
@@ -33,6 +32,8 @@ public class Usuario implements UserDetails {
         this.senha = password;
         this.role = role;
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
