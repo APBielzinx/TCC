@@ -48,29 +48,36 @@
 
 .Titulo {
   color: #7fff00;
-  margin-top: -300px; /* Valor negativo para fazer o texto subir, ajuste conforme necessário */
+  margin-top: -200  px; /* Valor negativo para fazer o texto subir, ajuste conforme necessário */
+  
 }
 
 .slogan {
   color: white;
   text-align: left;
-  margin-top: 200px; /* Espaçamento superior entre os textos */
+  margin-top: 160px; /* Espaçamento superior entre os textos */
+  margin-right: 700px; /* Centraliza horizontalmente */ 
 }
 
 .slogan1 {
   color: white;
-  text-align: left;}
+  text-align: left;
+}
 
 .slogan2 {
   color: white;
-  text-align: left;  }
+  text-align: left; 
+ }
 
 .start-button {
   background-color: #7fff00;
   color: black;
-  margin-top: 20px; /* Ajuste a margem superior conforme necessário */
+  margin-top: 140px; /* Ajuste a margem superior conforme necessário */
   /* margin-left: 100px; Remova esta linha para centralizar horizontalmente */
   display: block; /* Para ocupar toda a largura disponível */
-  margin-left: auto; /* Centraliza horizontalmente */
+  margin-left: 180px; /* Centraliza horizontalmente */
   margin-right: auto; /* Centraliza horizontalmente */
+}
+.Logo{
+  text-align: center;
 }

@@ -4,8 +4,7 @@ import './App.css';
 import './components/Events';
 import Button from 'react-bootstrap/Button';
 import Login from './components/login';
-
-
+import Logo from "./img/logo.png";
 
 function App() {
   const [openLogin, setOpenLogin] = useState(false)
@@ -19,10 +18,11 @@ function App() {
         <div className="tree-icon">
         </div>
         <FirstComponet />
-        <Button className="start-button" onClick={() => setOpenLogin(true)}>login</Button>
         <Login isOpen={openLogin}/>
+        <img src={Logo} alt="Logo da empresa" className="logo"/>
       </div>
-      <button className="start-button">ㅤㅤㅤㅤㅤㅤㅤㅤINÍCIOㅤㅤㅤㅤㅤㅤㅤㅤ</button>
+      <Button className="start-button" onClick={() => setOpenLogin(true)}>ㅤㅤㅤㅤㅤㅤㅤㅤㅤINÍCIOㅤㅤㅤㅤㅤㅤㅤㅤㅤ</Button>
+     
     </div>
     
     
