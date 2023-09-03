@@ -122,10 +122,12 @@ export default function Login({ isOpen }) {
             <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
               <p style={TEXTO_STYLE}>Bem vindo</p>
               <img style={IMG_STYLE} src={Logo} alt="logo do app" title="logo do app" />
+              <p style={TEXTO2_STYLE}>LINKED PARK</p>
+
               
               {/*<button style={BUTTON_STYLE}>CADASTRE-SE</button>*/}
             </div>
-            <div style={{ width: '65%' ,height: '100%' }}>
+            <div style={{ width: '60%', height: '1000%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={TEXTO2_STYLE}>LOGIN</p>
             <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
               <input style={INPUT_STYLE} type="text" placeholder="Usuário" />
