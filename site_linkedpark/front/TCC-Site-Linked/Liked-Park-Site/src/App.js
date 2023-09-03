@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Login from './components/login';
 import Logo from "./img/logoG.png";
 
+
 function App() {
   const [openLogin, setOpenLogin] = useState(false)
 

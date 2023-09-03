@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../img/logo.png'
 
+
 const BACKGROUND_STYLE = {
   position: 'fixed',
   top: '0',
@@ -46,6 +47,8 @@ const PARTE_ESQUERDA_STYLE = {
     textAlign: 'center',
   };
 
+  
+
   const TEXTO2_STYLE = {
     display: 'flex',
     width: '120px',
@@ -53,6 +56,9 @@ const PARTE_ESQUERDA_STYLE = {
     backgroundColor: 'transparent',
     color: '#fff',
     textAlign: 'center',
+    width:'65px',
+    alignItems:'center',
+    textAlign: 'center'
   };
 
   const IMG_STYLE = {
@@ -76,7 +82,8 @@ const PARTE_ESQUERDA_STYLE = {
     height: '40px',
     backgroundColor:  '#fff',
     color: 'black', 
-    borderRadius: '20px'
+    borderRadius: '20px',
+    backgroundColor:'white'
   };
 
 const MODAL_BACKGROUND_STYLE = {
@@ -95,13 +102,16 @@ const INPUT_STYLE = {
   display: 'block',
   width: '100%',
   height: '40px',
-  backgroundColor: 'transparent',
-  color: '#fff',
+  backgroundColor: 'white',
+  color: 'black',
   border: '1px solid #fff',
   borderRadius: '5px',
   margin: '10px 0',
   paddingLeft: '10px',
+  borderRadius: '80px'
 };
+
+
 
 export default function Login({ isOpen }) {
   if (isOpen) {
@@ -112,13 +122,16 @@ export default function Login({ isOpen }) {
             <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
               <p style={TEXTO_STYLE}>Bem vindo</p>
               <img style={IMG_STYLE} src={Logo} alt="logo do app" title="logo do app" />
-              <p style={TEXTO2_STYLE}>NOVA CONTA</p>
-              <button style={BUTTON_STYLE}>CADASTRE-SE</button>
+              
+              {/*<button style={BUTTON_STYLE}>CADASTRE-SE</button>*/}
             </div>
-            <div style={{ width: '65%' }}>
-              <input style={INPUT_STYLE} type="text" placeholder="Nome" />
-              <input style={INPUT_STYLE} type="text" placeholder="CPF" />
+            <div style={{ width: '65%' ,height: '100%' }}>
+            <p style={TEXTO2_STYLE}>LOGIN</p>
+            <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
+              <input style={INPUT_STYLE} type="text" placeholder="Usuário" />
               <input style={INPUT_STYLE} type="password" placeholder="Senha" />
+              <button style={BUTTON_STYLE}>ENTRAR</button>
+              
               {/* Outros campos de entrada, se necessário */}
             </div>
           </div>
