@@ -22,7 +22,7 @@ function App() {
         <Button className="start-button" onClick={() => setOpenLogin(true)}>login</Button>
         <Login isOpen={openLogin}/>
       </div>
-      <button className="start-button">login</button>
+      <button className="start-button">ㅤㅤㅤㅤㅤㅤㅤㅤINÍCIOㅤㅤㅤㅤㅤㅤㅤㅤ</button>
     </div>
     
     
