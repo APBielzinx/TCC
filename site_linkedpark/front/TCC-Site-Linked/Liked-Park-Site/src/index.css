@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: green;
+  color: black;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.green-background {
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tree-icon {
+  margin-right: 20px;
+}
+
+.start-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  background-color: #0056b3;
+}
