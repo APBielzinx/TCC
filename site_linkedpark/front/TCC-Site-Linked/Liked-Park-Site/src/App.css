@@ -2,8 +2,13 @@
   text-align: center;
 }
 
-.app-container{
+.app-container {
   background-color: #011e11;
+  display: flex; /* Adicionado para centralizar verticalmente */
+  text-align: left;
+  justify-content: center; /* Adicionado para centralizar horizontalmente */
+  min-height: 100vh; /* Adicionado para ocupar a altura total da tela */
+  
 }
 
 .App-logo {
@@ -40,15 +45,32 @@
     transform: rotate(360deg);
   }
 }
-p {
-  color: black;
-  background-color: #fff;
-  padding: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: large;
+
+.Titulo {
+  color: #7fff00;
+  margin-top: -300px; /* Valor negativo para fazer o texto subir, ajuste conforme necessário */
 }
-.start-button{
+
+.slogan {
+  color: white;
+  text-align: left;
+  margin-top: 200px; /* Espaçamento superior entre os textos */
+}
+
+.slogan1 {
+  color: white;
+  text-align: left;}
+
+.slogan2 {
+  color: white;
+  text-align: left;  }
+
+.start-button {
   background-color: #7fff00;
   color: black;
-  margin-top: auto;
+  margin-top: 20px; /* Ajuste a margem superior conforme necessário */
+  /* margin-left: 100px; Remova esta linha para centralizar horizontalmente */
+  display: block; /* Para ocupar toda a largura disponível */
+  margin-left: 100px; /* Centraliza horizontalmente */
+  margin-right: auto; /* Centraliza horizontalmente */
 }
