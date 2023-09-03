@@ -1,0 +1,83 @@
+.App {
+  text-align: center;
+}
+
+.app-container {
+  background-color: #011e11;
+  display: flex; /* Adicionado para centralizar verticalmente */
+  text-align: left;
+  justify-content: center; /* Adicionado para centralizar horizontalmente */
+  min-height: 100vh; /* Adicionado para ocupar a altura total da tela */
+  
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #7fff00;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Titulo {
+  color: #7fff00;
+  margin-top: -200  px; /* Valor negativo para fazer o texto subir, ajuste conforme necessário */
+  
+}
+
+.slogan {
+  color: white;
+  text-align: left;
+  margin-top: 160px; /* Espaçamento superior entre os textos */
+  margin-right: 800px; /* Centraliza horizontalmente */ 
+}
+
+.slogan1 {
+  color: white;
+  text-align: left;
+}
+
+.slogan2 {
+  color: white;
+  text-align: left; 
+ }
+
+.start-button {
+  background-color: #7fff00;
+  color: black;
+  margin-top: 140px; /* Ajuste a margem superior conforme necessário */
+  /* margin-left: 100px; Remova esta linha para centralizar horizontalmente */
+  display: block; /* Para ocupar toda a largura disponível */
+  margin-left: 180px; /* Centraliza horizontalmente */
+  margin-right: auto; /* Centraliza horizontalmente */
+}
+.Logo{
+  text-align: center;
+}

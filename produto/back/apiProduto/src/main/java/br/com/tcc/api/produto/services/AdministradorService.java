@@ -2,11 +2,14 @@ package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Administrador;
 import br.com.tcc.api.produto.repository.AdministradorRepository;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -46,7 +49,6 @@ public class AdministradorService {
         if (administradorRepository.existsByCnpj(administrador.getCnpj()) && administradorRepository.existsByEmail(administrador.getEmail())){
             var select = administradorRepository.findByEmail(administrador.getEmail());
 
-            select.setNome(administrador.getNome());
             select.setEmail(administrador.getEmail());
             String senhaCriptografada = criptografar.encode(administrador.getSenha());
             administrador.setSenha(senhaCriptografada);
@@ -71,6 +73,43 @@ public class AdministradorService {
         }else {
             return new ResponseEntity<>("administrador não encontrado",HttpStatus.NO_CONTENT);
 
+        }
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Administrador administrador, String token) {
+        if (administradorRepository.existsByEmail(administrador.getEmail())) {
+            var select = administradorRepository.findByEmail(administrador.getEmail());
+            boolean isPasswordMatches = criptografar.matches(administrador.getSenha(), select.getSenha());
+
+            if (isPasswordMatches) {
+                AdministradorService.LoginResponse response = new AdministradorService.LoginResponse(select, token);
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("usuario não encontrado", HttpStatus.NO_CONTENT);
+            }
+        }
+
+        return new ResponseEntity<>("erro", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    // Classe interna para a resposta personalizada JSON
+    static class LoginResponse {
+        private Administrador select;
+        private String token;
+
+        public LoginResponse(Administrador select, String token) {
+            this.select = select;
+            this.token = token;
+        }
+
+        @JsonProperty("select") // Nome do campo no JSON
+        public Administrador getSelect() {
+            return select;
+        }
+
+        @JsonProperty("token") // Nome do campo no JSON
+        public String getToken() {
+            return token;
         }
     }
 }
