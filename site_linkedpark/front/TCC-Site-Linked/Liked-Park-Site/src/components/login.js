@@ -112,7 +112,7 @@ const INPUT_STYLE1 = {
   backgroundColor: 'white',
   color: 'black',
   border: '1px solid #fff',
-  borderRadius: '5px',
+  borderRadius: '50px',
   margin: '10px 0',
   paddingLeft: '40px', // Aumente o padding para acomodar o ícone
 };
@@ -132,7 +132,7 @@ const INPUT_STYLE2 = {
   backgroundColor: 'white',
   color: 'black',
   border: '1px solid #fff',
-  borderRadius: '5px',
+  borderRadius: '40px',
   margin: '10px 0',
   paddingLeft: '40px', // Aumente o padding para acomodar o ícone
 };
