@@ -91,19 +91,37 @@ const MODAL_BACKGROUND_STYLE = {
   borderRadius: '10px',
 };
 
-
+const INPUT_STYLE = {
+  display: 'block',
+  width: '100%',
+  height: '40px',
+  backgroundColor: 'transparent',
+  color: '#fff',
+  border: '1px solid #fff',
+  borderRadius: '5px',
+  margin: '10px 0',
+  paddingLeft: '10px',
+};
 
 export default function Login({ isOpen }) {
   if (isOpen) {
     return (
       <div style={BACKGROUND_STYLE}>
         <div style={MODAL_STYLE}>
-            <div style={PARTE_ESQUERDA_STYLE}>
-          <p style={TEXTO_STYLE}>Bem vindo</p>
-          <img style={IMG_STYLE} src={Logo} alt="logo do app" title="logo do app"/>
-          <p style={TEXTO2_STYLE}>NOVA CONTA</p>
-          <button style={BUTTON_STYLE}>CADASTRE-SE</button>
+          <div style={{ display: 'flex' }}>
+            <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
+              <p style={TEXTO_STYLE}>Bem vindo</p>
+              <img style={IMG_STYLE} src={Logo} alt="logo do app" title="logo do app" />
+              <p style={TEXTO2_STYLE}>NOVA CONTA</p>
+              <button style={BUTTON_STYLE}>CADASTRE-SE</button>
             </div>
+            <div style={{ width: '65%' }}>
+              <input style={INPUT_STYLE} type="text" placeholder="Nome" />
+              <input style={INPUT_STYLE} type="text" placeholder="CPF" />
+              <input style={INPUT_STYLE} type="password" placeholder="Senha" />
+              {/* Outros campos de entrada, se necessário */}
+            </div>
+          </div>
           <div style={MODAL_BACKGROUND_STYLE}></div>
         </div>
       </div>
@@ -111,4 +129,5 @@ export default function Login({ isOpen }) {
   }
 
   return null;
+
 }

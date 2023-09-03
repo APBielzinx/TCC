@@ -9,6 +9,8 @@ import Logo from "./img/logoG.png";
 function App() {
   const [openLogin, setOpenLogin] = useState(false)
 
+  
+
   return (
     <div className="app-container">
       <div className="green-background">
@@ -28,6 +30,7 @@ function App() {
     
   );
 }
+
 
 export default App;
 
