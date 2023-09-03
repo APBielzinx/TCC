@@ -25,4 +25,6 @@ public class Avaliacao {
     @JoinColumn(name = "areadelazer_id", nullable = false)
     private Lazer Lazer;
 
+    @Column(nullable = false)
+    private String Comentario;
 }
