@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../img/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faUser, faLock } from '@fortawesome/free-solid-svg-icons'; // Importe os ícones necessários
+import { faTimes, faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 const BACKGROUND_STYLE = {
   position: 'fixed',
@@ -59,14 +59,12 @@ const TEXTO_STYLE = {
 
 const TEXTO2_STYLE = {
   display: 'flex',
-  width: '120px',
+  width: '65px',
   height: '25px',
   backgroundColor: 'transparent',
   color: '#fff',
   textAlign: 'center',
-  width: '65px',
   alignItems: 'center',
-  textAlign: 'center',
 };
 
 const IMG_STYLE = {
@@ -105,6 +103,7 @@ const MODAL_BACKGROUND_STYLE = {
   zIndex: '-1',
   borderRadius: '10px',
 };
+
 const INPUT_STYLE1 = {
   display: 'block',
   width: '100%',
@@ -114,7 +113,7 @@ const INPUT_STYLE1 = {
   border: '1px solid #fff',
   borderRadius: '50px',
   margin: '10px 0',
-  paddingLeft: '40px', // Aumente o padding para acomodar o ícone
+  paddingLeft: '40px',
 };
 
 const INPUT_ICON_STYLE = {
@@ -127,31 +126,48 @@ const INPUT_ICON_STYLE = {
 
 const INPUT_STYLE2 = {
   display: 'block',
-  width: '100%',
+  width: '91%',
   height: '40px',
   backgroundColor: 'white',
   color: 'black',
   border: '1px solid #fff',
   borderRadius: '40px',
   margin: '10px 0',
-  paddingLeft: '40px', // Aumente o padding para acomodar o ícone
+  paddingLeft: '40px',
 };
 
 export default function Login({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   const handleLogin = () => {
-    // Lógica para realizar o login
-    // Isso pode incluir a validação de campos, envio de dados para o servidor, etc.
-    // Você pode implementar essa lógica aqui.
+    // Exibir os dados do formulário no console
+    console.log('Dados do formulário:', formData.username);
+
+    // Limpar os campos de entrada
+    setFormData({
+      username: '',
+      password: '',
+    });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   useEffect(() => {
-    document.title = 'Novo Título da Página';
+    document.title = 'Linked Park';
   }, []);
 
   if (isOpen) {
@@ -166,15 +182,40 @@ export default function Login({ isOpen, onClose }) {
           <div style={{ display: 'flex' }}>
             <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
               <p style={TEXTO_STYLE}>Bem vindo</p>
-              <img style={IMG_STYLE} src={Logo} alt="logo do app" title="logo do app" />
+              <img
+                style={IMG_STYLE}
+                src={Logo}
+                alt="logo do app"
+                title="logo do app"
+              />
               <p style={TEXTO2_STYLE}>LINKED PARK</p>
             </div>
-            <div style={{ width: '60%', height: '1000%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div
+              style={{
+                width: '60%',
+                height: '1000%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
               <p style={TEXTO2_STYLE}>LOGIN</p>
               <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
               <div style={{ position: 'relative', width: '100%' }}>
                 <FontAwesomeIcon icon={faUser} style={INPUT_ICON_STYLE} />
-                <input style={INPUT_STYLE1} type="text" placeholder="Usuário" />
+                <input
+                  style={INPUT_STYLE1}
+                  type="text"
+                  placeholder="Usuário"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                />
+                <FontAwesomeIcon
+  icon={faTimes}
+  style={CLOSE_ICON_STYLE}
+  onClick={onClose}
+/>
               </div>
               <div style={{ position: 'relative', width: '100%' }}>
                 <FontAwesomeIcon icon={faLock} style={INPUT_ICON_STYLE} />
@@ -182,6 +223,9 @@ export default function Login({ isOpen, onClose }) {
                   style={{ ...INPUT_STYLE2, paddingRight: '40px' }}
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Senha"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
                 />
                 <button
                   style={{
@@ -199,7 +243,9 @@ export default function Login({ isOpen, onClose }) {
                   {showPassword ? '◠ Ocultar' : '  ͡o Mostrar'}
                 </button>
               </div>
-              <button style={BUTTON_STYLE} onClick={handleLogin}>ENTRAR</button>
+              <button style={BUTTON_STYLE} onClick={handleLogin}>
+                ENTRAR
+              </button>
             </div>
           </div>
           <div style={MODAL_BACKGROUND_STYLE}></div>

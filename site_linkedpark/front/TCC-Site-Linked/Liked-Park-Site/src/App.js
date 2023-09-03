@@ -26,6 +26,7 @@ function App() {
         </div>
         <FirstComponet />
         <Login isOpen={openLogin}/>
+        
         <img src={Logo} alt="Logo da empresa" className="logo"/>
       </div>
       <Button className="start-button" onClick={() => setOpenLogin(true)}>ㅤㅤㅤㅤㅤㅤㅤㅤㅤINÍCIOㅤㅤㅤㅤㅤㅤㅤㅤㅤ</Button>
