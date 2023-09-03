@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../img/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faUser, faLock } from '@fortawesome/free-solid-svg-icons'; // Importe os ícones necessários
 
 const BACKGROUND_STYLE = {
   position: 'fixed',
@@ -32,7 +32,7 @@ const CLOSE_ICON_STYLE = {
   top: '10px',
   right: '10px',
   cursor: 'pointer',
-  color:'white'
+  color: 'white',
 };
 
 const PARTE_ESQUERDA_STYLE = {
@@ -82,7 +82,7 @@ const IMG_STYLE = {
 
 const BUTTON_STYLE = {
   display: 'flex',
-  marginTop: '20px', // Aumentei a margem superior
+  marginTop: '20px',
   textAlign: 'center',
   justifyContent: 'center',
   alignItems: 'center',
@@ -91,7 +91,7 @@ const BUTTON_STYLE = {
   backgroundColor: '#fff',
   color: 'black',
   borderRadius: '20px',
-  cursor: 'pointer', // Adicionei cursor pointer para indicar que é clicável
+  cursor: 'pointer',
 };
 
 const MODAL_BACKGROUND_STYLE = {
@@ -105,7 +105,6 @@ const MODAL_BACKGROUND_STYLE = {
   zIndex: '-1',
   borderRadius: '10px',
 };
-
 const INPUT_STYLE1 = {
   display: 'block',
   width: '100%',
@@ -115,8 +114,15 @@ const INPUT_STYLE1 = {
   border: '1px solid #fff',
   borderRadius: '5px',
   margin: '10px 0',
-  paddingLeft: '10px',
-  borderRadius: '80px',
+  paddingLeft: '40px', // Aumente o padding para acomodar o ícone
+};
+
+const INPUT_ICON_STYLE = {
+  position: 'absolute',
+  top: '50%',
+  left: '10px',
+  transform: 'translateY(-50%)',
+  color: 'gray',
 };
 
 const INPUT_STYLE2 = {
@@ -128,8 +134,7 @@ const INPUT_STYLE2 = {
   border: '1px solid #fff',
   borderRadius: '5px',
   margin: '10px 0',
-  paddingLeft: '10px',
-  borderRadius: '80px',
+  paddingLeft: '40px', // Aumente o padding para acomodar o ícone
 };
 
 export default function Login({ isOpen, onClose }) {
@@ -144,6 +149,10 @@ export default function Login({ isOpen, onClose }) {
     // Isso pode incluir a validação de campos, envio de dados para o servidor, etc.
     // Você pode implementar essa lógica aqui.
   };
+
+  useEffect(() => {
+    document.title = 'Novo Título da Página';
+  }, []);
 
   if (isOpen) {
     return (
@@ -163,8 +172,12 @@ export default function Login({ isOpen, onClose }) {
             <div style={{ width: '60%', height: '1000%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <p style={TEXTO2_STYLE}>LOGIN</p>
               <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
-              <input style={INPUT_STYLE1} type="text" placeholder="Usuárioㅤㅤㅤㅤ" />
               <div style={{ position: 'relative', width: '100%' }}>
+                <FontAwesomeIcon icon={faUser} style={INPUT_ICON_STYLE} />
+                <input style={INPUT_STYLE1} type="text" placeholder="Usuário" />
+              </div>
+              <div style={{ position: 'relative', width: '100%' }}>
+                <FontAwesomeIcon icon={faLock} style={INPUT_ICON_STYLE} />
                 <input
                   style={{ ...INPUT_STYLE2, paddingRight: '40px' }}
                   type={showPassword ? 'text' : 'password'}
@@ -179,12 +192,11 @@ export default function Login({ isOpen, onClose }) {
                     background: 'transparent',
                     border: 'none',
                     color: 'gray',
-                    cursor: 'pointer', // Adicionado cursor pointer
-                    
+                    cursor: 'pointer',
                   }}
                   onClick={toggleShowPassword}
                 >
-                  {showPassword ? '◠Ocultar' : '  ͡o Mostrar'}
+                  {showPassword ? '◠ Ocultar' : '  ͡o Mostrar'}
                 </button>
               </div>
               <button style={BUTTON_STYLE} onClick={handleLogin}>ENTRAR</button>
