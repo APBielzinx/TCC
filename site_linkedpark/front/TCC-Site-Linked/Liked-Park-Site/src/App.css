@@ -71,6 +71,6 @@
   margin-top: 20px; /* Ajuste a margem superior conforme necessário */
   /* margin-left: 100px; Remova esta linha para centralizar horizontalmente */
   display: block; /* Para ocupar toda a largura disponível */
-  margin-left: 100px; /* Centraliza horizontalmente */
+  margin-left: auto; /* Centraliza horizontalmente */
   margin-right: auto; /* Centraliza horizontalmente */
 }
