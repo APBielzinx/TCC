@@ -32,7 +32,7 @@ public class Administrador  implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       return Collections.singleton(new SimpleGrantedAuthority(UserRole.ADMIN.getRole()));
+       return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
 
