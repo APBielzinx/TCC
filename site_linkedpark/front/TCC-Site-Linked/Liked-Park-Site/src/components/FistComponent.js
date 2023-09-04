@@ -2,12 +2,12 @@
 const FistComponent = () => {
 
     return (
-        <div>
+        <div id="espaçotext">
             {/*Tela Inicial */}
             <p className="Titulo">Linked Park </p>
-            <h1 className=" slogan ">O sistema </h1>
-            <h1 className=" slogan1 "> vinculado a </h1>
-            <h1 className=" slogan2 ">você</h1>
+            <h1 className=" slogan ">O LAZER </h1>
+            <h1 className=" slogan1 "> VINCULADO A </h1>
+            <h1 className=" slogan2 ">VOCÊ</h1>
             
         </div>
     );
