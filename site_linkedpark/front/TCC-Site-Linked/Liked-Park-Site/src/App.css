@@ -56,16 +56,18 @@
 .Titulo {
   font-family: 'Holt';
   color: #7fff00;
-  margin-top: -200  px; /* Valor negativo para fazer o texto subir, ajuste conforme necessário */
+  margin-top: -250px;
+  font-size: 25px;
+
   
 }
 
 .slogan {
  
   color: white;
-  text-align: left;
   margin-top: 160px; /* Espaçamento superior entre os textos */
-  margin-right: 800px; /* Centraliza horizontalmente */ 
+  margin-right: 750px; /* Centraliza horizontalmente */ 
+  font-size: 50px;
 
 }
 
@@ -73,12 +75,14 @@
   
   color: white;
   text-align: left;
+  font-size: 50px;
 }
 
 .slogan2 {
   
   color: white;
-  text-align: left; 
+  text-align: left;
+  font-size: 50px; 
  }
 
 .start-button {
@@ -88,10 +92,17 @@
   margin-top: 140px; /* Ajuste a margem superior conforme necessário */
   /* margin-left: 100px; Remova esta linha para centralizar horizontalmente */
   display: block; /* Para ocupar toda a largura disponível */
-  margin-left: 180px; /* Centraliza horizontalmente */
+  margin-left: 200px; /* Centraliza horizontalmente */
   margin-right: auto; /* Centraliza horizontalmente */
+  width: 500px;
+  height: 55px;
 }
 .Logo{
   text-align: center;
   
+}
+
+#espaçotext {
+    margin-top: 150px;
+    margin-left: -80px;
 }
