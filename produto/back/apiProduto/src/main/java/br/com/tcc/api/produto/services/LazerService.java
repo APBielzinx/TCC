@@ -19,8 +19,8 @@ public class LazerService {
     }
 
     public ResponseEntity<?> BuscarPorId(Long id){
-        lazerRepository.findById(id);
-        return new ResponseEntity<>("Encontrado com sucesso", HttpStatus.OK);
+       var lazer = lazerRepository.findById(id);
+        return new ResponseEntity<>(lazer, HttpStatus.OK);
     }
 
     public ResponseEntity<?> Cadastrar(Lazer lazer){

@@ -35,9 +35,9 @@ public class UsuarioController {
 
     }
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatusCode buscarUsuarioPorId(@PathVariable("id") Long id) {
+    public ResponseEntity<?> buscarUsuarioPorId(@PathVariable("id") Long id) {
 
-        return usuarioServices.buscarUsuarioPorId(id).getStatusCode();
+        return usuarioServices.buscarUsuarioPorId(id);
 
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

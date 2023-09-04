@@ -35,9 +35,9 @@ public class UsuarioServices {
     public ResponseEntity<?> buscarUsuarioPorId(Long id) {
 
 
-        usuarioRepository.findById(id);
+    var   usuario = usuarioRepository.findById(id);
 
-        return new ResponseEntity<>("encontrado com sucesso", HttpStatus.OK);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
 
     }
 

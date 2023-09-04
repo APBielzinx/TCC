@@ -20,8 +20,8 @@ public class FavoritoService {
     }
 
    /* public ResponseEntity<?> BuscarPorLazer(String Lazer){
-        favoritoRepository.findByLazer(Lazer);
-        return new ResponseEntity<>("Favorito encontrada com sucesso", HttpStatus.OK);
+       var favorito = favoritoRepository.findByLazer(Lazer);
+        return new ResponseEntity<>(favorito, HttpStatus.OK);
     }*/
 
    /* public ResponseEntity<?> Favoritar(Favorito favorito){
