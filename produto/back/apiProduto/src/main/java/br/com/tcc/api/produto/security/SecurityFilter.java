@@ -29,17 +29,21 @@ public class SecurityFilter extends OncePerRequestFilter {
         var token = this.recoverToken(request);
         if(token != null){
             var login = tokenService.validateToken(token);
-            UserDetails user = userRepository.findByEmail(login);
+            System.out.println(tokenService.validateToken(token));
+            System.out.println(login);
+           var user = userRepository.findByEmail(login);
+            var userADM = administradorRepository.findByEmail(login);
+            System.out.println(userADM);
             if (user == null){
-                user = administradorRepository.findByEmail(login);
-                if (user == null){
-                    System.out.println("usuario não existe ");
+             System.out.println("usuario não existe ");
+                if (userADM == null){
+                    System.out.println("administrador não existe ");
                 }
             }
 
 
             assert user != null;
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+            var authentication = new UsernamePasswordAuthenticationToken(user, null, userADM.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);

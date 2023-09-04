@@ -1,6 +1,7 @@
 package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Administrador;
+import br.com.tcc.api.produto.model.UserRole;
 import br.com.tcc.api.produto.security.TokenService;
 import br.com.tcc.api.produto.services.AdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class AdministradorController {
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> cadastrarAdministrador(@RequestBody Administrador administrador) {
-
+    administrador.setRole(UserRole.ADMIN);
     return administradorService.cadastrar(administrador);
 
     }

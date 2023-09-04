@@ -36,7 +36,7 @@ public class AvaliacaoService {
 
     public ResponseEntity<?> AtualizarAvaliacao(Avaliacao avaliacao){
         if (avaliacaoRepository.existsById(avaliacao.getId())){
-            var select = avaliacaoRepository.findByUser(avaliacao.getUsuario());
+            var select = avaliacaoRepository.findByUsuario(avaliacao.getUsuario());
             select.setPontuacao(avaliacao.getPontuacao());
             select.setDataAvaliacao(avaliacao.getDataAvaliacao());
             select.setComentario(avaliacao.getComentario());

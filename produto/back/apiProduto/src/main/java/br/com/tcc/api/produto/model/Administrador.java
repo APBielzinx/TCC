@@ -28,14 +28,11 @@ public class Administrador  implements UserDetails {
 
     private String senha;
 
-    @Column(nullable = false, unique = true )
-    private String cnpj;
-
     private UserRole role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
+       return Collections.singleton(new SimpleGrantedAuthority(UserRole.ADMIN.getRole()));
     }
 
 

@@ -6,9 +6,11 @@ import br.com.tcc.api.produto.repository.FavoritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class FavoritoService {
     @Autowired
     FavoritoRepository favoritoRepository;
@@ -17,13 +19,13 @@ public class FavoritoService {
         return favoritoRepository.findAll();
     }
 
-    public ResponseEntity<?> BuscarPorLazer(String Lazer){
+   /* public ResponseEntity<?> BuscarPorLazer(String Lazer){
         favoritoRepository.findByLazer(Lazer);
         return new ResponseEntity<>("Favorito encontrada com sucesso", HttpStatus.OK);
-    }
+    }*/
 
-    public ResponseEntity<?> Favoritar(Favorito favorito){
-        if (favoritoRepository.ExistsByLazer(favorito.getLazer())){
+   /* public ResponseEntity<?> Favoritar(Favorito favorito){
+        if (favoritoRepository.existsByLazer(favorito.getLazer().getIdLazer())){
             return new ResponseEntity<>("Já esta nos seus favoritos", HttpStatus.BAD_REQUEST);
         }
         else{
@@ -33,7 +35,7 @@ public class FavoritoService {
     }
 
     public ResponseEntity<?> RetirarFavorito(Favorito favorito){
-        if (favoritoRepository.ExistsByLazer(favorito.getLazer())){
+        if (favoritoRepository.existsByLazer(favorito.getLazer())){
             favoritoRepository.delete(favorito);
             return new ResponseEntity<>("Favorito retirado com sucesso", HttpStatus.OK);
         }
@@ -41,5 +43,5 @@ public class FavoritoService {
             return new ResponseEntity<>("Não está nos seus favoritos", HttpStatus.BAD_REQUEST);
         }
     }
-
+*/
 }

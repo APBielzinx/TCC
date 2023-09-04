@@ -8,7 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RestController
+@RequestMapping("api/favorito")
 public class FavoritoController {
 
     @Autowired
@@ -19,12 +20,12 @@ public class FavoritoController {
         return favoritoService.ListarFavorito();
     }
 
-    @GetMapping(value = "/{lazer}" , produces = MediaType.APPLICATION_JSON_VALUE)
+  /*  @GetMapping(value = "/{lazer}" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> BuscarPorLazer(@PathVariable ("lazer")String lazer){
         return favoritoService.BuscarPorLazer(lazer);
     }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+*/
+ /*   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> Favoritar (@RequestBody Favorito favorito){
         return favoritoService.Favoritar(favorito);
     }
@@ -33,5 +34,5 @@ public class FavoritoController {
     public ResponseEntity<?> RetirarFavorito (@RequestBody Favorito favorito){
         return favoritoService.RetirarFavorito(favorito);
     }
-
+*/
 }

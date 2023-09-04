@@ -27,7 +27,7 @@ public class AdministradorService {
     }
     public ResponseEntity<?> cadastrar(Administrador administrador) {
 
-    if (administradorRepository.existsByCnpj(administrador.getCnpj()) || administradorRepository.existsByEmail(administrador.getEmail())){
+    if ( administradorRepository.existsByEmail(administrador.getEmail())){
 
         return new ResponseEntity<>("Já está em uso o cpf ou email",HttpStatus.BAD_REQUEST);
 
@@ -46,14 +46,14 @@ public class AdministradorService {
 
    public  ResponseEntity<?> atualizar(Administrador administrador){
 
-        if (administradorRepository.existsByCnpj(administrador.getCnpj()) && administradorRepository.existsByEmail(administrador.getEmail())){
+        if ( administradorRepository.existsByEmail(administrador.getEmail())){
             var select = administradorRepository.findByEmail(administrador.getEmail());
 
             select.setEmail(administrador.getEmail());
             String senhaCriptografada = criptografar.encode(administrador.getSenha());
             administrador.setSenha(senhaCriptografada);
             select.setSenha(administrador.getSenha());
-            select.setCnpj(administrador.getCnpj());
+
 
             administradorRepository.save(select);
 

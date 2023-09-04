@@ -3,12 +3,13 @@ package br.com.tcc.api.produto.repository;
 import br.com.tcc.api.produto.model.Avaliacao;
 import br.com.tcc.api.produto.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao , Long> {
 
-    boolean existsByUser(Usuario usuario);
 
-    boolean existsByLazerId( long idLazer);
+    boolean existsById (long idLazer);
 
-    Avaliacao findByUser(Usuario usuario);
+            Avaliacao findByUsuario(Usuario usuario);
 }

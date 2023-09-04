@@ -5,9 +5,11 @@ import br.com.tcc.api.produto.repository.LazerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LazerService {
     @Autowired
     LazerRepository lazerRepository;
@@ -22,7 +24,7 @@ public class LazerService {
     }
 
     public ResponseEntity<?> Cadastrar(Lazer lazer){
-        if (lazerRepository.existsByName(lazer.getNome())) {
+        if (lazerRepository.existsByNome(lazer.getNome())) {
 
             return new ResponseEntity<>("Já existe uma area de lazer com esse nome", HttpStatus.BAD_REQUEST);
 
@@ -38,8 +40,8 @@ public class LazerService {
     }
 
     public ResponseEntity<?> AtualizarLazer(Lazer lazer){
-        if (lazerRepository.existsByName(lazer.getNome())) {
-            var select = lazerRepository.findByName(lazer.getNome());
+        if (lazerRepository.existsByNome(lazer.getNome())) {
+            var select = lazerRepository.findByNome(lazer.getNome());
             select.setNome(lazer.getNome());
             select.setEndereco(lazer.getEndereco());
 
@@ -53,7 +55,7 @@ public class LazerService {
     }
 
     public ResponseEntity<?> ExcluirLazer(Lazer lazer){
-        if (lazerRepository.existsByName(lazer.getNome())){
+        if (lazerRepository.existsByNome(lazer.getNome())){
 
             lazerRepository.delete(lazer);
 
