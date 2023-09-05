@@ -18,6 +18,16 @@ import java.util.List;
 @EnableWebSecurity
 public class CorsConfig {
 
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        http.headers().frameOptions().disable();
+        http.cors().and().csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeHttpRequests((auth) -> auth.anyRequest().permitAll());
+
+        return http.build();
+    }
 
     @Bean
    CorsConfigurationSource corsConfigurationSource() {

@@ -30,6 +30,10 @@ public class Administrador  implements UserDetails {
 
     private UserRole role;
 
+    @ManyToOne
+    @JoinColumn(name = "idLazer")
+    private Lazer Lazer;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
        return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));

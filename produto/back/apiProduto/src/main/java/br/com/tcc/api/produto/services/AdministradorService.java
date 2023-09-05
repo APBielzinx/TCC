@@ -53,6 +53,7 @@ public class AdministradorService {
             String senhaCriptografada = criptografar.encode(administrador.getSenha());
             administrador.setSenha(senhaCriptografada);
             select.setSenha(administrador.getSenha());
+            select.setLazer(administrador.getLazer());
 
 
             administradorRepository.save(select);
