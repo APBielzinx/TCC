@@ -1,7 +1,5 @@
 package br.com.tcc.api.produto.security;
 
-import br.com.tcc.api.produto.model.Administrador;
-import br.com.tcc.api.produto.model.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
