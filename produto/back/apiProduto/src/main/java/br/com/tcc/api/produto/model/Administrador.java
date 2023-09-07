@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 
 @Data
@@ -30,13 +31,14 @@ public class Administrador  implements UserDetails {
 
     private UserRole role;
 
-    @ManyToOne
+   @ManyToOne
     @JoinColumn(name = "idLazer")
-    private Lazer Lazer;
+    private Lazer lazer;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        if(this.role == UserRole.MANAGER) return List.of(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
 

@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface LazerRepository extends JpaRepository<Lazer, Long> {
     boolean existsByNome(String nome);
 
+    Lazer findByIdLazer(Lazer id);
     Lazer findByNome(String nome);
 }

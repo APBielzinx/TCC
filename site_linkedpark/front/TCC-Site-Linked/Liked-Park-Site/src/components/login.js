@@ -178,12 +178,16 @@ export default function Login({ isOpen, onClose }) {
     
       localStorage.setItem('email',data.select.email);
       localStorage.setItem('senha',data.select.senha);
+      localStorage.setItem('role',data.select.role);
+      localStorage.setItem('lazer',data.select.lazer);
       localStorage.setItem('token',data.token);
-     //var logado = true
-    //  navigation.navigate('TelaInicial',logado);
-    
-    
-        console.log("Dados de resposta da API:", data);
+      
+          if(data.select.role == "ADMIN"){
+            console.log("ir para tela de adm normal")
+          }else if(data.select.role == "MANAGER"){
+            console.log("ir para tela de adm supremo")
+
+          }
       }
     })
     .catch(error => {

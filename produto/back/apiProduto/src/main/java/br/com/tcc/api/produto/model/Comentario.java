@@ -20,7 +20,7 @@ public class Comentario {
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "areadelazer_id")
+    @JoinColumn(name = "idLazer")
     private Lazer Lazer;
 
 
