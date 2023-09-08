@@ -37,9 +37,7 @@ public class AdministradorService {
     }else {
         String senhaCriptografada = criptografar.encode(administrador.getSenha());
         administrador.setSenha(senhaCriptografada);
-      administradorRepository.save(administrador);
-
-
+         administradorRepository.save(administrador);
 
         return new ResponseEntity<>("Cadastrado com sucesso",HttpStatus.CREATED);
 
