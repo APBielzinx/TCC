@@ -136,7 +136,7 @@ const INPUT_STYLE2 = {
   paddingLeft: '40px',
 };
 
-export default function Login({ isOpen, onClose }) {
+export default function Login({ isOpen, setCloseLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -216,7 +216,7 @@ export default function Login({ isOpen, onClose }) {
           <FontAwesomeIcon
             icon={faTimes}
             style={CLOSE_ICON_STYLE}
-            onClick={onClose}
+            onClick={setCloseLogin}
           />
           <div style={{ display: 'flex' }}>
             <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
@@ -250,11 +250,6 @@ export default function Login({ isOpen, onClose }) {
                   value={formData.username}
                   onChange={handleInputChange}
                 />
-                <FontAwesomeIcon
-  icon={faTimes}
-  style={CLOSE_ICON_STYLE}
-  onClick={onClose}
-/>
               </div>
               <div style={{ position: 'relative', width: '100%' }}>
                 <FontAwesomeIcon icon={faLock} style={INPUT_ICON_STYLE} />
