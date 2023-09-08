@@ -22,9 +22,6 @@ public class Lazer {
     private String endereco;
 
 
-    @ManyToOne
-    @JoinColumn(name = "idAdm")
-    private Administrador administrador;
 
 
 }
