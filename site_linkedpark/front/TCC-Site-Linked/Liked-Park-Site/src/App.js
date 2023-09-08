@@ -25,7 +25,7 @@ function App() {
         <div className="tree-icon">
         </div>
         <FirstComponet />
-        <Login isOpen={openLogin}/>
+        <Login isOpen={openLogin} setCloseLogin={() => setOpenLogin(!openLogin)}/>
         
         <img src={Logo} alt="Logo da empresa" className="logo"/>
       </div>
