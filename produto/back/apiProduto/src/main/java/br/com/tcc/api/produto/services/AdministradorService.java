@@ -2,6 +2,7 @@ package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Administrador;
 import br.com.tcc.api.produto.repository.AdministradorRepository;
+import br.com.tcc.api.produto.repository.LazerRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,8 @@ public class AdministradorService {
 
     @Autowired
     AdministradorRepository administradorRepository;
+    @Autowired
+    private LazerRepository lazerRepository;
     BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
 
 
@@ -32,9 +35,11 @@ public class AdministradorService {
         return new ResponseEntity<>("Já está em uso o cpf ou email",HttpStatus.BAD_REQUEST);
 
     }else {
-
+       var admlazerid = administrador.getLazer();
+       var id=lazerRepository.findByIdLazer(admlazerid);
         String senhaCriptografada = criptografar.encode(administrador.getSenha());
         administrador.setSenha(senhaCriptografada);
+        administrador.setLazer(id);
         administradorRepository.save(administrador);
 
         return new ResponseEntity<>("Cadastrado com sucesso",HttpStatus.CREATED);
@@ -53,6 +58,7 @@ public class AdministradorService {
             String senhaCriptografada = criptografar.encode(administrador.getSenha());
             administrador.setSenha(senhaCriptografada);
             select.setSenha(administrador.getSenha());
+            select.setLazer(administrador.getLazer());
 
 
             administradorRepository.save(select);

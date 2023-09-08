@@ -2,7 +2,8 @@ package br.com.tcc.api.produto.model;
 
 public enum UserRole {
     ADMIN("admin"),
-    USER("user");
+    USER("user"),
+    MANAGER("manager");
 
     private String role;
 

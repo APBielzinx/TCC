@@ -149,13 +149,52 @@ export default function Login({ isOpen, setCloseLogin }) {
 
   const handleLogin = () => {
     // Exibir os dados do formulário no console
-    console.log('Dados do formulário:', formData.username);
+    console.log('Dados do formulário:', formData);
 
-    // Limpar os campos de entrada
-    setFormData({
-      username: '',
-      password: '',
+    
+    fetch('http://localhost:8080/api/administrador/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        "email":formData.username,
+        "senha":formData.password
+    
+       
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    .then(response => {
+     
+      if (response.status === 200) {
+        return response.json(); 
+      } else {
+          console.log("usuario nao encontrado")
+      }
+    })
+    .then(data => {
+      if (data) {
+        console.log(data)
+    
+      localStorage.setItem('email',data.select.email);
+      localStorage.setItem('senha',data.select.senha);
+      localStorage.setItem('role',data.select.role);
+      localStorage.setItem('lazer',data.select.lazer);
+      localStorage.setItem('token',data.token);
+      
+          if(data.select.role == "ADMIN"){
+            console.log("ir para tela de adm normal")
+          }else if(data.select.role == "MANAGER"){
+            console.log("ir para tela de adm supremo")
+
+          }
+      }
+    })
+    .catch(error => {
+      console.error("Erro durante a requisição:", error);
     });
+   
+    
   };
 
   const handleInputChange = (event) => {

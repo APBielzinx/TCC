@@ -32,7 +32,8 @@ public class LazerService {
         else {
             lazer.setNome(lazer.getNome());
             lazer.setEndereco(lazer.getEndereco());
-
+            lazer.setAdministrador(lazer.getAdministrador());
+            lazerRepository.save(lazer);
             return new ResponseEntity<>("Cadastrado com sucesso", HttpStatus.CREATED);
 
 

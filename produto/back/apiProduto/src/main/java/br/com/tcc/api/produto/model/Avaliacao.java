@@ -26,7 +26,7 @@ public class Avaliacao {
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "areadelazer_id", nullable = false)
+    @JoinColumn(name = "idLazer", nullable = false)
     private Lazer Lazer;
 
     @Column(nullable = false)
