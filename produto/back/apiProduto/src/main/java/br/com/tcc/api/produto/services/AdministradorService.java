@@ -35,12 +35,9 @@ public class AdministradorService {
         return new ResponseEntity<>("Já está em uso o cpf ou email",HttpStatus.BAD_REQUEST);
 
     }else {
-       var admlazerid = administrador.getLazer();
-       var id=lazerRepository.findByIdLazer(admlazerid);
         String senhaCriptografada = criptografar.encode(administrador.getSenha());
         administrador.setSenha(senhaCriptografada);
-        administrador.setLazer(id);
-        administradorRepository.save(administrador);
+         administradorRepository.save(administrador);
 
         return new ResponseEntity<>("Cadastrado com sucesso",HttpStatus.CREATED);
 
