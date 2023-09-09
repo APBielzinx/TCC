@@ -37,7 +37,7 @@ public class SecurityFilter extends OncePerRequestFilter {
                 if (userADM == null) {
                     System.out.println("Administrador não existe");
                 } else {
-
+                
                     var authentication = new UsernamePasswordAuthenticationToken(userADM, null, userADM.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }

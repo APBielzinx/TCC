@@ -5,6 +5,7 @@ import br.com.tcc.api.produto.repository.SolicitacoesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public class SolicitacoesService {
 
     @Autowired
     SolicitacoesRepository solicitacoesRepository;
+
+    BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
+
     public List<Solicitacoes> buscarTodasSolicitacoes(){
 
         return solicitacoesRepository.findAll();
@@ -40,6 +44,8 @@ public class SolicitacoesService {
             return new ResponseEntity<>("Você já enviou uma solicitação para esse email", HttpStatus.CREATED);
 
         }else {
+            String senhaCriptografada = criptografar.encode(solicitacoes.getSenha());
+            solicitacoes.setSenha(senhaCriptografada);
             solicitacoesRepository.save(solicitacoes);
             return new ResponseEntity<>("Cadastrado com sucesso", HttpStatus.CREATED);
         }
@@ -51,7 +57,8 @@ public class SolicitacoesService {
 
             var select = solicitacoesRepository.findByEmail(solicitacoes.getEmail());
             select.setEmail(solicitacoes.getEmail());
-            select.setSenha(solicitacoes.getSenha());
+            String senhaCriptografada = criptografar.encode(solicitacoes.getSenha());
+            select.setSenha(senhaCriptografada);
             select.setStatus(solicitacoes.getStatus());
             select.setLazer(solicitacoes.getLazer());
             solicitacoesRepository.save(select);
