@@ -19,7 +19,19 @@ public class Lazer {
     private String nome;
 
     @Column(nullable = false)
+    private String descricao;
+
+    @Column(nullable = false)
     private String endereco;
+
+    @Column(nullable = false)
+    private String latitude;
+
+    @Column(nullable = false)
+    private String longetude;
+
+    @Column(nullable = false)
+    private String imagem;
 
 
     @ManyToOne

@@ -20,8 +20,7 @@ public class AdministradorService {
 
     @Autowired
     AdministradorRepository administradorRepository;
-    @Autowired
-    private LazerRepository lazerRepository;
+
     BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
 
 

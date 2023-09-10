@@ -27,8 +27,10 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var token = this.recoverToken(request);
+        System.out.println("token"+token);
         if (token != null) {
             var login = tokenService.validateToken(token);
+            System.out.println("login"+login);
             var user = userRepository.findByEmail(login);
             var userADM = administradorRepository.findByEmail(login);
 
@@ -37,7 +39,7 @@ public class SecurityFilter extends OncePerRequestFilter {
                 if (userADM == null) {
                     System.out.println("Administrador não existe");
                 } else {
-
+                
                     var authentication = new UsernamePasswordAuthenticationToken(userADM, null, userADM.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }

@@ -38,7 +38,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/usuario").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/usuario/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/administrador").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/administrador").hasAuthority("ROLE_MANAGER")
                         .requestMatchers(HttpMethod.POST, "/api/administrador/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/lazer").hasAuthority("ROLE_MANAGER")
                         .anyRequest().authenticated()
