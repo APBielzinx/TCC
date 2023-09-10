@@ -1,9 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css'; // Importe o seu arquivo de estilo CSS aqui
-import Parque from '../components/Parque';
-import Usuario from '../components/Usuario';
-import Solicitacao from '../components/Solicitacao';
+
 
 const BACKGROUND_STYLE = {
   position: 'fixed',
@@ -153,6 +151,9 @@ export default function Login({ isOpen, setCloseLogin }) {
 
     const navigate = useNavigate()
 
+    const handleLogin = () => {
+      return navigate("/homeadm")
+    };
     const handleContact = () => {
         console.log("Contato enviado!")
         return navigate("/homeadm")
@@ -171,21 +172,17 @@ export default function Login({ isOpen, setCloseLogin }) {
     }, []);
 
 
-    if (isOpen) {
+   if (isOpen) {
       return (
         <div style={BACKGROUND_STYLE}>
           <div style={MODAL_STYLE}>
-            <FontAwesomeIcon
-              icon={faTimes}
-              style={CLOSE_ICON_STYLE}
-              onClick={setCloseLogin}
-            />
+            
             <div style={{ display: 'flex' }}>
               <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
                 <p style={TEXTO_STYLE}>Bem vindo</p>
                 <img
                   style={IMG_STYLE}
-                  src={Logo}
+              
                   alt="logo do app"
                   title="logo do app"
                 />
@@ -203,7 +200,7 @@ export default function Login({ isOpen, setCloseLogin }) {
                 <p style={TEXTO2_STYLE}>LOGIN</p>
                 <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
                 <div style={{ position: 'relative', width: '100%' }}>
-                  <FontAwesomeIcon icon={faUser} style={INPUT_ICON_STYLE} />
+                 
                   <input
                     style={INPUT_STYLE1}
                     type="text"
@@ -214,7 +211,7 @@ export default function Login({ isOpen, setCloseLogin }) {
                   />
                 </div>
                 <div style={{ position: 'relative', width: '100%' }}>
-                  <FontAwesomeIcon icon={faLock} style={INPUT_ICON_STYLE} />
+                  
                   <input
                     style={{ ...INPUT_STYLE2, paddingRight: '40px' }}
                     type={showPassword ? 'text' : 'password'}
@@ -249,7 +246,8 @@ export default function Login({ isOpen, setCloseLogin }) {
             <div style={MODAL_BACKGROUND_STYLE}></div>
           </div>
         </div>
+        
   );
-
 }
+
 }

@@ -1,13 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar from '../components/navbar'
 import FistComponent from '../components/FistComponent';
+import Logo from '../assets/react.svg'
 import Login from './Login';
 
 const Home = () => {
+  const [openLogin, setOpenLogin] = useState(false);
+
+
+  useEffect(() => {
+    const newTitle = 'Linked Park';
+    const titleTag = document.querySelector("title");
+    titleTag.innerText = newTitle;
+  }, []);
+
   return (
-    <div>
-        <Navbar />
-        <div className="app-container">
+    <div className="app-container">
       <div className="green-background">
       </div>
      
@@ -22,8 +30,7 @@ const Home = () => {
       <button className="start-button" onClick={() => setOpenLogin(true)}>ㅤㅤㅤㅤㅤㅤㅤㅤㅤINÍCIOㅤㅤㅤㅤㅤㅤㅤㅤㅤ</button>
      
     </div>
-    </div>
-  )
+  );
 }
 
 export default Home

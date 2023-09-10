@@ -24,8 +24,7 @@ import ContactDetails from './routes/ContactDetails.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    errorElement: <ErrorPage />,
+
     children: [
         {
           path: "/homeadm",
@@ -36,7 +35,7 @@ const router = createBrowserRouter([
           element: <Home />,
         },
         {
-          path: "",
+          path: "/login",
           element: <Login />,
         },
     ]
