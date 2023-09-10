@@ -6,7 +6,8 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from './routes/Home.jsx';
-import Contact from './routes/Contact.jsx';
+import HomeAdm from './routes/HomeAdm.jsx';
+import Login from './routes/Login.jsx';
 import ErrorPage from './routes/ErrorPage.jsx';
 import ContactDetails from './routes/ContactDetails.jsx';
 
@@ -24,21 +25,20 @@ import ContactDetails from './routes/ContactDetails.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
     errorElement: <ErrorPage />,
     children: [
+        {
+          path: "/homeadm",
+          element: <HomeAdm />,
+        },
         {
           path: "/",
           element: <Home />,
         },
         {
-          path: "contact",
-          element: <Contact />,
+          path: "",
+          element: <Login />,
         },
-        {
-          path: "/contact/:id",
-          element: <ContactDetails />,
-        }
     ]
   },
 ])

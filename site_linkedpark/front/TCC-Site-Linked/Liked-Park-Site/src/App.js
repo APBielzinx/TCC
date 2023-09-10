@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Login from './components/login';
 import Logo from "./img/logoG.png";
 import { Helmet } from 'react-helmet';
+import HomeAdm from "./pages/HomeAdm";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App() {
   const [openLogin, setOpenLogin] = useState(false);

@@ -3,6 +3,14 @@ import Logo from '../img/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
+// pages
+import HomeAdm from '../pages/HomeAdm';
+import AppRoutes from '../Routes';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+
+// components
+import Navbar from './Navbar';
+
 const BACKGROUND_STYLE = {
   position: 'fixed',
   top: '0',
@@ -147,7 +155,7 @@ export default function Login({ isOpen, setCloseLogin }) {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = () => {
+  /*const handleLogin = () => {
     // Exibir os dados do formulário no console
     console.log('Dados do formulário:', formData);
 
@@ -195,7 +203,16 @@ export default function Login({ isOpen, setCloseLogin }) {
     });
    
     
+  };*/
+
+  const navigate = useNavigate()
+
+  const handleLogin = () => {
+    return navigate("/homeadm")
   };
+
+
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -277,9 +294,11 @@ export default function Login({ isOpen, setCloseLogin }) {
                   {showPassword ? '◠ Ocultar' : '  ͡o Mostrar'}
                 </button>
               </div>
-              <button style={BUTTON_STYLE} onClick={handleLogin}>
-                ENTRAR
-              </button>
+
+                  <button  style={BUTTON_STYLE} onClick={handleLogin}>
+                    ENTRAR
+                  </button>
+
             </div>
           </div>
           <div style={MODAL_BACKGROUND_STYLE}></div>
@@ -288,5 +307,4 @@ export default function Login({ isOpen, setCloseLogin }) {
     );
   }
 
-  return null;
 }

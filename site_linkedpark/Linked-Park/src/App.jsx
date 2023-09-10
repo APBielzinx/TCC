@@ -1,19 +1,16 @@
-import './App.css'
-
-import { Outlet } from "react-router-dom";
-
-import Navbar from './components/navbar';
-
+import FistComponent from './components/FistComponent';
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import Login from "./routes/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from './routes/Home';
 
 function App() {
 
   return (
+
     <>
-      <div className="App">
-          <Navbar />
-        <h1>React Router</h1>
-          <Outlet />
-      </div>
+      <Home />
     </>
   )
 }
