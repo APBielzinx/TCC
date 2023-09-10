@@ -20,9 +20,12 @@ public class LazerController {
     LazerService lazerService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Lazer> buscarLazer() {
-        return  lazerService.buscarLazer();
+    public List<Lazer> buscarParque() {
+        return  lazerService.buscarParque();
     }
+
+    @GetMapping(value = "/lazer", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Lazer> buscarLazer() { return  lazerService.buscarLazer();}
 
     @GetMapping(value ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> BuscarPorId(@PathVariable ("id")Long id){

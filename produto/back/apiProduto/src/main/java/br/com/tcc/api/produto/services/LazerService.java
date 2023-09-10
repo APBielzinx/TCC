@@ -15,9 +15,11 @@ public class LazerService {
     LazerRepository lazerRepository;
 
     public List<Lazer> buscarLazer() {
-        return lazerRepository.findAll();
+        return lazerRepository.findAllByCategoria("lazer");
     }
-
+    public List<Lazer> buscarParque() {
+        return lazerRepository.findAllByCategoria("parque");
+    }
     public ResponseEntity<?> BuscarPorId(Long id){
        var lazer = lazerRepository.findById(id);
         return new ResponseEntity<>(lazer, HttpStatus.OK);
@@ -44,6 +46,12 @@ public class LazerService {
             var select = lazerRepository.findByNome(lazer.getNome());
             select.setNome(lazer.getNome());
             select.setEndereco(lazer.getEndereco());
+            select.setImagem(lazer.getImagem());
+            select.setDescricao(lazer.getDescricao());
+            select.setLatitude(lazer.getLatitude());
+            select.setLongetude(lazer.getLongetude());
+            select.setCategoria(lazer.getCategoria());
+
 
 
             lazerRepository.save(select);

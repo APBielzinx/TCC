@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +28,9 @@ public class Lazer {
 
     @Column(nullable = false)
     private String latitude;
+
+    @Column(nullable = false)
+    private String categoria;
 
     @Column(nullable = false)
     private String longetude;
