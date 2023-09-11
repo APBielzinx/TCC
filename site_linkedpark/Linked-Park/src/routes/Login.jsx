@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
 import '../App.css'; // Importe o seu arquivo de estilo CSS aqui
+import logo from '../img/logoG.png'
 
 
 const BACKGROUND_STYLE = {
@@ -150,11 +151,6 @@ export default function Login({ isOpen, setCloseLogin }) {
   };
     const navigate = useNavigate()
 
-    const handleContact = () => {
-        console.log("Contato enviado!")
-        return navigate("/homeadm")
-    }
-
     const handleInputChange = (event) => {
       const { name, value } = event.target;
       setFormData({
@@ -226,7 +222,7 @@ console.log(data)
                 <p style={TEXTO_STYLE}>Bem vindo</p>
                 <img
                   style={IMG_STYLE}
-              
+                src={logo}
                   alt="logo do app"
                   title="logo do app"
                 />
