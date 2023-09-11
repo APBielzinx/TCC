@@ -130,7 +130,7 @@ html {
 .app-name-left {
   font-family: 'Holt';
   color: #7fff00;
-  font-size: 25px;
+  font-size: 30px;
   text-align: left; /* Alinhe o nome do aplicativo à esquerda */
 }
 
@@ -155,7 +155,7 @@ html {
 .slogan {
   font-family: 'Holt';
   color: #fff;
-  font-size: 50px; /* Tamanho menor para o slogan */
+  font-size: 90px; /* Tamanho menor para o slogan */
 }
 
 .start-button {
@@ -167,6 +167,7 @@ html {
   margin-right: auto; /* Centraliza horizontalmente */
   width: 500px;
   height: 55px;
+  border-radius: 100px;
 }
 
 .right-content {
