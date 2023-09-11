@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { FaEnvelope, FaLock, FaTimes } from 'react-icons/fa'; // Importe os ícones aqui
 import '../App.css'; // Importe o seu arquivo de estilo CSS aqui
+import Logo from '../img/logo.png';
 
 const BACKGROUND_STYLE = {
   position: 'fixed',
@@ -25,6 +26,7 @@ const MODAL_STYLE = {
   color: 'black',
   textAlign: 'center',
   backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  display: 'flex', // Use flex para alinhar os lados
 };
 
 const CLOSE_ICON_STYLE = {
@@ -38,11 +40,9 @@ const CLOSE_ICON_STYLE = {
 const PARTE_ESQUERDA_STYLE = {
   display: 'flex',
   flexDirection: 'column',
-  marginLeft: '-20px',
   alignItems: 'center',
-  marginTop: -20,
-  width: '35%',
-  height: '440px',
+  justifyContent: 'center', // Alinhe verticalmente ao centro
+  width: '100%', // Defina a largura fixa para a parte esquerda
   backgroundColor: 'rgba(255, 255, 255, 0.1)',
   backdropFilter: 'blur(10px)',
   borderRadius: '10px',
@@ -68,7 +68,6 @@ const TEXTO2_STYLE = {
 };
 
 const IMG_STYLE = {
-  display: 'flex',
   width: '120px',
   height: '140px',
   marginLeft: '10px',
@@ -154,7 +153,7 @@ export default function Login({ isOpen, setCloseLogin }) {
   const handleLogin = () => {
     return navigate("/homeadm");
   };
-  
+
   const handleContact = () => {
     console.log("Contato enviado!");
     return navigate("/homeadm");
@@ -178,10 +177,11 @@ export default function Login({ isOpen, setCloseLogin }) {
         <div style={MODAL_STYLE}>
           <FaTimes style={CLOSE_ICON_STYLE} onClick={setCloseLogin} /> {/* Botão de fechar */}
           <div style={{ display: 'flex' }}>
-            <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
+            <div style={PARTE_ESQUERDA_STYLE}>
               <p style={TEXTO_STYLE}>Bem-vindo</p>
               <img
                 style={IMG_STYLE}
+                src={Logo} // Adicione a propriedade 'src' com o caminho para a imagem
                 alt="logo do app"
                 title="logo do app"
               />
@@ -189,8 +189,8 @@ export default function Login({ isOpen, setCloseLogin }) {
             </div>
             <div
               style={{
-                width: '60%',
-                height: '1000%',
+                flex: 1, // Usar flex: 1 para a parte direita ocupar o espaço restante
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
