@@ -1,4 +1,7 @@
-
+/*body {
+  width: 100%;
+  height: 100%;
+}
 
 .App {
   text-align: center;
@@ -6,11 +9,11 @@
 
 .app-container {
   background-color: #011e11;
-  display: flex; /* Adicionado para centralizar verticalmente */
+  display: flex; /* Adicionado para centralizar verticalmente 
   text-align: left;
-  justify-content: center; /* Adicionado para centralizar horizontalmente */
-  min-height: 100vh; /* Adicionado para ocupar a altura total da tela */
-  
+  justify-content: center; // Adicionado para centralizar horizontalmente 
+  width: 100%;
+  height: 100%;
 }
 
 .App-logo {
@@ -65,8 +68,8 @@
 .slogan {
  
   color: white;
-  margin-top: 160px; /* Espaçamento superior entre os textos */
-  margin-right: 750px; /* Centraliza horizontalmente */ 
+  margin-top: 160px; /* Espaçamento superior entre os textos 
+  margin-right: 750px; /* Centraliza horizontalmente 
   font-size: 50px;
 
 }
@@ -90,19 +93,89 @@
   background-color: #7fff00;
   color: black;
   margin-top: 140px; /* Ajuste a margem superior conforme necessário */
-  /* margin-left: 100px; Remova esta linha para centralizar horizontalmente */
-  display: block; /* Para ocupar toda a largura disponível */
-  margin-left: 200px; /* Centraliza horizontalmente */
-  margin-right: auto; /* Centraliza horizontalmente */
+  /* margin-left: 100px; Remova esta linha para centralizar horizontalmente 
+  display: block; /* Para ocupar toda a largura disponível 
+  margin-left: 200px; /* Centraliza horizontalmente 
+  margin-right: auto; /* Centraliza horizontalmente 
   width: 500px;
   height: 55px;
 }
 .Logo{
   text-align: center;
-  
 }
 
-#espaçotext {
-    margin-top: 150px;
-    margin-left: -80px;
+*/
+
+/* App.css */
+
+html {
+  background-color: #011e11;
+}
+
+.App {
+  background-color: #011e11;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 98vh; /* Defina a altura da tela inteira ou ajuste conforme necessário */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 80%; /* Ajuste a largura do cabeçalho conforme necessário */
+  margin-top: 20px;
+}
+
+.app-name-left {
+  font-family: 'Holt';
+  color: #7fff00;
+  font-size: 25px;
+  text-align: left; /* Alinhe o nome do aplicativo à esquerda */
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%; /* Ajuste a largura do conteúdo conforme necessário */
+  margin-top: 20px;
+}
+
+.left-content {
+  display: flex;
+  flex-direction:column;
+  width: 50%;
+  height: 80%;
+  text-align: left;
+  margin-left: 100px;
+}
+
+.slogan {
+  font-family: 'Holt';
+  color: #fff;
+  font-size: 50px; /* Tamanho menor para o slogan */
+}
+
+.start-button {
+  font-family: 'Holt';
+  background-color: #7fff00;
+  color: black;
+  margin-top: 140px; /* Ajuste a margem superior conforme necessário */
+  display: block; /* Para ocupar toda a largura disponível */
+  margin-right: auto; /* Centraliza horizontalmente */
+  width: 500px;
+  height: 55px;
+}
+
+.right-content {
+  margin-bottom: 200px;
+  width: 50%;
+  text-align: right;
+}
+
+.logoimg {
+  width: 500px;
+  height: 500px;
 }
