@@ -1,7 +1,7 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
+import { FaEnvelope, FaLock, FaTimes } from 'react-icons/fa'; // Importe os ícones aqui
 import '../App.css'; // Importe o seu arquivo de estilo CSS aqui
-
 
 const BACKGROUND_STYLE = {
   position: 'fixed',
@@ -114,6 +114,7 @@ const INPUT_STYLE1 = {
   borderRadius: '50px',
   margin: '10px 0',
   paddingLeft: '40px',
+  position: 'relative',
 };
 
 const INPUT_ICON_STYLE = {
@@ -126,17 +127,16 @@ const INPUT_ICON_STYLE = {
 
 const INPUT_STYLE2 = {
   display: 'block',
-  width: '91%',
+  width: '100%',
   height: '40px',
   backgroundColor: 'white',
   color: 'black',
   border: '1px solid #fff',
-  borderRadius: '40px',
+  borderRadius: '50px',
   margin: '10px 0',
   paddingLeft: '40px',
+  position: 'relative',
 };
-
-
 
 export default function Login({ isOpen, setCloseLogin }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -149,105 +149,102 @@ export default function Login({ isOpen, setCloseLogin }) {
     setShowPassword(!showPassword);
   };
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const handleLogin = () => {
-      return navigate("/homeadm")
-    };
-    const handleContact = () => {
-        console.log("Contato enviado!")
-        return navigate("/homeadm")
-    }
-
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    };
-
-    useEffect(() => {
-      document.title = 'Linked Park';
-    }, []);
-
-
-   if (isOpen) {
-      return (
-        <div style={BACKGROUND_STYLE}>
-          <div style={MODAL_STYLE}>
-            
-            <div style={{ display: 'flex' }}>
-              <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
-                <p style={TEXTO_STYLE}>Bem vindo</p>
-                <img
-                  style={IMG_STYLE}
-              
-                  alt="logo do app"
-                  title="logo do app"
-                />
-                <p style={TEXTO2_STYLE}>LINKED PARK</p>
-              </div>
-              <div
-                style={{
-                  width: '60%',
-                  height: '1000%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <p style={TEXTO2_STYLE}>LOGIN</p>
-                <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
-                <div style={{ position: 'relative', width: '100%' }}>
-                 
-                  <input
-                    style={INPUT_STYLE1}
-                    type="text"
-                    placeholder="Usuário"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div style={{ position: 'relative', width: '100%' }}>
-                  
-                  <input
-                    style={{ ...INPUT_STYLE2, paddingRight: '40px' }}
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Senha"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                  />
-                  <button
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      right: '5px',
-                      transform: 'translateY(-50%)',
-                      background: 'transparent',
-                      border: 'none',
-                      color: 'gray',
-                      cursor: 'pointer',
-                    }}
-                    onClick={toggleShowPassword}
-                  >
-                    {showPassword ? '◠ Ocultar' : '  ͡o Mostrar'}
-                  </button>
-                </div>
+  const handleLogin = () => {
+    return navigate("/homeadm");
+  };
   
-                    <button  style={BUTTON_STYLE} onClick={handleLogin}>
-                      ENTRAR
-                    </button>
-  
-              </div>
+  const handleContact = () => {
+    console.log("Contato enviado!");
+    return navigate("/homeadm");
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    document.title = 'Linked Park';
+  }, []);
+
+  if (isOpen) {
+    return (
+      <div style={BACKGROUND_STYLE}>
+        <div style={MODAL_STYLE}>
+          <FaTimes style={CLOSE_ICON_STYLE} onClick={setCloseLogin} /> {/* Botão de fechar */}
+          <div style={{ display: 'flex' }}>
+            <div style={{ ...PARTE_ESQUERDA_STYLE, width: '35%' }}>
+              <p style={TEXTO_STYLE}>Bem-vindo</p>
+              <img
+                style={IMG_STYLE}
+                alt="logo do app"
+                title="logo do app"
+              />
+              <p style={TEXTO2_STYLE}>LINKED PARK</p>
             </div>
-            <div style={MODAL_BACKGROUND_STYLE}></div>
+            <div
+              style={{
+                width: '60%',
+                height: '1000%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <p style={TEXTO2_STYLE}>LOGIN</p>
+              <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
+              <div style={{ position: 'relative', width: '100%' }}>
+                <FaEnvelope style={INPUT_ICON_STYLE} />
+                <input
+                  style={INPUT_STYLE1}
+                  type="text"
+                  placeholder="Usuário"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div style={{ position: 'relative', width: '100%' }}>
+                <FaLock style={INPUT_ICON_STYLE} />
+                <input
+                  style={INPUT_STYLE2}
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Senha"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                />
+                <button
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    right: '5px',
+                    transform: 'translateY(-50%)',
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'gray',
+                    cursor: 'pointer',
+                  }}
+                  onClick={toggleShowPassword}
+                >
+                  {showPassword ? '◠ Ocultar' : ' ☉ Mostrar'}
+                </button>
+              </div>
+              <button style={BUTTON_STYLE} onClick={handleLogin}>
+                ENTRAR
+              </button>
+            </div>
           </div>
+          <div style={MODAL_BACKGROUND_STYLE}></div>
         </div>
-        
-  );
-}
-
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
