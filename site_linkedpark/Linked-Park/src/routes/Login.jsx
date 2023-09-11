@@ -165,7 +165,55 @@ export default function Login({ isOpen, setCloseLogin }) {
         ...formData,
         [name]: value,
       });
+
+      
+
     };
+
+    const login =(data)=>{
+console.log(data)
+      fetch('http://localhost:8080/api/administrador/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          "email": data.username,
+          "senha": data.password,
+         
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      .then(response => {
+       
+        if (response.status === 200) {
+          return response.json(); 
+        } else {
+          alert("Usuário não encontrado!");
+        }
+      })
+      .then(data => {
+        if (data) {
+          console.log(data)
+      
+        localStorage.setItem('administrador',JSON.stringify(data));
+        alert("Usuário encontrado!");
+         console.log("localStorage"+localStorage.getItem("administrador"))
+        if(data.select.role == "MANAGER"){
+          navigate("/homeadm")
+        }else{
+          console.log("tela de adm normal")
+        }
+      
+      
+          
+        }
+      })
+      .catch(error => {
+        console.error("Erro durante a requisição:", error);
+       alert("Erro");
+      });
+
+    }
 
     useEffect(() => {
       document.title = 'Linked Park';
@@ -237,7 +285,7 @@ export default function Login({ isOpen, setCloseLogin }) {
                   </button>
                 </div>
   
-                    <button  style={BUTTON_STYLE} onClick={handleLogin}>
+                    <button  style={BUTTON_STYLE} onClick={() => login(formData)}>
                       ENTRAR
                     </button>
   
