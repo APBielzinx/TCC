@@ -34,7 +34,7 @@ function HomeAdm  ()  {
     },
     // ...
   });
-
+console.log(localStorage.getItem("administrador"))
   const isMobile = useBreakpointValue({
     base: true,
     lg: false,
