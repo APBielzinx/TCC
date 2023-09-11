@@ -148,12 +148,8 @@ export default function Login({ isOpen, setCloseLogin }) {
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
     const navigate = useNavigate()
 
-    const handleLogin = () => {
-      return navigate("/homeadm")
-    };
     const handleContact = () => {
         console.log("Contato enviado!")
         return navigate("/homeadm")
