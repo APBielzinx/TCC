@@ -42,9 +42,9 @@ public class UsuarioController {
 
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatusCode cadastrarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
 
-        return usuarioServices.cadastrar(usuario).getStatusCode();
+        return usuarioServices.cadastrar(usuario);
 
     }
 
