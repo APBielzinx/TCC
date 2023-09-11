@@ -50,16 +50,16 @@ public class UsuarioController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatusCode atualizarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<?> atualizarUsuario(@RequestBody Usuario usuario){
 
-        return usuarioServices.atualizar(usuario).getStatusCode();
+        return usuarioServices.atualizar(usuario);
 
     }
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatusCode deletarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<?> deletarUsuario(@RequestBody Usuario usuario){
 
-        return usuarioServices.deletar(usuario).getStatusCode();
+        return usuarioServices.deletar(usuario);
 
     }
 
