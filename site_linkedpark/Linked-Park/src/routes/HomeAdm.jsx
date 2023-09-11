@@ -1,270 +1,319 @@
-import React, { useState } from 'react';
-import '../App.css'; // Importe o seu arquivo de estilo CSS aqui
-import Parque from '../components/Parque';
-import Usuario from '../components/Usuario';
-import Solicitacao from '../components/Solicitacao';
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Flex,
+  Button,
+  useDisclosure,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import ModalComp from "../components/ModalComp";
+import { extendTheme } from "@chakra-ui/react";
 
+function HomeAdm  ()  {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [dataParque, setDataParque] = useState([]);
+  const [dataUsuario, setDataUsuario] = useState([]);
+  const [dataSolicitacao, setDataSolicitacao] = useState([]);
+  const [dataEdit, setDataEdit] = useState({});
+  const [showSolicitacoes, setShowSolicitacoes] = useState(false);
 
-// Estilos CSS para o menu lateral
-const sidebarStyle = {
-  width: '200px',
-  background: 'linear-gradient(to left, #7fff00, #011e11)',
-  color: 'white',
-  padding: '20px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '100vh',
-};
+  const theme = extendTheme({
+    breakpoints: {
+      base: "0px",
+      sm: "576px",
+      md: "768px",
+      lg: "992px",
+      xl: "1200px",
+    },
+    // ...
+  });
 
-const menuItemStyle = {
-  cursor: 'pointer',
-  padding: '10px',
-  transition: 'color 0.3s', // Alterado para mudar a cor do texto
-};
+  const isMobile = useBreakpointValue({
+    base: true,
+    lg: false,
+  });
 
-const menuItemActiveStyle = {
-  ...menuItemStyle,
-  color: '#7fff00', // Alterado para a cor quando o mouse passa por cima
-};
+  useEffect(() => {
+    const db_costumer = localStorage.getItem("cad_cliente")
+      ? JSON.parse(localStorage.getItem("cad_cliente"))
+      : [];
 
-// Estilos CSS para a lista de parques à direita
-const contentStyle = {
-  padding: '20px',
-  backgroundColor: '#011e11',
-  color: 'white',
-  boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
-  flex: '1',
-  overflowY: 'auto',
-};
+    setDataParque(db_costumer);
+    setDataUsuario(db_costumer);
+    setDataSolicitacao(db_costumer);
+  }, [setDataParque, setDataUsuario, setDataSolicitacao]);
 
-const sectionStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-};
+  const handleRemove = (email) => {
+    const newArray = dataUsuario.filter((item) => item.email !== email);
 
-const tableStyle = {
-  width: '100%',
-  margin: '10px 0',
-  borderCollapse: 'collapse',
-};
+    setDataUsuario(newArray);
 
-const thStyle = {
-  backgroundColor: '#4CAF50',
-  color: 'white',
-  padding: '5px 10px',
-  textAlign: 'left',
-};
-
-const tdStyle = {
-  padding: '10px',
-  borderBottom: '1px solid #ddd',
-};
-
-const pencilIconStyle = {
-  marginRight: '10px',
-  cursor: 'pointer',
-};
-
-const trashIconStyle = {
-  cursor: 'pointer',
-};
-
-const cellStyle = {
-  borderRight: '1px solid #ddd', // Adicionando coluna vertical
-};
-
-const addButtonStyle = {
-  backgroundColor: '#4CAF50',
-  color: 'black',
-  padding: '10px 20px',
-  border: 'none',
-  cursor: 'pointer',
-  borderRadius: '80px',
-};
-
-function HomeAdm() {
-  const [openParque, setOpenParque] = useState(false);
-  const [openUsuario, setOpenUsuario] = useState(false);
-  const [openSolicitacao, setOpenSolicitacao] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState('parque');
-
-  //mensagem de sucesso
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-  // Em app.js
-  const [dadosParques, setDadosParques] = useState([]); // Certifique-se de que o estado está sendo inicializado
-  const [dadosUsuario, setDadosUsuario] = useState([]); // Certifique-se de que o estado está sendo inicializado
-  const [dadosSolicitacao, setDadosSolicitacao] = useState([]); // Certifique-se de que o estado está sendo inicializado
-
-  const atualizarDados = (novoItem) => {
-    setDadosParques([...dadosParques, novoItem]); // Certifique-se de que os dados estão sendo atualizados corretamente
-  };
-
-  const updateData = (novoItem) => {
-    setDadosUsuario([...dadosUsuario, novoItem]);
-    // Adicione lógica para atualizar os dados em outros estados, se necessário
-  };
-
-  // Função para fechar a mensagem de sucesso
-  const closeSuccessMessage = () => {
-    setShowSuccessMessage(false);
-  };
-
-  const handleMenuItemClick = (item) => {
-    setSelectedMenuItem(item);
+    localStorage.setItem("cad_cliente", JSON.stringify(newArray));
   };
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={sidebarStyle}>
-        <div
-          style={selectedMenuItem === 'parque' ? menuItemActiveStyle : menuItemStyle}
-          onClick={() => handleMenuItemClick('parque')}
-        >
-          Parque
-        </div>
-        <div
-          style={selectedMenuItem === 'usuario' ? menuItemActiveStyle : menuItemStyle}
-          onClick={() => handleMenuItemClick('usuario')}
-        >
-          Usuário
-        </div>
-        <div
-          style={selectedMenuItem === 'solicitacao' ? menuItemActiveStyle : menuItemStyle}
-          onClick={() => handleMenuItemClick('solicitacao')}
-        >
-          Solicitação
-        </div>
-      </div>
+    <Flex h="100vh">
+      {/* Menu Lateral */}
+      <Box
+        w="200px"
+        bgGradient="linear(to-r, #011e11, #7fff00)"
+        color="white"
+        p="4"
+        display={{ base: "block", lg: "block" }}
+      >
+        {/* Conteúdo do Menu Lateral */}
+        <Box mb="20px">
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            w="100%"
+            onClick={() => setShowSolicitacoes(false)}
+            _hover={{ bgColor: "#7fff00" }} // Efeito de hover verde
+          >
+            Parque
+          </Button>
+        </Box>
+        <Box mb="20px">
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            w="100%"
+            onClick={() => setShowSolicitacoes(false)}
+            _hover={{ bgColor: "#7fff00" }} // Efeito de hover verde
+          >
+            Usuário
+          </Button>
+        </Box>
+        <Box>
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            w="100%"
+            onClick={() => setShowSolicitacoes(true)}
+            _hover={{ bgColor: "#7fff00" }} // Efeito de hover verde
+          >
+            Solicitação
+          </Button>
+        </Box>
+      </Box>
 
-      <div style={contentStyle}>
-        <h1 style={{ color: '#4CAF50' }}>{selectedMenuItem.charAt(0).toUpperCase() + selectedMenuItem.slice(1)}</h1>
-
-        {selectedMenuItem === 'parque' && (
-          <div style={sectionStyle}>
-            <table style={tableStyle}>
-              <thead>
-                <tr>
-                  <th style={thStyle}>ID</th>
-                  <th style={thStyle}>Nome</th>
-                  <th style={thStyle}>Endereço</th>
-                  <th style={thStyle}>Adm</th>
-                  <th style={thStyle}>Editar</th>
-                  <th style={thStyle}>Excluir</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style={{ ...tdStyle, ...cellStyle }}></td>
-                  <td style={{ ...tdStyle, ...cellStyle }}></td>
-                  <td style={{ ...tdStyle, ...cellStyle }}></td>
-                  <td style={{ ...tdStyle, ...cellStyle }}></td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>
-                    <span style={pencilIconStyle} onClick={() => setOpenParque(true)} role="img" aria-label="Editar">
-                      ✏️
-                    </span>
-                  </td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>
-                    <span style={trashIconStyle} role="img" aria-label="Excluir">
-                      🗑️
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <Parque isOpen={openParque} setCloseParque={() => setOpenParque(false)} setSelectedMenuItem={setSelectedMenuItem} closeSuccessMessage={closeSuccessMessage} updateData={atualizarDados} dados={dadosParques} />
-            <button style={addButtonStyle} onClick={() => setOpenParque(true)}>Adicionar</button>
-          </div>
-        )}
-
-        {selectedMenuItem === 'usuario' && (
-          <div style={sectionStyle}>
-            <table style={tableStyle}>
-              <thead>
-                <tr>
-                  <th style={thStyle}>ID</th>
-                  <th style={thStyle}>Nome de Usuário</th>
-                  <th style={thStyle}>Senha</th>
-                  <th style={thStyle}>Editar</th>
-                  <th style={thStyle}>Excluir</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style={{ ...tdStyle, ...cellStyle }}>1</td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>John Doe</td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>parkebrada123</td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>
-                    <span style={pencilIconStyle} onClick={() => setOpenUsuario(true)} role="img" aria-label="Editar">
-                      ✏️
-                    </span>
-                  </td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>
-                    <span style={trashIconStyle} role="img" aria-label="Excluir">
-                      🗑️
-                    </span>
-                  </td>
-                </tr>
-                {/* Adicione mais linhas aqui, se necessário */}
-              </tbody>
-            </table>
-            <Usuario
-              isOpen={openUsuario}
-              setCloseUsuario={() => setOpenUsuario(false)}
-              setSelectedMenuItem={setSelectedMenuItem}
-              closeSuccessMessage={closeSuccessMessage}
-              updateData={updateData} // Passe a função updateData aqui
-              dados={dadosUsuario}
+      {/* Conteúdo Principal */}
+      <Flex
+        flex="1"
+        justify="center"
+        fontSize="20px"
+        fontFamily="poppins"
+        bgColor="#011e11"
+        color="white"
+        flexDirection="column"
+        alignItems="center" // Centralizar horizontalmente
+      >
+        <Box maxW={800} w="100%" py={10} px={2}>
+          <Box height="100%" overflowY="auto">
+            {showSolicitacoes ? (
+              // Tabela para a seção "Solicitação"
+              <Table variant="striped" colorScheme="whiteAlpha" maxW="800px" size="sm">
+                <Thead>
+                  <Tr>
+                    <Th>ID</Th>
+                    <Th>Nome</Th>
+                    <Th>Descrição</Th>
+                    <Th>Endereço</Th>
+                    <Th>Latitude</Th>
+                    <Th>Longitude</Th>
+                    <Th>Adm</Th>
+                    <Th p={0}></Th>
+                    <Th p={0}></Th>
+                    <Th p={0}></Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {dataSolicitacao.map(
+                    (
+                      {
+                        id,
+                        name,
+                        description,
+                        address,
+                        latitude,
+                        longitude,
+                        admin,
+                        email,
+                        imagem,
+                      },
+                      index
+                    ) => (
+                      <Tr key={index} cursor="pointer">
+                        <Td>{id}</Td>
+                        <Td>{name}</Td>
+                        <Td>{description}</Td>
+                        <Td>{address}</Td>
+                        <Td>{latitude}</Td>
+                        <Td>{longitude}</Td>
+                        <Td>{admin}</Td>
+                        <Td p={0}>
+                          <EditIcon
+                            fontSize={20}
+                            onClick={() => [
+                              setDataEdit({
+                                id,
+                                name,
+                                description,
+                                address,
+                                latitude,
+                                longitude,
+                                admin,
+                                email,
+                                index,
+                              }),
+                              onOpen(),
+                            ]}
+                          />
+                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
+                        </Td>
+                        <Td p={0}>
+                          <DeleteIcon
+                            fontSize={20}
+                            onClick={() => handleRemove(email)}
+                            data-email={email}
+                          />
+                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
+                        </Td>
+                        <Td p={0}>
+                          <img
+                            src={imagem}
+                            alt={`Imagem de ${name}`}
+                            style={{ width: "50px", height: "50px" }}
+                          />
+                        </Td>
+                      </Tr>
+                    )
+                  )}
+                </Tbody>
+              </Table>
+            ) : (
+              // Tabela para a seção "Usuário"
+              <Table variant="striped" colorScheme="whiteAlpha" maxW="800px" size="sm">
+                <Thead>
+                  <Tr>
+                    <Th>ID</Th>
+                    <Th>Nome</Th>
+                    <Th>Descrição</Th>
+                    <Th>Endereço</Th>
+                    <Th>Latitude</Th>
+                    <Th>Longitude</Th>
+                    <Th>Adm</Th>
+                    <Th p={0}></Th>
+                    <Th p={0}></Th>
+                    <Th p={0}></Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {dataUsuario.map(
+                    (
+                      {
+                        id,
+                        name,
+                        description,
+                        address,
+                        latitude,
+                        longitude,
+                        admin,
+                        email,
+                        imagem,
+                      },
+                      index
+                    ) => (
+                      <Tr key={index} cursor="pointer">
+                        <Td>{id}</Td>
+                        <Td>{name}</Td>
+                        <Td>{description}</Td>
+                        <Td>{address}</Td>
+                        <Td>{latitude}</Td>
+                        <Td>{longitude}</Td>
+                        <Td>{admin}</Td>
+                        <Td p={0}>
+                          <EditIcon
+                            fontSize={20}
+                            onClick={() => [
+                              setDataEdit({
+                                id,
+                                name,
+                                description,
+                                address,
+                                latitude,
+                                longitude,
+                                admin,
+                                email,
+                                index,
+                              }),
+                              onOpen(),
+                            ]}
+                          />
+                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
+                        </Td>
+                        <Td p={0}>
+                          <DeleteIcon
+                            fontSize={20}
+                            onClick={() => handleRemove(email)}
+                            data-email={email}
+                          />
+                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
+                        </Td>
+                        <Td p={0}>
+                          <img
+                            src={imagem}
+                            alt={`Imagem de ${name}`}
+                            style={{ width: "50px", height: "50px" }}
+                          />
+                        </Td>
+                      </Tr>
+                    )
+                  )}
+                </Tbody>
+              </Table>
+            )}
+            <Button
+              colorScheme="teal"
+              onClick={() => [setDataEdit({}), onOpen()]}
+              alignSelf="center"
+              mt={4}
+            >
+              NOVO CADASTRO
+            </Button>
+          </Box>
+        </Box>
+        {isOpen && (
+          showSolicitacoes ? (
+            <ModalComp
+              isOpen={isOpen}
+              onClose={onClose}
+              data={dataSolicitacao}
+              setData={setDataSolicitacao}
+              dataEdit={dataEdit}
+              setDataEdit={setDataEdit}
             />
-            <button style={addButtonStyle} onClick={() => setOpenUsuario(true)}>Adicionar</button>
-          </div>
+          ) : (
+            <ModalCompUsuario
+              isOpen={isOpen}
+              onClose={onClose}
+              data={dataUsuario}
+              setData={setDataUsuario}
+              dataEdit={dataEdit}
+              setDataEdit={setDataEdit}
+            />
+          )
         )}
-
-        {selectedMenuItem === 'solicitacao' && (
-          <div style={sectionStyle}>
-            <table style={tableStyle}>
-              <thead>
-                <tr>
-                  <th style={thStyle}>ID Solicitação</th>
-                  <th style={thStyle}>Email do Adm</th>
-                  <th style={thStyle}>Senha</th>
-                  <th style={thStyle}>ID Usuario</th>
-                  <th style={thStyle}>Editar</th>
-                  <th style={thStyle}>Excluir</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style={{ ...tdStyle, ...cellStyle }}>1</td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>admin@up.com</td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>senha123</td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>1</td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>
-                    <span style={pencilIconStyle} onClick={() => setOpenSolicitacao(true)} role="img" aria-label="Editar">
-                      ✏️
-                    </span>
-                  </td>
-                  <td style={{ ...tdStyle, ...cellStyle }}>
-                    <span style={trashIconStyle} role="img" aria-label="Excluir">
-                      🗑️
-                    </span>
-                  </td>
-                </tr>
-                {/* Adicione mais linhas aqui, se necessário */}
-              </tbody>
-            </table>
-            <Solicitacao isOpen={openSolicitacao} setCloseSolicitacao={() => setOpenSolicitacao(false)} setSelectedMenuItem={setSelectedMenuItem} closeSuccessMessage={closeSuccessMessage} updateData={atualizarDados} />
-            <button style={addButtonStyle} onClick={() => setOpenSolicitacao(true)}>Adicionar</button>
-          </div>
-        )}
-
-        {/* ... */}
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
-}
+};
 
 export default HomeAdm;
