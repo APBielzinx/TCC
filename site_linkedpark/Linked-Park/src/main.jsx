@@ -1,13 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './index.css'
+import './css/index.css'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeAdm from './routes/HomeAdm.jsx';
 import Login from './routes/Login.jsx';
-import ErrorPage from './routes/ErrorPage.jsx';
-import ContactDetails from './routes/ContactDetails.jsx';
 import { ChakraProvider } from "@chakra-ui/react";
 
 //const router = createBrowserRouter([

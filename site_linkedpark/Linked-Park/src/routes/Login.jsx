@@ -1,8 +1,9 @@
+import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
+import Logo from "../img/logoLinkedParkSemFundo.png"
+import '../css/App.css'; // Importe o seu arquivo de estilo CSS aqui
 import { FaEnvelope, FaLock, FaTimes } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import '../App.css';
-import Logo from '../img/logo.png';
+
 
 const BACKGROUND_STYLE = {
   position: 'fixed',
@@ -25,8 +26,7 @@ const MODAL_STYLE = {
   borderRadius: '10px',
   color: 'black',
   textAlign: 'center',
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  display: 'flex',
+  backgroundColor: 'rgba(217, 217, 217, 0.10)',
 };
 
 const CLOSE_ICON_STYLE = {
@@ -40,13 +40,26 @@ const CLOSE_ICON_STYLE = {
 const PARTE_ESQUERDA_STYLE = {
   display: 'flex',
   flexDirection: 'column',
+  marginLeft: '-20px',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '100%',
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  backdropFilter: 'blur(10px)',
+  marginTop: -20,
+  width: '40%',
+  height: '400px',
+  background: 'linear-gradient(180deg, #F1FFEF 0%, rgba(241, 255, 239, 0.50) 0.01%, rgba(1, 30, 17, 0.50) 100%)',
+  backdropFilter: 'blur(10px), (20px)',
   borderRadius: '10px',
 };
+
+
+const  PARTE_DIREITA_STYLE = {
+  width: '60%',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
 
 const TEXTO_STYLE = {
   display: 'flex',
@@ -59,19 +72,34 @@ const TEXTO_STYLE = {
 
 const TEXTO2_STYLE = {
   display: 'flex',
-  width: '65px',
+  width: '70px',
   height: '25px',
   backgroundColor: 'transparent',
   color: '#fff',
   textAlign: 'center',
   alignItems: 'center',
+  fontSize: '11px',
+};
+
+const TEXTO3_STYLE = {
+  display: 'flex',
+  width: '70px',
+  height: '25px',
+  backgroundColor: 'transparent',
+  color: '#fff',
+  textAlign: 'center',
+  alignItems: 'center',
+  fontSize: '15px',
+  marginLeft: '45px',
 };
 
 const IMG_STYLE = {
-  width: '120px',
+  display: 'flex',
+  width: '140px',
   height: '140px',
   marginLeft: '10px',
-  marginBottom: '0',
+  marginTop: '5px',
+  marginBottom: '15px',
   backgroundColor: 'transparent',
   color: '#fff',
   textAlign: 'center',
@@ -103,18 +131,28 @@ const MODAL_BACKGROUND_STYLE = {
   borderRadius: '10px',
 };
 
-const INPUT_STYLE = {
+const INPUT_STYLE1 = {
   display: 'block',
-  width: '100%',
+  width: '95%',
   height: '40px',
   backgroundColor: 'white',
   color: 'black',
   border: '1px solid #fff',
   borderRadius: '50px',
-  margin: '10px 0',
-  paddingLeft: '400px', // Defina o paddingLeft como 40px para um campo de entrada padrão
-  paddingRigth: '350',
-  position: 'relative',
+  margin: '15px 30px',
+  paddingLeft: '40px',
+};
+
+const INPUT_STYLE2 = {
+  display: 'block',
+  width: '95%',
+  height: '40px',
+  backgroundColor: 'white',
+  color: 'black',
+  border: '1px solid #fff',
+  borderRadius: '40px',
+  margin: '15px 30px',
+  paddingLeft: '40px',
 };
 
 const INPUT_ICON_STYLE = {
@@ -124,6 +162,10 @@ const INPUT_ICON_STYLE = {
   transform: 'translateY(-50%)',
   color: 'gray',
 };
+
+
+
+
 
 export default function Login({ isOpen, setCloseLogin }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -136,103 +178,138 @@ export default function Login({ isOpen, setCloseLogin }) {
     setShowPassword(!showPassword);
   };
 
-  const navigate = useNavigate();
+    const navigate = useNavigate()
 
-  const handleLogin = () => {
-    return navigate('/homeadm');
-  };
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
 
-  const handleContact = () => {
-    console.log('Contato enviado!');
-    return navigate('/homeadm');
-  };
+      
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+    };
 
-  useEffect(() => {
-    document.title = 'Linked Park';
-  }, []);
+    const login =(data)=>{
+console.log(data)
+      fetch('https://tcc-production-e100.up.railway.app/api/administrador/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          "email": data.username,
+          "senha": data.password,
+         
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      .then(response => {
+       
+        if (response.status === 200) {
+          return response.json(); 
+        } else {
+          alert("Usuário não encontrado!");
+        }
+      })
+      .then(data => {
+        if (data) {
+          console.log(data)
+      
+        localStorage.setItem('administrador',JSON.stringify(data));
+        alert("Usuário encontrado!");
+         console.log("localStorage"+localStorage.getItem("administrador"))
+        if(data.select.role == "MANAGER"){
+          navigate("/homeadm")
+        }else{
+          console.log("tela de adm normal")
+        }
+      
+      
+          
+        }
+      })
+      .catch(error => {
+        console.error("Erro durante a requisição:", error);
+       alert("Erro");
+      });
 
-  if (isOpen) {
-    return (
-      <div style={BACKGROUND_STYLE}>
-        <div style={MODAL_STYLE}>
+    }
+
+    useEffect(() => {
+      document.title = 'Linked Park';
+    }, []);
+
+
+   if (isOpen) {
+      return (
+        <div style={BACKGROUND_STYLE}>
+          <div style={MODAL_STYLE}>
           <FaTimes style={CLOSE_ICON_STYLE} onClick={setCloseLogin} />
-          <div style={{ display: 'flex' }}>
-            <div style={PARTE_ESQUERDA_STYLE}>
-              <p style={TEXTO_STYLE}>Bem-vindo</p>
-              <img
-                style={IMG_STYLE}
-                src={Logo}
-                alt="logo do app"
-                title="logo do app"
-              />
-              <p style={TEXTO2_STYLE}>LINKED PARK</p>
-            </div>
-            <div
-              style={{
-                flex: 1,
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <p style={TEXTO2_STYLE}>LOGIN</p>
-              <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
-              <div style={{ position: 'relative', width: '100%' }}>
-                <FaEnvelope style={INPUT_ICON_STYLE} />
-                <input
-                  style={INPUT_STYLE}
-                  type="text"
-                  placeholder="Usuário"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleInputChange}
+            <div style={{ display: 'flex' }}>
+              <div style={{ ...PARTE_ESQUERDA_STYLE }}>
+                <p style={TEXTO_STYLE}>Bem-vindo</p>
+                <img
+                  src={Logo}
+                  style={IMG_STYLE}
+              
+                  alt="logo do app"
+                  title="logo do app"
                 />
+                <p style={TEXTO2_STYLE}>LINKED PARK</p>
               </div>
-              <div style={{ position: 'relative', width: '100%' }}>
-                <FaLock style={INPUT_ICON_STYLE} />
-                <input
-                  style={INPUT_STYLE}
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Senha"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                />
-                <button
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    right: '5px',
-                    transform: 'translateY(-50%)',
-                    background: 'transparent',
-                    border: 'none',
-                    color: 'gray',
-                    cursor: 'pointer',
-                  }}
-                  onClick={toggleShowPassword}
-                >
-                  {showPassword ? '◠ Ocultar' : ' ☉ Mostrar'}
-                </button>
+              <div  style={PARTE_DIREITA_STYLE}>
+                <p style={TEXTO3_STYLE}>LOGIN</p>
+                <p style={TEXTO_STYLE}>ㅤㅤㅤ</p>
+                <div style={{ position: 'relative', width: '100%' }}>
+                 
+                  <input
+                    style={INPUT_STYLE1}
+                    type="text"
+                    placeholder="Usuário"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div style={{ position: 'relative', width: '100%' }}>
+                  
+                  <input
+                    style={{ ...INPUT_STYLE2 }}
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Senha"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                  />
+                  <button
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      right: '5px',
+                      transform: 'translateY(-50%)',
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'gray',
+                      cursor: 'pointer',
+                    }}
+                    onClick={toggleShowPassword}
+                  >
+                    {showPassword ? '◠ Ocultar' : '  ͡o Mostrar'}
+                  </button>
+                </div>
+  
+                    <button  style={BUTTON_STYLE} onClick={() => login(formData)}>
+                      ENTRAR
+                    </button>
+  
               </div>
-              <button style={BUTTON_STYLE} onClick={handleLogin}>
-                ENTRAR
-              </button>
             </div>
+            <div style={MODAL_BACKGROUND_STYLE}></div>
           </div>
-          <div style={MODAL_BACKGROUND_STYLE}></div>
         </div>
-      </div>
-    );
-  } else {
-    return null;
-  }
+        
+  );
+}
+
 }

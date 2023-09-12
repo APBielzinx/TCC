@@ -109,6 +109,7 @@
 /* App.css */
 
 html {
+  font-family: 'sans-serif', sans-serif;
   background-color: #011e11;
 }
 
@@ -128,8 +129,9 @@ html {
 }
 
 .app-name-left {
-  font-family: 'Holt';
-  color: #7fff00;
+  margin-top: 80px;
+  font-family: 'Russo One', sans-serif;
+  color: #12ff46;
   font-size: 30px;
   text-align: left; /* Alinhe o nome do aplicativo à esquerda */
 }
@@ -153,21 +155,49 @@ html {
 }
 
 .slogan {
-  font-family: 'Holt';
+  margin-left: 80px;
+  margin-top: 40px;
+  font-family: 'DM Sans', sans-serif;
+  color: #fff;
+  font-size: 90px; /* Tamanho menor para o slogan */
+}
+
+.slogan2 {
+  margin-left: 80px;
+  font-family: 'DM Sans', sans-serif;
+  color: #fff;
+  font-size: 90px; /* Tamanho menor para o slogan */
+}
+
+.slogan3 {
+  margin-left: 80px;
+  font-family: 'DM Sans', sans-serif;
   color: #fff;
   font-size: 90px; /* Tamanho menor para o slogan */
 }
 
 .start-button {
+  text-align: center;
+  margin-left: 80px;
   font-family: 'Holt';
-  background-color: #7fff00;
+  background-color: #12ff46;
+  font-size: 30px;
   color: black;
-  margin-top: 140px; /* Ajuste a margem superior conforme necessário */
+  margin-top: 100px; /* Ajuste a margem superior conforme necessário */
   display: block; /* Para ocupar toda a largura disponível */
-  margin-right: auto; /* Centraliza horizontalmente */
   width: 500px;
   height: 55px;
   border-radius: 100px;
+  padding: 35px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fonteBotao {
+  font-size: 30px;
+  font-family: 'Russo One', sans-serif;
 }
 
 .right-content {
@@ -177,6 +207,7 @@ html {
 }
 
 .logoimg {
-  width: 500px;
-  height: 500px;
+  margin-left: 100px;
+  width: 600px;
+  height: 600px;
 }
