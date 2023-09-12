@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -100,23 +100,22 @@ const inputStyle = {
   marginRight: '10px',
 };
 
-export default function Parque({ isOpen, setCloseParque, setSelectedMenuItem, closeSuccessMessage }) {
+export default function AreasDeLazer({
+  isOpen,
+  setCloseAreasDeLazer,
+  setSelectedMenuItem,
+  closeSuccessMessage,
+}) {
   const [dados, setDados] = useState([]);
   const [nome, setNome] = useState('');
   const [endereco, setEndereco] = useState('');
   const [adm, setAdm] = useState('');
   const [editIndex, setEditIndex] = useState(-1);
 
-    //*useEffect(() => {
-   //*  buscarDados();
-  //* }, []);
- 
-  // mensagem de adicionar
-
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleMenuItemClick = (item) => {
-    setCloseParque(false);
+    setCloseAreasDeLazer(false);
     setSelectedMenuItem(item);
   };
 
@@ -127,15 +126,15 @@ export default function Parque({ isOpen, setCloseParque, setSelectedMenuItem, cl
         setDados([...dados, novoItem]);
         setShowSuccessMessage(true);
         closeSuccessMessage();
-        setSelectedMenuItem('parque');
-        setCloseParque(false);
-        console.log('Adicionado:', novoItem); // Log para adicionar no console
+        setSelectedMenuItem('areas-de-lazer');
+        setCloseAreasDeLazer(false);
+        console.log('Adicionado:', novoItem);
       } else {
         const novosDados = [...dados];
         novosDados[editIndex] = { id: novosDados[editIndex].id, nome, endereco, adm };
         setDados(novosDados);
         setEditIndex(-1);
-        console.log('Editado:', novosDados[editIndex]); // Log para editar no console
+        console.log('Editado:', novosDados[editIndex]);
       }
       setNome('');
       setEndereco('');
@@ -143,131 +142,32 @@ export default function Parque({ isOpen, setCloseParque, setSelectedMenuItem, cl
     }
   };
 
-  
-  /* const enviarDados = (novoitem) =>{
-    console.log(novoitem)
-    fetch('http://localhost:8080/api/lazer', {
-      method: 'POST',
-      body: JSON.stringify({
-        "nome":novoitem.nome,
-        "endereco":novoitem.endereco,
-        "administrador":{
-          "idAdm":novoitem.id
-        }
-    
-       
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-       'Authorization':"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6ImFkbXN1cHJlbW9AZ21haWwuY29tIiwiZXhwIjoxNjk0MjI5MTY3fQ.698pMSzntwh83yjDHW5VgeSfuN7Zh58TpvcwgSIZqv8"
-
-      },
-    })
-    .then(response => {
-     
-      if (response.status == 201) {
-        return response.json(); 
-      } else if(response.status == 403){
-          console.log("Você não tem permissao para isso tente fazer login novamente")
-      }
-    })
-    .catch(error => {
-      console.error("Erro durante a requisição:", error);
-    });
-   
-    
-  };
-
-const buscarDados = ()=>{
-
-  fetch('http://localhost:8080/api/lazer', {
-    method: 'GET',
-    headers:{
-      'Content-type': 'application/json; charset=UTF-8',
-      'Authorization':"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6ImFkbXN1cHJlbW9AZ21haWwuY29tIiwiZXhwIjoxNjk0MjI5MTY3fQ.698pMSzntwh83yjDHW5VgeSfuN7Zh58TpvcwgSIZqv8"
-    },
-
-}).then(response =>{
-
-if(response.status == 200 ){
-  return response.json()
-}
-
-
-}).then(data =>{
-  console.log("data"+data)
-
-  if (data) {
-    setDados(data); // Atualize o estado dados com os dados obtidos
-
-  }
-} )
-
-}
- 
-const editar =(dados)=>{
-
-  fetch('http://localhost:8080/api/lazer', {
-    method: 'PUT',
-    body: JSON.stringify({
-      "idLazer":dados.idLazer,
-      "nome":dados.nome,
-      "endereco":dados.endereco
-      
-     
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-     'Authorization':"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6ImFkbXN1cHJlbW9AZ21haWwuY29tIiwiZXhwIjoxNjk0MjI5MTY3fQ.698pMSzntwh83yjDHW5VgeSfuN7Zh58TpvcwgSIZqv8"
-
-    },
-  })
-  .then(response => {
-   
-    if (response.status == 200) {
-      return response.json(); 
-    } else if(response.status == 403){
-        console.log("Você não tem permissao para isso tente fazer login novamente")
-    }
-  })
-  .catch(error => {
-    console.error("Erro durante a requisição:", error);
-  });
- 
-  };
-*/
-
- /* const editarLinha = (index) => {
-     const linha = dados[index];
-     };
-  */
   const editarLinha = (index) => {
     const linha = dados[index];
     setNome(linha.nome);
     setEndereco(linha.endereco);
     setAdm(linha.adm);
     setEditIndex(index);
-    console.log('Editando linha:', linha); // Log para editar no console
+    console.log('Editando linha:', linha);
   };
 
   const excluirLinha = (index) => {
     const novosDados = [...dados];
     const excluido = novosDados.splice(index, 1);
     setDados(novosDados);
-    console.log('Excluído:', excluido[0]); // Log para excluir no console
+    console.log('Excluído:', excluido[0]);
   };
 
-  if (isOpen) {
-    return (
-      <div style={BACKGROUND_STYLE}>
-        <div style={MODAL_STYLE}>
-          <FontAwesomeIcon
-            onClick={setCloseParque}
-            icon={faTimes}
-            style={CLOSE_ICON_STYLE}
-          />
-          <h2>ADICIONAR TABELA PARQUE</h2>
-          <table style={tableStyle}>
+  {isOpen && (
+    <div style={BACKGROUND_STYLE}>
+      <div style={MODAL_STYLE}>
+        <FontAwesomeIcon
+          onClick={setCloseAreasDeLazer}
+          icon={faTimes}
+          style={CLOSE_ICON_STYLE}
+        />
+        <h1 style={{ marginBottom: '20px' }}>Parque</h1> {/* Título da página */}
+        <table style={tableStyle}>
             <thead>
               <tr>
                 <th style={thStyle}>ID</th>
