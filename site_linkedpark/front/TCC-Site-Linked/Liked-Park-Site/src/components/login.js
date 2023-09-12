@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../img/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 // pages
 import HomeAdm from '../pages/HomeAdm';
 import AppRoutes from '../Routes';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // components
 import Navbar from './Navbar';
@@ -205,11 +204,7 @@ export default function Login({ isOpen, setCloseLogin }) {
     
   };*/
 
-  const navigate = useNavigate()
 
-  const handleLogin = () => {
-    return navigate("/homeadm")
-  };
 
 
 
@@ -240,7 +235,6 @@ export default function Login({ isOpen, setCloseLogin }) {
               <p style={TEXTO_STYLE}>Bem vindo</p>
               <img
                 style={IMG_STYLE}
-                src={Logo}
                 alt="logo do app"
                 title="logo do app"
               />
@@ -295,7 +289,7 @@ export default function Login({ isOpen, setCloseLogin }) {
                 </button>
               </div>
 
-                  <button  style={BUTTON_STYLE} onClick={handleLogin}>
+                  <button  style={BUTTON_STYLE}>
                     ENTRAR
                   </button>
 

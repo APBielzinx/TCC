@@ -26,13 +26,13 @@ const menuItemStyle = {
 
 const menuItemActiveStyle = {
   ...menuItemStyle,
-  color: '#7fff00', // Alterado para a cor quando o mouse passa por cima
+  color: '#4CAF50', // Alterado para a cor quando o mouse passa por cima
 };
 
 // Estilos CSS para a lista de parques à direita
 const contentStyle = {
   padding: '20px',
-  backgroundColor: '#011e11',
+  backgroundColor: '#4CAF50',
   color: 'white',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
   flex: '1',
@@ -77,7 +77,7 @@ const cellStyle = {
 };
 
 const addButtonStyle = {
-  backgroundColor: '#4CAF50',
+  backgroundColor: '#fff',
   color: 'black',
   padding: '10px 20px',
   border: 'none',

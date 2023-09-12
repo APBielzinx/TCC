@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
-  Box,
+  Box as ChakraBox,
   Flex,
   Button,
   useDisclosure,
@@ -12,17 +13,20 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import ModalComp from "../components/ModalComp";
+import ModalCompUsuario from "../components/ModalCompUsuario";
+import ModalCompSolicitacao from "../components/ModalCompSolicitacao";
 import { extendTheme } from "@chakra-ui/react";
 
 function HomeAdm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [dataParque, setDataParque] = useState([]);
-  const [dataUsuario, setDataUsuario] = useState([]);
-  const [dataSolicitacao, setDataSolicitacao] = useState([]);
+  const [dataParque, setDataParque] = useState([]); // Dados do Parque
+  const [dataUsuario, setDataUsuario] = useState([]); // Dados do Usuário
+  const [dataSolicitacao, setDataSolicitacao] = useState([]); // Dados da Solicitação
   const [dataEdit, setDataEdit] = useState({});
   const [showParque, setShowParque] = useState(true);
+  const [showUsuario, setShowUsuario] = useState(false);
+  const [showSolicitacao, setShowSolicitacao] = useState(false);
 
   const theme = extendTheme({
     breakpoints: {
@@ -32,7 +36,6 @@ function HomeAdm() {
       lg: "992px",
       xl: "1200px",
     },
-    // ...
   });
 
   const isMobile = useBreakpointValue({
@@ -45,23 +48,39 @@ function HomeAdm() {
       ? JSON.parse(localStorage.getItem("cad_cliente"))
       : [];
 
+    // Defina os estados de dados separados para cada seção
     setDataParque(db_costumer);
     setDataUsuario(db_costumer);
     setDataSolicitacao(db_costumer);
   }, []);
 
-  const handleRemove = (email) => {
-    const newArray = dataParque.filter((item) => item.email !== email);
+  const handleRemove = (email, section) => {
+    // Use a seção especificada para filtrar os dados corretos
+    let newData = [];
+    switch (section) {
+      case "parque":
+        newData = dataParque.filter((item) => item.email !== email);
+        setDataParque(newData);
+        break;
+      case "usuario":
+        newData = dataUsuario.filter((item) => item.email !== email);
+        setDataUsuario(newData);
+        break;
+      case "solicitacao":
+        newData = dataSolicitacao.filter((item) => item.adminEmail !== email);
+        setDataSolicitacao(newData);
+        break;
+      default:
+        break;
+    }
 
-    setDataParque(newArray);
-
-    localStorage.setItem("cad_cliente", JSON.stringify(newArray));
+    // Atualize o localStorage com os dados filtrados
+    localStorage.setItem("cad_cliente", JSON.stringify(newData));
   };
 
   return (
     <Flex h="100vh">
-      {/* Menu Lateral */}
-      <Box
+      <ChakraBox
         w="200px"
         bgGradient="linear(to-r, #011e11, #7fff00)"
         color="white"
@@ -72,13 +91,16 @@ function HomeAdm() {
         justifyContent="center"
         textAlign="center"
       >
-        {/* Conteúdo do Menu Lateral */}
         <Button
           colorScheme="teal"
           variant="outline"
           mb="20px"
           w="100%"
-          onClick={() => setShowParque(true)}
+          onClick={() => {
+            setShowParque(true);
+            setShowUsuario(false);
+            setShowSolicitacao(false);
+          }}
           _hover={{ bgColor: "#7fff00", color: "white" }}
           _focus={{ border: "none" }}
           _active={{
@@ -95,7 +117,11 @@ function HomeAdm() {
           variant="outline"
           mb="20px"
           w="100%"
-          onClick={() => setShowParque(false)}
+          onClick={() => {
+            setShowUsuario(true);
+            setShowParque(false);
+            setShowSolicitacao(false);
+          }}
           _hover={{ bgColor: "#7fff00", color: "white" }}
           _focus={{ border: "none" }}
           _active={{
@@ -111,7 +137,11 @@ function HomeAdm() {
           colorScheme="teal"
           variant="outline"
           w="100%"
-          onClick={() => setShowParque(false)}
+          onClick={() => {
+            setShowSolicitacao(true);
+            setShowParque(false);
+            setShowUsuario(false);
+          }}
           _hover={{ bgColor: "#7fff00", color: "white" }}
           _focus={{ border: "none" }}
           _active={{
@@ -123,9 +153,8 @@ function HomeAdm() {
         >
           Solicitação
         </Button>
-      </Box>
+      </ChakraBox>
 
-      {/* Conteúdo Principal */}
       <Flex
         flex="1"
         justify="center"
@@ -136,13 +165,18 @@ function HomeAdm() {
         flexDirection="column"
         alignItems="center"
       >
-        <Box maxW={800} w="100%" py={10} px={2}>
+        <ChakraBox
+          maxW={1200} // Aumentei o tamanho da tabela para 1200px
+          w="100%"
+          py={10}
+          px={2}
+        >
           {showParque && (
-            // Tabela para a seção "Parque"
             <Table
+              backgroundColor="#4CAF50"
               variant="striped"
               colorScheme="whiteAlpha"
-              maxW="800px"
+              maxW="1200px" // Aumentei o tamanho da tabela para 1200px
               size="sm"
             >
               <Thead>
@@ -201,15 +235,15 @@ function HomeAdm() {
                             onOpen(),
                           ]}
                         />
-                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                        <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                       </Td>
                       <Td p={0}>
                         <DeleteIcon
                           fontSize={20}
-                          onClick={() => handleRemove(email)}
+                          onClick={() => handleRemove(email, "parque")}
                           data-email={email}
                         />
-                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                        <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                       </Td>
                       <Td p={0}>
                         <img
@@ -224,12 +258,12 @@ function HomeAdm() {
               </Tbody>
             </Table>
           )}
-          {!showParque && (
-            // Tabela para a seção "Usuário"
+          {showUsuario && (
             <Table
+              backgroundColor="#4CAF50"
               variant="striped"
               colorScheme="whiteAlpha"
-              maxW="800px"
+              maxW="1200px" // Aumentei o tamanho da tabela para 1200px
               size="sm"
             >
               <Thead>
@@ -242,50 +276,45 @@ function HomeAdm() {
                 </Tr>
               </Thead>
               <Tbody>
-                {dataUsuario.map(
-                  (
-                    { id, email, status },
-                    index
-                  ) => (
-                    <Tr key={index} cursor="pointer">
-                      <Td>{id}</Td>
-                      <Td>{email}</Td>
-                      <Td>{status}</Td>
-                      <Td p={0}>
-                        <EditIcon
-                          fontSize={20}
-                          onClick={() => [
-                            setDataEdit({
-                              id,
-                              email,
-                              status,
-                              index,
-                            }),
-                            onOpen(),
-                          ]}
-                        />
-                        <Box w="5px" h="1px" display="inline-block" />{" "}
-                      </Td>
-                      <Td p={0}>
-                        <DeleteIcon
-                          fontSize={20}
-                          onClick={() => handleRemove(email)}
-                          data-email={email}
-                        />
-                        <Box w="5px" h="1px" display="inline-block" />{" "}
-                      </Td>
-                    </Tr>
-                  )
-                )}
+                {dataUsuario.map(({ id, email, status }, index) => (
+                  <Tr key={index} cursor="pointer">
+                    <Td>{id}</Td>
+                    <Td>{email}</Td>
+                    <Td>{status}</Td>
+                    <Td p={0}>
+                      <EditIcon
+                        fontSize={20}
+                        onClick={() => [
+                          setDataEdit({
+                            id,
+                            email,
+                            status,
+                            index,
+                          }),
+                          onOpen(),
+                        ]}
+                      />
+                      <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
+                    </Td>
+                    <Td p={0}>
+                      <DeleteIcon
+                        fontSize={20}
+                        onClick={() => handleRemove(email, "usuario")}
+                        data-email={email}
+                      />
+                      <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
             </Table>
           )}
-          {!showParque && (
-            // Tabela para a seção "Solicitação"
+          {showSolicitacao && (
             <Table
+              backgroundColor="#4CAF50"
               variant="striped"
               colorScheme="whiteAlpha"
-              maxW="800px"
+              maxW="1200px" // Aumentei o tamanho da tabela para 1200px
               size="sm"
             >
               <Thead>
@@ -326,15 +355,15 @@ function HomeAdm() {
                             onOpen(),
                           ]}
                         />
-                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                        <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                       </Td>
                       <Td p={0}>
                         <DeleteIcon
                           fontSize={20}
-                          onClick={() => handleRemove(adminEmail)}
+                          onClick={() => handleRemove(adminEmail, "solicitacao")}
                           data-email={adminEmail}
                         />
-                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                        <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                       </Td>
                     </Tr>
                   )
@@ -343,9 +372,9 @@ function HomeAdm() {
             </Table>
           )}
           {isMobile && !showParque && (
-            <Box>
+            <ChakraBox>
               {/* Conteúdo para a seção "Usuário" (vazio) */}
-            </Box>
+            </ChakraBox>
           )}
           <Button
             colorScheme="teal"
@@ -358,7 +387,7 @@ function HomeAdm() {
           >
             NOVO CADASTRO
           </Button>
-        </Box>
+        </ChakraBox>
         {isOpen && (
           showParque ? (
             <ModalComp
@@ -370,14 +399,25 @@ function HomeAdm() {
               setDataEdit={setDataEdit}
             />
           ) : (
-            <ModalCompUsuario
-              isOpen={isOpen}
-              onClose={onClose}
-              data={dataUsuario}
-              setData={setDataUsuario}
-              dataEdit={dataEdit}
-              setDataEdit={setDataEdit}
-            />
+            showUsuario ? (
+              <ModalCompUsuario
+                isOpen={isOpen}
+                onClose={onClose}
+                data={dataUsuario}
+                setData={setDataUsuario}
+                dataEdit={dataEdit}
+                setDataEdit={setDataEdit}
+              />
+            ) : (
+              <ModalCompSolicitacao
+                isOpen={isOpen}
+                onClose={onClose}
+                data={dataSolicitacao}
+                setData={setDataSolicitacao}
+                dataEdit={dataEdit}
+                setDataEdit={setDataEdit}
+              />
+            )
           )
         )}
       </Flex>
