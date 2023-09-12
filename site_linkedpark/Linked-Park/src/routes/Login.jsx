@@ -1,7 +1,7 @@
-import { useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { FaEnvelope, FaLock, FaTimes } from 'react-icons/fa'; // Importe os ícones aqui
-import '../App.css'; // Importe o seu arquivo de estilo CSS aqui
+import { FaEnvelope, FaLock, FaTimes } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import '../App.css';
 import Logo from '../img/logo.png';
 
 const BACKGROUND_STYLE = {
@@ -26,7 +26,7 @@ const MODAL_STYLE = {
   color: 'black',
   textAlign: 'center',
   backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  display: 'flex', // Use flex para alinhar os lados
+  display: 'flex',
 };
 
 const CLOSE_ICON_STYLE = {
@@ -41,8 +41,8 @@ const PARTE_ESQUERDA_STYLE = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center', // Alinhe verticalmente ao centro
-  width: '100%', // Defina a largura fixa para a parte esquerda
+  justifyContent: 'center',
+  width: '100%',
   backgroundColor: 'rgba(255, 255, 255, 0.1)',
   backdropFilter: 'blur(10px)',
   borderRadius: '10px',
@@ -103,7 +103,7 @@ const MODAL_BACKGROUND_STYLE = {
   borderRadius: '10px',
 };
 
-const INPUT_STYLE1 = {
+const INPUT_STYLE = {
   display: 'block',
   width: '100%',
   height: '40px',
@@ -112,7 +112,8 @@ const INPUT_STYLE1 = {
   border: '1px solid #fff',
   borderRadius: '50px',
   margin: '10px 0',
-  paddingLeft: '40px',
+  paddingLeft: '400px', // Defina o paddingLeft como 40px para um campo de entrada padrão
+  paddingRigth: '350',
   position: 'relative',
 };
 
@@ -122,19 +123,6 @@ const INPUT_ICON_STYLE = {
   left: '10px',
   transform: 'translateY(-50%)',
   color: 'gray',
-};
-
-const INPUT_STYLE2 = {
-  display: 'block',
-  width: '100%',
-  height: '40px',
-  backgroundColor: 'white',
-  color: 'black',
-  border: '1px solid #fff',
-  borderRadius: '50px',
-  margin: '10px 0',
-  paddingLeft: '40px',
-  position: 'relative',
 };
 
 export default function Login({ isOpen, setCloseLogin }) {
@@ -151,12 +139,12 @@ export default function Login({ isOpen, setCloseLogin }) {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    return navigate("/homeadm");
+    return navigate('/homeadm');
   };
 
   const handleContact = () => {
-    console.log("Contato enviado!");
-    return navigate("/homeadm");
+    console.log('Contato enviado!');
+    return navigate('/homeadm');
   };
 
   const handleInputChange = (event) => {
@@ -175,13 +163,13 @@ export default function Login({ isOpen, setCloseLogin }) {
     return (
       <div style={BACKGROUND_STYLE}>
         <div style={MODAL_STYLE}>
-          <FaTimes style={CLOSE_ICON_STYLE} onClick={setCloseLogin} /> {/* Botão de fechar */}
+          <FaTimes style={CLOSE_ICON_STYLE} onClick={setCloseLogin} />
           <div style={{ display: 'flex' }}>
             <div style={PARTE_ESQUERDA_STYLE}>
               <p style={TEXTO_STYLE}>Bem-vindo</p>
               <img
                 style={IMG_STYLE}
-                src={Logo} // Adicione a propriedade 'src' com o caminho para a imagem
+                src={Logo}
                 alt="logo do app"
                 title="logo do app"
               />
@@ -189,7 +177,7 @@ export default function Login({ isOpen, setCloseLogin }) {
             </div>
             <div
               style={{
-                flex: 1, // Usar flex: 1 para a parte direita ocupar o espaço restante
+                flex: 1,
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
@@ -201,7 +189,7 @@ export default function Login({ isOpen, setCloseLogin }) {
               <div style={{ position: 'relative', width: '100%' }}>
                 <FaEnvelope style={INPUT_ICON_STYLE} />
                 <input
-                  style={INPUT_STYLE1}
+                  style={INPUT_STYLE}
                   type="text"
                   placeholder="Usuário"
                   name="username"
@@ -212,7 +200,7 @@ export default function Login({ isOpen, setCloseLogin }) {
               <div style={{ position: 'relative', width: '100%' }}>
                 <FaLock style={INPUT_ICON_STYLE} />
                 <input
-                  style={INPUT_STYLE2}
+                  style={INPUT_STYLE}
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Senha"
                   name="password"

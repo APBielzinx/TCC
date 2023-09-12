@@ -16,13 +16,13 @@ import { useEffect, useState } from "react";
 import ModalComp from "../components/ModalComp";
 import { extendTheme } from "@chakra-ui/react";
 
-function HomeAdm  ()  {
+function HomeAdm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [dataParque, setDataParque] = useState([]);
   const [dataUsuario, setDataUsuario] = useState([]);
   const [dataSolicitacao, setDataSolicitacao] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
-  const [showSolicitacoes, setShowSolicitacoes] = useState(false);
+  const [showParque, setShowParque] = useState(true);
 
   const theme = extendTheme({
     breakpoints: {
@@ -48,12 +48,12 @@ function HomeAdm  ()  {
     setDataParque(db_costumer);
     setDataUsuario(db_costumer);
     setDataSolicitacao(db_costumer);
-  }, [setDataParque, setDataUsuario, setDataSolicitacao]);
+  }, []);
 
   const handleRemove = (email) => {
-    const newArray = dataUsuario.filter((item) => item.email !== email);
+    const newArray = dataParque.filter((item) => item.email !== email);
 
-    setDataUsuario(newArray);
+    setDataParque(newArray);
 
     localStorage.setItem("cad_cliente", JSON.stringify(newArray));
   };
@@ -66,42 +66,63 @@ function HomeAdm  ()  {
         bgGradient="linear(to-r, #011e11, #7fff00)"
         color="white"
         p="4"
-        display={{ base: "block", lg: "block" }}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
       >
         {/* Conteúdo do Menu Lateral */}
-        <Box mb="20px">
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            w="100%"
-            onClick={() => setShowSolicitacoes(false)}
-            _hover={{ bgColor: "#7fff00" }} // Efeito de hover verde
-          >
-            Parque
-          </Button>
-        </Box>
-        <Box mb="20px">
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            w="100%"
-            onClick={() => setShowSolicitacoes(false)}
-            _hover={{ bgColor: "#7fff00" }} // Efeito de hover verde
-          >
-            Usuário
-          </Button>
-        </Box>
-        <Box>
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            w="100%"
-            onClick={() => setShowSolicitacoes(true)}
-            _hover={{ bgColor: "#7fff00" }} // Efeito de hover verde
-          >
-            Solicitação
-          </Button>
-        </Box>
+        <Button
+          colorScheme="teal"
+          variant="outline"
+          mb="20px"
+          w="100%"
+          onClick={() => setShowParque(true)}
+          _hover={{ bgColor: "#7fff00", color: "white" }}
+          _focus={{ border: "none" }}
+          _active={{
+            bgColor: "#7fff00",
+          }}
+          justifyContent="flex-start"
+          borderWidth={0}
+          color="white"
+        >
+          Parque
+        </Button>
+        <Button
+          colorScheme="teal"
+          variant="outline"
+          mb="20px"
+          w="100%"
+          onClick={() => setShowParque(false)}
+          _hover={{ bgColor: "#7fff00", color: "white" }}
+          _focus={{ border: "none" }}
+          _active={{
+            bgColor: "#7fff00",
+          }}
+          justifyContent="flex-start"
+          borderWidth={0}
+          color="white"
+        >
+          Usuário
+        </Button>
+        <Button
+          colorScheme="teal"
+          variant="outline"
+          w="100%"
+          onClick={() => setShowParque(false)}
+          _hover={{ bgColor: "#7fff00", color: "white" }}
+          _focus={{ border: "none" }}
+          _active={{
+            bgColor: "#7fff00",
+          }}
+          justifyContent="flex-start"
+          borderWidth={0}
+          color="white"
+        >
+          Solicitação
+        </Button>
       </Box>
 
       {/* Conteúdo Principal */}
@@ -113,190 +134,238 @@ function HomeAdm  ()  {
         bgColor="#011e11"
         color="white"
         flexDirection="column"
-        alignItems="center" // Centralizar horizontalmente
+        alignItems="center"
       >
         <Box maxW={800} w="100%" py={10} px={2}>
-          <Box height="100%" overflowY="auto">
-            {showSolicitacoes ? (
-              // Tabela para a seção "Solicitação"
-              <Table variant="striped" colorScheme="whiteAlpha" maxW="800px" size="sm">
-                <Thead>
-                  <Tr>
-                    <Th>ID</Th>
-                    <Th>Nome</Th>
-                    <Th>Descrição</Th>
-                    <Th>Endereço</Th>
-                    <Th>Latitude</Th>
-                    <Th>Longitude</Th>
-                    <Th>Adm</Th>
-                    <Th p={0}></Th>
-                    <Th p={0}></Th>
-                    <Th p={0}></Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {dataSolicitacao.map(
-                    (
-                      {
-                        id,
-                        name,
-                        description,
-                        address,
-                        latitude,
-                        longitude,
-                        admin,
-                        email,
-                        imagem,
-                      },
-                      index
-                    ) => (
-                      <Tr key={index} cursor="pointer">
-                        <Td>{id}</Td>
-                        <Td>{name}</Td>
-                        <Td>{description}</Td>
-                        <Td>{address}</Td>
-                        <Td>{latitude}</Td>
-                        <Td>{longitude}</Td>
-                        <Td>{admin}</Td>
-                        <Td p={0}>
-                          <EditIcon
-                            fontSize={20}
-                            onClick={() => [
-                              setDataEdit({
-                                id,
-                                name,
-                                description,
-                                address,
-                                latitude,
-                                longitude,
-                                admin,
-                                email,
-                                index,
-                              }),
-                              onOpen(),
-                            ]}
-                          />
-                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
-                        </Td>
-                        <Td p={0}>
-                          <DeleteIcon
-                            fontSize={20}
-                            onClick={() => handleRemove(email)}
-                            data-email={email}
-                          />
-                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
-                        </Td>
-                        <Td p={0}>
-                          <img
-                            src={imagem}
-                            alt={`Imagem de ${name}`}
-                            style={{ width: "50px", height: "50px" }}
-                          />
-                        </Td>
-                      </Tr>
-                    )
-                  )}
-                </Tbody>
-              </Table>
-            ) : (
-              // Tabela para a seção "Usuário"
-              <Table variant="striped" colorScheme="whiteAlpha" maxW="800px" size="sm">
-                <Thead>
-                  <Tr>
-                    <Th>ID</Th>
-                    <Th>Nome</Th>
-                    <Th>Descrição</Th>
-                    <Th>Endereço</Th>
-                    <Th>Latitude</Th>
-                    <Th>Longitude</Th>
-                    <Th>Adm</Th>
-                    <Th p={0}></Th>
-                    <Th p={0}></Th>
-                    <Th p={0}></Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {dataUsuario.map(
-                    (
-                      {
-                        id,
-                        name,
-                        description,
-                        address,
-                        latitude,
-                        longitude,
-                        admin,
-                        email,
-                        imagem,
-                      },
-                      index
-                    ) => (
-                      <Tr key={index} cursor="pointer">
-                        <Td>{id}</Td>
-                        <Td>{name}</Td>
-                        <Td>{description}</Td>
-                        <Td>{address}</Td>
-                        <Td>{latitude}</Td>
-                        <Td>{longitude}</Td>
-                        <Td>{admin}</Td>
-                        <Td p={0}>
-                          <EditIcon
-                            fontSize={20}
-                            onClick={() => [
-                              setDataEdit({
-                                id,
-                                name,
-                                description,
-                                address,
-                                latitude,
-                                longitude,
-                                admin,
-                                email,
-                                index,
-                              }),
-                              onOpen(),
-                            ]}
-                          />
-                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
-                        </Td>
-                        <Td p={0}>
-                          <DeleteIcon
-                            fontSize={20}
-                            onClick={() => handleRemove(email)}
-                            data-email={email}
-                          />
-                          <Box w="5px" h="1px" display="inline-block" /> {/* Espaço horizontal */}
-                        </Td>
-                        <Td p={0}>
-                          <img
-                            src={imagem}
-                            alt={`Imagem de ${name}`}
-                            style={{ width: "50px", height: "50px" }}
-                          />
-                        </Td>
-                      </Tr>
-                    )
-                  )}
-                </Tbody>
-              </Table>
-            )}
-            <Button
-              colorScheme="teal"
-              onClick={() => [setDataEdit({}), onOpen()]}
-              alignSelf="center"
-              mt={4}
+          {showParque && (
+            // Tabela para a seção "Parque"
+            <Table
+              variant="striped"
+              colorScheme="whiteAlpha"
+              maxW="800px"
+              size="sm"
             >
-              NOVO CADASTRO
-            </Button>
-          </Box>
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>Nome</Th>
+                  <Th>Descrição</Th>
+                  <Th>Endereço</Th>
+                  <Th>Latitude</Th>
+                  <Th>Longitude</Th>
+                  <Th>Adm</Th>
+                  <Th p={0}></Th>
+                  <Th p={0}></Th>
+                  <Th p={0}></Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {dataParque.map(
+                  (
+                    {
+                      id,
+                      name,
+                      description,
+                      address,
+                      latitude,
+                      longitude,
+                      admin,
+                      email,
+                      imagem,
+                    },
+                    index
+                  ) => (
+                    <Tr key={index} cursor="pointer">
+                      <Td>{id}</Td>
+                      <Td>{name}</Td>
+                      <Td>{description}</Td>
+                      <Td>{address}</Td>
+                      <Td>{latitude}</Td>
+                      <Td>{longitude}</Td>
+                      <Td>{admin}</Td>
+                      <Td p={0}>
+                        <EditIcon
+                          fontSize={20}
+                          onClick={() => [
+                            setDataEdit({
+                              id,
+                              name,
+                              description,
+                              address,
+                              latitude,
+                              longitude,
+                              admin,
+                              email,
+                              index,
+                            }),
+                            onOpen(),
+                          ]}
+                        />
+                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                      </Td>
+                      <Td p={0}>
+                        <DeleteIcon
+                          fontSize={20}
+                          onClick={() => handleRemove(email)}
+                          data-email={email}
+                        />
+                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                      </Td>
+                      <Td p={0}>
+                        <img
+                          src={imagem}
+                          alt={`Imagem de ${name}`}
+                          style={{ width: "50px", height: "50px" }}
+                        />
+                      </Td>
+                    </Tr>
+                  )
+                )}
+              </Tbody>
+            </Table>
+          )}
+          {!showParque && (
+            // Tabela para a seção "Usuário"
+            <Table
+              variant="striped"
+              colorScheme="whiteAlpha"
+              maxW="800px"
+              size="sm"
+            >
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>Email</Th>
+                  <Th>Status da Conta</Th>
+                  <Th p={0}></Th>
+                  <Th p={0}></Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {dataUsuario.map(
+                  (
+                    { id, email, status },
+                    index
+                  ) => (
+                    <Tr key={index} cursor="pointer">
+                      <Td>{id}</Td>
+                      <Td>{email}</Td>
+                      <Td>{status}</Td>
+                      <Td p={0}>
+                        <EditIcon
+                          fontSize={20}
+                          onClick={() => [
+                            setDataEdit({
+                              id,
+                              email,
+                              status,
+                              index,
+                            }),
+                            onOpen(),
+                          ]}
+                        />
+                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                      </Td>
+                      <Td p={0}>
+                        <DeleteIcon
+                          fontSize={20}
+                          onClick={() => handleRemove(email)}
+                          data-email={email}
+                        />
+                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                      </Td>
+                    </Tr>
+                  )
+                )}
+              </Tbody>
+            </Table>
+          )}
+          {!showParque && (
+            // Tabela para a seção "Solicitação"
+            <Table
+              variant="striped"
+              colorScheme="whiteAlpha"
+              maxW="800px"
+              size="sm"
+            >
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>E-mail do Adm</Th>
+                  <Th>Senha</Th>
+                  <Th>ID do Parque</Th>
+                  <Th>Status</Th>
+                  <Th p={0}></Th>
+                  <Th p={0}></Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {dataSolicitacao.map(
+                  (
+                    { id, adminEmail, senha, parqueId, status },
+                    index
+                  ) => (
+                    <Tr key={index} cursor="pointer">
+                      <Td>{id}</Td>
+                      <Td>{adminEmail}</Td>
+                      <Td>{senha}</Td>
+                      <Td>{parqueId}</Td>
+                      <Td>{status}</Td>
+                      <Td p={0}>
+                        <EditIcon
+                          fontSize={20}
+                          onClick={() => [
+                            setDataEdit({
+                              id,
+                              adminEmail,
+                              senha,
+                              parqueId,
+                              status,
+                              index,
+                            }),
+                            onOpen(),
+                          ]}
+                        />
+                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                      </Td>
+                      <Td p={0}>
+                        <DeleteIcon
+                          fontSize={20}
+                          onClick={() => handleRemove(adminEmail)}
+                          data-email={adminEmail}
+                        />
+                        <Box w="5px" h="1px" display="inline-block" />{" "}
+                      </Td>
+                    </Tr>
+                  )
+                )}
+              </Tbody>
+            </Table>
+          )}
+          {isMobile && !showParque && (
+            <Box>
+              {/* Conteúdo para a seção "Usuário" (vazio) */}
+            </Box>
+          )}
+          <Button
+            colorScheme="teal"
+            onClick={() => [setDataEdit({}), onOpen()]}
+            alignSelf="center"
+            mt={4}
+            bg="#7fff00"
+            color="black"
+            _hover={{ bgColor: "#7fff00" }}
+          >
+            NOVO CADASTRO
+          </Button>
         </Box>
         {isOpen && (
-          showSolicitacoes ? (
+          showParque ? (
             <ModalComp
               isOpen={isOpen}
               onClose={onClose}
-              data={dataSolicitacao}
-              setData={setDataSolicitacao}
+              data={dataParque}
+              setData={setDataParque}
               dataEdit={dataEdit}
               setDataEdit={setDataEdit}
             />
@@ -314,6 +383,6 @@ function HomeAdm  ()  {
       </Flex>
     </Flex>
   );
-};
+}
 
 export default HomeAdm;
