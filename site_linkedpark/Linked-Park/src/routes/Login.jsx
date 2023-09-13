@@ -201,9 +201,10 @@ export default function Login({ isOpen, setCloseLogin }) {
         localStorage.setItem('administrador', JSON.stringify(data));
         alert("Usuário encontrado!");
         if (data.select.role === "MANAGER") {
-          navigate("/homeadmparque");
+          navigate("/homeadm");
         } else {
           console.log("tela de adm normal");
+          navigate("/homeadmparque");
         }
       }
     })
