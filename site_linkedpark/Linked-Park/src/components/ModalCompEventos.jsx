@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -11,16 +12,13 @@ import {
   FormLabel,
   Input,
   Box,
-  Textarea,
   Select,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 
-const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosData }) => {
+const ModalCompEventos = ({ data, setData, dataEdit, isOpen, onClose, handleAddItem }) => {
   const [id, setId] = useState("");
-  const [email, setEmail] = useState(dataEdit.email || "");
-  const [status, setStatus] = useState(dataEdit.status || "");
-  const [selectedEvento, setSelectedEvento] = useState(dataEdit.eventoId || "");
+  const [evento, setEvento] = useState(dataEdit.evento || "");
+  const [dataEvento, setDataEvento] = useState(dataEdit.data || "");
 
   useEffect(() => {
     if (!Object.keys(dataEdit).length) {
@@ -31,44 +29,39 @@ const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosDat
   }, [data, dataEdit]);
 
   const handleSave = () => {
-    if (!email || !status) {
+    if (!evento || !dataEvento) {
       console.log("Campos obrigatórios não preenchidos.");
       return;
     }
 
-    if (emailAlreadyExists()) {
-      console.log("E-mail já cadastrado.");
+    if (nameAlreadyExists()) {
+      console.log("Evento já cadastrado.");
       return;
     }
 
     if (Object.keys(dataEdit).length) {
       data[dataEdit.index] = {
         id: dataEdit.id,
-        email,
-        status,
-        eventoId: selectedEvento,
+        evento,
+        data: dataEvento,
       };
     } else {
       const newItem = {
         id,
-        email,
-        status,
-        eventoId: selectedEvento,
+        evento,
+        data: dataEvento,
       };
-      data.push(newItem);
+      handleAddItem(newItem, dataEdit.section);
     }
-
-    localStorage.setItem("cad_cliente", JSON.stringify(data));
-    setData([...data]);
 
     console.log("Dados salvos com sucesso!");
 
     onClose();
   };
 
-  const emailAlreadyExists = () => {
+  const nameAlreadyExists = () => {
     if (dataEdit.id !== id && data?.length) {
-      return data.find((item) => item.email === email);
+      return data.find((item) => item.evento === evento);
     }
 
     return false;
@@ -85,7 +78,7 @@ const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosDat
           color="white"
           borderRadius="10px"
         >
-          <ModalHeader>Cadastrar Usuário</ModalHeader>
+          <ModalHeader>Cadastrar Novo Evento</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl display="flex" flexDir="column" gap={4}>
@@ -94,33 +87,20 @@ const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosDat
                 <Input type="text" value={id} isReadOnly />
               </Box>
               <Box>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Evento</FormLabel>
                 <Input
                   type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={evento}
+                  onChange={(e) => setEvento(e.target.value)}
                 />
               </Box>
               <Box>
-                <FormLabel>Status da Conta</FormLabel>
-                <Textarea
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                <FormLabel>Data</FormLabel>
+                <Input
+                  type="date"
+                  value={dataEvento}
+                  onChange={(e) => setDataEvento(e.target.value)}
                 />
-              </Box>
-              <Box>
-                <FormLabel>Evento Associado</FormLabel>
-                <Select
-                  placeholder="Selecione um evento"
-                  value={selectedEvento}
-                  onChange={(e) => setSelectedEvento(e.target.value)}
-                >
-                  {eventosData.map((evento) => (
-                    <option key={evento.id} value={evento.id}>
-                      {evento.eventName}
-                    </option>
-                  ))}
-                </Select>
               </Box>
             </FormControl>
           </ModalBody>
@@ -139,4 +119,4 @@ const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosDat
   );
 };
 
-export default ModalCompUsuario;
+export default ModalCompEventos;

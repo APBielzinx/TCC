@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -11,67 +12,47 @@ import {
   FormLabel,
   Input,
   Box,
-  Textarea,
   Select,
+  Textarea,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 
-const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosData }) => {
+const ModalCompInfo = ({ data, setData, dataEdit, isOpen, onClose, onUpdateData }) => {
   const [id, setId] = useState("");
-  const [email, setEmail] = useState(dataEdit.email || "");
-  const [status, setStatus] = useState(dataEdit.status || "");
-  const [selectedEvento, setSelectedEvento] = useState(dataEdit.eventoId || "");
+  const [name, setName] = useState(dataEdit.name || "");
+  const [description, setDescription] = useState(dataEdit.description || "");
+  
 
   useEffect(() => {
     if (!Object.keys(dataEdit).length) {
-      // Se não houver dados de edição, calcula o próximo ID sequencial
       const nextId = data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1;
       setId(nextId.toString());
     }
   }, [data, dataEdit]);
 
   const handleSave = () => {
-    if (!email || !status) {
-      console.log("Campos obrigatórios não preenchidos.");
-      return;
-    }
-
-    if (emailAlreadyExists()) {
-      console.log("E-mail já cadastrado.");
-      return;
-    }
+    if (!name || !description) return;
 
     if (Object.keys(dataEdit).length) {
       data[dataEdit.index] = {
         id: dataEdit.id,
-        email,
-        status,
-        eventoId: selectedEvento,
+        name,
+        description,
+       
       };
     } else {
       const newItem = {
         id,
-        email,
-        status,
-        eventoId: selectedEvento,
+        name,
+        description,
+        
       };
       data.push(newItem);
     }
 
     localStorage.setItem("cad_cliente", JSON.stringify(data));
-    setData([...data]);
-
-    console.log("Dados salvos com sucesso!");
+    onUpdateData([...data]);
 
     onClose();
-  };
-
-  const emailAlreadyExists = () => {
-    if (dataEdit.id !== id && data?.length) {
-      return data.find((item) => item.email === email);
-    }
-
-    return false;
   };
 
   return (
@@ -85,7 +66,7 @@ const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosDat
           color="white"
           borderRadius="10px"
         >
-          <ModalHeader>Cadastrar Usuário</ModalHeader>
+          <ModalHeader>Cadastrar Novas Informaçoes</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl display="flex" flexDir="column" gap={4}>
@@ -94,37 +75,25 @@ const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosDat
                 <Input type="text" value={id} isReadOnly />
               </Box>
               <Box>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Nome</FormLabel>
                 <Input
                   type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </Box>
               <Box>
-                <FormLabel>Status da Conta</FormLabel>
+                <FormLabel>Descrição</FormLabel>
                 <Textarea
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </Box>
               <Box>
-                <FormLabel>Evento Associado</FormLabel>
-                <Select
-                  placeholder="Selecione um evento"
-                  value={selectedEvento}
-                  onChange={(e) => setSelectedEvento(e.target.value)}
-                >
-                  {eventosData.map((evento) => (
-                    <option key={evento.id} value={evento.id}>
-                      {evento.eventName}
-                    </option>
-                  ))}
-                </Select>
+                
               </Box>
             </FormControl>
           </ModalBody>
-
           <ModalFooter justifyContent="start">
             <Button colorScheme="green" mr={3} onClick={handleSave}>
               SALVAR
@@ -139,4 +108,4 @@ const ModalCompUsuario = ({ data, setData, dataEdit, isOpen, onClose, eventosDat
   );
 };
 
-export default ModalCompUsuario;
+export default ModalCompInfo;
