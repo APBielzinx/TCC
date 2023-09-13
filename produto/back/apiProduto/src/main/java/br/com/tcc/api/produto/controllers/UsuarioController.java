@@ -56,10 +56,10 @@ public class UsuarioController {
 
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deletarUsuario(@RequestBody Usuario usuario){
+    @DeleteMapping(value ="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deletarUsuario(@RequestParam Long id){
 
-        return usuarioServices.deletar(usuario);
+        return usuarioServices.deletar(id);
 
     }
 

@@ -81,11 +81,10 @@ public class UsuarioServices {
 
     }
 
-    public ResponseEntity<?>deletar (Usuario usuario){
-        if (usuarioRepository.existsByEmail(usuario.getEmail())){
-
+    public ResponseEntity<?>deletar (Long id){
+        if (usuarioRepository.existsByIdUsuario(id)){
+          var usuario = usuarioRepository.findByIdUsuario(id);
             usuarioRepository.delete(usuario);
-
             return new ResponseEntity<>("deletado com sucesso", HttpStatus.OK);
 
         }else {

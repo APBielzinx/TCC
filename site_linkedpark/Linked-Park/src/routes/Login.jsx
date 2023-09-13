@@ -200,7 +200,6 @@ export default function Login({ isOpen, setCloseLogin }) {
         console.log(data);
         localStorage.setItem('administrador', JSON.stringify(data));
         alert("Usuário encontrado!");
-        console.log("localStorage" + localStorage.getItem("administrador"));
         if (data.select.role === "MANAGER") {
           navigate("/homeadm");
         } else {
