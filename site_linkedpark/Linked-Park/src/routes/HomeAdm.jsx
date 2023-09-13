@@ -106,7 +106,7 @@ function HomeAdm() {
           'Authorization': `Bearer ${token}`
         };
   
-        const response = await fetch(`http://localhost:8080/api/usuario/${id}`, {
+        const response = await fetch(`https://tcc-production-e100.up.railway.app/api/usuario/${id}`, {
           method: 'DELETE',
           headers: headers
         });
