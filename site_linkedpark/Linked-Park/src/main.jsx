@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeAdm from './routes/HomeAdm.jsx';
 import Login from './routes/Login.jsx';
 import { ChakraProvider } from "@chakra-ui/react";
-import HomeAdmParque from './routes/HomeAdmParque.jsx';
 
 //const router = createBrowserRouter([
 //  {
@@ -36,10 +35,6 @@ const router = createBrowserRouter([
           path: "/login",
           element: <Login />,
         },
-        {
-        path: "homeadmparque",
-        element: <HomeAdmParque/>
-      }
     ]
   },
 ])
