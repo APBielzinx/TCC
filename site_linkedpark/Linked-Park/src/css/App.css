@@ -118,7 +118,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 98vh; /* Defina a altura da tela inteira ou ajuste conforme necessário */
+  height: 1000%; /* Defina a altura da tela inteira ou ajuste conforme necessário */
 }
 
 .header {
