@@ -91,7 +91,9 @@ function HomeAdm() {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
-   // fazerSolicitacaoComToken();
+  useEffect(() => {
+    fazerSolicitacaoComToken();
+  }, []);
   useEffect(() => {
     buscarUsuarios();
   }, []);
@@ -177,61 +179,109 @@ function HomeAdm() {
   };
 
 
-  async function handleAddItem(item) {
-    console.log(item)
+  async function handleAdicionarParque(novoParque) {
     try {
-      // Obtém o token de AsyncStorage
-      const token = await AsyncStorage.getItem("token");
+      // Obtém o token do administrador
+      const token = await administrador.token;
 
       if (token) {
-        // Construa o cabeçalho Authorization
         const headers = {
           'Content-type': 'application/json; charset=UTF-8',
           'Authorization': `Bearer ${token}`
         };
 
-        const body = {
-          "nome": item.nome,
-          "descricao": "Descrição do Lazer",
-          "endereco": "Endereço do Lazer",
-          "latitude": "Latitude do Lazer",
-          "categoria": "Categoria do Lazer",
-          "longetude": "Longitude do Lazer",
-          "imagem": "URL da Imagem do Lazer",
-          "administrador": {
-            "id": 1,
-            "nome": "Nome do Administrador"
-          }
-        }
-
-        const response = await fetch('https://tcc-production-e100.up.railway.app/api/lazer', {
+        const response = await fetch('URL_DA_API_PARA_ADICIONAR_PARQUE', {
           method: 'POST',
-          headers: headers
+          headers: headers,
+          body: JSON.stringify(novoParque)
+        });
+
+        if (response.status === 201) {
+          const data = await response.json();
+          console.log("Parque adicionado com sucesso:", data);
+
+          // Adicione o novo parque aos dados existentes
+          setDataParque([...dataParque, data]);
+
+          onClose(); // Feche o modal de adição após a conclusão
+        } else {
+          console.error("Erro na adição do parque:", response.status);
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar o parque:", error);
+    }
+  }
+
+  async function handleEditarParque(parqueEditado) {
+    try {
+      const token = await administrador.token;
+
+      if (token) {
+        const headers = {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': `Bearer ${token}`
+        };
+
+        const response = await fetch(`URL_DA_API_PARA_EDITAR_PARQUE/${parqueEditado.id}`, {
+          method: 'PUT',
+          headers: headers,
+          body: JSON.stringify(parqueEditado)
         });
 
         if (response.status === 200) {
           const data = await response.json();
-          console.log("Dados da resposta:", data);
-          setDados(data);
+          console.log("Parque editado com sucesso:", data);
+
+          // Atualize o estado do parque editado na lista de parques
+          const newDataParque = dataParque.map((item) => {
+            if (item.id === data.id) {
+              return data;
+            }
+            return item;
+          });
+
+          setDataParque(newDataParque);
+
+          onClose(); // Feche o modal de edição após a conclusão
         } else {
-          console.error("Erro na solicitação:", response.status);
+          console.error("Erro na edição do parque:", response.status);
         }
-      } else {
-        console.log("Token não encontrado em AsyncStorage.");
       }
     } catch (error) {
-      console.error("Erro ao fazer a solicitação:", error);
+      console.error("Erro ao editar o parque:", error);
     }
-  
+  }
 
+  async function handleExcluirParque(id) {
+    try {
+      const token = await administrador.token;
 
+      if (token) {
+        const headers = {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': `Bearer ${token}`
+        };
 
-  // Atualize o localStorage com os novos dados
-  localStorage.setItem(
-    "cad_cliente",
-    JSON.stringify([...dataParque, ...dataUsuario, ...dataSolicitacao, item])
-  );
-};
+        const response = await fetch(`https://tcc-production-e100.up.railway.app/api/lazer/${id}`, {
+          method: 'DELETE',
+          headers: headers
+        });
+
+        if (response.status === 204) {
+          // Remova o parque da lista
+          const newDataParque = dataParque.filter((item) => item.id !== id);
+          setDataParque(newDataParque);
+
+          console.log("Parque removido com sucesso!");
+        } else {
+          console.error("Erro na exclusão do parque:", response.status);
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao excluir o parque:", error);
+    }
+  }
 
 return (
   <Flex h="100vh">
@@ -423,7 +473,7 @@ return (
                     <Td p={0}>
                       <DeleteIcon
                         fontSize={20}
-                        onClick={() => handleRemove(item, "parque")}
+                        onClick={() => handleExcluirParque(item.idLazer)}
                       />
                       <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                     </Td>

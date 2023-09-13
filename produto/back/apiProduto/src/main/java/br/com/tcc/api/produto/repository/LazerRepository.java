@@ -14,4 +14,7 @@ public interface LazerRepository extends JpaRepository<Lazer, Long> {
 
     List<Lazer> findAllByCategoria(String categoria);
 
+    boolean existsByIdLazer(Long id);
+
+    Lazer findByIdLazer(Long id);
 }

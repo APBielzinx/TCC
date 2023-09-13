@@ -17,21 +17,22 @@ public class LazerService {
     public List<Lazer> buscarLazer() {
         return lazerRepository.findAllByCategoria("lazer");
     }
+
     public List<Lazer> buscarParque() {
         return lazerRepository.findAllByCategoria("parque");
     }
-    public ResponseEntity<?> BuscarPorId(Long id){
-       var lazer = lazerRepository.findById(id);
+
+    public ResponseEntity<?> BuscarPorId(Long id) {
+        var lazer = lazerRepository.findById(id);
         return new ResponseEntity<>(lazer, HttpStatus.OK);
     }
 
-    public ResponseEntity<?> Cadastrar(Lazer lazer){
+    public ResponseEntity<?> Cadastrar(Lazer lazer) {
         if (lazerRepository.existsByNome(lazer.getNome())) {
 
             return new ResponseEntity<>("Já existe uma area de lazer com esse nome", HttpStatus.BAD_REQUEST);
 
-        }
-        else {
+        } else {
             lazer.setNome(lazer.getNome());
             lazer.setEndereco(lazer.getEndereco());
             lazerRepository.save(lazer);
@@ -41,7 +42,7 @@ public class LazerService {
         }
     }
 
-    public ResponseEntity<?> AtualizarLazer(Lazer lazer){
+    public ResponseEntity<?> AtualizarLazer(Lazer lazer) {
         if (lazerRepository.existsByNome(lazer.getNome())) {
             var select = lazerRepository.findByNome(lazer.getNome());
             select.setNome(lazer.getNome());
@@ -53,23 +54,21 @@ public class LazerService {
             select.setCategoria(lazer.getCategoria());
 
 
-
             lazerRepository.save(select);
             return new ResponseEntity<>("atualizado com sucesso", HttpStatus.OK);
-        }
-        else {
+        } else {
             return new ResponseEntity<>("Area de Lazer não encontrada", HttpStatus.NO_CONTENT);
         }
     }
 
-    public ResponseEntity<?> ExcluirLazer(Lazer lazer){
-        if (lazerRepository.existsByNome(lazer.getNome())){
-
+    public ResponseEntity<?> ExcluirLazer(Long id) {
+        if (lazerRepository.existsByIdLazer(id)) {
+           var lazer = lazerRepository.findByIdLazer(id);
             lazerRepository.delete(lazer);
 
             return new ResponseEntity<>("deletado com sucesso", HttpStatus.OK);
 
-        }else {
+        } else {
 
             return new ResponseEntity<>("Area de lazer não encontrada", HttpStatus.NO_CONTENT);
 

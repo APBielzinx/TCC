@@ -44,9 +44,11 @@ public class LazerController {
         return lazerService.AtualizarLazer(lazer);
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<?> ExcluirLazer(@RequestBody Lazer lazer){
-        return lazerService.ExcluirLazer(lazer);
+    @DeleteMapping(value ="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> ExcluirLazer(@PathVariable("id") Long id){
+
+        return lazerService.ExcluirLazer(id);
+
     }
 
 }
