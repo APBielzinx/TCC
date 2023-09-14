@@ -108,10 +108,20 @@ export default function Login({ isOpen, setCloseLogin }) {
                   onChange={handleInputChange}
                 />
                 <button
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    right: '5px',
+                    transform: 'translateY(-50%)',
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'gray',
+                    cursor: 'pointer',
+                  }}
                   className="SHOW_PASSWORD_BUTTON_STYLE"
                   onClick={toggleShowPassword}
                 >
-                  {showPassword ? '◠ Ocultar' : ' ⦾ Mostrar'}
+                {showPassword ? '◠ Ocultar' : ' ⦾ Mostrar'}
                 </button>
               </div>
               <button className="BUTTON_STYLE" onClick={() => login(formData)}>
