@@ -1,0 +1,169 @@
+/* LoginStyles.css */
+
+/* Estilos relacionados ao fundo do modal */
+.BACKGROUND_STYLE {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos relacionados ao modal */
+  .MODAL_STYLE {
+    position: fixed;
+    padding: 20px;
+    height: 400px;
+    width: 700px;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    background-color: rgba(217, 217, 217, 0.10);
+  }
+  
+  /* Estilos relacionados ao ícone de fechar */
+  .CLOSE_ICON_STYLE {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* Estilos relacionados à parte esquerda do modal */
+  .PARTE_ESQUERDA_STYLE {
+    display: flex;
+    flex-direction: column;
+    margin-left: -20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px;
+    width: 40%;
+    height: 400px;
+    background: linear-gradient(
+      180deg,
+      #f1ffef 0%,
+      rgba(241, 255, 239, 0.50) 0.01%,
+      rgba(1, 30, 17, 0.50) 100%
+    );
+    backdrop-filter: blur(10px), (20px);
+    border-radius: 10px;
+  }
+  
+  /* Estilos relacionados à parte direita do modal */
+  .PARTE_DIREITA_STYLE {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Outros estilos de texto */
+  .TEXTO_STYLE {
+    display: flex;
+    width: 35%;
+    height: 40px;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .TEXTO2_STYLE {
+    display: flex;
+    width: 70px;
+    height: 25px;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    align-items: center;
+    font-size: 11px;
+  }
+  
+  .TEXTO3_STYLE {
+    display: flex;
+    width: 70px;
+    height: 25px;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    align-items: center;
+    font-size: 15px;
+    margin-left: 45px;
+  }
+  
+  /* Outros estilos */
+  .IMG_STYLE {
+    display: flex;
+    width: 140px;
+    height: 140px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .BUTTON_STYLE {
+    display: flex;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    background-color: #fff;
+    color: black;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  /* Estilos relacionados ao fundo modal */
+  .MODAL_BACKGROUND_STYLE::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(15px);
+    z-index: -1;
+    border-radius: 10px;
+  }
+  
+  /* Estilos relacionados ao contêiner de entrada */
+  .INPUT_CONTAINER_STYLE {
+    position: relative;
+    width: 95%;
+    height: 40px;
+    margin: 15px 30px;
+  }
+  
+  /* Estilos relacionados ao ícone de entrada */
+  .INPUT_ICON_STYLE {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: gray;
+    z-index: 1;
+  }
+  
+  /* Estilos relacionados à entrada de texto */
+  .INPUT_STYLE {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    padding-left: 40px;
+  }
+  
