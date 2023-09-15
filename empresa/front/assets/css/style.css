@@ -60,8 +60,12 @@ h2 {
   position: fixed;
   top: 20px;
 }
-
-
+#my-nav{
+  background-color: #10121f;
+  border-radius: 20px;
+  margin-top: -40px;
+  padding: 12px;
+}
 
 .maine-menu .navbar-nav li .nav-link {
   font-family: "PT-Sans-Bold";
@@ -71,7 +75,6 @@ h2 {
   color: #fff;
 }
 
-.maine-menu .navbar-nav li.active a,
 .maine-menu .navbar-nav li:hover a,
 .maine-menu .navbar-nav li:visited a {
   color: #4f9cf9;
