@@ -17,8 +17,13 @@ import {
 import ModalComp from "../components/ModalComp";
 import ModalCompUsuario from "../components/ModalCompUsuario";
 import ModalCompSolicitacao from "../components/ModalCompSolicitacao";
+import Menu from "../components/menu/menu";
+import FlexContainer from "../components/flexcontainer/FlexContainer";
+import Parque from "../components/menu/opcoes/Parque";
+import Usuario from "../components/menu/opcoes/Usuario";
+import Solicitacao from "../components/menu/opcoes/Solicitacao";
 import { extendTheme } from "@chakra-ui/react";
-import "../css/HomeAdm.css"
+import "../css/HomeAdm.css";
 
 function HomeAdm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -339,272 +344,75 @@ function HomeAdm() {
     }
   }
 
-return (
-  <Flex h="100vh">
-    <ChakraBox className="chakrabox">
-      <button className="botaoLateral"
-        onClick={() => {
-          setShowParque(true);
-          setShowUsuario(false);
-          setShowSolicitacao(false);
-        }}
-      >
-        Parque
-      </button>
-      <button className="botaoLateral"
-
-        onClick={() => {
-          setShowUsuario(true);
-          setShowParque(false);
-          setShowSolicitacao(false);
-        }}
-      >
-        Usuário
-      </button>
-      <button className="botaoLateral"
-        onClick={() => {
-          setShowSolicitacao(true);
-          setShowParque(false);
-          setShowUsuario(false);
-        }}
-      >
-        Solicitação
-      </button>
-      <button className="botaoChat"
-        onClick={() => {
-          // Coloque a lógica para abrir o chat aqui
-        }}
-      >
-        <ChatIcon />
-        Chat
-      </button>
-      <button className="botaoDeslogar"onClick={() => {}}>
-        <ArrowBackIcon />
-        Deslogar
-      </button>
-    </ChakraBox>
-
-    <Flex className="flexContainer">
-      {showParque && (
-        <>
-          <Heading className="heading">
-            Parque
-          </Heading>
-          <ChakraBox className="tamanhoTabela">
-            <Table className="tabela">
-              <Thead>
-                <Tr>
-                  <Th>ID</Th>
-                  <Th>Nome</Th>
-                  <Th>Descrição</Th>
-                  <Th>Endereço</Th>
-                  <Th>Latitude</Th>
-                  <Th>Longitude</Th>
-                  <Th>Adm</Th>
-                  <Th p={0}></Th>
-                  <Th p={0}></Th>
-                  <Th p={0}></Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {dados.map((item, index) => (
-                  <Tr key={index} cursor="pointer">
-                    <Td>{item.idLazer}</Td>
-                    <Td>{item.nome}</Td>
-                    <Td>{item.descricao}</Td>
-                    <Td>{item.endereco}</Td>
-                    <Td>{item.latitude}</Td>
-                    <Td>{item.longetude}</Td>
-                    <Td>{item.administrador}</Td>
-                    <Td p={0}>
-                      <EditIcon
-                        fontSize={20}
-                        onClick={() => [
-                          setDataEdit(
-                            item.idLazer,
-                            item.nome,
-                            item.descricao,
-                            item.endereco,
-                            item.latitude,
-                            item.longetude,
-                            item.administrador,
-                            index,
-
-                          ),
-                          onOpen(),
-                        ]}
-                      />
-                    </Td>
-                    <Td p={0}>
-                      <DeleteIcon fontSize={20} onClick={() => handleExcluirParque(item.idLazer)}/>
-                    </Td>
-                    <Td p={0}>
-                      <img className="imagemParque" src={item.imagem} alt={`Imagem de ${item.name}`}/>
-                    </Td>
-                  </Tr>
-                )
-                )}
-              </Tbody>
-            </Table>
-          </ChakraBox>
-        </>
-      )}
-      {showUsuario && (
-        <>
-          <Heading className="heading">
-          </Heading>
-          <ChakraBox className="tamanhoTabela">
-            <Table className="tabela">
-              <Thead>
-                <Tr>
-                  <Th>ID</Th>
-                  <Th>Email</Th>
-                  <Th>Status da conta</Th>
-                  <Th p={0}></Th>
-                  <Th p={0}></Th>
-                  <Th p={0}></Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-              {dataUsuario.map((usuario, index) => (
-  <Tr key={index} cursor="pointer">
-    <Td>{usuario.idUsuario}</Td>
-    <Td>{usuario.email}</Td>
-    {usuario.accountNonExpired ? "Conta Expirada: Não" : "Conta Expirada: Sim"}
-    <Td p={0}>
-      <EditIcon
-        fontSize={20}
-        onClick={() => handleEditarUsuario(usuario)}
-      />
-    </Td>
-    <Td p={0}>
-      <DeleteIcon
-        fontSize={20}
-        onClick={() => handleExcluirUsuario(usuario.idUsuario)}
-        data-email={usuario.email}
-      />
-    </Td>
-    <Td p={0}>
-      {/* Qualquer outro conteúdo que você deseje exibir */}
-    </Td>
-  </Tr>
-))}
-              </Tbody>
-            </Table>
-          </ChakraBox>
-        </>
-      )}
-      {showSolicitacao && (
-        <>
-          <Heading className="heading">
-            Solicitação
-          </Heading>
-          <ChakraBox className="tamanhoTabela">
-            <Table className="tabela">
-              <Thead>
-                <Tr>
-                  <Th>ID</Th>
-                  <Th>Nome</Th>
-                  <Th>Email do adm</Th>
-                  <Th>Senha</Th>
-                  <Th>ID do parque</Th>
-                  <Th p={0}></Th>
-                  <Th p={0}></Th>
-                  <Th p={0}></Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {dataSolicitacao.map(
-                  (
-                    {
-                      id,
-                      adminEmail,
-                      senha,
-                      parqueId,
-                      status,
-                    },
-                    index
-                  ) => (
-                    <Tr key={index} cursor="pointer">
-                      <Td>{id}</Td>
-                      <Td>{adminEmail}</Td>
-                      <Td>{senha}</Td>
-                      <Td>{parqueId}</Td>
-                      <Td>{status}</Td>
-                      <Td p={0}>
-                        <EditIcon
-                          fontSize={20}
-                          onClick={() => [
-                            setDataEdit({
-                              id,
-                              adminEmail,
-                              senha,
-                              parqueId,
-                              status,
-                              section: "solicitacao",
-                            }),
-                            onOpen(),
-                          ]}
-                        />
-                      </Td>
-                      <Td p={0}>
-                        <DeleteIcon
-                          fontSize={20}
-                          onClick={() => handleRemove(adminEmail, "solicitacao")}
-                          data-adminEmail={adminEmail}
-                        />
-                      </Td>
-                      <Td p={0}>
-                      </Td>
-                    </Tr>
-                  )
-                )}
-              </Tbody>
-            </Table>
-          </ChakraBox>
-        </>
-      )}
-      <button className="botaoNovoCadastro">
-        NOVO CADASTRO
-      </button>
-      {isOpen && (
-        showParque ? (
-          <ModalComp
-            isOpen={isOpen}
-            onClose={onClose}
-            data={dataParque}
-            setData={setDataParque}
-            dataEdit={dataEdit}
-            setDataEdit={setDataEdit}
-            handleAddItem={handleAddItem}
+  return (
+    <Flex h="100vh">
+      <Menu />
+      <FlexContainer>
+        {showParque && (
+          <Parque
+            data={dados}
+            handleEditParque={(parque) => {
+              setDataEdit(parque);
+              onOpen();
+            }}
+            handleDeleteParque={(id) => handleExcluirParque(id)}
           />
-        ) : (
-          showUsuario ? (
-            <ModalCompUsuario
+        )}
+        {showUsuario && (
+          <Usuario
+            data={dataUsuario}
+            handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
+            handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
+          />
+        )}
+        {showSolicitacao && (
+          <Solicitacao
+            data={dataSolicitacao}
+            handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
+            handleDeleteSolicitacao={(adminEmail) =>
+              handleRemove(adminEmail, "solicitacao")
+            }
+          />
+        )}
+        <button className="botaoNovoCadastro">NOVO CADASTRO</button>
+        {isOpen && (
+          showParque ? (
+            <ModalComp
               isOpen={isOpen}
               onClose={onClose}
-              data={dataUsuario}
-              setData={setDataUsuario}
+              data={dataParque}
+              setData={setDataParque}
               dataEdit={dataEdit}
               setDataEdit={setDataEdit}
               handleAddItem={handleAddItem}
             />
           ) : (
-            <ModalCompSolicitacao
-              isOpen={isOpen}
-              onClose={onClose}
-              data={dataSolicitacao}
-              setData={setDataSolicitacao}
-              dataEdit={dataEdit}
-              setDataEdit={setDataEdit}
-              handleAddItem={handleAddItem}
-            />
+            showUsuario ? (
+              <ModalCompUsuario
+                isOpen={isOpen}
+                onClose={onClose}
+                data={dataUsuario}
+                setData={setDataUsuario}
+                dataEdit={dataEdit}
+                setDataEdit={setDataEdit}
+                handleAddItem={handleAddItem}
+              />
+            ) : (
+              <ModalCompSolicitacao
+                isOpen={isOpen}
+                onClose={onClose}
+                data={dataSolicitacao}
+                setData={setDataSolicitacao}
+                dataEdit={dataEdit}
+                setDataEdit={setDataEdit}
+                handleAddItem={handleAddItem}
+              />
+            )
           )
-        )
-      )}
+        )}
+      </FlexContainer>
     </Flex>
-  </Flex>
-);
+  );
 }
 
 export default HomeAdm;
