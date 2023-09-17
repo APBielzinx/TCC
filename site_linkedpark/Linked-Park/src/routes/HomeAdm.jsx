@@ -18,6 +18,7 @@ import ModalComp from "../components/ModalComp";
 import ModalCompUsuario from "../components/ModalCompUsuario";
 import ModalCompSolicitacao from "../components/ModalCompSolicitacao";
 import { extendTheme } from "@chakra-ui/react";
+import "../css/HomeAdm.css"
 
 function HomeAdm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -193,16 +194,6 @@ function HomeAdm() {
     }
   }
 
-  const theme = extendTheme({
-    breakpoints: {
-      base: "0px",
-      sm: "576px",
-      md: "768px",
-      lg: "992px",
-      xl: "1200px",
-    },
-  });
-
   const isMobile = useBreakpointValue({
     base: true,
     lg: false,
@@ -350,147 +341,57 @@ function HomeAdm() {
 
 return (
   <Flex h="100vh">
-    <ChakraBox
-      w="200px"
-      bgGradient="linear(to-r, #011e11, #7fff00)"
-      color="white"
-      p="4"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      textAlign="center"
-    >
-      <Button
-        colorScheme="teal"
-        color="#fff"
-        variant="outline"
-        mb="20px"
-        w="100%"
+    <ChakraBox className="chakrabox">
+      <button className="botaoLateral"
         onClick={() => {
           setShowParque(true);
           setShowUsuario(false);
           setShowSolicitacao(false);
         }}
-        _hover={{ bgColor: "#011e11", color: "white" }}
-        _focus={{ border: "none" }}
-        _active={{
-          bgColor: "#7fff00",
-        }}
-        justifyContent="flex-start"
-        borderWidth={1}
       >
         Parque
-      </Button>
-      <Button
-        colorScheme="teal"
-        color="#fff"
-        variant="outline"
-        mb="20px"
-        w="100%"
+      </button>
+      <button className="botaoLateral"
+
         onClick={() => {
           setShowUsuario(true);
           setShowParque(false);
           setShowSolicitacao(false);
         }}
-        _hover={{ bgColor: "#011e11", color: "white" }}
-        _focus={{ border: "none" }}
-        _active={{
-          bgColor: "#7fff00",
-        }}
-        justifyContent="flex-start"
-        borderWidth={1}
       >
         Usuário
-      </Button>
-      <Button
-        colorScheme="teal"
-        color="#fff"
-        variant="outline"
-        w="100%"
+      </button>
+      <button className="botaoLateral"
         onClick={() => {
           setShowSolicitacao(true);
           setShowParque(false);
           setShowUsuario(false);
         }}
-        _hover={{ bgColor: "#011e11", color: "white" }}
-        _focus={{ border: "none" }}
-        _active={{
-          bgColor: "#7fff00",
-        }}
-        justifyContent="flex-start"
-        borderWidth={1}
       >
         Solicitação
-      </Button>
-      <Button
-        colorScheme="teal"
-        color="#fff"
-        variant="outline"
-        w="100%"
-        mt="auto"
+      </button>
+      <button className="botaoChat"
         onClick={() => {
           // Coloque a lógica para abrir o chat aqui
-        }}
-        _hover={{ bgColor: "#011e11", color: "white" }}
-        _focus={{ border: "none" }}
-        _active={{
-          bgColor: "#7fff00",
         }}
       >
         <ChatIcon />
         Chat
-      </Button>
-      <Button
-        colorScheme="teal"
-        color="#fff"
-        variant="outline"
-        w="100%"
-        mt="4"
-        onClick={() => {
-          // Coloque a lógica para deslogar aqui
-        }}
-        _hover={{ bgColor: "#011e11", color: "white" }}
-        _focus={{ border: "none" }}
-        _active={{
-          bgColor: "#7fff00",
-        }}
-      >
+      </button>
+      <button className="botaoDeslogar"onClick={() => {}}>
         <ArrowBackIcon />
         Deslogar
-      </Button>
+      </button>
     </ChakraBox>
 
-    <Flex
-      flex="1"
-      justify="center"
-      fontSize="20px"
-      fontFamily="poppins"
-      bgColor="#011e11"
-      color="white"
-      flexDirection="column"
-      alignItems="center"
-    >
+    <Flex className="flexContainer">
       {showParque && (
         <>
-          <Heading as="h1" size="2xl" position="absolute" top="0" marginTop="20px">
+          <Heading className="heading">
             Parque
           </Heading>
-          <ChakraBox
-            maxW={1700} // Aumentei o tamanho da tabela para 1200px
-            w="100%"
-            py={10}
-            px={2}
-          >
-            <Table
-              position="absolute"
-              top="90"
-              backgroundColor="#4CAF50"
-              variant="striped"
-              colorScheme="whiteAlpha"
-              maxW="87%" // Faça a tabela preencher a tela inteira
-              size="sm"
-            >
+          <ChakraBox className="tamanhoTabela">
+            <Table className="tabela">
               <Thead>
                 <Tr>
                   <Th>ID</Th>
@@ -533,21 +434,12 @@ return (
                           onOpen(),
                         ]}
                       />
-                      <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                     </Td>
                     <Td p={0}>
-                      <DeleteIcon
-                        fontSize={20}
-                        onClick={() => handleExcluirParque(item.idLazer)}
-                      />
-                      <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
+                      <DeleteIcon fontSize={20} onClick={() => handleExcluirParque(item.idLazer)}/>
                     </Td>
                     <Td p={0}>
-                      <img
-                        src={item.imagem}
-                        alt={`Imagem de ${item.name}`}
-                        style={{ width: "50px", height: "50px" }}
-                      />
+                      <img className="imagemParque" src={item.imagem} alt={`Imagem de ${item.name}`}/>
                     </Td>
                   </Tr>
                 )
@@ -559,24 +451,10 @@ return (
       )}
       {showUsuario && (
         <>
-          <Heading as="h1" size="2xl" position="absolute" top="0" marginTop="20px">
-            Usuário
+          <Heading className="heading">
           </Heading>
-          <ChakraBox
-            maxW={1700} // Aumentei o tamanho da tabela para 1200px
-            w="100%"
-            py={10}
-            px={2}
-          >
-            <Table
-              position="absolute"
-              top="90"
-              backgroundColor="#4CAF50"
-              variant="striped"
-              colorScheme="whiteAlpha"
-              maxW="87%" // Faça a tabela preencher a tela inteira
-              size="sm"
-            >
+          <ChakraBox className="tamanhoTabela">
+            <Table className="tabela">
               <Thead>
                 <Tr>
                   <Th>ID</Th>
@@ -598,7 +476,6 @@ return (
         fontSize={20}
         onClick={() => handleEditarUsuario(usuario)}
       />
-      <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
     </Td>
     <Td p={0}>
       <DeleteIcon
@@ -606,14 +483,12 @@ return (
         onClick={() => handleExcluirUsuario(usuario.idUsuario)}
         data-email={usuario.email}
       />
-      <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
     </Td>
     <Td p={0}>
       {/* Qualquer outro conteúdo que você deseje exibir */}
     </Td>
   </Tr>
 ))}
-
               </Tbody>
             </Table>
           </ChakraBox>
@@ -621,24 +496,11 @@ return (
       )}
       {showSolicitacao && (
         <>
-          <Heading as="h1" size="2xl" position="absolute" top="0" marginTop="20px">
+          <Heading className="heading">
             Solicitação
           </Heading>
-          <ChakraBox
-            maxW={1700} // Aumentei o tamanho da tabela para 1200px
-            w="100%"
-            py={10}
-            px={2}
-          >
-            <Table
-              position="absolute"
-              top="90"
-              backgroundColor="#4CAF50"
-              variant="striped"
-              colorScheme="whiteAlpha"
-              maxW="87%" // Faça a tabela preencher a tela inteira
-              size="sm"
-            >
+          <ChakraBox className="tamanhoTabela">
+            <Table className="tabela">
               <Thead>
                 <Tr>
                   <Th>ID</Th>
@@ -684,7 +546,6 @@ return (
                             onOpen(),
                           ]}
                         />
-                        <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                       </Td>
                       <Td p={0}>
                         <DeleteIcon
@@ -692,7 +553,6 @@ return (
                           onClick={() => handleRemove(adminEmail, "solicitacao")}
                           data-adminEmail={adminEmail}
                         />
-                        <ChakraBox w="5px" h="1px" display="inline-block" />{" "}
                       </Td>
                       <Td p={0}>
                       </Td>
@@ -704,22 +564,9 @@ return (
           </ChakraBox>
         </>
       )}
-      {isMobile && !showParque && (
-        <ChakraBox>
-          {/* Conteúdo para a seção "Usuário" (vazio) */}
-        </ChakraBox>
-      )}
-      <Button
-        colorScheme="teal"
-        onClick={() => [setDataEdit({}), onOpen()]}
-        alignSelf="center"
-        mt={4}
-        bg="#7fff00"
-        color="black"
-        _hover={{ bgColor: "#7fff00" }}
-      >
+      <button className="botaoNovoCadastro">
         NOVO CADASTRO
-      </Button>
+      </button>
       {isOpen && (
         showParque ? (
           <ModalComp
