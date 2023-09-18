@@ -33,13 +33,13 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
           <Tbody>
             {data.map((item, index) => (
               <Tr key={index} cursor="pointer">
-                <Td>{item.idLazer}</Td>
-                <Td>{item.nome}</Td>
-                <Td>{item.descricao}</Td>
-                <Td>{item.endereco}</Td>
+                <Td>{item.id}</Td>
+                <Td>{item.name}</Td>
+                <Td>{item.description}</Td>
+                <Td>{item.address}</Td>
                 <Td>{item.latitude}</Td>
-                <Td>{item.longetude}</Td>
-                <Td>{item.administrador}</Td>
+                <Td>{item.longitude}</Td>
+                <Td>{item.admin}</Td>
                 <Td p={0}>
                   <EditIcon
                     fontSize={20}
@@ -49,13 +49,13 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
                 <Td p={0}>
                   <DeleteIcon
                     fontSize={20}
-                    onClick={() => handleDeleteParque(item.idLazer)}
+                    onClick={() => handleDeleteParque(item.id)}
                   />
                 </Td>
                 <Td p={0}>
                   <img
                     className="imagemParque"
-                    src={item.imagem}
+                    src={item.image}
                     alt={`Imagem de ${item.name}`}
                   />
                 </Td>

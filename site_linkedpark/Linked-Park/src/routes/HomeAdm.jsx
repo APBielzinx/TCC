@@ -37,37 +37,38 @@ function HomeAdm() {
   const [dados, setDados] = useState([]);
   const [dadosUsuario, setDadosUsuario] = useState([]);
 
-
-  var administrador = JSON.parse(localStorage.getItem("administrador"))
+  var administrador = JSON.parse(localStorage.getItem("administrador"));
 
   async function handleAddItem(novoItem) {
     if (showParque) {
-
-      console.log(novoItem)
+      console.log(novoItem);
       try {
         // Obtém o token do administrador
         const token = await administrador.token;
-  
+
         if (token) {
           const headers = {
-            'Content-type': 'application/json; charset=UTF-8',
-            'Authorization': `Bearer ${token}`
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${token}`,
           };
-  
+
           // Faça a solicitação POST para adicionar o novo parque
-          const response = await fetch('https://tcc-production-e100.up.railway.app/api/lazer', {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(novoItem) // O novoItem deve conter os dados do novo parque
-          });
-  
+          const response = await fetch(
+            "https://tcc-production-e100.up.railway.app/api/lazer",
+            {
+              method: "POST",
+              headers: headers,
+              body: JSON.stringify(novoItem), // O novoItem deve conter os dados do novo parque
+            }
+          );
+
           if (response.status === 201) {
             const data = await response.json();
             console.log("Parque adicionado com sucesso:", data);
-  
+
             // Adicione o novo parque aos dados existentes
             setDataParque([...dataParque, data]);
-  
+
             // Feche o modal de adição após a conclusão
             onClose();
           } else {
@@ -77,7 +78,7 @@ function HomeAdm() {
       } catch (error) {
         console.error("Erro ao adicionar o parque:", error);
       }
-      }else if (showUsuario) {
+    } else if (showUsuario) {
       // Lógica para adicionar um novo usuário
       // Substitua o exemplo abaixo com sua própria lógica para adicionar usuário
       const novoUsuario = {
@@ -100,7 +101,7 @@ function HomeAdm() {
       };
       await handleAdicionarSolicitacao(novaSolicitacao);
     }
-  
+
     // Feche o modal após adicionar o item
     onClose();
   }
@@ -108,20 +109,23 @@ function HomeAdm() {
   async function fazerSolicitacaoComToken() {
     try {
       // Obtém o token de AsyncStorage
-      const token = await administrador.token
+      const token = await administrador.token;
 
       if (token) {
         // Construa o cabeçalho Authorization
         const headers = {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization': `Bearer ${token}`
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
         };
 
         // Faça a solicitação usando o cabeçalho personalizado
-        const response = await fetch('https://tcc-production-e100.up.railway.app/api/lazer', {
-          method: 'GET', // ou outro método HTTP
-          headers: headers
-        });
+        const response = await fetch(
+          "https://tcc-production-e100.up.railway.app/api/lazer",
+          {
+            method: "GET", // ou outro método HTTP
+            headers: headers,
+          }
+        );
 
         if (response.status === 200) {
           const data = await response.json();
@@ -139,19 +143,22 @@ function HomeAdm() {
       const token = administrador.token;
       if (token) {
         const headers = {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization': `Bearer ${token}`
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
         };
-  
-        const response = await fetch('https://tcc-production-e100.up.railway.app/api/usuario', {
-          method: 'GET',
-          headers: headers
-        });
-  
+
+        const response = await fetch(
+          "https://tcc-production-e100.up.railway.app/api/usuario",
+          {
+            method: "GET",
+            headers: headers,
+          }
+        );
+
         if (response.status === 200) {
           const data = await response.json();
           console.log("Dados da resposta:", data);
-  
+
           // Atualize o estado dataUsuario com os dados recebidos da API
           setDataUsuario(data);
         } else {
@@ -168,27 +175,30 @@ function HomeAdm() {
   useEffect(() => {
     buscarUsuarios();
   }, []);
-    
+
   async function handleExcluirUsuario(id, email) {
     try {
       const token = await administrador.token;
-  
+
       if (token) {
         const headers = {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization': `Bearer ${token}`
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
         };
-  
-        const response = await fetch(`https://tcc-production-e100.up.railway.app/api/usuario/${id}`, {
-          method: 'DELETE',
-          headers: headers
-        });
-  
+
+        const response = await fetch(
+          `https://tcc-production-e100.up.railway.app/api/usuario/${id}`,
+          {
+            method: "DELETE",
+            headers: headers,
+          }
+        );
+
         if (response.status === 204) {
           // Remova o usuário da lista
           const newDataUsuario = dataUsuario.filter((item) => item.id !== id);
           setDataUsuario(newDataUsuario);
-  
+
           console.log("Usuário removido com sucesso!");
         } else {
           console.error("Erro na exclusão do usuário:", response.status);
@@ -212,7 +222,9 @@ function HomeAdm() {
     // Defina os estados de dados separados para cada seção
     setDataParque(db_costumer.filter((item) => item.section === "parque"));
     setDataUsuario(db_costumer.filter((item) => item.section === "usuario"));
-    setDataSolicitacao(db_costumer.filter((item) => item.section === "solicitacao"));
+    setDataSolicitacao(
+      db_costumer.filter((item) => item.section === "solicitacao")
+    );
   }, []);
 
   const handleRemove = (email, section) => {
@@ -239,7 +251,6 @@ function HomeAdm() {
     localStorage.setItem("cad_cliente", JSON.stringify(newData));
   };
 
-
   async function handleAdicionarParque(novoParque) {
     try {
       // Obtém o token do administrador
@@ -247,15 +258,18 @@ function HomeAdm() {
 
       if (token) {
         const headers = {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization': `Bearer ${token}`
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
         };
 
-        const response = await fetch('URL_DA_API_PARA_ADICIONAR_PARQUE', {
-          method: 'POST',
-          headers: headers,
-          body: JSON.stringify(novoParque)
-        });
+        const response = await fetch(
+          "URL_DA_API_PARA_ADICIONAR_PARQUE",
+          {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(novoParque),
+          }
+        );
 
         if (response.status === 201) {
           const data = await response.json();
@@ -280,15 +294,18 @@ function HomeAdm() {
 
       if (token) {
         const headers = {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization': `Bearer ${token}`
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
         };
 
-        const response = await fetch(`URL_DA_API_PARA_EDITAR_PARQUE/${parqueEditado.id}`, {
-          method: 'PUT',
-          headers: headers,
-          body: JSON.stringify(parqueEditado)
-        });
+        const response = await fetch(
+          `URL_DA_API_PARA_EDITAR_PARQUE/${parqueEditado.id}`,
+          {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify(parqueEditado),
+          }
+        );
 
         if (response.status === 200) {
           const data = await response.json();
@@ -320,14 +337,17 @@ function HomeAdm() {
 
       if (token) {
         const headers = {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization': `Bearer ${token}`
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
         };
 
-        const response = await fetch(`https://tcc-production-e100.up.railway.app/api/lazer/${id}`, {
-          method: 'DELETE',
-          headers: headers
-        });
+        const response = await fetch(
+          `https://tcc-production-e100.up.railway.app/api/lazer/${id}`,
+          {
+            method: "DELETE",
+            headers: headers,
+          }
+        );
 
         if (response.status === 204) {
           // Remova o parque da lista
@@ -346,11 +366,15 @@ function HomeAdm() {
 
   return (
     <Flex h="100vh">
-      <Menu />
+      <Menu
+        setShowParque={setShowParque}
+        setShowUsuario={setShowUsuario}
+        setShowSolicitacao={setShowSolicitacao}
+      />
       <FlexContainer>
         {showParque && (
           <Parque
-            data={dados}
+            data={dataParque}
             handleEditParque={(parque) => {
               setDataEdit(parque);
               onOpen();
@@ -374,7 +398,14 @@ function HomeAdm() {
             }
           />
         )}
-        <button className="botaoNovoCadastro">NOVO CADASTRO</button>
+        <Button
+          className="botaoNovoCadastro"
+          onClick={() => {
+            onOpen();
+          }}
+        >
+          NOVO CADASTRO
+        </Button>
         {isOpen && (
           showParque ? (
             <ModalComp

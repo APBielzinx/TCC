@@ -1,7 +1,7 @@
 import React from "react";
 import { ChatIcon, ArrowBackIcon } from "@chakra-ui/icons";
 
-function Menu({ onChatButtonClick, onLogoutButtonClick }) {
+function Menu({ onChatButtonClick, onLogoutButtonClick, setShowParque, setShowUsuario, setShowSolicitacao }) {
   return (
     <div className="chakrabox">
       <button className="botaoLateral"         
