@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/navbar';
-import FistComponent from './components/FistComponent';
+import React,{ useState, useEffect } from 'react';
 import Logo from './img/logoLinkedParkSemFundo.png';
 import Login from './routes/Login';
 

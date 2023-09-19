@@ -1,3 +1,4 @@
+/* CSS base (para todas as telas) */
 html {
   font-family: 'sans-serif', sans-serif;
   background-color: #011e11;
@@ -7,6 +8,7 @@ body {
   margin: 0;
 }
 
+/* Container principal */
 .App {
   background-color: #011e11;
   display: flex;
@@ -17,7 +19,8 @@ body {
   overflow: hidden;
 }
 
-.app-name-left{
+/* Nome do aplicativo à esquerda */
+.app-name-left {
   color: #12ff46;
   font-size: 20px; /* Tamanho menor */
   text-align: center; /* Centraliza o texto */
@@ -25,6 +28,7 @@ body {
   margin-right: 420px;
 }
 
+/* Conteúdo principal */
 .content {
   display: flex;
   flex-wrap: wrap;
@@ -37,6 +41,7 @@ body {
   box-sizing: border-box;
 }
 
+/* Conteúdo à esquerda */
 .left-content {
   flex: 1;
   display: flex;
@@ -48,6 +53,7 @@ body {
   box-sizing: border-box;
 }
 
+/* Slogans */
 .slogan,
 .slogan2,
 .slogan3 {
@@ -55,9 +61,9 @@ body {
   letter-spacing: 2px;
   color: #D9D9D9;
   font-size: 50px;
-  
 }
 
+/* Botão de início */
 .start-button {
   text-align: center;
   font-family: 'Holt';
@@ -79,6 +85,7 @@ body {
   font-family: 'Russo One', sans-serif;
 }
 
+/* Conteúdo à direita */
 .right-content {
   flex: 1;
   text-align: center;
@@ -106,5 +113,29 @@ img {
   .app-name-left {
     font-size: 16px; /* Tamanho menor para telas menores */
     margin-top: 10px; /* Margem superior menor para telas menores */
+  }
+}
+
+/* Media query para telas maiores */
+@media (min-width: 1200px) {
+
+  .content{
+    width: 100%;
+    height: 100%;
+  }
+  
+  .slogan,
+  .slogan2,
+  .slogan3 {
+    font-size: 60px; /* Ajuste para telas maiores */
+  }
+
+  .start-button {
+    font-size: 50px;
+  }
+
+  .app-name-left {
+    font-size: 36px; /* Tamanho menor para telas maiores */
+    margin-top: 30px; /* Margem superior menor para telas maiores */
   }
 }
