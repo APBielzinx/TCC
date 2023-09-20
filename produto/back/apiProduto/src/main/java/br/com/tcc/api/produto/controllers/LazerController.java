@@ -32,6 +32,7 @@ public class LazerController {
         return lazerService.BuscarPorId(id);
     }
 
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> Cadastrar(@RequestBody Lazer lazer){
         return lazerService.Cadastrar(lazer);

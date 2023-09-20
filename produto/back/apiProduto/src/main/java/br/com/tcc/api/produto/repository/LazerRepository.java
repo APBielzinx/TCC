@@ -17,4 +17,6 @@ public interface LazerRepository extends JpaRepository<Lazer, Long> {
     boolean existsByIdLazer(Long id);
 
     Lazer findByIdLazer(Long id);
+
+
 }
