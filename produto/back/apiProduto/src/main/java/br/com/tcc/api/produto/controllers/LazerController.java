@@ -32,6 +32,12 @@ public class LazerController {
         return lazerService.BuscarPorId(id);
     }
 
+   // @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  //  public ResponseEntity<?> BuscarPorAdm(@PathVariable ("id")Long id) {
+    //    return lazerService.BuscarPorAdm(id);
+  //  }
+
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> Cadastrar(@RequestBody Lazer lazer){
         return lazerService.Cadastrar(lazer);
