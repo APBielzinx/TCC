@@ -18,5 +18,5 @@ public interface LazerRepository extends JpaRepository<Lazer, Long> {
 
     Lazer findByIdLazer(Long id);
 
-   // Lazer findByAdministrador(Long id);
+
 }

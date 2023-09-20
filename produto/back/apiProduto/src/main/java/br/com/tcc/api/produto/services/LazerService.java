@@ -27,11 +27,6 @@ public class LazerService {
         return new ResponseEntity<>(lazer, HttpStatus.OK);
     }
 
- //   public ResponseEntity<?> BuscarPorAdm(Long id){
-//        var lazer = lazerRepository.findByAdministrador(id);
-//            return new ResponseEntity<>(lazer, HttpStatus.OK);
- //   }
-
     public ResponseEntity<?> Cadastrar(Lazer lazer) {
         if (lazerRepository.existsByNome(lazer.getNome())) {
 
