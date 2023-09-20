@@ -372,40 +372,45 @@ function HomeAdm() {
         setShowSolicitacao={setShowSolicitacao}
       />
       <FlexContainer>
-        {showParque && (
-          <Parque
-            data={dataParque}
-            handleEditParque={(parque) => {
-              setDataEdit(parque);
-              onOpen();
-            }}
-            handleDeleteParque={(id) => handleExcluirParque(id)}
-          />
-        )}
-        {showUsuario && (
-          <Usuario
-            data={dataUsuario}
-            handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
-            handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
-          />
-        )}
-        {showSolicitacao && (
-          <Solicitacao
-            data={dataSolicitacao}
-            handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
-            handleDeleteSolicitacao={(adminEmail) =>
-              handleRemove(adminEmail, "solicitacao")
-            }
-          />
-        )}
-        <Button
-          className="botaoNovoCadastro"
-          onClick={() => {
+      <div className="content">
+      {/* Tabela (conteúdo) */}
+      {showParque && (
+        <Parque
+          data={dataParque}
+          handleEditParque={(parque) => {
+            setDataEdit(parque);
             onOpen();
           }}
-        >
-          NOVO CADASTRO
-        </Button>
+          handleDeleteParque={(id) => handleExcluirParque(id)}
+        />
+      )}
+      {showUsuario && (
+        <Usuario
+          data={dataUsuario}
+          handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
+          handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
+        />
+      )}
+      {showSolicitacao && (
+        <Solicitacao
+          data={dataSolicitacao}
+          handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
+          handleDeleteSolicitacao={(adminEmail) =>
+            handleRemove(adminEmail, "solicitacao")
+          }
+        />
+      )}
+
+      {/* Botão "NOVO CADASTRO" */}
+      <button
+        className="botaoNovoCadastro"
+        onClick={() => {
+          onOpen();
+        }}
+      >
+        NOVO CADASTRO
+      </button>
+    </div>
         {isOpen && (
           showParque ? (
             <ModalComp

@@ -15,7 +15,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
     <>
       <Heading className="heading">Parque</Heading>
       <div className="tamanhoTabela">
-        <Table className="tabela">
+        <Table className="tabela"  style={{marginTop: -20}}>
           <Thead>
             <Tr>
               <Th>ID</Th>

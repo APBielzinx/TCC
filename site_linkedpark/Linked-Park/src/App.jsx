@@ -18,7 +18,7 @@ function App() {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <div className="content">
         <div className="left-content">
-          <h1 className="app-name-left"><strong> LINKED PARK</strong></h1>
+          <h1 className="app-name-left"><strong>LINKED PARK</strong></h1>
           <h1 className='slogan'><strong> O SISTEMA</strong></h1>
           <h1 className='slogan2'><strong>VINCULADO À</strong></h1>
           <h1 className='slogan3'><strong>VOCÊ</strong></h1>

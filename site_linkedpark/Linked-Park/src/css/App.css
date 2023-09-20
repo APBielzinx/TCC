@@ -21,10 +21,11 @@ body {
 
 /* Nome do aplicativo à esquerda */
 .app-name-left {
+  position: absolute;
+  top: 0; /* Coloca o elemento no topo */
+  font-size: 30px;
   color: #12ff46;
-  font-size: 20px; /* Tamanho menor */
   text-align: center; /* Centraliza o texto */
-  margin-bottom: 150px; /* Define a margem superior desejada */
   margin-right: 420px;
 }
 
@@ -61,6 +62,7 @@ body {
   letter-spacing: 2px;
   color: #D9D9D9;
   font-size: 50px;
+  line-height: 1.5em;
 }
 
 /* Botão de início */
@@ -103,17 +105,22 @@ img {
   .slogan,
   .slogan2,
   .slogan3 {
-    font-size: 30px;
-  }
-
-  .start-button {
     font-size: 20px;
   }
 
-  .app-name-left {
-    font-size: 16px; /* Tamanho menor para telas menores */
-    margin-top: 10px; /* Margem superior menor para telas menores */
+  .start-button {
+    font-size: 5px;
   }
+
+  .app-name-left {
+    font-size: 15px; /* Tamanho menor para telas menores */
+    margin-top: 5px; /* Margem superior menor para telas menores */
+  }
+
+  .fonteBotao {
+    font-size: 10px;
+  }
+
 }
 
 /* Media query para telas maiores */
@@ -135,7 +142,11 @@ img {
   }
 
   .app-name-left {
-    font-size: 36px; /* Tamanho menor para telas maiores */
+    font-size: 40px; /* Tamanho menor para telas maiores */
     margin-top: 30px; /* Margem superior menor para telas maiores */
+  }
+
+  .fonteBotao {
+    font-size: 30px;
   }
 }
