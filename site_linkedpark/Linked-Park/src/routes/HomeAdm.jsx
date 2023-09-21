@@ -106,37 +106,7 @@ function HomeAdm() {
     onClose();
   }
 
-  async function fazerSolicitacaoComToken() {
-    try {
-      // Obtém o token de AsyncStorage
-      const token = await administrador.token;
-
-      if (token) {
-        // Construa o cabeçalho Authorization
-        const headers = {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${token}`,
-        };
-
-        // Faça a solicitação usando o cabeçalho personalizado
-        const response = await fetch(
-          "https://tcc-production-e100.up.railway.app/api/lazer",
-          {
-            method: "GET", // ou outro método HTTP
-            headers: headers,
-          }
-        );
-
-        if (response.status === 200) {
-          const data = await response.json();
-          console.log("Dados da resposta:", data);
-          setDados(data);
-        }
-      }
-    } catch (error) {
-      console.error("Erro ao fazer a solicitação:", error);
-    }
-  }
+  
 
   async function buscarUsuarios() {
     try {
@@ -157,7 +127,7 @@ function HomeAdm() {
 
         if (response.status === 200) {
           const data = await response.json();
-          console.log("Dados da resposta:", data);
+          console.log("Dados da resposta: u", data);
 
           // Atualize o estado dataUsuario com os dados recebidos da API
           setDataUsuario(data);
@@ -169,9 +139,7 @@ function HomeAdm() {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
-  useEffect(() => {
-    fazerSolicitacaoComToken();
-  }, []);
+
   useEffect(() => {
     buscarUsuarios();
   }, []);
@@ -372,7 +340,14 @@ function HomeAdm() {
         setShowSolicitacao={setShowSolicitacao}
       />
       <FlexContainer>
-      <div className="content">
+      <button
+        className="botaoNovoCadastro"
+        onClick={() => {
+          onOpen();
+        }}
+      >
+        NOVO CADASTRO
+      </button>
       {/* Tabela (conteúdo) */}
       {showParque && (
         <Parque
@@ -402,15 +377,7 @@ function HomeAdm() {
       )}
 
       {/* Botão "NOVO CADASTRO" */}
-      <button
-        className="botaoNovoCadastro"
-        onClick={() => {
-          onOpen();
-        }}
-      >
-        NOVO CADASTRO
-      </button>
-    </div>
+
         {isOpen && (
           showParque ? (
             <ModalComp

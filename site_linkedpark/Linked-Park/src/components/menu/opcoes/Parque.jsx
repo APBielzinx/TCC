@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   Heading,
   Table,
@@ -11,8 +11,47 @@ import {
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
 function Parque({ data, handleEditParque, handleDeleteParque }) {
+  const [dados, setDados] = useState([]);
+
+  var administrador = JSON.parse(localStorage.getItem("administrador"));
+
+  async function buscarParques() {
+    try {
+      // Obtém o token de AsyncStorage
+      const token = await administrador.token;
+
+      if (token) {
+        // Construa o cabeçalho Authorization
+        const headers = {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
+        };
+
+        // Faça a solicitação usando o cabeçalho personalizado
+        const response = await fetch(
+          "https://tcc-production-e100.up.railway.app/api/lazer",
+          {
+            method: "GET", // ou outro método HTTP
+            headers: headers,
+          }
+        );
+
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log("Dados da resposta: p", data);
+          setDados(data);
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação:", error);
+    }
+  }
+  useEffect(() => {
+    buscarParques();
+  }, []);
   return (
     <>
+    <div className="content">
       <Heading className="heading">Parque</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela"  style={{marginTop: -20}}>
@@ -31,14 +70,14 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((item, index) => (
+            {dados.map((item, index) => (
               <Tr key={index} cursor="pointer">
-                <Td>{item.id}</Td>
-                <Td>{item.name}</Td>
-                <Td>{item.description}</Td>
-                <Td>{item.address}</Td>
+                <Td>{item.idLazer}</Td>
+                <Td>{item.nome}</Td>
+                <Td>{item.descricao}</Td>
+                <Td>{item.endereco}</Td>
                 <Td>{item.latitude}</Td>
-                <Td>{item.longitude}</Td>
+                <Td>{item.longetude}</Td>
                 <Td>{item.admin}</Td>
                 <Td p={0}>
                   <EditIcon
@@ -63,6 +102,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
             ))}
           </Tbody>
         </Table>
+      </div>
       </div>
     </>
   );

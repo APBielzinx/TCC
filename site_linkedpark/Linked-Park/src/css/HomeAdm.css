@@ -105,7 +105,7 @@
 }
 
 .content {
-  position: absolute;
+  position: static;
   top: 0;
 }
 
@@ -117,8 +117,8 @@
 
 .tamanhoTabela {
   position: absolute;
-  top: 0;
-  width: 99%;
+  top: 80px;
+  width: 80%;
 }
 
 .tabela {
@@ -151,10 +151,10 @@
   background-color: #00563F;
   color: #fff;
   border: none;
-  padding: 8px 20px;
+  padding: 5px 5px;
   cursor: pointer;
-  position: absolute;
-  top: 1;
+  margin-left: 700px;
+  margin-top: 7px;
 }
 
 .botaoNovoCadastro:hover {
