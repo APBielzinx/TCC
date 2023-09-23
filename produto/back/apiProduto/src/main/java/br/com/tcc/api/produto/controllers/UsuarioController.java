@@ -3,6 +3,7 @@ package br.com.tcc.api.produto.controllers;
 import br.com.tcc.api.produto.model.Usuario;
 import br.com.tcc.api.produto.security.TokenService;
 import br.com.tcc.api.produto.services.UsuarioServices;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/usuario")
+@Tag(name = "Usuario", description = "Gerenciamento dos usuarios" )
 
 public class UsuarioController {
 
