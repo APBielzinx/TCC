@@ -2,6 +2,7 @@ package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Chat;
 import br.com.tcc.api.produto.services.ChatService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/chat")
+@Tag(name = "Chat", description = "Gerenciamento dos Chats" )
 public class ChatController {
 
     @Autowired

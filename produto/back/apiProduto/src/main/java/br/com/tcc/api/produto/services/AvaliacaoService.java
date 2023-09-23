@@ -20,7 +20,7 @@ public class AvaliacaoService {
     }
 
     public ResponseEntity<?> BuscarId(Long id){
-        avaliacaoRepository.findById(id);
+        avaliacaoRepository.findByIdAvaliacao(id);
         return new ResponseEntity<>("Avaliação encontrada com sucesso", HttpStatus.OK);
     }
 
@@ -36,7 +36,7 @@ public class AvaliacaoService {
 
     public ResponseEntity<?> AtualizarAvaliacao(Avaliacao avaliacao){
         if (avaliacaoRepository.existsById(avaliacao.getId())){
-            var select = avaliacaoRepository.findByUsuario(avaliacao.getUsuario());
+            var select = avaliacaoRepository.findByIdAvaliacao(avaliacao.getId());
             select.setPontuacao(avaliacao.getPontuacao());
             select.setDataAvaliacao(avaliacao.getDataAvaliacao());
             select.setComentario(avaliacao.getComentario());
@@ -47,9 +47,10 @@ public class AvaliacaoService {
         }
     }
 
-    public ResponseEntity<?> RetirarAvaliacao(Avaliacao avaliacao){
-        if (avaliacaoRepository.existsById(avaliacao.getId())){
-            avaliacaoRepository.delete(avaliacao);
+    public ResponseEntity<?> RetirarAvaliacao(Long id){
+        if (avaliacaoRepository.existsById(id)){
+           var ava = avaliacaoRepository.findByIdAvaliacao(id);
+            avaliacaoRepository.delete(ava);
             return new ResponseEntity<>("Avaliação retirada com sucesso", HttpStatus.OK);
         }
         else{
