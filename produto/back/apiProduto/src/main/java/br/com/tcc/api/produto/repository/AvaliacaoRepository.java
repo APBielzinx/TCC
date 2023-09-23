@@ -5,13 +5,11 @@ import br.com.tcc.api.produto.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao , Long> {
 
 
-    boolean existsById (Long id);
+    boolean existsById (long idLazer);
 
-            Avaliacao findByIdAvaliacao(Long id);
+            Avaliacao findByUsuario(Usuario usuario);
 }

@@ -3,7 +3,6 @@ package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Solicitacoes;
 import br.com.tcc.api.produto.services.SolicitacoesService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/solicitacoes")
-@Tag(name = "Solicitações", description = "Gerenciamento dos pedidos dos parques para virarem adms" )
 public class SolicitacoesController {
 
     @Autowired

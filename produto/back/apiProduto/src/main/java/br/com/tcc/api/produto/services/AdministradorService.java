@@ -68,13 +68,11 @@ public class AdministradorService {
 
    }
 
-    public ResponseEntity<?> deletar(String email) {
-        if(administradorRepository.existsByEmail(email)){
-            var adm = administradorRepository.findByEmail(email);
-            administradorRepository.delete(adm);
+    public ResponseEntity<?> deletar(Administrador administrador) {
+        if(administradorRepository.existsByEmail(administrador.getEmail())){
+            administradorRepository.delete(administrador);
             return new ResponseEntity<>("deletado com sucesso",HttpStatus.OK);
-        }
-        else {
+        }else {
             return new ResponseEntity<>("administrador não encontrado",HttpStatus.NO_CONTENT);
 
         }

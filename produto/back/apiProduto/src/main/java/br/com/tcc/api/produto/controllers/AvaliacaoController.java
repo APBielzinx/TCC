@@ -2,7 +2,6 @@ package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Avaliacao;
 import br.com.tcc.api.produto.services.AvaliacaoService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/avaliacao")
-@Tag(name = "Avaliações", description = "Gerenciamento das avaliações" )
 public class AvaliacaoController {
 
     @Autowired

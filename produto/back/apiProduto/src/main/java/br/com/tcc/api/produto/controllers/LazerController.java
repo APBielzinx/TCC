@@ -4,7 +4,6 @@ import br.com.tcc.api.produto.model.Administrador;
 import br.com.tcc.api.produto.model.Lazer;
 import br.com.tcc.api.produto.services.AdministradorService;
 import br.com.tcc.api.produto.services.LazerService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/lazer")
-@Tag(name = "Areas de lazer", description = "Gerenciamento das areas de lazer" )
 public class LazerController {
 
     @Autowired
