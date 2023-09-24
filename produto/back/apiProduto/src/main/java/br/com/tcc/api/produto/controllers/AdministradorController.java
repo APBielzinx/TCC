@@ -6,6 +6,7 @@ import br.com.tcc.api.produto.repository.LazerRepository;
 import br.com.tcc.api.produto.security.TokenService;
 import br.com.tcc.api.produto.services.AdministradorService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,6 +39,16 @@ public class AdministradorController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar administradores",
+            description = "exemplo:",
+            tags = {"Administrador", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public List<Administrador> buscarTodos(){
         return administradorService.buscarAdministrador();
     }
@@ -45,7 +56,7 @@ public class AdministradorController {
     @Operation(
             summary = "Cadastra um administrador novo",
             description = "exemplo:",
-            tags = {"Cadastrar", "Post"}
+            tags = {"Administrador", "Post"}
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
@@ -56,29 +67,52 @@ public class AdministradorController {
 
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(value = "/{adm}", produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza um administrador já existente",
             description = "exemplo:",
-            tags = {"Cadastrar", "Post"}
+            tags = {"Administrador", "Put"}
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
+    @Parameter(name = "Object")
     public ResponseEntity<?> atualizarAdministrador(@RequestBody Administrador administrador){
 
         return administradorService.atualizar(administrador);
 
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Deleta um administrador já existente",
+            description = "exemplo:",
+            tags = {"Administrador", "Delete"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
+    @Parameter(name = "Email")
     public ResponseEntity<?> deletarAdministrador(@RequestBody String email){
         return administradorService.deletar(email);
     }
-    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/login/{adm}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Login de um administrador já existente",
+            description = "exemplo:",
+            tags = {"Administrador", "Post"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
+    @Parameter(name = "Object")
     public ResponseEntity<?> login(@RequestBody Administrador administrador){
         var usernamePassword = new UsernamePasswordAuthenticationToken(administrador.getEmail(), administrador.getSenha());
         var auth = this.authenticationManager.authenticate(usernamePassword);

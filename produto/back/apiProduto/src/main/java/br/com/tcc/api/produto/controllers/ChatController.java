@@ -1,7 +1,13 @@
 package br.com.tcc.api.produto.controllers;
 
+import br.com.tcc.api.produto.model.Administrador;
 import br.com.tcc.api.produto.model.Chat;
 import br.com.tcc.api.produto.services.ChatService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,16 +30,43 @@ public class ChatController {
     private ChatService chatService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Lista os chats",
+            description = "exemplo:",
+            tags = {"Chat", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public List<Chat> BuscarChats() {
         return chatService.ListarChat();
     }
 
-    @GetMapping(value = "contato", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{contato}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Busca chats pelo contato",
+            description = "exemplo:",
+            tags = {"Chat", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> BuscarChatPorContato(@PathVariable String contato){
         return chatService.BuscarChatporContato(contato);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Cadastra um chat novo",
+            description = "exemplo:",
+            tags = {"Chat", "Post"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> NovoChat(@RequestBody Chat chat){
         return chatService.NovoChat(chat);
     }
@@ -41,6 +74,7 @@ public class ChatController {
 
     @MessageMapping("/chat")
     @SendTo("/topic/messages")
+
     public MessageResponse sendMessage(Message message) {
         return new MessageResponse(message.getSender(), message.getContent());
     }
