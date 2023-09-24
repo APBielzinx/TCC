@@ -15,7 +15,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-const ModalCompEventos = ({
+const ModalCompInformacoes = ({
   data,
   setData,
   dataEdit,
@@ -24,39 +24,37 @@ const ModalCompEventos = ({
   onUpdateData,
 }) => {
   const [id, setId] = useState("");
-  const [nome, setNome] = useState(dataEdit.nome || "");
+  const [titulo, setTitulo] = useState(dataEdit.titulo || "");
   const [descricao, setDescricao] = useState(dataEdit.descricao || "");
 
   useEffect(() => {
     if (!Object.keys(dataEdit).length) {
       const nextId =
-        data.length > 0 ? Math.max(...data.map((item) => item.idEvento)) + 1 : 1;
+        data.length > 0 ? Math.max(...data.map((item) => item.idInformacoes)) + 1 : 1;
       setId(nextId.toString());
     }
   }, [data, dataEdit]);
 
   const handleSave = () => {
-    if (!nome || !descricao) {
+    if (!titulo || !descricao) {
       console.log("Campos obrigatórios não preenchidos.");
       return;
     }
 
     if (Object.keys(dataEdit).length) {
       data[dataEdit.index] = {
-        idEvento: dataEdit.idEvento,
-        nome,
+        idInformacoes: dataEdit.idInformacoes,
+        titulo,
         descricao,
         data: dataEdit.data,
-        localizacao: dataEdit.localizacao,
         admin: dataEdit.admin,
       };
     } else {
       const newItem = {
-        idEvento: id,
-        nome,
+        idInformacoes: id,
+        titulo,
         descricao,
         data: new Date().toLocaleDateString(),
-        localizacao: "Localização", // Defina o valor da localização conforme necessário
         admin: "Admin", // Defina o valor do administrador conforme necessário
       };
       data.push(newItem);
@@ -79,7 +77,7 @@ const ModalCompEventos = ({
         color="white"
         borderRadius="10px"
       >
-        <ModalHeader>Cadastrar Novo Evento</ModalHeader>
+        <ModalHeader>Cadastrar Novas Informações</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <FormControl display="flex" flexDir="column" gap={4}>
@@ -88,11 +86,11 @@ const ModalCompEventos = ({
               <Input type="text" value={id} isReadOnly />
             </Box>
             <Box>
-              <FormLabel>Nome</FormLabel>
+              <FormLabel>Título</FormLabel>
               <Input
                 type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
+                value={titulo}
+                onChange={(e) => setTitulo(e.target.value)}
               />
             </Box>
             <Box>
@@ -117,4 +115,4 @@ const ModalCompEventos = ({
   );
 };
 
-export default ModalCompEventos;
+export default ModalCompInformacoes;
