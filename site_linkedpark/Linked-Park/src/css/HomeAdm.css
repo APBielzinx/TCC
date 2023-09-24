@@ -107,11 +107,6 @@
   align-items: center;
 }
 
-.content {
-  position: static;
-  top: 0;
-}
-
 .heading {
   font-size: 2rem;
   position: absolute;
@@ -119,7 +114,10 @@
 }
 
 .tamanhoTabela {
-  margin-top: -270px;
+  max-height: 756px;
+  overflow-y: auto;
+  position: absolute;
+  top: 50px;
   margin-left: 200px;
   width: 80%;
 }

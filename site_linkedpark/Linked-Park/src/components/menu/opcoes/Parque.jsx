@@ -9,6 +9,8 @@ import {
   Td,
 } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import "../../../css/HomeAdm.css"
+
 
 function Parque({ data, handleEditParque, handleDeleteParque }) {
   const [dados, setDados] = useState([]);
