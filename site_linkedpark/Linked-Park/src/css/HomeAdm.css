@@ -114,10 +114,10 @@
 }
 
 .tamanhoTabela {
-  max-height: 756px;
+  max-height: 700px;
   overflow-y: auto;
   position: absolute;
-  top: 50px;
+  top: 70px;
   margin-left: 200px;
   width: 80%;
 }
