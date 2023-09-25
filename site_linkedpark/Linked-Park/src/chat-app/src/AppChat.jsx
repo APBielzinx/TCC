@@ -7,7 +7,7 @@ import { auth, db } from "./services/firebase";
 import Login from "./components/Login";
 import Loading from "./components/Loading";
 
-const App = () => {
+const AppChat = () => {
   const [user, loading] = useAuthState(auth);
   const [userChat, setUserChat] = useState(null);
 
@@ -32,4 +32,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppChat;

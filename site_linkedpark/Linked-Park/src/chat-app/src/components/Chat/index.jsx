@@ -1,7 +1,7 @@
 import React from "react";
 import ChatHeader from "../ChatHeader";
 import * as C from "./styles";
-import Default from "./../Default";
+import Default from "../Default";
 import ChatBody from "../ChatBody";
 import ChatFooter from "../ChatFooter";
 

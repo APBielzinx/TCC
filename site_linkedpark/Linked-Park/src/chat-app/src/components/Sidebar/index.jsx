@@ -1,7 +1,7 @@
 import React from "react";
 import * as C from "./styles";
-import SidebarHeader from "./../SidebarHeader/index";
-import SidebarChats from "./../SidebarChats/index";
+import SidebarHeader from "../SidebarHeader/index";
+import SidebarChats from "../SidebarChats/index";
 
 const Sidebar = ({ setUserChat, userChat }) => {
   return (
