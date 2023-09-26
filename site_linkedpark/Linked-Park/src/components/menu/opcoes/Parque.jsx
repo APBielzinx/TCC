@@ -19,21 +19,20 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
 
   async function buscarParques() {
     try {
-      // Obtém o token de AsyncStorage
+  
       const token = await administrador.token;
 
       if (token) {
-        // Construa o cabeçalho Authorization
+     
         const headers = {
           "Content-type": "application/json; charset=UTF-8",
           Authorization: `Bearer ${token}`,
         };
 
-        // Faça a solicitação usando o cabeçalho personalizado
         const response = await fetch(
           "https://tcc-production-e100.up.railway.app/api/lazer",
           {
-            method: "GET", // ou outro método HTTP
+            method: "GET", 
             headers: headers,
           }
         );
@@ -51,6 +50,70 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
   useEffect(() => {
     buscarParques();
   }, []);
+  
+
+  async function handleCadastrarParque(parque) {
+    try {
+      const token = await administrador.token;
+
+      if (token) {
+        const headers = {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
+        };
+
+        const response = await fetch(
+          `https://tcc-production-e100.up.railway.app/api/lazer`,
+          {
+            method: "DELETE",
+            headers: headers,
+            body: JSON.stringify({
+              "email": data.username,
+              "senha": data.password,
+            }),
+          }
+        );
+
+        if (response.status === 204) {
+          console.log("Usuário removido com sucesso!");
+        } else {
+          console.error("Erro na exclusão do usuário:", response.status);
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao excluir o usuário:", error);
+    }
+  }
+
+  async function handleExcluirParque(id) {
+    console.log("id"+id)
+    try {
+      const token = await administrador.token;
+
+      if (token) {
+        const headers = {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
+        };
+
+        const response = await fetch(
+          `https://tcc-production-e100.up.railway.app/api/lazer/${id}`,
+          {
+            method: "DELETE",
+            headers: headers,
+          }
+        );
+
+        if (response.status === 204) {
+          console.log("Usuário removido com sucesso!");
+        } else {
+          console.error("Erro na exclusão do usuário:", response.status);
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao excluir o usuário:", error);
+    }
+  }
   return (
     <>
       <Heading className="heading">Parque</Heading>
@@ -89,7 +152,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
                 <Td p={0}>
                   <DeleteIcon
                     fontSize={20}
-                    onClick={() => handleDeleteParque(item.id)}
+                    onClick={() => handleExcluirParque(item.idLazer)}
                   />
                 </Td>
                 <Td p={0}>

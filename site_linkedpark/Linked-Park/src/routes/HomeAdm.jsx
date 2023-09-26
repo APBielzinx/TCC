@@ -144,38 +144,7 @@ function HomeAdm() {
     buscarUsuarios();
   }, []);
 
-  async function handleExcluirUsuario(id, email) {
-    try {
-      const token = await administrador.token;
-
-      if (token) {
-        const headers = {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${token}`,
-        };
-
-        const response = await fetch(
-          `https://tcc-production-e100.up.railway.app/api/usuario/${id}`,
-          {
-            method: "DELETE",
-            headers: headers,
-          }
-        );
-
-        if (response.status === 204) {
-          // Remova o usuário da lista
-          const newDataUsuario = dataUsuario.filter((item) => item.id !== id);
-          setDataUsuario(newDataUsuario);
-
-          console.log("Usuário removido com sucesso!");
-        } else {
-          console.error("Erro na exclusão do usuário:", response.status);
-        }
-      }
-    } catch (error) {
-      console.error("Erro ao excluir o usuário:", error);
-    }
-  }
+ 
 
   const isMobile = useBreakpointValue({
     base: true,
