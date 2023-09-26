@@ -14,9 +14,9 @@ public class LazerService {
     @Autowired
     LazerRepository lazerRepository;
 
-    public ResponseEntity<?> buscarTudo() {
-        var lazer = lazerRepository.findAll();
-        return new ResponseEntity<>(lazer, HttpStatus.OK);
+    public List<Lazer> buscarTudo() {
+        return lazerRepository.findAll();
+
     }
     public List<Lazer> buscarLazer() {
         return lazerRepository.findAllByCategoria("lazer");

@@ -55,7 +55,7 @@ public class LazerController {
     })
     public List<Lazer> buscarLazer() { return  lazerService.buscarLazer();}
     @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Lazer> buscarTudo() { return (List<Lazer>) lazerService.buscarTudo();}
+    public List<Lazer> buscarTudo() { return lazerService.buscarTudo();}
 
     @GetMapping(value ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
