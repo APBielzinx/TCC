@@ -24,6 +24,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
   const [address, setAddress] = useState(dataEdit.address || "");
   const [latitude, setLatitude] = useState(dataEdit.latitude || "");
   const [longitude, setLongitude] = useState(dataEdit.longitude || "");
+  const [categoria, setCategoria] = useState(dataEdit.categoria || "");
   const [admin, setAdmin] = useState(dataEdit.admin || "Não");
   const [imageUrl, setImageUrl] = useState(dataEdit.image || "");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -47,51 +48,49 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
     }
   };
 
-  const handleSave = () => {
-    if (!name || !description || !address || !latitude || !longitude || !selectedImage) return;
+  var administrador = JSON.parse(localStorage.getItem("administrador"));
 
-    if (emailAlreadyExists()) {
-      return alert("E-mail já cadastrado!");
-    }
 
-    if (Object.keys(dataEdit).length) {
-      data[dataEdit.index] = {
-        id: dataEdit.id,
-        name,
-        description,
-        address,
-        latitude,
-        longitude,
-        admin,
-        image: selectedImage,
-      };
-    } else {
-      const newItem = {
-        id,
-        name,
-        description,
-        address,
-        latitude,
-        longitude,
-        admin,
-        image: selectedImage,
-      };
-      data.push(newItem);
-    }
-
-    localStorage.setItem("cad_cliente", JSON.stringify(data));
-    setData([...data]);
-
+  async function handleSave(){
+    if (!name || !description || !address || !latitude || !longitude|| !categoria || !selectedImage) return;
+      try {
+        const token = await administrador.token;
+  
+        if (token) {
+          const headers = {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${token}`,
+          };
+  
+          const response = await fetch(
+            `https://tcc-production-e100.up.railway.app/api/lazer`,
+            {
+              method: "DELETE",
+              headers: headers,
+              body: JSON.stringify({
+                "nome": name,
+                "descricao": description,
+                "endereco": address,
+                "latitude": latitude,
+                "longetude": longitude,
+                "categoria": categoria,
+                "imagem": selectedImage,
+              }),
+            }
+          );
+  
+          if (response.status === 204) {
+            console.log("Usuário removido com sucesso!");
+          } else {
+            console.error("Erro na exclusão do usuário:", response.status);
+          }
+        }
+      } catch (error) {
+        console.error("Erro ao excluir o usuário:", error);
+      }
     onClose();
   };
 
-  const emailAlreadyExists = () => {
-    if (dataEdit.id !== id && data?.length) {
-      return data.find((item) => item.id === id);
-    }
-
-    return false;
-  };
 
   return (
     <>
@@ -148,6 +147,14 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
                 <Input
                   type="text"
                   value={longitude}
+                  onChange={(e) => setLongitude(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Categoria</FormLabel>
+                <Input
+                  type="text"
+                  value={categoria}
                   onChange={(e) => setLongitude(e.target.value)}
                 />
               </Box>

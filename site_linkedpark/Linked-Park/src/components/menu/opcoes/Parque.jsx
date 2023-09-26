@@ -52,38 +52,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
   }, []);
   
 
-  async function handleCadastrarParque(parque) {
-    try {
-      const token = await administrador.token;
-
-      if (token) {
-        const headers = {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${token}`,
-        };
-
-        const response = await fetch(
-          `https://tcc-production-e100.up.railway.app/api/lazer`,
-          {
-            method: "DELETE",
-            headers: headers,
-            body: JSON.stringify({
-              "email": data.username,
-              "senha": data.password,
-            }),
-          }
-        );
-
-        if (response.status === 204) {
-          console.log("Usuário removido com sucesso!");
-        } else {
-          console.error("Erro na exclusão do usuário:", response.status);
-        }
-      }
-    } catch (error) {
-      console.error("Erro ao excluir o usuário:", error);
-    }
-  }
+ 
 
   async function handleExcluirParque(id) {
     console.log("id"+id)
@@ -127,6 +96,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
               <Th>Endereço</Th>
               <Th>Latitude</Th>
               <Th>Longitude</Th>
+              <Th>Categoria</Th>
               <Th>Adm</Th>
               <Th p={0}></Th>
               <Th p={0}></Th>
@@ -142,6 +112,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
                 <Td>{item.endereco}</Td>
                 <Td>{item.latitude}</Td>
                 <Td>{item.longetude}</Td>
+                <Td>{item.categoria}</Td>
                 <Td>{item.admin}</Td>
                 <Td p={0}>
                   <EditIcon
