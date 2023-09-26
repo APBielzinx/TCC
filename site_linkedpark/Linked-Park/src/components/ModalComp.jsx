@@ -65,7 +65,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
           const response = await fetch(
             `https://tcc-production-e100.up.railway.app/api/lazer`,
             {
-              method: "DELETE",
+              method: "POST",
               headers: headers,
               body: JSON.stringify({
                 "nome": name,
@@ -79,10 +79,10 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
             }
           );
   
-          if (response.status === 204) {
+          if (response.status === 201) {
             console.log("Usuário removido com sucesso!");
           } else {
-            console.error("Erro na exclusão do usuário:", response.status);
+            console.error("Erro ao cadastar parque:", response.status);
           }
         }
       } catch (error) {
