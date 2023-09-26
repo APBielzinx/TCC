@@ -27,7 +27,7 @@ public class LazerController {
     @Autowired
     LazerService lazerService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/parque",produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar Parques",
             description = "exemplo:",
@@ -54,6 +54,8 @@ public class LazerController {
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
     public List<Lazer> buscarLazer() { return  lazerService.buscarLazer();}
+    @GetMapping(value = "/lazer", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Lazer> buscarTudo() { return (List<Lazer>) lazerService.buscarTudo();}
 
     @GetMapping(value ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(

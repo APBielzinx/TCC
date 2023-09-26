@@ -73,14 +73,15 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
                 "endereco": address,
                 "latitude": latitude,
                 "longetude": longitude,
+              
                 "categoria": categoria,
-                "imagem": selectedImage,
+                "imagem": "adawsdasd",
               }),
             }
           );
   
           if (response.status === 201) {
-            console.log("Usuário removido com sucesso!");
+            console.log("Usuário cadastrado com sucesso!");
           } else {
             console.error("Erro ao cadastar parque:", response.status);
           }
@@ -155,7 +156,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
                 <Input
                   type="text"
                   value={categoria}
-                  onChange={(e) => setLongitude(e.target.value)}
+                  onChange={(e) => setCategoria(e.target.value)}
                 />
               </Box>
               <Box>
