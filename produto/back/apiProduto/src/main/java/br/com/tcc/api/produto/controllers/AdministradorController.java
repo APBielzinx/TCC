@@ -101,7 +101,7 @@ public class AdministradorController {
     public ResponseEntity<?> deletarAdministrador(@RequestBody String email){
         return administradorService.deletar(email);
     }
-    @PostMapping(value = "/login/{adm}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um administrador já existente",
             description = "exemplo:",
@@ -114,6 +114,7 @@ public class AdministradorController {
     })
     @Parameter(name = "Object")
     public ResponseEntity<?> login(@RequestBody Administrador administrador){
+        System.out.println(administrador);
         var usernamePassword = new UsernamePasswordAuthenticationToken(administrador.getEmail(), administrador.getSenha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateTokenAdm((Administrador) auth.getPrincipal());

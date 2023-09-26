@@ -84,7 +84,7 @@ public class AdministradorService {
         if (administradorRepository.existsByEmail(administrador.getEmail())) {
             var select = administradorRepository.findByEmail(administrador.getEmail());
             boolean isPasswordMatches = criptografar.matches(administrador.getSenha(), select.getSenha());
-
+            System.out.println(isPasswordMatches);
             if (isPasswordMatches) {
                 AdministradorService.LoginResponse response = new AdministradorService.LoginResponse(select, token);
                 return new ResponseEntity<>(response, HttpStatus.OK);

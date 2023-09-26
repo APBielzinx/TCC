@@ -8,6 +8,7 @@ import HomeAdm from './routes/HomeAdm.jsx';
 import Login from './routes/Login.jsx';
 import { ChakraProvider } from "@chakra-ui/react";
 import HomeAdmParque from './routes/HomeAdmParque.jsx';
+import AppChat from './chat-app/src/AppChat.jsx'
 
 //const router = createBrowserRouter([
 //  {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         {
           path: "/homeadmparque",
           element: <HomeAdmParque />,
+        },
+        {
+          path: "/chat",
+          element: <AppChat />,
         },
     ]
   },
