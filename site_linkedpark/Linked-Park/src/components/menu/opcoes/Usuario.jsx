@@ -14,7 +14,7 @@ function Usuario({ data, handleEditUsuario, handleDeleteUsuario }) {
   return (
     <>
     <div className="content">
-      <Heading className="heading">Usuário</Heading>
+      <Heading className="heading" fontSize="30px">Usuário</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">
           <Thead>

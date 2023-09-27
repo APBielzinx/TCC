@@ -302,50 +302,56 @@ function HomeAdm() {
   }
 
   return (
-    <Flex h="100vh">
+    <>
+    <header className="header">
+      <h1 className="h1header">
+        LINKED PARK
+      </h1>
+    </header>
+    <Flex h="93.4vh">
       <Menu
         setShowParque={setShowParque}
         setShowUsuario={setShowUsuario}
         setShowSolicitacao={setShowSolicitacao}
       />
       <FlexContainer>
-      <button
-        className="botaoNovoCadastro"
-        onClick={() => {
-          onOpen();
-        }}
-      >
-        NOVO CADASTRO
-      </button>
-      {/* Tabela (conteúdo) */}
-      {showParque && (
-        <Parque
-          data={dataParque}
-          handleEditParque={(parque) => {
-            setDataEdit(parque);
+        <button
+          className="botaoNovoCadastro"
+          onClick={() => {
             onOpen();
           }}
-          handleDeleteParque={(id) => handleExcluirParque(id)}
-        />
-      )}
-      {showUsuario && (
-        <Usuario
-          data={dataUsuario}
-          handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
-          handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
-        />
-      )}
-      {showSolicitacao && (
-        <Solicitacao
-          data={dataSolicitacao}
-          handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
-          handleDeleteSolicitacao={(adminEmail) =>
-            handleRemove(adminEmail, "solicitacao")
-          }
-        />
-      )}
+        >
+          NOVO CADASTRO
+        </button>
+        {/* Tabela (conteúdo) */}
+        {showParque && (
+          <Parque
+            data={dataParque}
+            handleEditParque={(parque) => {
+              setDataEdit(parque);
+              onOpen();
+            }}
+            handleDeleteParque={(id) => handleExcluirParque(id)}
+          />
+        )}
+        {showUsuario && (
+          <Usuario
+            data={dataUsuario}
+            handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
+            handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
+          />
+        )}
+        {showSolicitacao && (
+          <Solicitacao
+            data={dataSolicitacao}
+            handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
+            handleDeleteSolicitacao={(adminEmail) =>
+              handleRemove(adminEmail, "solicitacao")
+            }
+          />
+        )}
 
-      {/* Botão "NOVO CADASTRO" */}
+        {/* Botão "NOVO CADASTRO" */}
 
         {isOpen && (
           showParque ? (
@@ -384,6 +390,7 @@ function HomeAdm() {
         )}
       </FlexContainer>
     </Flex>
+  </>
   );
 }
 

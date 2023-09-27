@@ -1,6 +1,7 @@
 import React from "react";
 import { ChatIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Menu({ onLogoutButtonClick, setShowParque, setShowUsuario, setShowSolicitacao }) {
 
@@ -20,7 +21,8 @@ function Menu({ onLogoutButtonClick, setShowParque, setShowUsuario, setShowSolic
           setShowUsuario(false);
           setShowSolicitacao(false);
         }}>
-        Parque
+        <FontAwesomeIcon icon="fa-solwid fa-tree" />
+          Parque
       </button>
       <button className="botaoLateral"         
           onClick={() => {
@@ -28,6 +30,7 @@ function Menu({ onLogoutButtonClick, setShowParque, setShowUsuario, setShowSolic
           setShowParque(false);
           setShowSolicitacao(false);
         }}>
+      <FontAwesomeIcon icon="fa-solid fa-tree" />
         Usuário
       </button>
       <button className="botaoLateral"         
