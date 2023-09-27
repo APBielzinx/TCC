@@ -86,7 +86,7 @@ public class UsuarioController {
 
     }
 
-    @PutMapping(value = "/{usr}", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping( consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualizar um usuario existente",
@@ -105,7 +105,7 @@ public class UsuarioController {
 
     }
 
-    @DeleteMapping(value ="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value ="/{id}")
     @Operation(
             summary = "Excluir um usuario existente",
             description = "exemplo:",

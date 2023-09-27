@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.SchemaProperties;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -55,25 +56,27 @@ public class AdministradorController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastra um administrador novo",
-            description = "exemplo:",
+            description = "exemplo:  {\n \"usuario\" ",
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
+    @Schema ()
     public ResponseEntity<?> cadastrarAdministrador(@RequestBody Administrador administrador) {
         return administradorService.cadastrar(administrador);
 
     }
 
-    @PutMapping(value = "/{adm}", produces = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza um administrador já existente",
             description = "exemplo:",
             tags = {"Administrador", "Put"}
     )
+    @Parameter(name = "Objeto (em lista json)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
@@ -107,12 +110,13 @@ public class AdministradorController {
             description = "exemplo:",
             tags = {"Administrador", "Post"}
     )
+    @Parameter(name = "objeto (lista json)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
-    @Parameter(name = "Object")
+    @Parameter(name = "Objeto (em lista json")
     public ResponseEntity<?> login(@RequestBody Administrador administrador){
         System.out.println(administrador);
         var usernamePassword = new UsernamePasswordAuthenticationToken(administrador.getEmail(), administrador.getSenha());
