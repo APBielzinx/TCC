@@ -1,2 +1,4 @@
 node_modules
 produto/back/apiProduto/src/main/resources/application.properties
+*.properties
+produto/back/apiProduto/src/main/resources/application.properties
