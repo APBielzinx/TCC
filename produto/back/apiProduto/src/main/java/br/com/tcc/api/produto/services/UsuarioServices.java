@@ -100,7 +100,6 @@ public class UsuarioServices {
             boolean isPasswordMatches = criptografar.matches(usuario.getSenha(), select.getSenha());
 
             if (isPasswordMatches) {
-                select.setIdUsuario(null);
                 LoginResponse response = new LoginResponse(select, token);
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
