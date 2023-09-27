@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Chat from "./components/Chat";
 import Sidebar from "./components/Sidebar";
 import * as C from "./styles/app";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState } from "react-firebase-hooks/auth"
 import { auth, db } from "./services/firebase";
 import Login from "./components/Login";
 import Loading from "./components/Loading";

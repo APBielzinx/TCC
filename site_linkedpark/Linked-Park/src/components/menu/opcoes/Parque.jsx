@@ -85,7 +85,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
   }
   return (
     <>
-      <Heading className="heading">Parque</Heading>
+      <Heading className="heading" fontSize="30px">Parque</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">
           <Thead>
