@@ -27,6 +27,16 @@ public class SolicitacoesController {
     SolicitacoesService solicitacoesService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar solicitações",
+            description = "exemplo:",
+            tags = {"Solicitações", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public List<Solicitacoes> buscarSolicitacoes(){
 
         return solicitacoesService.buscarTodasSolicitacoes();
@@ -34,6 +44,16 @@ public class SolicitacoesController {
     }
 
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar solicitações por Email",
+            description = "exemplo:",
+            tags = {"Solicitações", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> buscarSolicitacoesPorId(@PathVariable("id") Long id ){
 
         return solicitacoesService.buscarSolicitacoesPorId(id);
@@ -42,6 +62,15 @@ public class SolicitacoesController {
 
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Cadastra uma solicitação nova",
+            description = "exemplo:",
+            tags = {"Solicitações", "Post"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> cadastrarSolicitacao(@RequestBody Solicitacoes solicitacoes){
 
         return solicitacoesService.cadastar(solicitacoes);
@@ -50,6 +79,17 @@ public class SolicitacoesController {
     }
 
     @PutMapping(value = "/{solicitacao}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Atualiza uma solicitação já existente",
+            description = "exemplo:",
+            tags = {"Solicitações", "Put"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
+    @Parameter(name = "Object")
     public ResponseEntity<?> atualizarSolicitacao(@RequestBody Solicitacoes solicitacoes){
 
         return solicitacoesService.atualizar(solicitacoes);
@@ -57,6 +97,16 @@ public class SolicitacoesController {
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Deleta uma solicitação já existente",
+            description = "exemplo:",
+            tags = {"Solicitações", "Delete"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> deletarSolicitacao(@RequestBody Solicitacoes solicitacoes){
 
         return solicitacoesService.deletar(solicitacoes);

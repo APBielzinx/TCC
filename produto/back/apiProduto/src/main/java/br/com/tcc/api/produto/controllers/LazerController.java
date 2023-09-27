@@ -28,22 +28,62 @@ public class LazerController {
     LazerService lazerService;
 
     @GetMapping(value = "/parque",produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar Parques",
+            description = "exemplo:",
+            tags = {"Areas de lazer", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public List<Lazer> buscarParque() {
         return  lazerService.buscarParque();
     }
 
     @GetMapping(value = "/lazer", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar areas de lazer",
+            description = "exemplo:",
+            tags = {"Areas de lazer", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public List<Lazer> buscarLazer() { return  lazerService.buscarLazer();}
     @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Lazer> buscarTudo() { return lazerService.buscarTudo();}
 
     @GetMapping(value ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar areas de lazer por id",
+            description = "exemplo:",
+            tags = {"Areas de lazer", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> BuscarPorId(@PathVariable ("id")Long id){
         return lazerService.BuscarPorId(id);
     }
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Cadastrar novas areas de lazer",
+            description = "exemplo:",
+            tags = {"Areas de lazer", "Post"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> Cadastrar(@RequestBody Lazer lazer){
         return lazerService.Cadastrar(lazer);
     }
@@ -51,11 +91,32 @@ public class LazerController {
 
     @PutMapping(value = "/{lazer}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Atualizar areas de lazer existentes",
+            description = "exemplo:",
+            tags = {"Areas de lazer", "Put"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
+    @Parameter(name = "Object")
     public ResponseEntity<?> AtualizarLazer (@RequestBody Lazer lazer){
         return lazerService.AtualizarLazer(lazer);
     }
 
     @DeleteMapping(value ="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Excluir areas de lazer",
+            description = "exemplo:",
+            tags = {"Areas de lazer", "Delete"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> ExcluirLazer(@PathVariable("id") Long id){
 
         return lazerService.ExcluirLazer(id);

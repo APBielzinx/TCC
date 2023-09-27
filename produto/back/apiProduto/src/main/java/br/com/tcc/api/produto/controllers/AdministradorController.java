@@ -39,10 +39,29 @@ public class AdministradorController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar administradores",
+            description = "exemplo:",
+            tags = {"Administrador", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public List<Administrador> buscarTodos(){
         return administradorService.buscarAdministrador();
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Cadastra um administrador novo",
+            description = "exemplo:",
+            tags = {"Administrador", "Post"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public ResponseEntity<?> cadastrarAdministrador(@RequestBody Administrador administrador) {
         return administradorService.cadastrar(administrador);
 
@@ -50,6 +69,17 @@ public class AdministradorController {
 
     @PutMapping(value = "/{adm}", produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Atualiza um administrador já existente",
+            description = "exemplo:",
+            tags = {"Administrador", "Put"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
+    @Parameter(name = "Object")
     public ResponseEntity<?> atualizarAdministrador(@RequestBody Administrador administrador){
 
         return administradorService.atualizar(administrador);
@@ -57,10 +87,32 @@ public class AdministradorController {
     }
 
     @DeleteMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Deleta um administrador já existente",
+            description = "exemplo:",
+            tags = {"Administrador", "Delete"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
+    @Parameter(name = "Email")
     public ResponseEntity<?> deletarAdministrador(@RequestBody String email){
         return administradorService.deletar(email);
     }
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Login de um administrador já existente",
+            description = "exemplo:",
+            tags = {"Administrador", "Post"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
+    @Parameter(name = "Object")
     public ResponseEntity<?> login(@RequestBody Administrador administrador){
         System.out.println(administrador);
         var usernamePassword = new UsernamePasswordAuthenticationToken(administrador.getEmail(), administrador.getSenha());
