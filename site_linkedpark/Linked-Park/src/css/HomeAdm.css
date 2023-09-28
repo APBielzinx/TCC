@@ -1,7 +1,7 @@
 /* Estilos para tela grande (lg e acima) */
 .chakrabox {
   position: fixed;
-  height: 93.5%;
+  height: 100%;
   width: 200px;
   background: #00A97E;
   color: white;
@@ -12,24 +12,11 @@
   text-align: center;
 }
 
-.header{
-  background-color: #00A97E;
-  height:40px;
-}
-
-.h1header{
-  color: white;
-  font-family: "poppins", sans-serif;
-  font-size: 30px;
-  margin-left: 10px;
-}
-
 .botaoLateral {
-  text-align: right;
   color: #fff;
-  background-color: #00A97E;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  background-color: #00563F;
+  border: 1px solid teal;
+  margin-bottom: 20px;
   height: 5%;
   width: 100%;
 }
@@ -59,7 +46,8 @@
 
 .botaoChat {
   color: #fff;
-  background-color: #00A97E;
+  background-color: #00563F;
+  border: 1px solid teal;
   height: 5%;
   width: 100%;
   margin-top: auto;
@@ -83,7 +71,8 @@
 
 .botaoDeslogar {
   color: #fff;
-  background-color: #00A97E;
+  background-color: #00563F;
+  border: 1px solid teal;
   height: 5%;
   width: 100%;
   margin-top: 1rem;
@@ -119,13 +108,13 @@
 }
 
 .heading {
+  font-size: 2rem;
   position: absolute;
   top: 0;
-  font-size: 10px;
 }
 
 .tamanhoTabela {
-  max-height: 500px;
+  max-height: 700px;
   overflow-y: auto;
   position: absolute;
   top: 70px;
@@ -162,7 +151,7 @@
   background-color: #00563F;
   color: #fff;
   border: none;
-  padding: 1px 5px;
+  padding: 5px 5px;
   cursor: pointer;
   position: absolute;
   top: 0;

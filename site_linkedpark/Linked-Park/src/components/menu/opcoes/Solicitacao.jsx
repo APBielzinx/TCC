@@ -14,7 +14,7 @@ function Solicitacao({ data, handleEditSolicitacao, handleDeleteSolicitacao }) {
   return (
     <>
     <div className="content">
-      <Heading className="heading" fontSize="30px">Solicitação</Heading>
+      <Heading className="heading">Solicitação</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">
           <Thead>
