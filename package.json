@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "better-react-spinkit": "^2.0.4",
     "sweetalert": "^2.1.2"
   }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { EditIcon, DeleteIcon, ChatIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Box as ChakraBox,
@@ -14,6 +14,18 @@ import {
   useBreakpointValue,
   Heading,
 } from "@chakra-ui/react";
+
+import {
+  Box,
+  ChakraProvider,
+  Image,
+  VStack,
+  Text,
+  Spacer,
+  StackDivider,
+  Link,
+} from "@chakra-ui/react";
+
 import ModalComp from "../components/ModalComp";
 import ModalCompUsuario from "../components/ModalCompUsuario";
 import ModalCompSolicitacao from "../components/ModalCompSolicitacao";
@@ -105,8 +117,6 @@ function HomeAdm() {
     // Feche o modal após adicionar o item
     onClose();
   }
-
-  
 
   async function buscarUsuarios() {
     try {
@@ -302,89 +312,219 @@ function HomeAdm() {
   }
 
   return (
-    <Flex h="100vh">
-      <Menu
-        setShowParque={setShowParque}
-        setShowUsuario={setShowUsuario}
-        setShowSolicitacao={setShowSolicitacao}
-      />
-      <FlexContainer>
-      <button
-        className="botaoNovoCadastro"
-        onClick={() => {
-          onOpen();
-        }}
-      >
-        NOVO CADASTRO
-      </button>
-      {/* Tabela (conteúdo) */}
-      {showParque && (
-        <Parque
-          data={dataParque}
-          handleEditParque={(parque) => {
-            setDataEdit(parque);
+    <>
+      <ChakraProvider>
+      <Box className="fundo">
+        {/* Cabeçalho */}
+        <Flex className="header"
+        >
+          <Heading as="h1" size="xl">
+            Linked Park
+          </Heading>
+          <Flex align="center">
+            <Image
+              src="caminho-da-imagem-do-usuario.jpg"
+              alt="Foto do Usuário"
+              boxSize="40px"
+              rounded="full"
+              mr="2"
+            />
+            <Text fontWeight="bold">Nome do Usuário</Text>
+          </Flex>
+        </Flex>
+
+        {/* Conteúdo */}
+        <Flex>
+          {/* Menu Lateral */}
+          <Box className="boxmenulateral"
+          setShowParque={setShowParque}
+          setShowUsuario={setShowUsuario}
+          setShowSolicitacao={setShowSolicitacao}
+          >
+          <button
+          className="botaoNovoCadastro"
+          onClick={() => {
             onOpen();
           }}
-          handleDeleteParque={(id) => handleExcluirParque(id)}
-        />
-      )}
-      {showUsuario && (
-        <Usuario
-          data={dataUsuario}
-          handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
-          handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
-        />
-      )}
-      {showSolicitacao && (
-        <Solicitacao
-          data={dataSolicitacao}
-          handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
-          handleDeleteSolicitacao={(adminEmail) =>
-            handleRemove(adminEmail, "solicitacao")
-          }
-        />
-      )}
-
-      {/* Botão "NOVO CADASTRO" */}
-
-        {isOpen && (
-          showParque ? (
-            <ModalComp
-              isOpen={isOpen}
-              onClose={onClose}
-              data={dataParque}
-              setData={setDataParque}
-              dataEdit={dataEdit}
-              setDataEdit={setDataEdit}
-              handleAddItem={handleAddItem}
-            />
-          ) : (
-            showUsuario ? (
-              <ModalCompUsuario
+          >
+          NOVO CADASTRO
+        </button>
+        {showParque && (
+          <Parque
+            data={dataParque}
+            handleEditParque={(parque) => {
+              setDataEdit(parque);
+              onOpen();
+            }}
+            handleDeleteParque={(id) => handleExcluirParque(id)}
+          />
+        )}
+        {showUsuario && (
+          <Usuario
+            data={dataUsuario}
+            handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
+            handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
+          />
+        )}
+        {showSolicitacao && (
+          <Solicitacao
+            data={dataSolicitacao}
+            handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
+            handleDeleteSolicitacao={(adminEmail) =>
+              handleRemove(adminEmail, "solicitacao")
+            }
+          />
+        )}
+         {isOpen && (
+            showParque ? (
+              <ModalComp
                 isOpen={isOpen}
                 onClose={onClose}
-                data={dataUsuario}
-                setData={setDataUsuario}
+                data={dataParque}
+                setData={setDataParque}
                 dataEdit={dataEdit}
                 setDataEdit={setDataEdit}
                 handleAddItem={handleAddItem}
               />
             ) : (
-              <ModalCompSolicitacao
+              showUsuario ? (
+                <ModalCompUsuario
+                  isOpen={isOpen}
+                  onClose={onClose}
+                  data={dataUsuario}
+                  setData={setDataUsuario}
+                  dataEdit={dataEdit}
+                  setDataEdit={setDataEdit}
+                  handleAddItem={handleAddItem}
+                />
+              ) : (
+                <ModalCompSolicitacao
+                  isOpen={isOpen}
+                  onClose={onClose}
+                  data={dataSolicitacao}
+                  setData={setDataSolicitacao}
+                  dataEdit={dataEdit}
+                  setDataEdit={setDataEdit}
+                  handleAddItem={handleAddItem}
+                />
+              )
+            )
+          )}
+            {/* Opções do Menu Lateral */}
+              <button>Parque</button>
+              <button>Usuário</button>
+              <button>Solicitação</button>
+
+
+            {/* Opções Adicionais do Menu Lateral (em baixo) */}
+              <button>Deslogar</button>
+              <Flex align="center">
+                <ChatIcon mr="2" />
+                <button>Chat</button>
+              </Flex>
+          </Box>
+
+          {/* Conteúdo Principal */}
+          <Box flex="1" p="4">
+            {/* Conteúdo da Página */}
+            <Box>
+              {/* Coloque seu conteúdo aqui */}
+            </Box>
+          </Box>
+        </Flex>
+      </Box>
+    </ChakraProvider>
+    {/*
+          <header className="header">
+          <h1>LINKED PARK</h1>
+          <p>Este é um exemplo de cabeçalho.</p>
+      </header>
+      <Flex h="100vh">
+        <Menu
+          setShowParque={setShowParque}
+          setShowUsuario={setShowUsuario}
+          setShowSolicitacao={setShowSolicitacao}
+        />
+        <FlexContainer>
+        <button
+          className="botaoNovoCadastro"
+          onClick={() => {
+            onOpen();
+          }}
+        >
+          NOVO CADASTRO
+        </button>
+        {showParque && (
+          <Parque
+            data={dataParque}
+            handleEditParque={(parque) => {
+              setDataEdit(parque);
+              onOpen();
+            }}
+            handleDeleteParque={(id) => handleExcluirParque(id)}
+          />
+        )}
+        {showUsuario && (
+          <Usuario
+            data={dataUsuario}
+            handleEditUsuario={(usuario) => handleEditarUsuario(usuario)}
+            handleDeleteUsuario={(id) => handleExcluirUsuario(id)}
+          />
+        )}
+        {showSolicitacao && (
+          <Solicitacao
+            data={dataSolicitacao}
+            handleEditSolicitacao={(id) => handleEditSolicitacao(id)}
+            handleDeleteSolicitacao={(adminEmail) =>
+              handleRemove(adminEmail, "solicitacao")
+            }
+          />
+        )}
+  
+        // Botão "NOVO CADASTRO" 
+  
+       {isOpen && (
+            showParque ? (
+              <ModalComp
                 isOpen={isOpen}
                 onClose={onClose}
-                data={dataSolicitacao}
-                setData={setDataSolicitacao}
+                data={dataParque}
+                setData={setDataParque}
                 dataEdit={dataEdit}
                 setDataEdit={setDataEdit}
                 handleAddItem={handleAddItem}
               />
+            ) : (
+              showUsuario ? (
+                <ModalCompUsuario
+                  isOpen={isOpen}
+                  onClose={onClose}
+                  data={dataUsuario}
+                  setData={setDataUsuario}
+                  dataEdit={dataEdit}
+                  setDataEdit={setDataEdit}
+                  handleAddItem={handleAddItem}
+                />
+              ) : (
+                <ModalCompSolicitacao
+                  isOpen={isOpen}
+                  onClose={onClose}
+                  data={dataSolicitacao}
+                  setData={setDataSolicitacao}
+                  dataEdit={dataEdit}
+                  setDataEdit={setDataEdit}
+                  handleAddItem={handleAddItem}
+                />
+              )
             )
-          )
-        )}
-      </FlexContainer>
-    </Flex>
-  );
+          )}
+        </FlexContainer>
+      </Flex> 
+              */}
+
+
+    </>
+      );
 }
 
 export default HomeAdm;
