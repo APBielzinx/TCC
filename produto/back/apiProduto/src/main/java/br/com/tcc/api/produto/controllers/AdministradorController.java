@@ -1,6 +1,7 @@
 package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Administrador;
+import br.com.tcc.api.produto.model.Avaliacao;
 import br.com.tcc.api.produto.model.UserRole;
 import br.com.tcc.api.produto.repository.LazerRepository;
 import br.com.tcc.api.produto.security.TokenService;
@@ -56,13 +57,14 @@ public class AdministradorController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastra um administrador novo",
-            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }",
+            description = "exemplo: { \n 'email': '{emailAdm}',\n 'senha': '{senhaAdm}' \n }",
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
+    @Parameter(name = "Objeto (em lista json)")
     @Schema ()
     public ResponseEntity<?> cadastrarAdministrador(@RequestBody Administrador administrador) {
         return administradorService.cadastrar(administrador);
@@ -73,16 +75,15 @@ public class AdministradorController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza um administrador já existente",
-            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }",
+            description = "exemplo: { \n 'email': '{emailAdm}',\n 'senha': '{senhaAdm}' \n }",
             tags = {"Administrador", "Put"}
     )
-    @Parameter(name = "Objeto (em lista json)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
-    @Parameter(name = "Object")
+    @Parameter(name = "Objeto (em lista json)")
     public ResponseEntity<?> atualizarAdministrador(@RequestBody Administrador administrador){
 
         return administradorService.atualizar(administrador);
@@ -92,7 +93,7 @@ public class AdministradorController {
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Deleta um administrador já existente",
-            description = "exemplo: { \n 'email':'{emailAdm} \n }'",
+            description = "exemplo: { \n 'email':'{emailAdm}' \n }'",
             tags = {"Administrador", "Delete"}
     )
     @ApiResponses({
@@ -107,16 +108,15 @@ public class AdministradorController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um administrador já existente",
-            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }"
+            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }",
             tags = {"Administrador", "Post"}
     )
-    @Parameter(name = "objeto (lista json)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
-    @Parameter(name = "Objeto (em lista json")
+    @Parameter(name = "Objeto (em lista json)")
     public ResponseEntity<?> login(@RequestBody Administrador administrador){
         System.out.println(administrador);
         var usernamePassword = new UsernamePasswordAuthenticationToken(administrador.getEmail(), administrador.getSenha());

@@ -36,7 +36,7 @@ public class ChatController {
             tags = {"Chat", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
     public List<Chat> BuscarChats() {
@@ -46,11 +46,11 @@ public class ChatController {
     @GetMapping(value = "/{contato}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Busca chats pelo contato",
-            description = "exemplo:",
+            description = "exemplo: { \n 'contato':'{contUsr}' \n }",
             tags = {"Chat", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> BuscarChatPorContato(@PathVariable String contato){
@@ -64,7 +64,7 @@ public class ChatController {
             tags = {"Chat", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> NovoChat(@RequestBody Chat chat){
