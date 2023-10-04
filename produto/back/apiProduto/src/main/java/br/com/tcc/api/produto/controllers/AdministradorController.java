@@ -42,7 +42,7 @@ public class AdministradorController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar administradores",
-            description = "exemplo:",
+            description = "exemplo: ",
             tags = {"Administrador", "Get"}
     )
     @ApiResponses({
@@ -56,7 +56,7 @@ public class AdministradorController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastra um administrador novo",
-            description = "exemplo:  {\n \"usuario\" ",
+            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }",
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({
@@ -73,7 +73,7 @@ public class AdministradorController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza um administrador já existente",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }",
             tags = {"Administrador", "Put"}
     )
     @Parameter(name = "Objeto (em lista json)")
@@ -89,10 +89,10 @@ public class AdministradorController {
 
     }
 
-    @DeleteMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Deleta um administrador já existente",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email':'{emailAdm} \n }'",
             tags = {"Administrador", "Delete"}
     )
     @ApiResponses({
@@ -107,7 +107,7 @@ public class AdministradorController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um administrador já existente",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }"
             tags = {"Administrador", "Post"}
     )
     @Parameter(name = "objeto (lista json)")
