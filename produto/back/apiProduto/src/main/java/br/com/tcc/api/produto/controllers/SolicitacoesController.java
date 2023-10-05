@@ -29,7 +29,7 @@ public class SolicitacoesController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar solicitações",
-            description = "exemplo:",
+            description = "exemplo: use o link para puxar todas as solicitações",
             tags = {"Solicitações", "Get"}
     )
     @ApiResponses({
@@ -46,7 +46,7 @@ public class SolicitacoesController {
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar solicitações por Email",
-            description = "exemplo: { \n 'id' ",
+            description = "exemplo: { \n 'id':'{SolId}' \n } ",
             tags = {"Solicitações", "Get"}
     )
     @ApiResponses({
@@ -64,7 +64,7 @@ public class SolicitacoesController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastra uma solicitação nova",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email':'{SolEmail}', \n 'senha':'{SolSenha}' \n }  ",
             tags = {"Solicitações", "Post"}
     )
     @ApiResponses({
@@ -81,7 +81,7 @@ public class SolicitacoesController {
     @PutMapping(value = "/{solicitacao}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza uma solicitação já existente",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email':'{nSolEmail}', \n 'senha':'{nSolSenha}' \n } ",
             tags = {"Solicitações", "Put"}
     )
     @ApiResponses({
@@ -99,7 +99,7 @@ public class SolicitacoesController {
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Deleta uma solicitação já existente",
-            description = "exemplo:",
+            description = "exemplo: 'url_da_api'/{idSol}",
             tags = {"Solicitações", "Delete"}
     )
     @ApiResponses({

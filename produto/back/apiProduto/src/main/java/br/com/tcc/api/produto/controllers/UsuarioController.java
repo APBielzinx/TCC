@@ -41,7 +41,7 @@ public class UsuarioController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar usuarios",
-            description = "exemplo:",
+            description = "exemplo: 'url_da_api'/usuarios ",
             tags = {"Usuario", "Get"}
     )
     @ApiResponses({
@@ -56,7 +56,7 @@ public class UsuarioController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar usuarios por Id",
-            description = "exemplo:",
+            description = "exemplo: 'url_da_api'/usuarios/{idUsr} ",
             tags = {"Usuario", "Get"}
     )
     @ApiResponses({
@@ -72,7 +72,7 @@ public class UsuarioController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastrar um usuario novo",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email':'{usrEmail}', \n 'senha':'{usrSenha}' \n }",
             tags = {"Usuario", "Post"}
     )
     @ApiResponses({
@@ -90,7 +90,7 @@ public class UsuarioController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualizar um usuario existente",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email':'{usrEmail}', \n 'senha':'{usrSenha}' \n }",
             tags = {"Usuario", "Put"}
     )
     @ApiResponses({
@@ -108,7 +108,7 @@ public class UsuarioController {
     @DeleteMapping(value ="/{id}")
     @Operation(
             summary = "Excluir um usuario existente",
-            description = "exemplo:",
+            description = "exemplo: 'url_da_api'/usuario/{idUsr}",
             tags = {"Usuario", "Delete"}
     )
     @ApiResponses({
@@ -125,7 +125,7 @@ public class UsuarioController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um usuario existente",
-            description = "exemplo:",
+            description = "exemplo: { \n 'email':'{usrEmail}', \n 'senha':'{usrSenha}' \n } (necessita do token do usuario)",
             tags = {"Usuario", "Post"}
     )
     @ApiResponses({

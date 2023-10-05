@@ -43,7 +43,7 @@ public class AdministradorController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar administradores",
-            description = "exemplo: ",
+            description = "exemplo: 'url_da_api'/administrador",
             tags = {"Administrador", "Get"}
     )
     @ApiResponses({
@@ -75,7 +75,7 @@ public class AdministradorController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza um administrador já existente",
-            description = "exemplo: { \n 'email': '{emailAdm}',\n 'senha': '{senhaAdm}' \n }",
+            description = "exemplo: { \n 'email': '{emailAdm}',\n 'senha': '{senhaAdm}' \n } (necessita estar logado)",
             tags = {"Administrador", "Put"}
     )
     @ApiResponses({
@@ -108,7 +108,7 @@ public class AdministradorController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um administrador já existente",
-            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n }",
+            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n } (necessita do token de login)",
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({

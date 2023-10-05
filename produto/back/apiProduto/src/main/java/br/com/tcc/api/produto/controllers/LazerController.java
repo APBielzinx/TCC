@@ -31,11 +31,11 @@ public class LazerController {
     @GetMapping(value = "/parque",produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar Parques",
-            description = "exemplo:",
+            description = "exemplo: 'url_da_api'/lazer/parque",
             tags = {"Areas de lazer", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Avaliacao.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
@@ -46,26 +46,36 @@ public class LazerController {
     @GetMapping(value = "/lazer", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar areas de lazer",
-            description = "exemplo:",
+            description = "exemplo: 'url_da_api'/lazer/lazer",
             tags = {"Areas de lazer", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Avaliacao.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
     public List<Lazer> buscarLazer() { return  lazerService.buscarLazer();}
     @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar areas de lazer em geral",
+            description = "exemplo: 'url_da_api'/lazer",
+            tags = {"Areas de lazer", "Get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    })
     public List<Lazer> buscarTudo() { return lazerService.buscarTudo();}
 
     @GetMapping(value ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar areas de lazer por id",
-            description = "exemplo: { \n 'idLazer':'{LazerId}'  ",
+            description = "exemplo: 'url_da_api'/lazer/{idLazer}",
             tags = {"Areas de lazer", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Avaliacao.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
@@ -81,7 +91,7 @@ public class LazerController {
             tags = {"Areas de lazer", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Avaliacao.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
@@ -98,7 +108,7 @@ public class LazerController {
             tags = {"Areas de lazer", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Avaliacao.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
@@ -114,7 +124,7 @@ public class LazerController {
             tags = {"Areas de lazer", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Avaliacao.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     })
