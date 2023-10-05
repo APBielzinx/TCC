@@ -2,6 +2,7 @@ package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Avaliacao;
 import br.com.tcc.api.produto.services.AvaliacaoService;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,18 +30,18 @@ public class AvaliacaoController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> Avaliar(@RequestBody Avaliacao avaliacao){
+    public ResponseEntity<?> Avaliar(@Parameter(hidden = true) @RequestBody Avaliacao avaliacao){
         return  avaliacaoService.Avaliar(avaliacao);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> AtualizarAvaliacao(@RequestBody Avaliacao avaliacao){
+    public ResponseEntity<?> AtualizarAvaliacao(@Parameter(hidden = true) @RequestBody Avaliacao avaliacao){
         return avaliacaoService.AtualizarAvaliacao(avaliacao);
     }
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> RetirarAvaliacao(@RequestBody Avaliacao avaliacao){
+    public ResponseEntity<?> RetirarAvaliacao(@Parameter(hidden = true) @RequestBody Avaliacao avaliacao){
         return avaliacaoService.RetirarAvaliacao(avaliacao);
     }
 

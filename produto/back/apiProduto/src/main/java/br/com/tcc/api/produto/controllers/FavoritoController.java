@@ -30,12 +30,12 @@ public class FavoritoController {
     }
 */
  /*   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> Favoritar (@RequestBody Favorito favorito){
+    public ResponseEntity<?> Favoritar (@Parameter(hidden = true) @RequestBody Favorito favorito){
         return favoritoService.Favoritar(favorito);
     }
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> RetirarFavorito (@RequestBody Favorito favorito){
+    public ResponseEntity<?> RetirarFavorito (@Parameter(hidden = true) @RequestBody Favorito favorito){
         return favoritoService.RetirarFavorito(favorito);
     }
 */

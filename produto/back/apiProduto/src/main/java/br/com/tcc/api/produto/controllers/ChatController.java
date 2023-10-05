@@ -4,6 +4,7 @@ import br.com.tcc.api.produto.model.Administrador;
 import br.com.tcc.api.produto.model.Chat;
 import br.com.tcc.api.produto.services.ChatService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,8 +37,8 @@ public class ChatController {
             tags = {"Chat", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public List<Chat> BuscarChats() {
         return chatService.ListarChat();
@@ -50,8 +51,8 @@ public class ChatController {
             tags = {"Chat", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> BuscarChatPorContato(@PathVariable String contato){
         return chatService.BuscarChatporContato(contato);
@@ -64,10 +65,10 @@ public class ChatController {
             tags = {"Chat", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Chat.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> NovoChat(@RequestBody Chat chat){
+    public ResponseEntity<?> NovoChat(@Parameter(hidden = true) @RequestBody Chat chat){
         return chatService.NovoChat(chat);
     }
 

@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "Up_Api", version = "2.0", description = "Uma lista dos comandos da api. <br> " +
-		"alguns links como atualizar, login e cadastrar precisão ser enviados por objetos como o exmplo mostrado. <br> " +
-		"preste atenção nas urls e tipos de requisição."))
+		"Alguns links como atualizar, login e cadastrar precisão ser enviados por objetos como o exmplo mostrado. <br> " +
+		"Preste atenção nas urls e tipos de requisição."))
 public class ApiProdutoApplication {
 
 	public static void main(String[] args) {

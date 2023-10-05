@@ -33,9 +33,9 @@ public class SolicitacoesController {
             tags = {"Solicitações", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public List<Solicitacoes> buscarSolicitacoes(){
 
@@ -50,9 +50,9 @@ public class SolicitacoesController {
             tags = {"Solicitações", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> buscarSolicitacoesPorId(@PathVariable("id") Long id ){
 
@@ -68,10 +68,10 @@ public class SolicitacoesController {
             tags = {"Solicitações", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> cadastrarSolicitacao(@RequestBody Solicitacoes solicitacoes){
+    public ResponseEntity<?> cadastrarSolicitacao(@Parameter(hidden = true) @RequestBody Solicitacoes solicitacoes){
 
         return solicitacoesService.cadastar(solicitacoes);
 
@@ -85,12 +85,12 @@ public class SolicitacoesController {
             tags = {"Solicitações", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Object")
-    public ResponseEntity<?> atualizarSolicitacao(@RequestBody Solicitacoes solicitacoes){
+    public ResponseEntity<?> atualizarSolicitacao(@Parameter(hidden = true) @RequestBody Solicitacoes solicitacoes){
 
         return solicitacoesService.atualizar(solicitacoes);
 
@@ -103,11 +103,11 @@ public class SolicitacoesController {
             tags = {"Solicitações", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> deletarSolicitacao(@RequestBody Solicitacoes solicitacoes){
+    public ResponseEntity<?> deletarSolicitacao(@Parameter(hidden = true) @RequestBody Solicitacoes solicitacoes){
 
         return solicitacoesService.deletar(solicitacoes);
 

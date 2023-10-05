@@ -45,8 +45,8 @@ public class UsuarioController {
             tags = {"Usuario", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public List<Usuario> buscarUsuarios() {
 
@@ -60,9 +60,9 @@ public class UsuarioController {
             tags = {"Usuario", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> buscarUsuarioPorId(@PathVariable("id") Long id) {
 
@@ -76,11 +76,11 @@ public class UsuarioController {
             tags = {"Usuario", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             //@ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> cadastrarUsuario(@Parameter(hidden = true) @RequestBody Usuario usuario) {
 
         return usuarioServices.cadastrar(usuario);
 
@@ -94,12 +94,12 @@ public class UsuarioController {
             tags = {"Usuario", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Object")
-    public ResponseEntity<?> atualizarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<?> atualizarUsuario(@Parameter(hidden = true) @RequestBody Usuario usuario){
 
         return usuarioServices.atualizar(usuario);
 
@@ -112,9 +112,9 @@ public class UsuarioController {
             tags = {"Usuario", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> deletarUsuario(@PathVariable("id") Long id){
 
@@ -129,12 +129,12 @@ public class UsuarioController {
             tags = {"Usuario", "Post"}
     )
     @ApiResponses({ //Login bem sucedido
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Object")
-    public ResponseEntity<?> login(@RequestBody Usuario usuario){
+    public ResponseEntity<?> login(@Parameter(hidden = true) @RequestBody Usuario usuario){
         var usernamePassword = new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateTokenUser((Usuario) auth.getPrincipal());

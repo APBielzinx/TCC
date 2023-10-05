@@ -35,9 +35,9 @@ public class LazerController {
             tags = {"Areas de lazer", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public List<Lazer> buscarParque() {
         return  lazerService.buscarParque();
@@ -50,9 +50,9 @@ public class LazerController {
             tags = {"Areas de lazer", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public List<Lazer> buscarLazer() { return  lazerService.buscarLazer();}
     @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
@@ -62,9 +62,9 @@ public class LazerController {
             tags = {"Areas de lazer", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public List<Lazer> buscarTudo() { return lazerService.buscarTudo();}
 
@@ -75,9 +75,9 @@ public class LazerController {
             tags = {"Areas de lazer", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> BuscarPorId(@PathVariable ("id")Long id){
         return lazerService.BuscarPorId(id);
@@ -87,15 +87,15 @@ public class LazerController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastrar novas areas de lazer",
-            description = "exemplo: { <br> 'nome': '{nomeLazer}',<br> 'descricao': '{descLazer}',<br> 'endereco': '{endLazer}',<br> 'latitude': '{latLazer}',<br> 'categoria': '{catLazer}',<br> 'longetude': '{lonLazer}',<br> 'imagem': '{imgLazer}',<br> 'administrador': '{emailAdm}'",
+            description = "exemplo: { <br> 'nome': '{nomeLazer}',<br> 'descricao': '{descLazer}',<br> 'endereco': '{endLazer}',<br> 'latitude': '{latLazer}',<br> 'categoria': '{catLazer}',<br> 'longetude': '{lonLazer}',<br> 'imagem': '{imgLazer}',<br> 'administrador': '{emailAdm}' <br> }",
             tags = {"Areas de lazer", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> Cadastrar(@RequestBody Lazer lazer){
+    public ResponseEntity<?> Cadastrar(@Parameter(hidden = true) @RequestBody Lazer lazer){
         return lazerService.Cadastrar(lazer);
     }
 
@@ -104,16 +104,16 @@ public class LazerController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualizar areas de lazer existentes",
-            description = "exemplo: { <br> 'nome': '{nomeLazer}',<br> 'descricao': '{descLazer}',<br> 'endereco': '{endLazer}',<br> 'latitude': '{latLazer}',<br> 'categoria': '{catLazer}',<br> 'longetude': '{lonLazer}',<br> 'imagem': '{imgLazer}',<br> 'administrador': '{emailAdm}'",
+            description = "exemplo: { <br> 'nome': '{nomeLazer}',<br> 'descricao': '{descLazer}',<br> 'endereco': '{endLazer}',<br> 'latitude': '{latLazer}',<br> 'categoria': '{catLazer}',<br> 'longetude': '{lonLazer}',<br> 'imagem': '{imgLazer}',<br> 'administrador': '{emailAdm}' <br> }",
             tags = {"Areas de lazer", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Object")
-    public ResponseEntity<?> AtualizarLazer (@RequestBody Lazer lazer){
+    public ResponseEntity<?> AtualizarLazer (@Parameter(hidden = true) @RequestBody Lazer lazer){
         return lazerService.AtualizarLazer(lazer);
     }
 
@@ -124,9 +124,9 @@ public class LazerController {
             tags = {"Areas de lazer", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Lazer.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> ExcluirLazer(@PathVariable("id") Long id){
 

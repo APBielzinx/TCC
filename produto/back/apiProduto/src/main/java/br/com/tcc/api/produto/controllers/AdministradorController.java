@@ -6,6 +6,7 @@ import br.com.tcc.api.produto.model.UserRole;
 import br.com.tcc.api.produto.repository.LazerRepository;
 import br.com.tcc.api.produto.security.TokenService;
 import br.com.tcc.api.produto.services.AdministradorService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -47,9 +48,9 @@ public class AdministradorController {
             tags = {"Administrador", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     public List<Administrador> buscarTodos(){
         return administradorService.buscarAdministrador();
@@ -61,12 +62,12 @@ public class AdministradorController {
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Objeto (em lista json)")
-    @Schema ()
-    public ResponseEntity<?> cadastrarAdministrador(@RequestBody Administrador administrador) {
+    @JsonIgnore
+    public ResponseEntity<?> cadastrarAdministrador(@Parameter(hidden = true) @RequestBody Administrador administrador) {
         return administradorService.cadastrar(administrador);
 
     }
@@ -79,12 +80,12 @@ public class AdministradorController {
             tags = {"Administrador", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Objeto (em lista json)")
-    public ResponseEntity<?> atualizarAdministrador(@RequestBody Administrador administrador){
+    public ResponseEntity<?> atualizarAdministrador(@Parameter(hidden = true) @RequestBody Administrador administrador){
 
         return administradorService.atualizar(administrador);
 
@@ -97,12 +98,12 @@ public class AdministradorController {
             tags = {"Administrador", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Email")
-    public ResponseEntity<?> deletarAdministrador(@RequestBody String email){
+    public ResponseEntity<?> deletarAdministrador(@Parameter(hidden = true) @RequestBody String email){
         return administradorService.deletar(email);
     }
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -112,12 +113,12 @@ public class AdministradorController {
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Objeto (em lista json)")
-    public ResponseEntity<?> login(@RequestBody Administrador administrador){
+    public ResponseEntity<?> login(@Parameter(hidden = true) @RequestBody Administrador administrador){
         System.out.println(administrador);
         var usernamePassword = new UsernamePasswordAuthenticationToken(administrador.getEmail(), administrador.getSenha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
