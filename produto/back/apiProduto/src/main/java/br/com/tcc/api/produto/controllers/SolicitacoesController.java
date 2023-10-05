@@ -33,9 +33,9 @@ public class SolicitacoesController {
             tags = {"Solicitações", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public List<Solicitacoes> buscarSolicitacoes(){
 
@@ -46,13 +46,13 @@ public class SolicitacoesController {
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Buscar solicitações por Email",
-            description = "exemplo: { \n 'id':'{SolId}' \n } ",
+            description = "exemplo: { <br> 'id':'{SolId}' <br> } ",
             tags = {"Solicitações", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> buscarSolicitacoesPorId(@PathVariable("id") Long id ){
 
@@ -64,12 +64,12 @@ public class SolicitacoesController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastra uma solicitação nova",
-            description = "exemplo: { \n 'email':'{SolEmail}', \n 'senha':'{SolSenha}' \n }  ",
+            description = "exemplo: { <br> 'email':'{SolEmail}', <br> 'senha':'{SolSenha}' <br> }  ",
             tags = {"Solicitações", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> cadastrarSolicitacao(@RequestBody Solicitacoes solicitacoes){
 
@@ -81,13 +81,13 @@ public class SolicitacoesController {
     @PutMapping(value = "/{solicitacao}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza uma solicitação já existente",
-            description = "exemplo: { \n 'email':'{nSolEmail}', \n 'senha':'{nSolSenha}' \n } ",
+            description = "exemplo: { <br> 'email':'{nSolEmail}', <br> 'senha':'{nSolSenha}' <br> } ",
             tags = {"Solicitações", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Object")
     public ResponseEntity<?> atualizarSolicitacao(@RequestBody Solicitacoes solicitacoes){
@@ -103,9 +103,9 @@ public class SolicitacoesController {
             tags = {"Solicitações", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Solicitacoes.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> deletarSolicitacao(@RequestBody Solicitacoes solicitacoes){
 

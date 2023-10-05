@@ -47,9 +47,9 @@ public class AdministradorController {
             tags = {"Administrador", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public List<Administrador> buscarTodos(){
         return administradorService.buscarAdministrador();
@@ -57,12 +57,12 @@ public class AdministradorController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastra um administrador novo",
-            description = "exemplo: { \n 'email': '{emailAdm}',\n 'senha': '{senhaAdm}' \n }",
+            description = "exemplo: { <br> 'email': '{emailAdm}',<br> 'senha': '{senhaAdm}' <br> }",
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Objeto (em lista json)")
     @Schema ()
@@ -75,13 +75,13 @@ public class AdministradorController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza um administrador já existente",
-            description = "exemplo: { \n 'email': '{emailAdm}',\n 'senha': '{senhaAdm}' \n } (necessita estar logado)",
+            description = "exemplo: { <br> 'email': '{emailAdm}',<br> 'senha': '{senhaAdm}' <br> } (necessita estar logado)",
             tags = {"Administrador", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Objeto (em lista json)")
     public ResponseEntity<?> atualizarAdministrador(@RequestBody Administrador administrador){
@@ -93,13 +93,13 @@ public class AdministradorController {
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Deleta um administrador já existente",
-            description = "exemplo: { \n 'email':'{emailAdm}' \n }'",
+            description = "exemplo: { <br> 'email':'{emailAdm}' <br> }'",
             tags = {"Administrador", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Email")
     public ResponseEntity<?> deletarAdministrador(@RequestBody String email){
@@ -108,13 +108,13 @@ public class AdministradorController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um administrador já existente",
-            description = "exemplo: { \n 'email': 'emailAdm',\n 'senha': 'senhaAdm' \n } (necessita do token de login)",
+            description = "exemplo: { <br> 'email': 'emailAdm',<br> 'senha': 'senhaAdm' <br> } (necessita do token de login)",
             tags = {"Administrador", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Objeto (em lista json)")
     public ResponseEntity<?> login(@RequestBody Administrador administrador){

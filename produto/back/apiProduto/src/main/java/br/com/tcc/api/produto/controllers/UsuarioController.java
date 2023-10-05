@@ -45,8 +45,8 @@ public class UsuarioController {
             tags = {"Usuario", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public List<Usuario> buscarUsuarios() {
 
@@ -60,9 +60,9 @@ public class UsuarioController {
             tags = {"Usuario", "Get"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> buscarUsuarioPorId(@PathVariable("id") Long id) {
 
@@ -72,13 +72,13 @@ public class UsuarioController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastrar um usuario novo",
-            description = "exemplo: { \n 'email':'{usrEmail}', \n 'senha':'{usrSenha}' \n }",
+            description = "exemplo: { <br> 'email':'{usrEmail}', <br> 'senha':'{usrSenha}' <br> }",
             tags = {"Usuario", "Post"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             //@ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
 
@@ -90,13 +90,13 @@ public class UsuarioController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualizar um usuario existente",
-            description = "exemplo: { \n 'email':'{usrEmail}', \n 'senha':'{usrSenha}' \n }",
+            description = "exemplo: { <br> 'email':'{usrEmail}', <br> 'senha':'{usrSenha}' <br> }",
             tags = {"Usuario", "Put"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Object")
     public ResponseEntity<?> atualizarUsuario(@RequestBody Usuario usuario){
@@ -112,9 +112,9 @@ public class UsuarioController {
             tags = {"Usuario", "Delete"}
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> deletarUsuario(@PathVariable("id") Long id){
 
@@ -125,13 +125,13 @@ public class UsuarioController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um usuario existente",
-            description = "exemplo: { \n 'email':'{usrEmail}', \n 'senha':'{usrSenha}' \n } (necessita do token do usuario)",
+            description = "exemplo: { <br> 'email':'{usrEmail}', <br> 'senha':'{usrSenha}' <br> } (necessita do token do usuario)",
             tags = {"Usuario", "Post"}
     )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
+    @ApiResponses({ //Login bem sucedido
+            @ApiResponse(responseCode = "200", description = "", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "", content = { @Content(schema = @Schema()) })
     })
     @Parameter(name = "Object")
     public ResponseEntity<?> login(@RequestBody Usuario usuario){
