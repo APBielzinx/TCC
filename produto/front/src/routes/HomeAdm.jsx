@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import { EditIcon, DeleteIcon, ChatIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Box as ChakraBox,
@@ -36,6 +37,7 @@ import Usuario from "../components/menu/opcoes/Usuario";
 import Solicitacao from "../components/menu/opcoes/Solicitacao";
 import { extendTheme } from "@chakra-ui/react";
 import "../css/HomeAdm.css";
+import { Navigate } from "react-router-dom";
 
 function HomeAdm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -309,6 +311,18 @@ function HomeAdm() {
     }
   }
 
+  const navigate = useNavigate();
+
+  const chat = () => {
+    console.log("amem")
+    navigate("/chat")
+  }
+  
+  const voltartelainicial = () => {
+    navigate("/")
+  }
+
+
   return (
     <>
       <ChakraProvider>
@@ -406,7 +420,7 @@ function HomeAdm() {
               )}
 
               {/* Opções do Menu Lateral */}
-              <button
+              <button className="botoessuperiores"
                 onClick={() => {
                   setShowParque(true);
                   setShowUsuario(false);
@@ -415,7 +429,7 @@ function HomeAdm() {
               >
                 Parque
               </button>
-              <button
+              <button className="botoessuperiores"
                 onClick={() => {
                   setShowParque(false);
                   setShowUsuario(true);
@@ -424,7 +438,7 @@ function HomeAdm() {
               >
                 Usuário
               </button>
-              <button
+              <button className="botoessuperiores"
                 onClick={() => {
                   setShowParque(false);
                   setShowUsuario(false);
@@ -435,10 +449,12 @@ function HomeAdm() {
               </button>
 
               {/* Opções Adicionais do Menu Lateral (em baixo) */}
-              <button>Deslogar</button>
-              <Flex align="center">
+              <Flex className="botoesInferiores">
+                <button>Deslogar</button>
+                <button onClick={() => chat()}>
                 <ChatIcon mr="2" />
-                <button>Chat</button>
+                  Chat
+                </button>
               </Flex>
             </Box>
 

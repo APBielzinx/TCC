@@ -13,7 +13,7 @@ import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 function Usuario({ data, handleEditUsuario, handleDeleteUsuario }) {
   return (
     <>
-      <Heading className="heading">Usuário</Heading>
+      <Heading className="headingtela">Usuário</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">
           <Thead>

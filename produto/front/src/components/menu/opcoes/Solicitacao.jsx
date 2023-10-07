@@ -14,7 +14,7 @@ import "../../../css/HomeAdm.css"
 function Solicitacao({ data, handleEditSolicitacao, handleDeleteSolicitacao }) {
   return (
     <>
-      <Heading className="heading">Solicitação</Heading>
+      <Heading className="headingtela">Solicitação</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">
           <Thead>
