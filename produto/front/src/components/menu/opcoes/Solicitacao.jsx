@@ -9,6 +9,7 @@ import {
   Td,
 } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import "../../../css/HomeAdm.css"
 
 function Solicitacao({ data, handleEditSolicitacao, handleDeleteSolicitacao }) {
   return (
