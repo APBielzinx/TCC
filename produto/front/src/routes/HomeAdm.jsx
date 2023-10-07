@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { EditIcon, DeleteIcon, ChatIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Box as ChakraBox,
@@ -314,14 +314,21 @@ function HomeAdm() {
   const navigate = useNavigate();
 
   const chat = () => {
-    console.log("amem")
-    navigate("/chat")
-  }
-  
-  const voltartelainicial = () => {
-    navigate("/")
-  }
+    console.log("amem");
+    navigate("/chat");
+  };
 
+  const voltartelainicial = () => {
+    // Redirecione para a tela inicial
+    window.location.href = "http://localhost:5173/";
+  };
+
+  const handleLogout = () => {
+    // Lógica para fazer logout e redirecionar para a tela de login
+    // Por exemplo, limpar o localStorage e redirecionar para a tela de login
+    localStorage.removeItem("administrador");
+    voltartelainicial(); // Redirecione para a tela inicial
+  };
 
   return (
     <>
@@ -420,7 +427,8 @@ function HomeAdm() {
               )}
 
               {/* Opções do Menu Lateral */}
-              <button className="botoessuperiores"
+              <button
+                className="botoessuperiores"
                 onClick={() => {
                   setShowParque(true);
                   setShowUsuario(false);
@@ -429,7 +437,8 @@ function HomeAdm() {
               >
                 Parque
               </button>
-              <button className="botoessuperiores"
+              <button
+                className="botoessuperiores"
                 onClick={() => {
                   setShowParque(false);
                   setShowUsuario(true);
@@ -438,7 +447,8 @@ function HomeAdm() {
               >
                 Usuário
               </button>
-              <button className="botoessuperiores"
+              <button
+                className="botoessuperiores"
                 onClick={() => {
                   setShowParque(false);
                   setShowUsuario(false);
@@ -450,9 +460,9 @@ function HomeAdm() {
 
               {/* Opções Adicionais do Menu Lateral (em baixo) */}
               <Flex className="botoesInferiores">
-                <button>Deslogar</button>
+                <button onClick={handleLogout}>Deslogar</button>
                 <button onClick={() => chat()}>
-                <ChatIcon mr="2" />
+                  <ChatIcon mr="2" />
                   Chat
                 </button>
               </Flex>
