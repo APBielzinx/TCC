@@ -9,12 +9,10 @@ import {
   Td,
 } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-import "../../../css/HomeAdm.css"
 
 function Usuario({ data, handleEditUsuario, handleDeleteUsuario }) {
   return (
     <>
-    <div className="content">
       <Heading className="heading">Usuário</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">
@@ -57,7 +55,6 @@ function Usuario({ data, handleEditUsuario, handleDeleteUsuario }) {
           </Tbody>
         </Table>
       </div>   
-    </div>
     </>
   );
 }
