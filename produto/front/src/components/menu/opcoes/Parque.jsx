@@ -17,6 +17,7 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
   const [dados, setDados] = useState([]);
 
   var administrador = JSON.parse(localStorage.getItem("administrador"));
+  console.log(administrador)
 
   async function buscarParques() {
     try {
