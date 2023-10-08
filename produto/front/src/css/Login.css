@@ -44,6 +44,58 @@ button {
     cursor: pointer;
     color: white;
   }
+  /*Coisa adicional da modal SolicitarLogin COMEÇO  */
+  .EXPLICACAO_STYLE{
+    color: white ;
+    margin-top: 10px;
+  }
+  .CENTER_BUTTON_STYLE {
+    display: flex;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    background-color: #fff;
+    color: black;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .AVISO_STYLE {
+    color: red; /* Define a cor da mensagem de aviso, você pode ajustar conforme necessário */
+    margin-top: 5px; /* Adicione margem superior conforme necessário */
+  }
+  .ICON_STYLE {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1; /* Um valor maior para que fique na frente dos inputs */
+    color: gray;
+  }
+  .grey-text {
+    color: grey; /* Defina a cor cinza desejada aqui */
+  }
+  .BUTTON_STYLE{
+    display: flex;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    background-color: #ee0000;
+    color: black;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto; /* Isso move o botão para a direita */
+    margin-right: auto;
+  }
+  
+  
+ /* adicional da modal SolicitarLogin FIM*/
+  
   
   /* Estilos relacionados à parte esquerda do modal */
   .PARTE_ESQUERDA_STYLE {

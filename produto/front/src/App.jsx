@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from './img/logoLinkedParkSemFundo.png';
 import Login from './routes/Login';
 
@@ -22,10 +22,10 @@ function App() {
           <h1 className='slogan'><strong> O SISTEMA</strong></h1>
           <h1 className='slogan2'><strong>VINCULADO À</strong></h1>
           <h1 className='slogan3'><strong>VOCÊ</strong></h1>
-          <Login isOpen={openLogin} setCloseLogin={() => setOpenLogin(!openLogin)} />
           <button onClick={() => setOpenLogin(true)} className="start-button">
             <h1 className="fonteBotao"><strong>FAZER LOGIN</strong></h1>
           </button>
+          {openLogin && <Login isOpen={openLogin} setCloseLogin={() => setOpenLogin(false)} />}
         </div>
         <div className="right-content">
           <img src={Logo} alt="Logo da empresa" />

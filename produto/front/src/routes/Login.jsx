@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import Logo from "../img/logoLinkedParkSemFundo.png";
 import { FaUser, FaLock, FaTimes } from 'react-icons/fa';
 import '../css/Login.css'; // Importe o arquivo CSS separado
+import ModalSolicitar from './SolicitarLogin';
 
 export default function Login({ isOpen, setCloseLogin }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,6 +11,7 @@ export default function Login({ isOpen, setCloseLogin }) {
     username: '',
     password: '',
   });
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(true);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -67,71 +69,100 @@ export default function Login({ isOpen, setCloseLogin }) {
     document.title = 'Linked Park';
   }, []);
 
-  if (isOpen) {
-    return (
-      <div className="BACKGROUND_STYLE">
-        <div className="MODAL_STYLE">
-          <FaTimes className="CLOSE_ICON_STYLE" onClick={setCloseLogin} />
-          <div style={{ display: 'flex' }}>
-            <div className="PARTE_ESQUERDA_STYLE">
-              <p className="TEXTO_STYLE">Bem-vindo</p>
-              <img
-                src={Logo}
-                className="IMG_STYLE"
-                alt="logo do app"
-                title="logo do app"
-              />
-              <p className="TEXTO2_STYLE">LINKED PARK</p>
-            </div>
-            <div className="PARTE_DIREITA_STYLE">
-              <p className="TEXTO3_STYLE">LOGIN</p>
-              <p className="TEXTO_STYLE">ㅤㅤㅤ</p>
-              <div className="INPUT_CONTAINER_STYLE">
-                <FaUser className="INPUT_ICON_STYLE" />
-                <input
-                  className="INPUT_STYLE"
-                  type="text"
-                  placeholder="Usuário"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="INPUT_CONTAINER_STYLE">
-                <FaLock className="INPUT_ICON_STYLE" />
-                <input
-                  className="INPUT_STYLE"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Senha"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                />
-                <button
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    right: '5px',
-                    transform: 'translateY(-50%)',
-                    background: 'transparent',
-                    border: 'none',
-                    color: 'gray',
-                    cursor: 'pointer',
-                  }}
-                  className="SHOW_PASSWORD_BUTTON_STYLE"
-                  onClick={toggleShowPassword}
-                >
-                {showPassword ? '◠ Ocultar' : ' ⦾ Mostrar'}
-                </button>
-              </div>
-              <button className="BUTTON_STYLE" onClick={() => login(formData)}>
-                ENTRAR
-              </button>
-            </div>
-          </div>
-          <div className="MODAL_BACKGROUND_STYLE"></div>
-        </div>
-      </div>
-    );
+  const openSolicitarModal = () => {
+    setIsLoginModalOpen(false);
   }
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  }
+
+  return (
+    <div>
+      {isOpen && (
+        <div className="BACKGROUND_STYLE">
+          {isLoginModalOpen && (
+            <div className="MODAL_STYLE">
+              <FaTimes className="CLOSE_ICON_STYLE" onClick={setCloseLogin} />
+              <div style={{ display: 'flex' }}>
+                <div className="PARTE_ESQUERDA_STYLE">
+                  <p className="TEXTO_STYLE"> Bem-vindo Novamente! </p>
+      
+                  <img
+                    src={Logo}
+                    className="IMG_STYLE"
+                    alt="logo do app"
+                    title="logo do app"
+                  />
+                  <p className="TEXTO2_STYLE">LINKED PARK</p>
+                </div>
+                <div className="PARTE_DIREITA_STYLE">
+                  <p className="TEXTO3_STYLE">LOGIN</p>
+                  <p className="TEXTO_STYLE">ㅤㅤㅤ</p>
+                  <div className="INPUT_CONTAINER_STYLE">
+                    <FaUser className="INPUT_ICON_STYLE" />
+                    <input
+                      className="INPUT_STYLE"
+                      type="text"
+                      placeholder="Usuário"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="INPUT_CONTAINER_STYLE">
+                    <FaLock className="INPUT_ICON_STYLE" />
+                    <input
+                      className="INPUT_STYLE"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Senha"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                    />
+                    <button
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        right: '5px',
+                        transform: 'translateY(-50%)',
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'gray',
+                        cursor: 'pointer',
+                      }}
+                      className="SHOW_PASSWORD_BUTTON_STYLE"
+                      onClick={toggleShowPassword}
+                    >
+                    {showPassword ? '◠ Ocultar' : ' ⦾ Mostrar'}
+                    </button>
+                  </div>
+                  <button className="BUTTON_STYLE" onClick={() => login(formData)}>
+                    ENTRAR
+                  </button>
+                  <p style={{ color: 'white', marginTop: '10px' }}>
+                    Não tem login ?
+                    <span
+                      style={{
+                        color: '#00BFFF',
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                      }}
+                      onClick={openSolicitarModal}
+                    >
+                     Solicite o seu
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div className="MODAL_BACKGROUND_STYLE"></div>
+            </div>
+          )}
+          {!isLoginModalOpen && (
+            <ModalSolicitar isOpen={!isLoginModalOpen} setCloseModal={openLoginModal} />
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
