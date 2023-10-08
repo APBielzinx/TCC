@@ -33,7 +33,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
     if (!Object.keys(dataEdit).length) {
       // Se não houver dados de edição, calcula o próximo ID sequencial
       const nextId = data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1;
-      setId(nextId.toString());
+      getId(nextId.toString());
     }
   }, [data, dataEdit]);
 
