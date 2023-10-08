@@ -204,15 +204,15 @@
 }
 
 .botaoNovoCadastro {
-  background-color: #00563F;
+  background-color: #02241b;
   color: #fff;
   border: none;
   padding: 5px 5px;
   cursor: pointer;
   position: absolute;
   top: 0;
-  margin-left: 700px;
-  margin-top: 5px;
+  margin-left: 900px;
+  margin-top: 50px;
 }
 
 .botaoNovoCadastro:hover {

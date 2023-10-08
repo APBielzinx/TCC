@@ -18,15 +18,15 @@ import {
 import { useState, useEffect } from "react";
 
 const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
-  const [id, setId] = useState("");
-  const [name, setName] = useState(dataEdit.name || "");
-  const [description, setDescription] = useState(dataEdit.description || "");
-  const [address, setAddress] = useState(dataEdit.address || "");
+  const [id, getId] = useState(dataEdit.id || "");
+  const [nome, setNome] = useState(dataEdit.nome || "");
+  const [descricao, setDescricao] = useState(dataEdit.descricao || "");
+  const [endereco, setEndereco] = useState(dataEdit.endereco || "");
   const [latitude, setLatitude] = useState(dataEdit.latitude || "");
-  const [longitude, setLongitude] = useState(dataEdit.longitude || "");
+  const [longetude, setLongitude] = useState(dataEdit.longetude || "");
   const [categoria, setCategoria] = useState(dataEdit.categoria || "");
   const [admin, setAdmin] = useState(dataEdit.admin || "Não");
-  const [imageUrl, setImageUrl] = useState(dataEdit.image || "");
+  const [image, setImage] = useState(dataEdit.image || "");
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
 
 
   async function handleSave(){
-    if (!name || !description || !address || !latitude || !longitude|| !categoria || !selectedImage) return;
+    if (!id || !nome || !descricao || !endereco || !latitude || !longetude|| !categoria || !selectedImage) return;
       try {
         const token = await administrador.token;
   
@@ -68,11 +68,12 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
               method: "POST",
               headers: headers,
               body: JSON.stringify({
-                "nome": name,
-                "descricao": description,
-                "endereco": address,
+                "id": id,
+                "nome": nome,
+                "descricao": descricao,
+                "endereco": endereco,
                 "latitude": latitude,
-                "longetude": longitude,
+                "longetude": longetude,
               
                 "categoria": categoria,
                 "imagem": "adawsdasd",
@@ -110,29 +111,32 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
             <FormControl display="flex" flexDir="column" gap={4}>
               <Box>
                 <FormLabel>ID</FormLabel>
-                <Input type="text" value={id} isReadOnly />
+                <Input type="text" 
+                value={id} isReadOnly 
+                onChange={(e) => getId(e.target.value)} />
+
               </Box>
               <Box>
                 <FormLabel>Nome</FormLabel>
                 <Input
                   type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                 />
               </Box>
               <Box>
                 <FormLabel>Descrição</FormLabel>
                 <Textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  value={descricao}
+                  onChange={(e) => setDescricao(e.target.value)}
                 />
               </Box>
               <Box>
                 <FormLabel>Endereço</FormLabel>
                 <Input
                   type="text"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  value={endereco}
+                  onChange={(e) => setEndereco(e.target.value)}
                 />
               </Box>
               <Box>
@@ -147,7 +151,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
                 <FormLabel>Longitude</FormLabel>
                 <Input
                   type="text"
-                  value={longitude}
+                  value={longetude}
                   onChange={(e) => setLongitude(e.target.value)}
                 />
               </Box>

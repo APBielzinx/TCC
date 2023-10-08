@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import "../../../css/HomeAdm.css"
+import swal from "sweetalert"
 
 
 function Parque({ data, handleEditParque, handleDeleteParque }) {
@@ -55,33 +56,50 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
  
 
   async function handleExcluirParque(id) {
-    console.log("id"+id)
-    try {
-      const token = await administrador.token;
+    swal({
+      text: "Tem certeza que quer excluir?",
+      icon: "warning",
+      buttons: ["Não", "Sim"],
+    }).then(async (resposta) => {
+      if (resposta) {
+        try {
+          const token = await administrador.token;
 
-      if (token) {
-        const headers = {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${token}`,
-        };
+          if (token) {
+            const headers = {
+              "Content-type": "application/json; charset=UTF-8",
+              Authorization: `Bearer ${token}`,
+            };
 
-        const response = await fetch(
-          `https://tcc-production-e100.up.railway.app/api/lazer/${id}`,
-          {
-            method: "DELETE",
-            headers: headers,
+            const response = await fetch(
+              `https://tcc-production-e100.up.railway.app/api/lazer/${id}`,
+              {
+                method: "DELETE",
+                headers: headers,
+              }
+            );
+
+            if (response.status === 204) {
+              swal({
+                text: "Excluído com sucesso",
+                icon: "success",
+                button: "Ok"
+              });
+            } else {
+              console.error("Erro na exclusão do parque:", response.status);
+            }
           }
-        );
-
-        if (response.status === 204) {
-          console.log("Usuário removido com sucesso!");
-        } else {
-          console.error("Erro na exclusão do usuário:", response.status);
+        } catch (error) {
+          swal({
+            text: "Erro na exclusão",
+            icon: "error",
+            button: "Ok"
+          });
         }
       }
-    } catch (error) {
-      console.error("Erro ao excluir o usuário:", error);
-    }
+    });
+    console.log("id"+id)
+    
   }
   return (
     <>
