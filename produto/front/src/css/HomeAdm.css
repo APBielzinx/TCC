@@ -153,10 +153,10 @@
 
 .tamanhoTabela {
   max-height: 600px;
+  flex-grow: 1;
   overflow-y: auto;
   position: absolute;
   top: 70px;
-  margin-left: 400px;
   margin-top: 50px;
   width: 70%;
 }
