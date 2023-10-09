@@ -41,88 +41,6 @@
   padding: 1rem; /* Espaçamento interno de 1rem em todos os lados */
 }
 
-.botaoLateral {
-  color: #fff;
-  background-color: #00563F;
-  border: 1px solid teal;
-  margin-bottom: 20px;
-  height: 5%;
-  width: 100%;
-}
-
-.botaoLateral:hover {
-  background-color: #011e11;
-  color: #fff;
-}
-
-.botaoLateral:focus {
-  outline: none;
-}
-
-.botaoLateral:active {
-  background-color: #00452E;
-}
-
-.botaoLateral:focus,
-.botaoLateral:active {
-  border: none;
-}
-
-.botaoLateral {
-  justify-content: flex-start;
-  border-width: 1px;
-}
-
-.botaoChat {
-  color: #fff;
-  background-color: #00563F;
-  border: 1px solid teal;
-  height: 5%;
-  width: 100%;
-  margin-top: auto;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.botaoChat:hover {
-  background-color: #011e11;
-  color: white;
-}
-
-.botaoChat:focus {
-  outline: none;
-  border: none;
-}
-
-.botaoChat:active {
-  background-color: #00452E;
-}
-
-.botaoDeslogar {
-  color: #fff;
-  background-color: #00563F;
-  border: 1px solid teal;
-  height: 5%;
-  width: 100%;
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.botaoDeslogar:hover {
-  background-color: #011e11;
-  color: white;
-}
-
-.botaoDeslogar:focus {
-  outline: none;
-  border: none;
-}
-
-.botaoDeslogar:active {
-  background-color: #00452E;
-}
-
 /* Estilos para tela grande (lg e acima) */
 .flexContainer {
   height: 100%;
@@ -134,6 +52,21 @@
   color: white;
   flex-direction: column;
   align-items: center;
+}
+
+.usuarioAdm{
+  color: #FFF;
+  text-align: center;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.fotoUsuarioAdm{
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
 }
 
 .heading {
@@ -149,6 +82,7 @@
   margin-top: 40px;
   margin-left: 500px;
   text-align: center;
+  color: white;
 }
 
 .tamanhoTabela {
@@ -192,16 +126,26 @@
   width: 100%;
   font-size: 25px;
   margin-top: 10px;
-  margin-right: 100px;
 }
 
 .botoessuperiores:hover{
   color: #00ffbf;
 }
 
-.botoesInferiores{
-  font-size: 20px;
-  margin-right: 20px;
+.botaoChat{
+  width: 100%;
+  font-size: 25px;
+  margin-top: 450px;
+}
+
+.botaoDeslogar{
+  width: 100%;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.botaoChat:hover{
+  color: #00ffbf;
 }
 
 .botaoNovoCadastro {

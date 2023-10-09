@@ -274,13 +274,10 @@ function HomeAdm() {
             <Heading as="h1" size="xl">
               Linked Park
             </Heading>
-            <Flex align="center">
-              <Image
-                src="caminho-da-imagem-do-usuario.jpg"
-                alt="Foto do Usuário"
-                boxSize="40px"
-                rounded="full"
-                mr="2"
+            <Flex className="usuarioAdm">
+              <img
+                  className="fotoUsuarioAdm"
+                  src="/assets/my-image.jpg" // Caminho relativo para a imagem
               />
               <Text fontWeight="bold">Nome do Usuário</Text>
             </Flex>
@@ -324,13 +321,18 @@ function HomeAdm() {
               </button>
 
               {/* Opções Adicionais do Menu Lateral (em baixo) */}
-              <Flex className="botoesInferiores">
-                <button onClick={handleLogout}>Deslogar</button>
-                <button onClick={() => chat()}>
+              <button
+              className="botaoChat"
+              onClick={() => chat()}>
                   <ChatIcon mr="2" />
                   Chat
-                </button>
-              </Flex>
+              </button>
+              <button 
+              className="botaoDeslogar"
+              onClick={handleLogout}>Deslogar
+              </button>
+
+
             </Box>
 
             <div>

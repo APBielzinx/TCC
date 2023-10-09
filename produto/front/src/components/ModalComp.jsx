@@ -86,6 +86,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
           } else {
             console.error("Erro ao cadastar parque:", response.status);
           }
+          window.location.reload();
         }
       } catch (error) {
         console.error("Erro ao excluir o usuário:", error);

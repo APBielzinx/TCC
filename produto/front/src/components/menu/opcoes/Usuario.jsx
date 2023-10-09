@@ -116,12 +116,6 @@ function Usuario({ data, handleEditUsuario, handleDeleteUsuario }) {
                   ? "Conta Expirada: Não"
                   : "Conta Expirada: Sim"}
                 <Td p={0}>
-                  <EditIcon
-                    fontSize={20}
-                    onClick={() => handleEditUsuario(usuario)}
-                  />
-                </Td>
-                <Td p={0}>
                   <DeleteIcon
                     fontSize={20}
                     onClick={() => handleDeleteUsuario(usuario.idUsuario)}

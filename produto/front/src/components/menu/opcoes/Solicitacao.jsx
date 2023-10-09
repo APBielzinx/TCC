@@ -117,12 +117,6 @@ function Solicitacao({ data, handleEditSolicitacao, handleDeleteSolicitacao }) {
                 <Td>{parqueId}</Td>
                 <Td>{status}</Td>
                 <Td p={0}>
-                  <EditIcon
-                    fontSize={20}
-                    onClick={() => handleEditSolicitacao(id)}
-                  />
-                </Td>
-                <Td p={0}>
                   <DeleteIcon
                     fontSize={20}
                     onClick={() => handleDeleteSolicitacao(adminEmail)}
