@@ -146,18 +146,19 @@
   font-size: 2rem;
   position: absolute;
   top: 0;
-  margin-left: 700px;
   margin-top: 40px;
+  margin-left: 500px;
   text-align: center;
 }
 
 .tamanhoTabela {
   max-height: 600px;
+  margin-top: 50px;
+  margin-left: 50px;
   flex-grow: 1;
   overflow-y: auto;
   position: absolute;
   top: 70px;
-  margin-top: 50px;
   width: 70%;
 }
 
@@ -211,8 +212,8 @@
   cursor: pointer;
   position: absolute;
   top: 0;
-  margin-left: 900px;
   margin-top: 50px;
+  margin-left: 700px;
 }
 
 .botaoNovoCadastro:hover {

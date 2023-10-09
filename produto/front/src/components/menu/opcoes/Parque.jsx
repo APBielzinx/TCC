@@ -81,7 +81,7 @@ async function handleAddItem(novoItem) {
   onClose();
 }
 
-function Parque({ data, handleEditParque, handleDeleteParque }) {
+function Parque({ data, handleDeleteParque }) {
   const [dataEdit, setDataEdit] = useState({});
   const [dataParque, setDataParque] = useState([]); // Dados do Parque
   const [showParque, setShowParque] = useState(true);
@@ -89,6 +89,12 @@ function Parque({ data, handleEditParque, handleDeleteParque }) {
   const [showSolicitacao, setShowSolicitacao] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [dados, setDados] = useState([]);
+  
+  const handleEditParque = (parque) => {
+    // Abre a modal de edição de parque e passa os dados do parque para a modal
+    onOpen();
+    setDataEdit(parque); // Define os dados do parque que você deseja editar
+  };
 
   var administrador = JSON.parse(localStorage.getItem("administrador"));
   console.log(administrador)

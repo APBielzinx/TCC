@@ -94,49 +94,6 @@ function Usuario({ data, handleEditUsuario, handleDeleteUsuario }) {
 
   return (
     <>
-      {isOpen && (
-                showParque ? (
-                  <ModalComp
-                    isOpen={isOpen}
-                    onClose={onClose}
-                    data={dataParque}
-                    setData={setDataParque}
-                    dataEdit={dataEdit}
-                    setDataEdit={setDataEdit}
-                    handleAddItem={handleAddItem}
-                  />
-                ) : (
-                  showUsuario ? (
-                    <ModalCompUsuario
-                      isOpen={isOpen}
-                      onClose={onClose}
-                      data={dataUsuario}
-                      setData={setDataUsuario}
-                      dataEdit={dataEdit}
-                      setDataEdit={setDataEdit}
-                      handleAddItem={handleAddItem}
-                    />
-                  ) : (
-                    <ModalCompSolicitacao
-                      isOpen={isOpen}
-                      onClose={onClose}
-                      data={dataSolicitacao}
-                      setData={setDataSolicitacao}
-                      dataEdit={dataEdit}
-                      setDataEdit={setDataEdit}
-                      handleAddItem={handleAddItem}
-                    />
-                  )
-                )
-              )}
-      <button
-                className="botaoNovoCadastro"
-                onClick={() => {
-                  onOpen();
-                }}
-              >
-                NOVO CADASTRO
-              </button>
       <Heading className="headingtela">Usuário</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">

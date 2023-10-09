@@ -93,41 +93,6 @@ function Solicitacao({ data, handleEditSolicitacao, handleDeleteSolicitacao }) {
 
   return (
     <>
-          {isOpen && (
-                showParque ? (
-                  <ModalComp
-                    isOpen={isOpen}
-                    onClose={onClose}
-                    data={dataParque}
-                    setData={setDataParque}
-                    dataEdit={dataEdit}
-                    setDataEdit={setDataEdit}
-                    handleAddItem={handleAddItem}
-                  />
-                ) : (
-                  showUsuario ? (
-                    <ModalCompUsuario
-                      isOpen={isOpen}
-                      onClose={onClose}
-                      data={dataUsuario}
-                      setData={setDataUsuario}
-                      dataEdit={dataEdit}
-                      setDataEdit={setDataEdit}
-                      handleAddItem={handleAddItem}
-                    />
-                  ) : (
-                    <ModalCompSolicitacao
-                      isOpen={isOpen}
-                      onClose={onClose}
-                      data={dataSolicitacao}
-                      setData={setDataSolicitacao}
-                      dataEdit={dataEdit}
-                      setDataEdit={setDataEdit}
-                      handleAddItem={handleAddItem}
-                    />
-                  )
-                )
-              )}
       <Heading className="headingtela">Solicitação</Heading>
       <div className="tamanhoTabela">
         <Table className="tabela">
