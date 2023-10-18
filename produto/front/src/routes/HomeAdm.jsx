@@ -271,7 +271,7 @@ function HomeAdm() {
         <Box className="fundo">
           {/* Cabeçalho */}
           <Flex className="header">
-            <Heading as="h1" size="xl">
+            <Heading fontSize="30px" as="h1" size="xl">
               Linked Park
             </Heading>
             <Flex className="usuarioAdm">
