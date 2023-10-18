@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -16,10 +17,12 @@ public class Avaliacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
-    private Long pontuacao;
+    private double pontuacao;
+
     @Column(nullable = false)
-    private LocalDate dataAvaliacao;
+    private Date dataAvaliacao;
 
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)

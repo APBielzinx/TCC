@@ -1,14 +1,14 @@
 package br.com.tcc.api.produto.controllers;
 
 import br.com.tcc.api.produto.model.Favorito;
+import br.com.tcc.api.produto.model.Lazer;
 import br.com.tcc.api.produto.services.FavoritoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -24,19 +24,19 @@ public class FavoritoController {
         return favoritoService.ListarFavorito();
     }
 
-  /*  @GetMapping(value = "/{lazer}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> BuscarPorLazer(@PathVariable ("lazer")String lazer){
-        return favoritoService.BuscarPorLazer(lazer);
+    @GetMapping(value = "/{idUsuario}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> BuscarPorLazer(@PathVariable("idUsuario")long id){
+        return favoritoService.BuscarPorUsuario(id);
     }
-*/
- /*   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> Favoritar (@Parameter(hidden = true) @RequestBody Favorito favorito){
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> Favoritar (@RequestBody Favorito favorito){
         return favoritoService.Favoritar(favorito);
     }
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> RetirarFavorito (@Parameter(hidden = true) @RequestBody Favorito favorito){
+    public ResponseEntity<?> RetirarFavorito (@RequestBody Favorito favorito){
         return favoritoService.RetirarFavorito(favorito);
     }
-*/
+
 }

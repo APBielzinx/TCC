@@ -1,12 +1,14 @@
 package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Avaliacao;
+import br.com.tcc.api.produto.model.Usuario;
 import br.com.tcc.api.produto.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,13 +27,18 @@ public class AvaliacaoService {
     }
 
     public ResponseEntity<?> Avaliar(Avaliacao avaliacao){
-        if (avaliacaoRepository.existsById(avaliacao.getId())){
-            return new ResponseEntity<>("Já existe uma avaliação deste usuario", HttpStatus.BAD_REQUEST);
+        if (avaliacaoRepository.existsByUsuario(avaliacao.getUsuario()) ){
+            var select = avaliacaoRepository.findByUsuario(avaliacao.getUsuario());
+            if (select.getLazer() == avaliacao.getLazer()) {
+                return new ResponseEntity<>("Já existe uma avaliação deste usuario", HttpStatus.BAD_REQUEST);
+            }  else{
+                avaliacao.setDataAvaliacao(new Date());
+                avaliacaoRepository.save(avaliacao);
+                return new ResponseEntity<>("Avaliação foi criada com sucesso", HttpStatus.OK);
+            }
         }
-        else{
-            avaliacaoRepository.save(avaliacao);
-            return new ResponseEntity<>("Avaliação foi criada com sucesso", HttpStatus.OK);
-        }
+        return new ResponseEntity<>("Rodou", HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 
     public ResponseEntity<?> AtualizarAvaliacao(Avaliacao avaliacao){

@@ -15,17 +15,21 @@ public class FavoritoService {
     @Autowired
     FavoritoRepository favoritoRepository;
 
+
+
     public List<Favorito> ListarFavorito(){
         return favoritoRepository.findAll();
     }
 
-   /* public ResponseEntity<?> BuscarPorLazer(String Lazer){
-       var favorito = favoritoRepository.findByLazer(Lazer);
-        return new ResponseEntity<>(favorito, HttpStatus.OK);
-    }*/
+    @Autowired
+    public ResponseEntity<?> BuscarPorUsuario(long favorito){
+        var select =
+       var select1 = favoritoRepository.findByUsuario(favorito.getUsuario());
+        return new ResponseEntity<>(select1, HttpStatus.OK);
+    }
 
-   /* public ResponseEntity<?> Favoritar(Favorito favorito){
-        if (favoritoRepository.existsByLazer(favorito.getLazer().getIdLazer())){
+    public ResponseEntity<?> Favoritar(Favorito favorito){
+        if (favoritoRepository.existsByLazer(favorito.getLazer())){
             return new ResponseEntity<>("Já esta nos seus favoritos", HttpStatus.BAD_REQUEST);
         }
         else{
@@ -43,5 +47,5 @@ public class FavoritoService {
             return new ResponseEntity<>("Não está nos seus favoritos", HttpStatus.BAD_REQUEST);
         }
     }
-*/
+
 }
