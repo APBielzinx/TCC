@@ -292,7 +292,7 @@ function Parque({ data, handleDeleteParque }) {
                 <Td p={0}>
                   <img
                     className="imagemParque"
-                    src={item.image}
+                    src={item.imagem}
                     alt={`Imagem de ${item.name}`}
                   />
                 </Td>

@@ -26,7 +26,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
   const [longetude, setLongitude] = useState(dataEdit.longetude || "");
   const [categoria, setCategoria] = useState(dataEdit.categoria || "");
   const [admin, setAdmin] = useState(dataEdit.admin || "Não");
-  const [image, setImage] = useState(dataEdit.image || "");
+  const [imagem, setImagem] = useState(dataEdit.imagem || "");
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -37,12 +37,12 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
     }
   }, [data, dataEdit]);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const handleImageChange = (item) => {
+    const file = item.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSelectedImage(reader.result);
+        setImagem(item.imagem);
       };
       reader.readAsDataURL(file);
     }
@@ -52,7 +52,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
 
 
   async function handleSave(){
-    if (!id || !nome || !descricao || !endereco || !latitude || !longetude|| !categoria || !selectedImage) return;
+    if (!id || !nome || !descricao || !endereco || !latitude || !longetude|| !categoria || !imagem) return;
       try {
         const token = await administrador.token;
   
@@ -74,9 +74,8 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
                 "endereco": endereco,
                 "latitude": latitude,
                 "longetude": longetude,
-              
                 "categoria": categoria,
-                "imagem": "adawsdasd",
+                "imagem": imagem,
               }),
             }
           );
@@ -186,7 +185,7 @@ const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
                 />
               </Box>
               <Box>
-                {selectedImage && <Image src={selectedImage} maxH="200px" alt="Imagem" />}
+                {selectedImage && <Image src={item.imagem} maxH="200px" alt="Imagem" />}
               </Box>
             </FormControl>
           </ModalBody>
