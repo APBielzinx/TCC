@@ -48,7 +48,7 @@ public class AvaliacaoController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Criar uma avaliação nova",
-            description = "exemplo: { 'pontuacao' : (pont), <br> 'usuario' : {idUsuario : (idUsr)}, <br> 'lazer' : {'idLazer' : (idLazr)}, <br> 'comentario' : (Coment)  }",
+            description = "exemplo: { 'pontuacao' : (pont), <br> 'usuario' : {idUsuario : (idUsr)}, <br> 'lazer' : {'idLazer' : (idLazr)}, <br> 'comentario' : (Coment) <br> }",
             tags = {"Avaliação","Post"}
     )
     @ApiResponses({ //Login bem sucedido
@@ -64,7 +64,7 @@ public class AvaliacaoController {
                 produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualizar uma avaliação",
-            description = "exemplo: { 'pontuacao' : (pont), <br> 'usuario' : {idUsuario : (idUsr)}, <br> 'lazer' : {'idLazer' : (idLazr)}, <br> 'comentario' : (Coment)  }",
+            description = "exemplo: { 'pontuacao' : (pont), <br> 'usuario' : {idUsuario : (idUsr)}, <br> 'lazer' : {'idLazer' : (idLazr)}, <br> 'comentario' : (Coment) <br>  }",
             tags = {"Avaliação","Put"}
     )
     @ApiResponses({ //Login bem sucedido
@@ -79,7 +79,7 @@ public class AvaliacaoController {
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Retirar uma avaliação",
-            description = "exemplo: { 'pontuacao' : (pont), <br> 'usuario' : {idUsuario : (idUsr)}, <br> 'lazer' : {'idLazer' : (idLazr)}, <br> 'comentario' : (Coment)  }",
+            description = "exemplo: { 'pontuacao' : (pont), <br> 'usuario' : {idUsuario : (idUsr)}, <br> 'lazer' : {'idLazer' : (idLazr)}, <br> 'comentario' : (Coment) <br> }",
             tags = {"Avaliação","Delete"}
     )
     @ApiResponses({ //Login bem sucedido
