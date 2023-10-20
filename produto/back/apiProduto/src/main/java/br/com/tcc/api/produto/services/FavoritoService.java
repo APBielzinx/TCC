@@ -3,6 +3,7 @@ package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Favorito;
 import br.com.tcc.api.produto.repository.FavoritoRepository;
+import br.com.tcc.api.produto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import java.util.List;
 public class FavoritoService {
     @Autowired
     FavoritoRepository favoritoRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
 
 
@@ -21,10 +24,10 @@ public class FavoritoService {
         return favoritoRepository.findAll();
     }
 
-    @Autowired
-    public ResponseEntity<?> BuscarPorUsuario(long favorito){
-        var select =
-       var select1 = favoritoRepository.findByUsuario(favorito.getUsuario());
+
+    public ResponseEntity<?> BuscarPorUsuario(long id){
+        var select = usuarioRepository.findByIdUsuario(id);
+        var select1 = favoritoRepository.findByUsuario(select);
         return new ResponseEntity<>(select1, HttpStatus.OK);
     }
 

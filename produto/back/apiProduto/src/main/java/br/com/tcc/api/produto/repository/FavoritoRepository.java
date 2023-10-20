@@ -6,12 +6,14 @@ import br.com.tcc.api.produto.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FavoritoRepository extends JpaRepository<Favorito, Long> {
 
 
-   boolean existsByLazer(Lazer lazer);
+  boolean existsByLazer(Lazer lazer);
 
-    Favorito findByUsuario(Usuario usuario);
+    List<Favorito> findByUsuario(Usuario usuario);
 
 }

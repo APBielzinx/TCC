@@ -21,7 +21,7 @@ public class Favorito {
 
     @ManyToOne
     @JoinColumn(name = "idLazer", nullable = false)
-    private Lazer Lazer;
+    private Lazer lazer;
 
 
 }
