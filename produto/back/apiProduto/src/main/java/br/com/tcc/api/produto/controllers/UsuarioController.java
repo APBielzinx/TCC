@@ -78,7 +78,7 @@ public class UsuarioController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Requisição realizada com sucesso", content = { @Content(schema = @Schema(implementation = Administrador.class), mediaType = "application/json") }),
             //@ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
+            @ApiResponse(responseCode = "500", description = "Email já utilizado", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> cadastrarUsuario(@Parameter(hidden = true) @RequestBody Usuario usuario) {
 
@@ -125,7 +125,7 @@ public class UsuarioController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Login de um usuario existente",
-            description = "exemplo: { <br> 'email':'{usrEmail}', <br> 'senha':'{usrSenha}' <br> } (necessita do token do usuario)",
+            description = "exemplo: { <br> 'email':'{usrEmail}', <br> 'senha':'{usrSenha}' <br> } (Gera um token para ser utilizado em ações do usuario)",
             tags = {"Usuario", "Post"}
     )
     @ApiResponses({ //Login bem sucedido

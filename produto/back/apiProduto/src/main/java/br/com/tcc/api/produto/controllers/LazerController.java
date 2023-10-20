@@ -104,7 +104,7 @@ public class LazerController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualizar areas de lazer existentes",
-            description = "exemplo: { <br> 'nome': '{nomeLazer}',<br> 'descricao': '{descLazer}',<br> 'endereco': '{endLazer}',<br> 'latitude': '{latLazer}',<br> 'categoria': '{catLazer}',<br> 'longetude': '{lonLazer}',<br> 'imagem': '{imgLazer}',<br> 'administrador': '{emailAdm}' <br> }",
+            description = "exemplo: { <br> 'nome': '(nomeLazer)',<br> 'descricao': '(descLazer)',<br> 'endereco': '(endLazer)',<br> 'latitude': '(latLazer)',<br> 'categoria': '(catLazer)',<br> 'longetude': '(lonLazer)',<br> 'imagem': '(imgLazer)',<br> 'administrador': { email : '(emailAdm)'} <br> }",
             tags = {"Areas de lazer", "Put"}
     )
     @ApiResponses({
