@@ -1,11 +1,13 @@
 /* Estilos para tela grande (lg e acima) */
 
 .ChakraProvider {
+  flex: 1;
   overflow-y: auto;
   max-height: none;
 }
 
 .fundo {
+  flex: 1;
   background-color: #C4F0C4;
 }
 
@@ -19,7 +21,7 @@
 
 .boxmenulateral {
   overflow-y: auto;
-  max-height: none;
+  height: none;
   width: 250px;
   background-color: #0D5B38;
   color: white;
@@ -199,87 +201,58 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1920px) {
   /* Aplique estilos para telas menores que 1024px de largura (tela média) */
   
+  .boxmenulateral{
+    width: 15%;
+    height: none;
+  }
 
   .botoessuperiores {
-    font-size: 20px;
+    font-size: 25px;
   }
 
   .botaoChat{
-    margin-top: 150px;
-  }
-
-  .flexContainer {
-    overflow-y: auto;
-    max-width: fit-content;
-    font-size: 14px;
-  }  
-  
-  .headingtela{
-    margin-left: 50px;
-    font-size: 1rem;
-  }
-
-  .tamanhoTabela {
-    margin-left: 50px;
-    width: 700px;
-    table-layout: auto;
-    border-collapse: collapse;
-    height: fit-content;
-  }
-
-  .tabela th, .tabela td {
-    padding: 0.1px; /* Adicione preenchimento para melhor espaçamento */
-    border: 1px solid #ddd; /* Adicione bordas às células */
-    white-space: nowrap; /* Evite quebrar texto em várias linhas */
-    overflow: hidden; /* Oculte o conteúdo que excede a largura da célula */
-    text-overflow: ellipsis; /* Adicione reticências (...) ao texto que é cortado */
-  }
-
-  .tabela {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 926px) {
-  /* Aplique estilos para telas menores que 1024px de largura (tela média) */
-  
-
-  .botoessuperiores {
-    font-size: 12px;
-  }
-
-  .botaoChat{
-    font-size: 12px;
-    margin-top: 150px;
+    margin-top: 600px;
+    font-size: 25px;
   }
 
   .botaoDeslogar{
-    font-size: 12px;
+    font-size: 25px;
   }
 
   .flexContainer {
-    font-size: 14px;
-  }  
-  
-  .headingtela{
-    margin-left: 50px;
-    font-size: 1rem;
-  }
-  
-  .tamanhoTabela {
-    max-height: 500px;
-    margin-left: 100px;
-    width: 55%;
-    height: 55%;
-  }
-
-  .tabela {
     font-size: 12px;
   }
+
+  .usuarioAdm{
+    font-size: 25px;
+  }
+
+  .headingtela{
+    margin-left: 50px;
+    font-size: 10px;
+  }
+
+  .botaoNovoCadastro{
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  .tamanhoTabela {
+    max-height: 1200px;
+    margin-left: 20px;
+    width: fit-content;
+    height: 80%;
+  }
+
+
+  }  .tabela {
+    font-size: 15px;
 }
+
+
 
 @media (max-width: 926px) {
   /* Aplique estilos para telas menores que 1024px de largura (tela média) */

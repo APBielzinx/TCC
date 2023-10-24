@@ -335,7 +335,7 @@ function HomeAdm() {
 
             </Box>
 
-            <div>
+            <div className="conteudo">
             {showParque && (
                 <Parque
                   data={dataParque}
