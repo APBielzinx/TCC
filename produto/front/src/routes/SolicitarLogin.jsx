@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaTimes, FaEnvelope, FaLock, FaTree } from 'react-icons/fa'; // Importe os ícones necessários do FontAwesome
 import Logo from "../img/logoLinkedParkSemFundo.png";
 import '../css/Login.css';
@@ -7,17 +7,68 @@ export default function SolicitarLogin({ isOpen, setCloseModal }) {
   const [formData, setFormData] = useState({
     email: '',
     senha: '',
-    parque: '', 
+    parque: 0, 
   });
-
-  const parques = [
-    'Parque A',
-    'Parque B',
-    'Parque C',
-  ];
 
   const [isIncomplete, setIsIncomplete] = useState(false); // Adicionando estado para controle de campo incompleto
   const [mostrarSenha, setMostrarSenha] = useState(false); // Estado para controlar se a senha deve ser mostrada
+  const [dados, setDados] = useState([]);
+
+  async function buscarParques() {
+    try {
+        const headers = {
+          "Content-type": "application/json; charset=UTF-8",
+        };
+
+        const response = await fetch(
+          "http://localhost:8080/api/lazer",
+          {
+            method: "GET", 
+            headers: headers,
+          }
+        );
+
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log("Dados da resposta: p", data);
+          setDados(data);
+        }
+      
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação:", error);
+    }
+  }
+  useEffect(() => {
+    buscarParques();
+  }, []);
+
+  const Solicitarlogin = (data) => {
+    console.log(data);
+    fetch('http://localhost:8080/api/solicitacoes', {
+      method: 'POST',
+      body: JSON.stringify({
+        "email": data.email,
+        "senha": data.senha,
+        "lazer":  {
+          "idLazer": data.parque
+      }}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    .then(response => {
+      if (response.status === 201) {
+        return true;
+      } else {
+        return false;
+
+      }
+    })
+    .catch(error => {
+      console.error("Erro durante a requisição:", error);
+      alert("Erro");
+    });
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -38,13 +89,13 @@ export default function SolicitarLogin({ isOpen, setCloseModal }) {
       setIsIncomplete(true);
     } else {
       // Aqui você pode adicionar a lógica para lidar com o envio do formulário
-      console.log('Dados do formulário:', formData);
-      // Feche a modal após o envio do formulário
+    console.log('Dados do formulário:', formData);
       setCloseModal();
-      // Exibir o alerta após o envio do formulário
-      if (window.location.href === 'http://localhost:5173/') {
+     
+      if (Solicitarlogin(formData)) {
         alert('ATENÇÃO!\nEsta solicitação é para obter a sua área do administrador. Por favor, cheque seu e-mail e aguarde para ter seu login');
-      }
+      }else{
+        alert('ATENÇÃO!\nA solicitação falhou tente novamente mais tarde');      }
     }
   };
 
@@ -116,9 +167,9 @@ export default function SolicitarLogin({ isOpen, setCloseModal }) {
                       onChange={handleInputChange}
                     >
                       <option value="" disabled>Selecione um parque</option>
-                      {parques.map((parque, index) => (
-                        <option key={index} value={parque}>
-                          {parque}
+                      {dados.map((parque, index) => (
+                        <option key={index} value={parque.idLazer}>
+                          {parque.nome}
                         </option>
                       ))}
                     </select>

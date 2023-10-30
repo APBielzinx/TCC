@@ -45,7 +45,10 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/v3/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/administrador/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/lazer").hasAuthority("ROLE_MANAGER")
-                        .requestMatchers(HttpMethod.GET,"/api/solicitacoes").hasAuthority("ROLE_MANAGER")
+                        .requestMatchers(HttpMethod.GET,"/api/solicitacoes").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/solicitacoes").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/lazer").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
