@@ -41,7 +41,7 @@ public class SolicitacoesService {
     public ResponseEntity<?> cadastar(Solicitacoes solicitacoes){
         if (solicitacoesRepository.existsByEmail(solicitacoes.getEmail())){
 
-            return new ResponseEntity<>("Você já enviou uma solicitação para esse email", HttpStatus.CREATED);
+            return new ResponseEntity<>("Você já enviou uma solicitação para esse email", HttpStatus.BAD_REQUEST);
 
         }else {
             String senhaCriptografada = criptografar.encode(solicitacoes.getSenha());
