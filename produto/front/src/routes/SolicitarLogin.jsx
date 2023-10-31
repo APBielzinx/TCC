@@ -21,7 +21,7 @@ export default function SolicitarLogin({ isOpen, setCloseModal }) {
         };
 
         const response = await fetch(
-          "http://localhost:8080/api/lazer",
+          "https://tcc-production-e100.up.railway.app/api/lazer",
           {
             method: "GET", 
             headers: headers,
@@ -44,7 +44,7 @@ export default function SolicitarLogin({ isOpen, setCloseModal }) {
 
   const Solicitarlogin = (data) => {
     console.log(data);
-    fetch('http://localhost:8080/api/solicitacoes', {
+    fetch('https://tcc-production-e100.up.railway.app/api/solicitacoes', {
       method: 'POST',
       body: JSON.stringify({
         "email": data.email,
