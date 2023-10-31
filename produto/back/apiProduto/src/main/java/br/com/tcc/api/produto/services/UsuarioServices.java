@@ -93,14 +93,12 @@ public class UsuarioServices {
 
         }
     }
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Usuario usuario, String token) {
+
+    public ResponseEntity<?> login(Usuario usuario, String token) {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             var select = usuarioRepository.findByEmail(usuario.getEmail());
             boolean isPasswordMatches = criptografar.matches(usuario.getSenha(), select.getSenha());
-
             if (isPasswordMatches) {
-                select.setIdUsuario(null);
                 LoginResponse response = new LoginResponse(select, token);
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
