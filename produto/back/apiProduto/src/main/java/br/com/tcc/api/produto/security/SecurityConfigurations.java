@@ -48,7 +48,6 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET,"/api/solicitacoes").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/solicitacoes").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/lazer").permitAll()
-
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

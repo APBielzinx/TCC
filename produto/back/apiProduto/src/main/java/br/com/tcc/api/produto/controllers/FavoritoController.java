@@ -56,6 +56,9 @@ public class FavoritoController {
             @ApiResponse(responseCode = "500", description = "Precisa estar logado", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> Favoritar (@RequestBody Favorito favorito){
+
+        System.out.println("oi"+favorito);
+
         return favoritoService.Favoritar(favorito);
     }
 
