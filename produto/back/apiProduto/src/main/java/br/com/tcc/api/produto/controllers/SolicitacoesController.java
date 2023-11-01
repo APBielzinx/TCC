@@ -78,7 +78,7 @@ public class SolicitacoesController {
 
     }
 
-    @PutMapping(value = "/{solicitacao}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Atualiza uma solicitação já existente",
             description = "exemplo: { <br> 'email':'{nSolEmail}', <br> 'senha':'{nSolSenha}' <br> } ",
