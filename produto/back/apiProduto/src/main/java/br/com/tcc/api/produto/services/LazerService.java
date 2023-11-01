@@ -1,8 +1,11 @@
 package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Lazer;
+import br.com.tcc.api.produto.model.Solicitacoes;
 import br.com.tcc.api.produto.repository.AvaliacaoRepository;
+import br.com.tcc.api.produto.repository.FavoritoRepository;
 import br.com.tcc.api.produto.repository.LazerRepository;
+import br.com.tcc.api.produto.repository.SolicitacoesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,12 @@ public class LazerService {
 
     @Autowired
     AvaliacaoRepository avaliacaoRepository;
+
+    @Autowired
+    FavoritoRepository favoritoRepository;
+
+    @Autowired
+    SolicitacoesRepository solicitacoesRepository;
 
     public List<Lazer> buscarTudo() {
         return lazerRepository.findAll();
@@ -51,8 +60,8 @@ public class LazerService {
     }
 
     public ResponseEntity<?> AtualizarLazer(Lazer lazer) {
-        if (lazerRepository.existsByNome(lazer.getNome())) {
-            var select = lazerRepository.findByNome(lazer.getNome());
+        if (lazerRepository.existsByIdLazer(lazer.getIdLazer())) {
+            var select = lazerRepository.findByIdLazer(lazer.getIdLazer());
             select.setNome(lazer.getNome());
             select.setEndereco(lazer.getEndereco());
             select.setImagem(lazer.getImagem());
@@ -60,8 +69,6 @@ public class LazerService {
             select.setLatitude(lazer.getLatitude());
             select.setLongetude(lazer.getLongetude());
             select.setCategoria(lazer.getCategoria());
-
-
             lazerRepository.save(select);
             return new ResponseEntity<>("atualizado com sucesso", HttpStatus.OK);
         } else {
@@ -73,13 +80,26 @@ public class LazerService {
         if (lazerRepository.existsByIdLazer(id)) {
            var lazer = lazerRepository.findByIdLazer(id);
            var avaliacao = avaliacaoRepository.findByLazer(lazer);
-           if (avaliacao != null ){
+           var favorito = favoritoRepository.findByLazer(lazer);
+           var solicitacoes = solicitacoesRepository.findByLazer(lazer);
+           if (avaliacao != null && favorito != null && solicitacoes != null ){
+               avaliacaoRepository.delete(avaliacao);
+               favoritoRepository.delete(favorito);
+               solicitacoesRepository.deleteAllByLazer(lazer);
+               lazerRepository.delete(lazer);
+           }else if (avaliacao != null ){
                avaliacaoRepository.delete(avaliacao);
                lazerRepository.delete(lazer);
-           }else {
+           }else if (favorito != null ){
+               favoritoRepository.delete(favorito);
+               lazerRepository.delete(lazer);
+           }else if(solicitacoes != null ) {
+               solicitacoesRepository.deleteAllByLazer(lazer);
                lazerRepository.delete(lazer);
            }
-
+           else {
+               lazerRepository.delete(lazer);
+           }
 
             return new ResponseEntity<>("deletado com sucesso", HttpStatus.OK);
 

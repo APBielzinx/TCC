@@ -47,4 +47,5 @@ public class Lazer {
     private Avaliacao avaliacao;
 
 
+
 }

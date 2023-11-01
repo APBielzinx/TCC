@@ -44,8 +44,6 @@ public class SolicitacoesService {
             return new ResponseEntity<>("Você já enviou uma solicitação para esse email", HttpStatus.BAD_REQUEST);
 
         }else {
-            String senhaCriptografada = criptografar.encode(solicitacoes.getSenha());
-            solicitacoes.setSenha(senhaCriptografada);
             solicitacoesRepository.save(solicitacoes);
             return new ResponseEntity<>("Cadastrado com sucesso", HttpStatus.CREATED);
         }

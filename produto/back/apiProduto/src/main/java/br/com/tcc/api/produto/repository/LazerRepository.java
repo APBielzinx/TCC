@@ -10,6 +10,8 @@ import java.util.List;
 public interface LazerRepository extends JpaRepository<Lazer, Long> {
     boolean existsByNome(String nome);
 
+    Boolean existsByIdLazer(long id);
+
     Lazer findByNome(String nome);
 
     List<Lazer> findAllByCategoria(String categoria);
