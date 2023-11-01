@@ -12,6 +12,8 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao , Long> {
 
     boolean existsByUsuario (Usuario usuario);
 
-            Avaliacao findByUsuario(Usuario usuario);
+    Avaliacao findByUsuario(Usuario usuario);
+
+    Avaliacao findByLazer(Lazer lazer);
 
 }

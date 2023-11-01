@@ -30,7 +30,7 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "idLazer", nullable = false)
-    private Lazer Lazer;
+    private Lazer lazer;
 
     @Column(nullable = false)
     private String Comentario;

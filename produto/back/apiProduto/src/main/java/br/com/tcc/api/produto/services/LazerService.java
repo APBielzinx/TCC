@@ -1,6 +1,7 @@
 package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Lazer;
+import br.com.tcc.api.produto.repository.AvaliacaoRepository;
 import br.com.tcc.api.produto.repository.LazerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,9 @@ import java.util.List;
 public class LazerService {
     @Autowired
     LazerRepository lazerRepository;
+
+    @Autowired
+    AvaliacaoRepository avaliacaoRepository;
 
     public List<Lazer> buscarTudo() {
         return lazerRepository.findAll();
@@ -68,7 +72,14 @@ public class LazerService {
     public ResponseEntity<?> ExcluirLazer(Long id) {
         if (lazerRepository.existsByIdLazer(id)) {
            var lazer = lazerRepository.findByIdLazer(id);
-            lazerRepository.delete(lazer);
+           var avaliacao = avaliacaoRepository.findByLazer(lazer);
+           if (avaliacao != null ){
+               avaliacaoRepository.delete(avaliacao);
+               lazerRepository.delete(lazer);
+           }else {
+               lazerRepository.delete(lazer);
+           }
+
 
             return new ResponseEntity<>("deletado com sucesso", HttpStatus.OK);
 

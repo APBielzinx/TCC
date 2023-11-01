@@ -38,10 +38,13 @@ public class Lazer {
     @Column(nullable = false)
     private String imagem;
 
-
     @ManyToOne
     @JoinColumn(name = "idAdm")
     private Administrador administrador;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Avaliacao avaliacao;
 
 
 }
