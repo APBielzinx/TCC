@@ -82,6 +82,7 @@ public class LazerService {
            var avaliacao = avaliacaoRepository.findByLazer(lazer);
            var favorito = favoritoRepository.findByLazer(lazer);
            var solicitacoes = solicitacoesRepository.findByLazer(lazer);
+           lazer.getAdministradores().clear();
            if (avaliacao != null && favorito != null && solicitacoes != null ){
                avaliacaoRepository.delete(avaliacao);
                favoritoRepository.delete(favorito);

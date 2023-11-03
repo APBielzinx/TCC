@@ -1,5 +1,6 @@
 package br.com.tcc.api.produto.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,10 +39,12 @@ public class Lazer {
     @Column(nullable = false)
     private String imagem;
 
-    @OneToMany(mappedBy = "lazer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "lazer", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonManagedReference
     private List<Administrador> administradores;
 
     @OneToMany(mappedBy = "lazer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Avaliacao> avaliacao;
 
 

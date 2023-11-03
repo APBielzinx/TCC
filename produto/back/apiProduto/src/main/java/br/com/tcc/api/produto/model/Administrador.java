@@ -1,6 +1,7 @@
 package br.com.tcc.api.produto.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,7 @@ public class Administrador  implements UserDetails {
 
    @ManyToOne
     @JoinColumn(name = "idLazer")
+   @JsonBackReference
     private Lazer lazer;
 
     @Override

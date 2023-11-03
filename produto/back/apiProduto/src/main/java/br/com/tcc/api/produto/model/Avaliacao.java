@@ -1,5 +1,6 @@
 package br.com.tcc.api.produto.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "idLazer", nullable = false)
+    @JsonBackReference
     private Lazer lazer;
 
     @Column(nullable = false)
