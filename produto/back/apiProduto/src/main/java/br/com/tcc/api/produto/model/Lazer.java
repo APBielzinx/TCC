@@ -41,7 +41,7 @@ public class Lazer {
     @OneToMany(mappedBy = "lazer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Administrador> administradores;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "lazer", cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id")
     private Avaliacao avaliacao;
 
