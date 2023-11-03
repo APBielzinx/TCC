@@ -38,9 +38,8 @@ public class Lazer {
     @Column(nullable = false)
     private String imagem;
 
-    @ManyToOne
-    @JoinColumn(name = "idAdm")
-    private Administrador administrador;
+    @OneToMany(mappedBy = "lazer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Administrador> administradores;
 
     @ManyToOne
     @JoinColumn(name = "id")
