@@ -42,8 +42,7 @@ public class Lazer {
     private List<Administrador> administradores;
 
     @OneToMany(mappedBy = "lazer", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id")
-    private Avaliacao avaliacao;
+    private List<Avaliacao> avaliacao;
 
 
 
