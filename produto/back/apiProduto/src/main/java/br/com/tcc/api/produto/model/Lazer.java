@@ -43,7 +43,7 @@ public class Lazer {
     @JsonManagedReference
     private List<Administrador> administradores;
 
-    @OneToMany(mappedBy = "lazer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "lazer", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
     private List<Avaliacao> avaliacao;
 

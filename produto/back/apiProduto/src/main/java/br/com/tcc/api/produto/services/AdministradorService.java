@@ -21,6 +21,9 @@ public class AdministradorService {
     @Autowired
     AdministradorRepository administradorRepository;
 
+    @Autowired
+    LazerRepository lazerRepository;
+
     BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
 
 
@@ -36,6 +39,9 @@ public class AdministradorService {
     }else {
         String senhaCriptografada = criptografar.encode(administrador.getSenha());
         administrador.setSenha(senhaCriptografada);
+        var lazer = lazerRepository.findByIdLazer(administrador.getLazer().getIdLazer());
+        lazer.getAdministradores().add(administrador);
+        lazerRepository.save(lazer);
          administradorRepository.save(administrador);
 
         return new ResponseEntity<>("Cadastrado com sucesso",HttpStatus.CREATED);

@@ -1,11 +1,9 @@
 package br.com.tcc.api.produto.services;
 
+import br.com.tcc.api.produto.model.Administrador;
 import br.com.tcc.api.produto.model.Lazer;
 import br.com.tcc.api.produto.model.Solicitacoes;
-import br.com.tcc.api.produto.repository.AvaliacaoRepository;
-import br.com.tcc.api.produto.repository.FavoritoRepository;
-import br.com.tcc.api.produto.repository.LazerRepository;
-import br.com.tcc.api.produto.repository.SolicitacoesRepository;
+import br.com.tcc.api.produto.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +24,9 @@ public class LazerService {
 
     @Autowired
     SolicitacoesRepository solicitacoesRepository;
+
+    @Autowired
+    AdministradorRepository administradorRepository;
 
     public List<Lazer> buscarTudo() {
         return lazerRepository.findAll();
@@ -82,8 +83,8 @@ public class LazerService {
            var avaliacao = avaliacaoRepository.findByLazer(lazer);
            var favorito = favoritoRepository.findByLazer(lazer);
            var solicitacoes = solicitacoesRepository.findByLazer(lazer);
-           lazer.getAdministradores().clear();
-           if (avaliacao != null && favorito != null && solicitacoes != null ){
+           var adm = administradorRepository.findByLazer(lazer);
+           if (avaliacao != null && favorito != null && solicitacoes != null){
                avaliacaoRepository.delete(avaliacao);
                favoritoRepository.delete(favorito);
                solicitacoesRepository.deleteAllByLazer(lazer);
@@ -96,6 +97,13 @@ public class LazerService {
                lazerRepository.delete(lazer);
            }else if(solicitacoes != null ) {
                solicitacoesRepository.deleteAllByLazer(lazer);
+               lazerRepository.delete(lazer);
+           }else if(adm != null){
+               List<Administrador> administradoresParaExcluir = adm;
+               for (Administrador administrador : administradoresParaExcluir) {
+                   administradorRepository.delete(administrador);
+               }
+
                lazerRepository.delete(lazer);
            }
            else {
