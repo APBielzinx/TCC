@@ -28,6 +28,18 @@ public class Lazer {
     private String endereco;
 
     @Column(nullable = false)
+    private String cep;
+
+    @Column(nullable = false)
+    private String bairro;
+
+    @Column(nullable = false)
+    private String uf;
+
+    @Column(nullable = false)
+    private String localidade;
+
+    @Column(nullable = false)
     private String latitude;
 
     @Column(nullable = false)

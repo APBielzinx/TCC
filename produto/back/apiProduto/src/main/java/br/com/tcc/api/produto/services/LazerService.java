@@ -70,6 +70,10 @@ public class LazerService {
             select.setLatitude(lazer.getLatitude());
             select.setLongetude(lazer.getLongetude());
             select.setCategoria(lazer.getCategoria());
+            select.setBairro(lazer.getBairro());
+            select.setCep(lazer.getCep());
+            select.setUf(lazer.getUf());
+            select.setLocalidade(lazer.getLocalidade());
             lazerRepository.save(select);
             return new ResponseEntity<>("atualizado com sucesso", HttpStatus.OK);
         } else {
