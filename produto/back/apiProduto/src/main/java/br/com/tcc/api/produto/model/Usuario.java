@@ -20,6 +20,18 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
     @Column(nullable = false, unique = true )
+    private String nome;
+    @Column(nullable = false, unique = true )
+    private String cep;
+    @Column(nullable = false, unique = true )
+    private String bairro;
+    @Column(nullable = false, unique = true )
+    private String localidade;
+    @Column(nullable = false, unique = true )
+    private String logradouro;
+    @Column(nullable = false, unique = true )
+    private String uf;
+    @Column(nullable = false, unique = true )
     private String email;
     @Column(nullable = false )
     private String senha;

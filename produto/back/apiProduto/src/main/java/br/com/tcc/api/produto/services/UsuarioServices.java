@@ -68,10 +68,13 @@ public class UsuarioServices {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             var select = usuarioRepository.findByEmail(usuario.getEmail());
             String senhaCriptografada = criptografar.encode(usuario.getSenha());
-
+            select.setCep(usuario.getCep());
+            select.setUf(usuario.getUf());
+            select.setBairro(usuario.getBairro());
+            select.setLocalidade(usuario.getLocalidade());
+            select.setLogradouro(usuario.getLogradouro());
             select.setEmail(usuario.getEmail());
             select.setSenha(senhaCriptografada);
-
             usuarioRepository.save(select);
             return new ResponseEntity<>("atualizado com sucesso", HttpStatus.OK);
         }else {
