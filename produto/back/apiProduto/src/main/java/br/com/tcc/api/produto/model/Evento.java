@@ -25,6 +25,9 @@ public class Evento {
     @Column
     private LocalDate dataTermino;
 
+    @Column
+    private int status;
+
     @ManyToOne
     @JoinColumn (name = "idLazer")
     private Lazer lazer;
