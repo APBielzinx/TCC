@@ -55,6 +55,8 @@ public class AdministradorController {
     public List<Administrador> buscarTodos(){
         return administradorService.buscarAdministrador();
     }
+
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Cadastra um administrador novo",

@@ -17,4 +17,8 @@ public interface AdministradorRepository extends JpaRepository<Administrador, Lo
 
     void deleteAllByLazer(Lazer lazer);
 
+    Administrador findByIdAdm(long id);
+
+
+
 }

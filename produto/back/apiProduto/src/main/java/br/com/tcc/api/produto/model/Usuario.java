@@ -30,6 +30,10 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, unique = true )
     private String logradouro;
     @Column(nullable = false, unique = true )
+    private String latitude ;
+    @Column(nullable = false, unique = true )
+    private String longetude;
+    @Column(nullable = false, unique = true )
     private String uf;
     @Column(nullable = false, unique = true )
     private String email;
