@@ -81,7 +81,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "500", description = "Email já utilizado", content = { @Content(schema = @Schema()) })
     })
     public ResponseEntity<?> cadastrarUsuario(@Parameter(hidden = true) @RequestBody Usuario usuario) {
-
+        System.out.println("A"+usuario);
         return usuarioServices.cadastrar(usuario);
 
     }

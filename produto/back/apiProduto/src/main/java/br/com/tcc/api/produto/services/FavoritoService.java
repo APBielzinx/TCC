@@ -3,6 +3,7 @@ package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Favorito;
 import br.com.tcc.api.produto.repository.FavoritoRepository;
+import br.com.tcc.api.produto.repository.LazerRepository;
 import br.com.tcc.api.produto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ public class FavoritoService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    @Autowired
+    LazerRepository lazerRepository;
 
 
     public List<Favorito> ListarFavorito(){
@@ -32,7 +35,9 @@ public class FavoritoService {
     }
 
     public ResponseEntity<?> Favoritar(Favorito favorito){
-        if (favoritoRepository.existsByLazer(favorito.getLazer())){
+        var usuario = usuarioRepository.findByIdUsuario(Long.valueOf(favorito.getUsuario().getIdUsuario()));
+        var lazer = lazerRepository.findByIdLazer(favorito.getLazer().getIdLazer());
+        if (favoritoRepository.existsByLazerAndUsuario(lazer,usuario)){
             return new ResponseEntity<>("Já esta nos seus favoritos", HttpStatus.BAD_REQUEST);
         }
         else{

@@ -17,7 +17,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -83,6 +88,11 @@ public class LazerController {
         return lazerService.BuscarPorId(id);
     }
 
+    @GetMapping(value = "/adm/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> BuscarPorIdAdm(@PathVariable ("id")Long id){
+        return lazerService.BuscarPorIdAdm(id);
+    }
+
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
@@ -95,10 +105,10 @@ public class LazerController {
             @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> Cadastrar(@Parameter(hidden = true) @RequestBody Lazer lazer){
-        return lazerService.Cadastrar(lazer);
+    public ResponseEntity<?> Cadastrar(@Parameter(hidden = true) @RequestBody Lazer lazer, @RequestParam("file") MultipartFile file){
+       lazer.setImagem(file.getOriginalFilename());
+        return lazerService.Cadastrar(lazer, file );
     }
-
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

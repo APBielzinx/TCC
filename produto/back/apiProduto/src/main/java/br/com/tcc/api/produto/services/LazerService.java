@@ -4,11 +4,17 @@ import br.com.tcc.api.produto.model.Administrador;
 import br.com.tcc.api.produto.model.Lazer;
 import br.com.tcc.api.produto.model.Solicitacoes;
 import br.com.tcc.api.produto.repository.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -45,14 +51,21 @@ public class LazerService {
         return new ResponseEntity<>(lazer, HttpStatus.OK);
     }
 
-    public ResponseEntity<?> Cadastrar(Lazer lazer) {
+    @Transactional
+    public ResponseEntity<?> Cadastrar(Lazer lazer, MultipartFile file) {
         if (lazerRepository.existsByNome(lazer.getNome())) {
 
             return new ResponseEntity<>("Já existe uma area de lazer com esse nome", HttpStatus.BAD_REQUEST);
-
         } else {
-            lazer.setNome(lazer.getNome());
-            lazer.setEndereco(lazer.getEndereco());
+            try {
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get("uploads", file.getOriginalFilename());
+                Files.write(path, bytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Trate os erros de upload, se necessário
+            }
+
             lazerRepository.save(lazer);
             return new ResponseEntity<>("Cadastrado com sucesso", HttpStatus.CREATED);
 
@@ -124,4 +137,12 @@ public class LazerService {
     }
 
 
+    public ResponseEntity<?> BuscarPorIdAdm(Long id) {
+       var adm =  administradorRepository.findByIdAdm(id);
+      var lazer =  lazerRepository.findByAdministradores(adm);
+      System.out.println((lazer));
+        return new ResponseEntity<>(lazer, HttpStatus.OK);
+
+
+    }
 }
