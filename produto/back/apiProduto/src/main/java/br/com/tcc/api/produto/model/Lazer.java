@@ -60,5 +60,8 @@ public class Lazer {
     private List<Avaliacao> avaliacao;
 
 
+    @OneToMany(mappedBy = "lazer", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Evento> evento;
+
 
 }
