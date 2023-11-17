@@ -140,7 +140,7 @@ public class LazerService {
     public ResponseEntity<?> BuscarPorIdAdm(Long id) {
        var adm =  administradorRepository.findByIdAdm(id);
       var lazer =  lazerRepository.findByAdministradores(adm);
-      System.out.println((lazer));
+      System.out.println("a"+lazer);
         return new ResponseEntity<>(lazer, HttpStatus.OK);
 
 

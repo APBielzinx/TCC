@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class Lazer {
 
     @OneToMany(mappedBy = "lazer", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
+    @ToString.Exclude
     private List<Administrador> administradores;
 
     @OneToMany(mappedBy = "lazer", cascade = CascadeType.REMOVE, orphanRemoval = true)

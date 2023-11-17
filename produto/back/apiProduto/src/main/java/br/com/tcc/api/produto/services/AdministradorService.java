@@ -1,6 +1,7 @@
 package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Administrador;
+import br.com.tcc.api.produto.model.Lazer;
 import br.com.tcc.api.produto.repository.AdministradorRepository;
 import br.com.tcc.api.produto.repository.LazerRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -85,14 +84,14 @@ public class AdministradorService {
 
         }
     }
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Administrador administrador, String token) {
+
+    public ResponseEntity<?> login( Administrador administrador, String token) {
         if (administradorRepository.existsByEmail(administrador.getEmail())) {
             var select = administradorRepository.findByEmail(administrador.getEmail());
             boolean isPasswordMatches = criptografar.matches(administrador.getSenha(), select.getSenha());
-            System.out.println(isPasswordMatches);
             if (isPasswordMatches) {
-                AdministradorService.LoginResponse response = new AdministradorService.LoginResponse(select, token);
+               var parque = lazerRepository.findByAdministradores(select);
+                AdministradorService.LoginResponse response = new AdministradorService.LoginResponse(select, parque, token);
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("usuario não encontrado", HttpStatus.NO_CONTENT);
@@ -107,9 +106,12 @@ public class AdministradorService {
         private Administrador select;
         private String token;
 
-        public LoginResponse(Administrador select, String token) {
+        private Lazer parque;
+
+        public LoginResponse(Administrador select, Lazer parque, String token) {
             this.select = select;
             this.token = token;
+            this.parque = parque;
         }
 
         @JsonProperty("select") // Nome do campo no JSON
@@ -120,6 +122,11 @@ public class AdministradorService {
         @JsonProperty("token") // Nome do campo no JSON
         public String getToken() {
             return token;
+        }
+
+        @JsonProperty("parque") // Nome do campo no JSON
+        public Lazer getParqur() {
+            return parque;
         }
     }
 }
