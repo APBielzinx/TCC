@@ -33,4 +33,14 @@ public ResponseEntity<?>cadastrar(@RequestBody  Evento evento){
     return eventoService.CriarNovoEvento(evento);
 }
 
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>atualizar(@RequestBody  Evento evento){
+        return eventoService.AtualizarEvento(evento);
+    }
+
+    @DeleteMapping(value = {"/{idEvento}"},consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>deletar(@PathVariable("idEvento")long id){
+        return eventoService.deletarEvento(id);
+    }
+
 }

@@ -37,16 +37,18 @@ public class EventoService {
     public ResponseEntity<?> BuscarEventoPorLazer(long id){
         var lazer = lazerRepository.findByIdLazer(id);
         List<Evento> evento = eventoRepository.findByLazer(lazer);
+
         return new ResponseEntity<>(evento, HttpStatus.OK);
     }
 
     public ResponseEntity<?> CriarNovoEvento(Evento evento){
-
+         System.out.println((evento));
         try{
             eventoRepository.save(evento);
             return new ResponseEntity<>("Evento criado com sucesso", HttpStatus.CREATED);
 
         }catch (Exception e){
+            System.out.println(e);
             return new ResponseEntity<>("Houve um problema ao criar o evento"+e, HttpStatus.BAD_REQUEST);
 
         }
@@ -71,7 +73,13 @@ public class EventoService {
         }
     }
 
-    //ResponseEntity<?> DeletarEvento(Evento evento){}
+   public ResponseEntity<?> deletarEvento(Long id){
+
+        var e = eventoRepository.findByIdEvento(id);
+        eventoRepository.delete(e);
+        return new ResponseEntity<>("evento deletado",HttpStatus.NO_CONTENT);
+
+    }
 
 
 }
