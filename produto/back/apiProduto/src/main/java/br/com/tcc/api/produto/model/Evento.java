@@ -1,5 +1,6 @@
 package br.com.tcc.api.produto.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,9 @@ public class Evento {
     private String nomeEvento;
 
     @Column(nullable = false)
+    private String descricao;
+
+    @Column(nullable = false)
     private String local ;
 
     @Column(nullable = false)
@@ -30,6 +34,7 @@ public class Evento {
 
     @ManyToOne
     @JoinColumn (name = "idLazer")
+    @JsonBackReference
     private Lazer lazer;
 
 

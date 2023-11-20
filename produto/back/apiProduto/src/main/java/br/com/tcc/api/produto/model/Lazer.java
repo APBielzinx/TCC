@@ -63,6 +63,8 @@ public class Lazer {
 
 
     @OneToMany(mappedBy = "lazer", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonManagedReference
+    @ToString.Exclude
     private List<Evento> evento;
 
 

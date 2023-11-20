@@ -35,10 +35,8 @@ public class EventoService {
     }
 
     public ResponseEntity<?> BuscarEventoPorLazer(long id){
-
         var lazer = lazerRepository.findByIdLazer(id);
-       var evento =  eventoRepository.findByLazer(lazer);
-       System.out.println("e"+evento);
+        List<Evento> evento = eventoRepository.findByLazer(lazer);
         return new ResponseEntity<>(evento, HttpStatus.OK);
     }
 
@@ -64,6 +62,7 @@ public class EventoService {
            e.setLocal(evento.getLocal());
            e.setDataInicio(evento.getDataInicio());
            e.setDataTermino(evento.getDataTermino());
+           e.setDescricao(evento.getDescricao());
 
            eventoRepository.save(e);
             return new ResponseEntity<>("Evento atualizado com sucesso",HttpStatus.OK);

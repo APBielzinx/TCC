@@ -28,9 +28,8 @@ public class EventoController {
         return eventoService.BuscarEventoPorLazer(id);
     }
 
-@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<?>cadastrar(Evento evento){
-        System.out.println(evento);
+@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<?>cadastrar(@RequestBody  Evento evento){
     return eventoService.CriarNovoEvento(evento);
 }
 
