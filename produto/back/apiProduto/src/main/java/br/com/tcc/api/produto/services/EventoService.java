@@ -3,6 +3,7 @@ package br.com.tcc.api.produto.services;
 import br.com.tcc.api.produto.model.Evento;
 import br.com.tcc.api.produto.model.Lazer;
 import br.com.tcc.api.produto.repository.EventoRepository;
+import br.com.tcc.api.produto.repository.LazerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class EventoService {
     @Autowired
     private EventoRepository eventoRepository;
 
+    @Autowired
+    private LazerRepository lazerRepository;
+
     public List<Evento> ListarEvento(){
 
          var evento = eventoRepository.findAll();
@@ -30,9 +34,12 @@ public class EventoService {
 
     }
 
-    public ResponseEntity<?> BuscarEventoPorLazer(Lazer lazer){
-        eventoRepository.findByLazer(lazer);
-        return new ResponseEntity<>(lazer, HttpStatus.OK);
+    public ResponseEntity<?> BuscarEventoPorLazer(long id){
+
+        var lazer = lazerRepository.findByIdLazer(id);
+       var evento =  eventoRepository.findByLazer(lazer);
+       System.out.println("e"+evento);
+        return new ResponseEntity<>(evento, HttpStatus.OK);
     }
 
     public ResponseEntity<?> CriarNovoEvento(Evento evento){

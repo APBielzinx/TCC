@@ -13,19 +13,19 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEvento;
 
-    @Column
+    @Column(nullable = false)
     private String nomeEvento;
 
-    @Column
+    @Column(nullable = false)
     private String local ;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate dataInicio;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate dataTermino;
 
-    @Column
+    @Column(nullable = false)
     private int status;
 
     @ManyToOne

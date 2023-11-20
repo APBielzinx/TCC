@@ -7,9 +7,7 @@ import br.com.tcc.api.produto.services.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,10 +23,15 @@ public class EventoController {
         return eventoService.ListarEvento();
     }
 
-    @GetMapping(value = "/lazer", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?>buscarPorLazer(Lazer lazer){
-        return eventoService.BuscarEventoPorLazer(lazer);
+    @GetMapping(value = "/{idEvento}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>buscarPorLazer(@PathVariable("idEvento")long id){
+        return eventoService.BuscarEventoPorLazer(id);
     }
 
+@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<?>cadastrar(Evento evento){
+        System.out.println(evento);
+    return eventoService.CriarNovoEvento(evento);
+}
 
 }
