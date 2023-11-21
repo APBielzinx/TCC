@@ -231,37 +231,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid fh5co-about-me" id="avaliacoes">
-    <div id="my-carousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="card"> <img class="card-img d-block w-100" src="assets/img/about-me-img.jpg" alt="">
-          <div class="card-img-overlay">
-            <h2>Avaliações</h2>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="carousel-caption d-md-block"> <img src="assets/img/logo.png" alt="">
-            <p>UP</p>
-          </div>
-        </div>
-        <div class="carousel-item active">
-          <div class="carousel-caption d-md-block"> <img src="assets/img/logo.png" alt="">
-            <p>UP</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="carousel-caption d-md-block"> <img src="assets/img/logo.png" alt="">
-            <p>UP</p>
-          </div>
-        </div>
-      </div>
-      <ol class="carousel-indicators">
-        <li data-target="#my-carousel" data-slide-to="0" > <img src="assets/img/about-me-img1.png" alt=""> <span>Sherrie Rose</span> </li>
-        <li class="active" data-target="#my-carousel" data-slide-to="1" aria-current="location"> <img src="assets/img/about-me-img2.png" alt=""> <span>Sherrie Rose</span> </li>
-        <li data-target="#my-carousel" data-slide-to="2"> <img src="assets/img/about-me-img3.png" alt=""> <span>Sherrie Rose</span> </li>
-      </ol>
-    </div>
-  </div>
+ 
   <footer class="container-fluid p-0 pr-0">
     <div class="row mr-0 ml-0">
       <div class="col-md-6 pr-0 pl-0 map">
@@ -272,18 +242,15 @@
         <div class="contact-form" id="contato">
           <h3 class="text-uppercase">Contato</h3>
           <form action="https://api.staticforms.xyz/submit" method="post">
-            <input  class="form-control" type="hidden" placeholder="nome"  name="name" id="name" >
-            <input  class="form-control" type="hidden" placeholder="Assunto"  name="subject" id="subject">
-            <input  class="form-control" type="hidden" placeholder="E-mail"  name="email" >
-            <textarea  class="form-control" name="message" id="text" style="display: none;" placeholder="Digite a sua mensagem" ></textarea> <!-- Optional -->
+            <input  class="form-control"  placeholder="nome"  name="name" id="name" >
+            <input  class="form-control"  placeholder="E-mail"  name="email" >
+            <textarea  class="form-control" name="message" id="text"  placeholder="Digite a sua mensagem" ></textarea> <!-- Optional -->
             <input  class="form-control" type="hidden" name="accessKey" value="d7137214-6bf6-48fb-ab69-e46bdcc950c3">
             <input  class="form-control" type="hidden" name="subject" value="Sugestão de Cliente" />
             <input  class="form-control" type="hidden" name="replyTo" value="gabrielbtcyt@gmail.com">
             <input  class="form-control" type="hidden" name="redirectTo" value="https://tcc-dun.vercel.app/#contato"> <!-- Optional -->
-            <button class="btn" type="submit" onclick="enviando()" style="display: none;" id="botao">Enviar Mensagem</button>
+            <button class="btn" type="submit" onclick="enviando()"id="botao">Enviar Mensagem</button>
         </form>
-        <input class="form-control" type="email" placeholder="E-mail"  name="from" id="email" >
-        <button class="btn" type="submit" onclick="enviarMensagem()" id="botaoVerifica">Verificar email</button>
         </div>
       </div>
     </div>
@@ -304,112 +271,6 @@ function enviando(){
     icon: "success",
   });
   
-}
-
-function enviarMensagem() {
-    console.log("oi")
-    const url = 'https://testecontroller-production.up.railway.app/faleConosco/enviar';
-
-  
-    let from = document.getElementById('email').value
-
-    if(validateEmail(from) == false){
-        return alert("insira um email valido")
-    }
-
-  
-    let dados = {
-
-        from
-     
-    }
-
-    console.log(from)
-
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados),
-        crossDomain: true,
-    };
-
-    fetch(url, options)
-        .then(data => {
-            if (data.status == 204) {
-                alert("é necessario preencher todos os campos")
-                throw Error(data.status);
-            } else if (data.status == 400) {
-                swal("Aguarde!", "...os dados estão sendo enviados");
-                swal({
-                    title: "Erro",
-                    text: "Já enviou muitos emails hoje, envie mais tarde!",
-                    icon: "error",
-                  });
-                throw Error(data.status);
-            } else if (data.status == 201) {
-                swal("Aguarde!", "...os dados estão sendo enviados");
-                swal({
-                    title: "Sucesso",
-                    text: "Email verificado com sucesso",
-                    icon: "success",
-                  });
-                toType()
-
-
-            } else if (data.status == 200) {
-                swal("Aguarde!", "...os dados estão sendo enviados");
-                swal({
-                    title: "Sucesso",
-                    text: "Email verificado com sucesso",
-                    icon: "success",
-                  });
-                toType()
-            
-            } else if (data.status == 500) {
-                swal("Aguarde!", "...os dados estão sendo enviados");
-                swal({
-                    title: "Erro",
-                    text: "Ocorreu um erro no servidorrrrr",
-                    icon: "error",
-                  });
-               
-                throw Error(data.status);
-
-            }
-            return data.text;
-        }).catch(e => {
-            console.log(e);
-        });
-
-
-}
-
-
-function toType(){
-    let name = document.getElementById('name')
-    let subject = document.getElementById('subject')
-    let text = document.getElementById('text')
-    let button = document.getElementById('botao')
-    let buttonVerifica = document.getElementById('botaoVerifica')
-    let from = document.getElementById('email')
-
-
-   name.type = "text"
-   name.ariaPlaceholder = "nome"
-
-   subject.type = "text"
-   subject.ariaPlaceholder = "Assunto"
-
-   text.style.display = ""
-
-
-   button.style.display =""
-
-   buttonVerifica.style.display="none"
-
-   from.type = "hidden"
 }
 
 
