@@ -1,8 +1,11 @@
+// CalendarioSelecionavel.js
+
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const CalendarioSelecionavel = () => {
+const CalendarioSelecionavel = ({ onDiaPress }) => {
   const [dataSelecionada, setDataSelecionada] = useState('');
+  const [eventos, setEventos] = useState([]);
 
   const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
@@ -24,6 +27,8 @@ const CalendarioSelecionavel = () => {
       const dia = String(i).padStart(2, '0');
       const data = `${obterDataAtual().slice(0, 8)}${dia}`;
       const diaDaSemana = (i + primeiroDiaDoMes - 1) % 7;
+      const eventosDoDia = eventos.filter((evento) => evento.data === data);
+
       diasNoMes.push(
         <TouchableOpacity
           key={i}
@@ -31,7 +36,10 @@ const CalendarioSelecionavel = () => {
             styles.dia,
             { backgroundColor: data === dataSelecionada ? '#17A558' : 'transparent' },
           ]}
-          onPress={() => setDataSelecionada(data)}
+          onPress={() => {
+            setDataSelecionada(data);
+            onDiaPress(data, eventosDoDia); // Passa a data e eventos associados para a função de retorno de chamada
+          }}
         >
           <Text style={{ color: data === dataSelecionada ? '#fff' : '#000' }}>
             {i}
@@ -43,20 +51,24 @@ const CalendarioSelecionavel = () => {
     return diasNoMes;
   };
 
+  // Restante do código...
+
   return (
-    <View style={styles.container}>
-      <View style={styles.diasDaSemana}>
-        {diasDaSemana.map((dia) => (
-          <Text key={dia} style={styles.diaDaSemanaTexto}>
-            {dia}
-          </Text>
-        ))}
+      <View style={styles.container}>
+        <View style={styles.diasDaSemana}>
+          {diasDaSemana.map((dia) => (
+            <Text key={dia} style={styles.diaDaSemanaTexto}>
+              {dia}
+            </Text>
+          ))}
+        </View>
+        <View style={styles.diasDoMes}>{renderizarDiasDoMes()}</View>
+        <Text>Data Selecionada: {dataSelecionada}</Text>
       </View>
-      <View style={styles.diasDoMes}>{renderizarDiasDoMes()}</View>
-      <Text>Data Selecionada: {dataSelecionada}</Text>
-    </View>
-  );
+    );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {

@@ -249,7 +249,6 @@ export default function TelaDetalhes({ route }) {
       </ScrollView>
 
       <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
-      <Text>{'\n'}</Text>
 
       <Routes />
     </View>
