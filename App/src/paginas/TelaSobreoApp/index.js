@@ -22,14 +22,14 @@ export default function TelaSobreoApp(){
               backgroundColor: '#B1D3C1',
               marginTop: 20,
               borderRadius: 20,
-              width: 360,
+              width: 390,
               height: 250,
-              marginLeft: 8,
+              marginLeft: 11,
               padding:3
             }}
           >
 
-            <Text style={{fontSize: 19, left:8, marginTop: 15}}>A informaçao nao chega aos moradores da regiao como deveria (de forma rapida e eficaz).
+            <Text style={{fontSize: 20, left:5, marginTop: 15}}>A informaçao nao chega aos moradores da regiao como deveria (de forma rapida e eficaz).
                  Por essa razao, desenvolvemos um sistema chamado Linkerd Park, para que as pessoas 
                  fiquem por dentro de eventos realizados em áreas de lazer que acontecem em seus bairros
             </Text>
@@ -37,7 +37,7 @@ export default function TelaSobreoApp(){
           </View>
 
                 </ScrollView>
-                <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+                <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
  
             
         <Routes></Routes>

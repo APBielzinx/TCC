@@ -76,14 +76,14 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#B1D3C1',
     borderRadius:30,
-    width:320,
+    width:360,
     marginLeft:25,
     marginTop:25
   },
   diasDaSemana: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 10,
+    marginBottom: 15,
     
   },
   diaDaSemanaTexto: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius:20,
-    marginLeft:1
+    marginLeft:6
   },
 });
 

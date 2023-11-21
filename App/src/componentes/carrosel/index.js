@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   imagem: {
-    width: 340,
+    width: 392,
     height: 200, // Altura desejada para as imagens no carrossel
     borderRadius: 17,
     marginRight:10

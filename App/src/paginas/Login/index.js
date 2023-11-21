@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, TextInput, Alert, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Iconsss from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import styles from './style';
@@ -114,6 +115,7 @@ export default function Login(){
                     value={value}
                     placeholder='  Digite sua Senha'
                     secureTextEntry={true}
+                    
                   />
                 )}
               />

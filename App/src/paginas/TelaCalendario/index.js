@@ -39,16 +39,16 @@ const TelaCalendario = () => {
           }}
         />
 
-        <Text style={{ fontSize: 30, marginTop: 30, marginLeft: 132 }}>Eventos</Text>
+        <Text style={{ fontSize: 30, marginTop: 30, marginLeft: 139 }}>Eventos</Text>
 
         <View
           style={{
             backgroundColor: '#B1D3C1',
             marginTop: 10,
             borderRadius: 35,
-            width: 340,
+            width: 365,
             height: 150,
-            marginLeft: 13,
+            marginLeft: 18,
           }}
         >
           {/* Renderizar eventos do dia */}

@@ -69,7 +69,7 @@ export default function Usuario(){
               marginTop: 50,
 
               borderRadius: 20,
-              width: 330,
+              width: 365,
               height: 125,
               marginLeft: 22,
             }}
@@ -84,7 +84,7 @@ export default function Usuario(){
               backgroundColor: '#B1D3C1',
               marginTop: 15,
               borderRadius: 20,
-              width: 330,
+              width: 365,
               height: 120,
               marginLeft: 22,
             }}

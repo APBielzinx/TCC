@@ -22,8 +22,8 @@ AsyncStorage.clear.apply
           </View>
           
           
-          <Text style={{fontSize: 45, left:75, color: '#FFF' }}>Linked Park</Text>
-          <Text style={{fontSize: 20, left:95, color: '#FFF'}}>O lazer ligado a você</Text>
+          <Text style={{fontSize: 45, left:85, color: '#FFF' }}>Linked Park</Text>
+          <Text style={{fontSize: 20, left:106, color: '#FFF'}}>O lazer ligado a você</Text>
 
           <TouchableOpacity style={styles.Botao}  onPress={ () => navigation.navigate('Login') }>
             <Text style={{color: '#FFF'}}>Fazer login</Text>

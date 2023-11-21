@@ -8,6 +8,7 @@ import Iconsss from 'react-native-vector-icons/MaterialCommunityIcons';
 import Stars from 'react-native-stars';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Favoritar from '../../componentes/favoritar cor'
 import MapView, { Marker, Polyline } from 'react-native-maps';
 
 export default function TelaDetalhes({ route }) {
@@ -102,11 +103,49 @@ export default function TelaDetalhes({ route }) {
     }
   }
 
+  const [favoritado, setFavoritado] = useState(false);
+
+  useEffect(() => {
+    // Recupere o estado do AsyncStorage ao iniciar o componente
+    recuperarEstadoFavorito();
+  }, []);
+
+  const recuperarEstadoFavorito = async () => {
+    try {
+      const estadoFavorito = await AsyncStorage.getItem('estadoFavorito');
+
+      if (estadoFavorito !== null) {
+        setFavoritado(JSON.parse(estadoFavorito));
+      }
+    } catch (error) {
+      console.error('Erro ao recuperar o estado favorito:', error);
+    }
+  };
+
+  const salvarEstadoFavorito = async () => {
+    try {
+      // Salve o estado do favorito no AsyncStorage
+      await AsyncStorage.setItem('estadoFavorito', JSON.stringify(favoritado));
+    } catch (error) {
+      console.error('Erro ao salvar o estado favorito:', error);
+    }
+  };
+
+  const favorito = () => {
+    // Alternar o estado de favorito quando o botão for pressionado
+    setFavoritado(!favoritado);
+  };
+
+  // Chame a função de salvar sempre que o estado do favorito mudar
+  useEffect(() => {
+    salvarEstadoFavorito();
+  }, [favoritado]);
+
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
       <ScrollView>
         <TouchableOpacity style={styles.botaopular} onPress={() => navigation.navigate(redirect)}>
-          <Text style={{ color: '#000', fontSize: 25, left: 5, marginTop: 60 }}>
+          <Text style={{ color: '#000', fontSize: 25, left: 15, marginTop: 60 }}>
             <Icon name="leftcircle" size={37} color='#17A558' /> {route.params.lazer && route.params.lazer.nome
             ? route.params.lazer.nome
             : route.params.nome}
@@ -119,11 +158,11 @@ export default function TelaDetalhes({ route }) {
               ? route.params.lazer.imagem
               : route.params.imagem }}
             style={{
-              width: 370,
-              height: 170,
+              width: 380,
+              height: 180,
               marginTop: 9,
-              marginLeft: 2,
-              borderRadius: 7
+              marginLeft: 15,
+              borderRadius: 20
             }}
           />
         </View>
@@ -139,8 +178,13 @@ export default function TelaDetalhes({ route }) {
             halfStar={<Iconsss name={'star-half'} style={[styles.myStarStyle]} />}
           />
 
-          <TouchableOpacity onPress={() => favoritos(route.params)}>
-            <Icon name="hearto" size={27} style={{ marginTop: -26, left: 320 }} />
+          <TouchableOpacity onPress={() => { favoritos(route.params); favorito();}}>
+
+            <Icon
+            name={favoritado ? 'heart' : 'hearto'} // Use 'heart' quando favoritado, 'hearto' quando não favoritado
+            size={27}
+            style={{ marginTop: -26, left: 350, color: favoritado ? 'red' : 'black' }} // Mude a cor para vermelho quando favoritado, preto quando não favoritado
+          />
           </TouchableOpacity>
         </View>
 
@@ -149,7 +193,7 @@ export default function TelaDetalhes({ route }) {
             backgroundColor: '#B1D3C1',
             marginTop: 15,
             borderRadius: 35,
-            width: 335,
+            width: 365,
             height: 130,
             marginLeft: 19,
           }}
@@ -171,7 +215,7 @@ export default function TelaDetalhes({ route }) {
             backgroundColor: '#B1D3C1',
             marginTop: 8,
             borderRadius: 35,
-            width: 335,
+            width: 365,
             height: 80,
             marginLeft: 19,
           }}
@@ -192,7 +236,7 @@ export default function TelaDetalhes({ route }) {
             backgroundColor: '#B1D3C1',
             marginTop: 10,
             borderRadius: 35,
-            width: 335,
+            width: 365,
             height: 230,
             marginLeft: 19
           }}
@@ -213,7 +257,7 @@ export default function TelaDetalhes({ route }) {
             borderRadius: 35,
             width: 135,
             height: 60,
-            marginLeft: 110
+            marginLeft: 135
           }}
           onPress={maps}
         >
@@ -248,7 +292,7 @@ export default function TelaDetalhes({ route }) {
 
       </ScrollView>
 
-      <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+      <Text>{'\n'}{'\n'}{'\n'}{'\n'}</Text>
 
       <Routes />
     </View>

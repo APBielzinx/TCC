@@ -46,40 +46,44 @@ const Pesquisa = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       key={item.idLazer}
-      style={{ height: 160 }}
+      style={{  marginBottom: 10 }}
       onPress={() => navigation.navigate('TelaDetalhes', item)}
     >
       <View
-        style={{
-          backgroundColor: '#B1D3C1',
-          marginTop: 15,
-          borderRadius: 35,
-          width: 340,
-          height: 150,
-          marginLeft: 13,
-        }}
-      >
-        <Image source={{ uri: item.imagem }} style={styles.Imagens} />
-        <Text
-          style={{
-            marginLeft: 140,
-            marginTop: -145,
-            fontSize: 18,
-          }}
-        >
-          {item.nome}
-        </Text>
-
-        <Text
-          style={{
-            marginLeft: 140,
-            marginTop: 10,
-            fontSize: 10,
-          }}
-        >
-          {item.descricao}
-        </Text>
-      </View>
+              style={{
+                backgroundColor: '#B1D3C1',
+                borderRadius: 35,
+                padding: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginLeft: 20,
+                marginRight: 20,
+                marginTop: 6
+              }}
+            >
+              <Image source={{ uri: item.imagem }} style={styles.Imagens} />
+              <View style={{ marginLeft: 10, flexShrink: 1 }}>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    marginBottom: 5,
+                    flexShrink: 1,
+                    flexWrap: 'wrap', // Permite que o texto quebre em várias linhas
+                  }}
+                >
+                  {item.nome}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    flexShrink: 1,
+                    flexWrap: 'wrap', // Permite que o texto quebre em várias linhas
+                  }}
+                >
+                  {item.descricao}
+                </Text>
+              </View>
+            </View>
     </TouchableOpacity>
   );
 
@@ -96,7 +100,7 @@ const Pesquisa = ({ navigation }) => {
         value={query}
       />
 
-      <Text>{'\n'}</Text>
+        <Text>{'\n'}</Text>
 
       <FlatList
         data={filteredData}
@@ -104,7 +108,7 @@ const Pesquisa = ({ navigation }) => {
         renderItem={renderItem}
       />
 
-      <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+      <Text>{'\n'}{'\n'}{'\n'}{'\n'}</Text>
 
       <Routes></Routes>
     </View>
@@ -121,14 +125,14 @@ const styles = {
   Input: {
     borderWidth: 11,
     borderColor: '#B1D3C1',
-    marginLeft: 30,
+    marginLeft: 25,
     marginRight: 30,
-    marginTop: 30,
-    borderRadius: 27,
+    marginTop: 70,
+    borderRadius: 20,
     backgroundColor: '#B1D3C1',
-    width: 310,
-    height: 40,
-    padding: 3
+    width: 360,
+    height: 50,
+    padding: 10
     }
 };
 

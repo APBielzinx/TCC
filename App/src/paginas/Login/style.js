@@ -8,21 +8,21 @@ const styles = StyleSheet.create({
       backgroundColor: '#17A558',
       width: 250,
       height: 50,
-      left: 50,
+      left: 80,
       borderRadius: 50
     },
     Textocadas: {
-      fontSize:25,
+      fontSize:24,
       alignItems: 'center',
       justifyContent: 'center',
-      left: 20,
+      left: 13,
       marginTop: 105
     },
     Inputs: {
       height: 45,
       borderWidth: 1,
       borderColor: '#B1D3C1',
-      marginLeft: 10,
+      marginLeft: 15,
       marginRight: 20,
       marginTop: 5,
       borderRadius: 15,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       width: 250,
       height: 50,
-      left: 50
+      left: 75
     },
     Error: {
       alignSelf: 'flex-start',

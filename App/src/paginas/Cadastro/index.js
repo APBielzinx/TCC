@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, TouchableOpacity, TextInput, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Alert, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
@@ -154,7 +154,8 @@ const [cep, setCep] = useState('');
 
       return(
         <View style= {{flex:1, backgroundColor: '#FFF'}}>
-            <TouchableOpacity style={styles.botaopular} onPress={ () => navigation.navigate('Iniciar')} >
+          <ScrollView>
+                        <TouchableOpacity style={styles.botaopular} onPress={ () => navigation.navigate('Iniciar')} >
                 <Text style={{color: '#000',fontSize: 35, left: 30, marginTop: 60}}><Icon name="leftcircle" size={40} color='#17A558'/>  Cadastro</Text>
             </TouchableOpacity>
 
@@ -165,7 +166,7 @@ const [cep, setCep] = useState('');
 
                     <TextInput 
                     style={[styles.Inputs, {
-                      borderWidth: mensagemErro && 2,
+                      border: mensagemErro && 2,
                        borderColor: mensagemErro && '#ff375b'
                     }]} 
                     placeholder='  Digite seu Nome Completo'
@@ -178,7 +179,7 @@ const [cep, setCep] = useState('');
 
               <TextInput
                 style={[styles.Inputs, {
-                  borderWidth: mensagemError && 2,
+                  border: mensagemError && 2,
                   borderColor: mensagemError && '#ff375b'
                 }]}
                 placeholder="Digite o CEP"
@@ -199,7 +200,7 @@ const [cep, setCep] = useState('');
 
                     <TextInput 
                     style={[styles.Inputs, {
-                      borderWidth: errors.email && 2,
+                      border: errors.email && 2,
                       borderColor: errors.email && '#ff375b'
                     } ]} 
 
@@ -221,7 +222,7 @@ const [cep, setCep] = useState('');
 
                     <TextInput
                      style={[styles.Inputs, {
-                      borderWidth: errors.password && 2,
+                      border: errors.password && 2,
                       borderColor: errors.password && '#ff375b'
                     } ]} 
 
@@ -242,6 +243,8 @@ const [cep, setCep] = useState('');
           <TouchableOpacity style={styles.botaofazerlogin} onPress={ () => navigation.navigate('Login')}>
             <Text style={{color: '#000', fontSize: 15}}>Já tem conta?<Text style={{color: '#17A558' }}> - Faça o Login</Text></Text>
           </TouchableOpacity>
+          </ScrollView>
+
         </View>
         
       );

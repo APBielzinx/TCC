@@ -29,35 +29,21 @@ export default function Routes(){
                     <View 
                     style={{ 
                         marginTop: 15,
-                        marginLeft: 15 , 
+                        marginLeft: 5 , 
                         }}>
                     <Icons 
                         name="home"
-                        size={30}
+                        size={40}
                         color='#526856'
                         />
 
                             </View>
                            </TouchableOpacity>
-
-                           <TouchableOpacity onPress={ () => navigation.navigate('TelaContatos') }>
-                    <View 
-                        style={{ 
-                                marginTop: 15,
-                                marginLeft: 45 , 
-                                }}>
-                            <Icons 
-                                name="chat"
-                                size={30}
-                                color='#526856'
-                                />
-                    </View>
-                </TouchableOpacity>
                            
 
                 <TouchableOpacity
                     style={{
-                         marginLeft: 20,
+                         marginLeft: 55,
                         backgroundColor: '#17A558',
                          borderRadius: 45,
                         width: 70,
@@ -67,35 +53,24 @@ export default function Routes(){
                          onPress={ () => navigation.navigate('TelaMaps',latitude,longetude) }
                          >
                         <Icons name="location-pin"
-                        size={40}
+                        size={45}
                         color='#fff' 
                         style={{
-                             marginLeft: 14,
-                            marginTop: 13
+                             marginLeft: 12,
+                            marginTop: 10
                          }}/>
                  </TouchableOpacity>
 
-                 <TouchableOpacity>
-                    <Iconsss name="bell"
-                     size={30}
-                     color='#526856' 
-                     style={{
-                         marginTop: 15,
-                         marginLeft: 13, 
-                         width: 120,
-                         height: 35,
-                        }}/>
-                        </TouchableOpacity>
 
                         <TouchableOpacity onPress={ () => navigation.navigate('Favoritos') }>
                     <View 
                         style={{ 
                                 marginTop: 15,
-                                marginLeft: -55 , 
+                                marginLeft: 55 , 
                                 }}>
                             <Icons 
                                 name="heart"
-                                size={30}
+                                size={40}
                                 color='#526856'
                                 />
                     </View>
