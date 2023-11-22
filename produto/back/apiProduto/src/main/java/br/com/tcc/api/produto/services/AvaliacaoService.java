@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class AvaliacaoService {
             if (select.getLazer() == avaliacao.getLazer()) {
                 return new ResponseEntity<>("Já existe uma avaliação deste usuario", HttpStatus.BAD_REQUEST);
             }  else{
-                avaliacao.setDataAvaliacao(new Date());
+                avaliacao.setDataAvaliacao(LocalDate.now());
                 avaliacaoRepository.save(avaliacao);
                 return new ResponseEntity<>("Avaliação foi criada com sucesso", HttpStatus.OK);
             }

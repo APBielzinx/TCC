@@ -23,7 +23,7 @@ public class Avaliacao {
     private double pontuacao;
 
     @Column(nullable = false)
-    private Date dataAvaliacao;
+    private LocalDate dataAvaliacao;
 
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)

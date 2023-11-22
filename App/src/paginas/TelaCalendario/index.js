@@ -48,19 +48,6 @@ const TelaCalendario = () => {
     }
   }
   
-
-  // Função de exemplo para obter eventos do dia
-  const obterEventosDoDia = (data) => {
-    // Substitua esta lógica pela sua lógica real para obter eventos
-    const eventosExemplo = [
-      { nome: 'Evento 1', data: '2023-11-21' },
-      { nome: 'Evento 2', data: '2023-11-21' },
-      { nome: 'Evento 3', data: '2023-11-22' },
-    ];
-
-    return dados.filter((evento) => evento.dataInicio == '2023, 11, 21');
-  };
-
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
       <ScrollView>
