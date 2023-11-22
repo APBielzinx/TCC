@@ -51,33 +51,38 @@ export default function TelaLazer(){
       fazerSolicitacaoComToken();
     return(
       <View style= {{flex:1, backgroundColor: '#FFF'}}>
-      <ScrollView>
+     
                 <TouchableOpacity style={styles.botaopular} onPress={ () => navigation.navigate('TelaInicial')} >
                 <Text style={{color: '#000',fontSize: 35, left: 30, marginTop: 60}}><Icon name="leftcircle" size={40} color='#17A558'/>  Favoritos</Text>
             </TouchableOpacity>
 
+            <ScrollView>
+
             {dados.map((item, index) => (
         <TouchableOpacity
           key={item.id}
-          style={{ height: 160 }}
+          style={{ marginBottom: 20 }}
           onPress={ () => navigation.navigate('TelaDetalhes',item)}
         >
           <View
             style={{
               backgroundColor: '#B1D3C1',
-              marginTop: 10,
               borderRadius: 35,
-              width: 340,
-              height: 150,
-              marginLeft: 9,
+              padding: 10,
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginLeft: 20,
+              marginRight: 20,
             }}
           >
              <Image  source={{uri: item.lazer.imagem}} style={styles.Imagens} />
+             <View style={{ marginLeft: 10, flexShrink: 1 }}>
             <Text
               style={{
-                marginLeft: 140,
-                marginTop: -145,
                 fontSize: 18,
+                    marginBottom: 5,
+                    flexShrink: 1,
+                    flexWrap: 'wrap',
               }}
             >
               {item.lazer.nome}
@@ -85,13 +90,14 @@ export default function TelaLazer(){
 
             <Text
               style={{
-                marginLeft: 140,
-                marginTop: 5,
-                fontSize: 11,
+                fontSize: 10,
+                flexShrink: 1,
+                flexWrap: 'wrap',
               }}
             >
               {item.lazer.descricao}
             </Text>
+          </View>
           </View>
 
         
@@ -100,7 +106,7 @@ export default function TelaLazer(){
 
 
                 </ScrollView>
-                <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+                <Text>{'\n'}{'\n'}{'\n'}{'\n'}</Text>
  
             
         <Routes></Routes>

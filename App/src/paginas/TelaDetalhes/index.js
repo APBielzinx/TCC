@@ -103,43 +103,6 @@ export default function TelaDetalhes({ route }) {
     }
   }
 
-  const [favoritado, setFavoritado] = useState(false);
-
-  useEffect(() => {
-    // Recupere o estado do AsyncStorage ao iniciar o componente
-    recuperarEstadoFavorito();
-  }, []);
-
-  const recuperarEstadoFavorito = async () => {
-    try {
-      const estadoFavorito = await AsyncStorage.getItem('estadoFavorito');
-
-      if (estadoFavorito !== null) {
-        setFavoritado(JSON.parse(estadoFavorito));
-      }
-    } catch (error) {
-      console.error('Erro ao recuperar o estado favorito:', error);
-    }
-  };
-
-  const salvarEstadoFavorito = async () => {
-    try {
-      // Salve o estado do favorito no AsyncStorage
-      await AsyncStorage.setItem('estadoFavorito', JSON.stringify(favoritado));
-    } catch (error) {
-      console.error('Erro ao salvar o estado favorito:', error);
-    }
-  };
-
-  const favorito = () => {
-    // Alternar o estado de favorito quando o botão for pressionado
-    setFavoritado(!favoritado);
-  };
-
-  // Chame a função de salvar sempre que o estado do favorito mudar
-  useEffect(() => {
-    salvarEstadoFavorito();
-  }, [favoritado]);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
@@ -178,13 +141,8 @@ export default function TelaDetalhes({ route }) {
             halfStar={<Iconsss name={'star-half'} style={[styles.myStarStyle]} />}
           />
 
-          <TouchableOpacity onPress={() => { favoritos(route.params); favorito();}}>
-
-            <Icon
-            name={favoritado ? 'heart' : 'hearto'} // Use 'heart' quando favoritado, 'hearto' quando não favoritado
-            size={27}
-            style={{ marginTop: -26, left: 350, color: favoritado ? 'red' : 'black' }} // Mude a cor para vermelho quando favoritado, preto quando não favoritado
-          />
+          <TouchableOpacity onPress={() => favoritos(route.params)}>
+            <Icon name="hearto" size={27} style={{ marginTop: -26, left: 350 }} />
           </TouchableOpacity>
         </View>
 
