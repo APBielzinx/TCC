@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -40,7 +41,15 @@ public class EventoService {
 
         return new ResponseEntity<>(evento, HttpStatus.OK);
     }
+    public ResponseEntity<?> BuscarEventoPorData(String data){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(data,formatter);
+        System.out.println(date);
+        List<Evento> evento = eventoRepository.findByDataInicio(date);
+        System.out.println(evento);
 
+        return new ResponseEntity<>(evento, HttpStatus.OK);
+    }
     public ResponseEntity<?> CriarNovoEvento(Evento evento){
          System.out.println((evento));
         try{

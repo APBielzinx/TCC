@@ -28,6 +28,12 @@ public class EventoController {
         return eventoService.BuscarEventoPorLazer(id);
     }
 
+
+    @GetMapping(value = "data/{dataEvento}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>buscarPorData(@PathVariable("dataEvento")String data){
+        return eventoService.BuscarEventoPorData(data);
+    }
+
 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<?>cadastrar(@RequestBody  Evento evento){
     return eventoService.CriarNovoEvento(evento);
