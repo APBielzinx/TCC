@@ -60,6 +60,7 @@ const TelaCalendario = () => {
       // Tente criar um objeto Date diretamente
       const date = new Date(dateString);
   
+
       // Verifique se a data é válida
       if (!isNaN(date.getTime())) {
         // Se for válida, formate-a para o formato brasileiro usando date-fns
@@ -74,6 +75,7 @@ const TelaCalendario = () => {
       return dateString;
     }
   };
+
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>

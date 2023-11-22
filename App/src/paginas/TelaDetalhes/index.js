@@ -16,14 +16,89 @@ export default function TelaDetalhes({ route }) {
   const [text, setText] = useState('');
   const [parkLocation, setParkLocation] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
+  const [dados, setDados] = useState([]);
+
 
   const handleTextInputChange = (inputText) => {
     setText(inputText);
   };
 
-  const handleButtonPress = () => {
-    console.log(text);
-  };
+  async function avaliacao() {
+    try {
+      const token = await AsyncStorage.getItem("token");
+      const idUsuario = await AsyncStorage.getItem("id");
+
+        console.log("oi")
+
+      if (token) {
+        const headers = {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': `Bearer ${token}`
+        };
+
+        const response = await fetch('https://tcc-production-e100.up.railway.app/api/avaliacao', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({
+            "comentario": text,
+            "pontuacao":5.0,
+            "dataAvaliacao": "2023-01-31",
+            "usuario": {
+              "idUsuario": idUsuario,
+            },
+            "lazer": {
+              "idLazer": route.params.idLazer
+            }
+          })
+        });
+
+        if (response.status === 200) {
+          console.log("adicionado com sucesso");
+        } else if (response.status === 400) {
+          Alert.alert("isso já está na sua lista de favoritos");
+          console.error("Erro na solicitação:", response.status);
+        }
+      } else {
+        console.log("Token não encontrado em AsyncStorage.");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação:", error);
+    }
+  }
+
+  async function buscarAvaliacao() {
+    try {
+      const token = await AsyncStorage.getItem("token");
+
+        console.log("oi")
+
+      if (token) {
+        const headers = {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': `Bearer ${token}`
+        };
+
+        const response = await fetch('https://tcc-production-e100.up.railway.app/api/avaliacao/parque/'+route.params.idLazer, {
+          method: 'GET',
+          headers: headers,
+        });
+
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log("Dados da resposta:", data);
+          setDados(data)
+        } else {
+          console.error("Erro na solicitação:", response.status);
+        }
+      } else {
+        console.log("Token não encontrado em AsyncStorage.");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação:", error);
+    }
+  }
+
+  buscarAvaliacao()
 
   useEffect(() => {
     fetch(`https://nominatim.openstreetmap.org/search?q=${route.params.nome}&format=json`)
@@ -186,7 +261,7 @@ export default function TelaDetalhes({ route }) {
             }}
           >Digite sua opinião:</Text>
           <TextInput style={{ marginLeft: 20, marginTop: 7, width: 90 }} placeholder='Escreva aqui' onChangeText={handleTextInputChange} value={text} />
-          <TouchableOpacity onPress={handleButtonPress}><Icon name="rightcircle" size={30} color='#17A558' style={{ marginLeft: 290, marginTop: -40 }} /></TouchableOpacity>
+          <TouchableOpacity onPress={avaliacao}><Icon name="rightcircle" size={30} color='#17A558' style={{ marginLeft: 290, marginTop: -40 }} /></TouchableOpacity>
         </View>
 
         <View
@@ -206,6 +281,11 @@ export default function TelaDetalhes({ route }) {
               fontSize: 25,
             }}
           >Avaliações</Text>
+
+            {dados.map((avaliacao, index) => (
+            <Text key={index}>          {avaliacao.usuario.email} comentario: {avaliacao.comentario}</Text>
+           
+          ))}
         </View>
 
         <TouchableOpacity
