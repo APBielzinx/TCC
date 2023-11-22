@@ -28,7 +28,7 @@ const TelaCalendario = () => {
         };
   
         // Faça a solicitação usando o cabeçalho personalizado
-        const response = await fetch('https://tcc-production-e100.up.railway.app/api/evento/'+data, {
+        const response = await fetch('https://tcc-production-e100.up.railway.app/api/evento/data/'+data, {
           method: 'GET', // ou outro método HTTP
           headers: headers
         });
@@ -91,8 +91,9 @@ const TelaCalendario = () => {
           }}
         >
           {/* Renderizar eventos do dia */}
-          {eventosDoDia.map((evento, index) => (
+          {dados.map((evento, index) => (
             <Text key={index}>{evento.nomeEvento}</Text>
+           
           ))}
         </View>
       </ScrollView>
