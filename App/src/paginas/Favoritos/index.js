@@ -22,7 +22,7 @@ export default function TelaLazer(){
           if (token) {
             // Construa o cabeçalho Authorization
             const headers = {
-              'Content-type': 'application/json; charset=UTF-8',
+              'Content-type': 'application/json',
               'Authorization': `Bearer ${token}`
             };
       
@@ -37,7 +37,7 @@ export default function TelaLazer(){
               console.log("Dados da resposta:", data);
               setDados(data)
             } else {
-              console.error("Erro na solicitação:", response.status);
+              console.error("Erro na solicitação:", response.status, idUsuario);
             }
           } else {
             console.log("Token não encontrado em AsyncStorage.");

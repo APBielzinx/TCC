@@ -46,14 +46,16 @@ export default function Login(){
 .then(data => {
   if (data) {
     console.log(data)
-  AsyncStorage.setItem('id',data.select.idUsuario);
+    var id = data.select.idUsuario
+  AsyncStorage.setItem('id',id.toString());
   AsyncStorage.setItem('email',data.select.email);
   AsyncStorage.setItem('senha',data.select.senha);
   AsyncStorage.setItem('latitude',data.select.latitude);
   AsyncStorage.setItem('longetude',data.select.longetude);
   AsyncStorage.setItem('token',data.token);
+  console.log(id)
  var logado = true
-  navigation.navigate('TelaInicial',logado);
+  navigation.navigate('TelaInicial',logado,);
 
     Alert.alert("Usuário encontrado!", "Login efetuado com sucesso");
   }

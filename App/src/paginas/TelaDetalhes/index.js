@@ -144,7 +144,7 @@ export default function TelaDetalhes({ route }) {
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
       <ScrollView>
-        <TouchableOpacity style={styles.botaopular} onPress={() => navigation.navigate(redirect)}>
+        <TouchableOpacity style={styles.botaopular} onPress={() => navigation.navigate("TelaInicial")}>
           <Text style={{ color: '#000', fontSize: 25, left: 15, marginTop: 60 }}>
             <Icon name="leftcircle" size={37} color='#17A558' /> {route.params.lazer && route.params.lazer.nome
             ? route.params.lazer.nome
