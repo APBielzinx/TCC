@@ -3,6 +3,7 @@ package br.com.tcc.api.produto.services;
 import br.com.tcc.api.produto.model.Avaliacao;
 import br.com.tcc.api.produto.model.Usuario;
 import br.com.tcc.api.produto.repository.AvaliacaoRepository;
+import br.com.tcc.api.produto.repository.LazerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class AvaliacaoService {
     @Autowired
     private AvaliacaoRepository avaliacaoRepository;
 
+    @Autowired
+    private LazerRepository lazerRepository;
+
     public List<Avaliacao> ListarAvaliacao(){
         return avaliacaoRepository.findAll();
     }
@@ -26,21 +30,21 @@ public class AvaliacaoService {
         avaliacaoRepository.findById(id);
         return new ResponseEntity<>("Avaliação encontrada com sucesso", HttpStatus.OK);
     }
-
+    public ResponseEntity<?> BuscarIdParque(Long id){
+      var parque =  lazerRepository.findByIdLazer(id);
+      List<Avaliacao> avaliacao = avaliacaoRepository.findByLazer(parque);
+        return new ResponseEntity<>(avaliacao, HttpStatus.OK);
+    }
     public ResponseEntity<?> Avaliar(Avaliacao avaliacao){
-        if (avaliacaoRepository.existsByUsuario(avaliacao.getUsuario()) ){
-            var select = avaliacaoRepository.findByUsuario(avaliacao.getUsuario());
-            if (select.getLazer() == avaliacao.getLazer()) {
-                return new ResponseEntity<>("Já existe uma avaliação deste usuario", HttpStatus.BAD_REQUEST);
-            }  else{
+        if (avaliacaoRepository.existsByUsuarioAndAndLazer(avaliacao.getUsuario(), avaliacao.getLazer()) ) {
+            return new ResponseEntity<>("Já existe uma avaliação deste usuario", HttpStatus.BAD_REQUEST);
+        } else{
                 avaliacao.setDataAvaliacao(LocalDate.now());
                 avaliacaoRepository.save(avaliacao);
                 return new ResponseEntity<>("Avaliação foi criada com sucesso", HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>("Rodou", HttpStatus.INTERNAL_SERVER_ERROR);
 
-    }
 
     public ResponseEntity<?> AtualizarAvaliacao(Avaliacao avaliacao){
         if (avaliacaoRepository.existsById(avaliacao.getId())){

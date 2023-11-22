@@ -26,6 +26,8 @@ export default function TelaDetalhes({ route }) {
       const token = await AsyncStorage.getItem("token");
       const idUsuario = await AsyncStorage.getItem("id");
 
+
+
       if (token) {
         const headers = {
           'Content-type': 'application/json; charset=UTF-8',
@@ -38,7 +40,7 @@ export default function TelaDetalhes({ route }) {
           body: JSON.stringify({
             "comentario": text,
             "pontuacao":5.0,
-            "dataAvaliacao": "00.00",
+            "dataAvaliacao": "2023-01-31",
             "usuario": {
               "idUsuario": idUsuario,
             },

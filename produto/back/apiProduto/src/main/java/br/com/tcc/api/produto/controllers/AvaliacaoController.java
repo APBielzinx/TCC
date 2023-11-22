@@ -44,6 +44,15 @@ public class AvaliacaoController {
         return avaliacaoService.BuscarId(id);
     }
 
+    @GetMapping(value = "parque/{idParque}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(
+            summary = "Buscar uma avaliação por id",
+            description = "exemplo: url_da_api/avaliacao/{idAvaliação}",
+            tags = {"Avaliação","Get"}
+    )
+    public ResponseEntity<?> BuscarPorIdParque(@PathVariable("idParque")Long id){
+        return avaliacaoService.BuscarIdParque(id);
+    }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(

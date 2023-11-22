@@ -1,6 +1,7 @@
 package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Administrador;
+import br.com.tcc.api.produto.model.Avaliacao;
 import br.com.tcc.api.produto.model.Lazer;
 import br.com.tcc.api.produto.model.Solicitacoes;
 import br.com.tcc.api.produto.repository.*;
@@ -102,12 +103,12 @@ public class LazerService {
            var solicitacoes = solicitacoesRepository.findByLazer(lazer);
            var adm = administradorRepository.findByLazer(lazer);
            if (avaliacao != null && favorito != null && solicitacoes != null){
-               avaliacaoRepository.delete(avaliacao);
+               avaliacaoRepository.delete((Avaliacao) avaliacao);
                favoritoRepository.delete(favorito);
                solicitacoesRepository.deleteAllByLazer(lazer);
                lazerRepository.delete(lazer);
            }else if (avaliacao != null ){
-               avaliacaoRepository.delete(avaliacao);
+               avaliacaoRepository.delete((Avaliacao) avaliacao);
                lazerRepository.delete(lazer);
            }else if (favorito != null ){
                favoritoRepository.delete(favorito);
