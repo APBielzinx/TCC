@@ -133,7 +133,7 @@ export default function TelaParques() {
                   {item.descricao}
                 </Text>
                 <Text style={{ fontSize: 10, marginTop: 5 }}>
-                  Distância: {item.distanciaUsuario} km de você
+                  Distância: {item.distanciaUsuario} km da sua residência
                 </Text>
               </View>
             </View>

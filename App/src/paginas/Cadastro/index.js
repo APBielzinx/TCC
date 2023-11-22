@@ -46,7 +46,7 @@ function handleSignIn(data, lat, lon) {
 
   // Converte o objeto em JSON
   const jsonData = JSON.stringify(dataToPost);
-
+  console.log("oi")
   fetch('https://tcc-production-e100.up.railway.app/api/usuario', {
     method: 'POST',
     body: jsonData,
@@ -182,7 +182,7 @@ const [cep, setCep] = useState('');
                   border: mensagemError && 2,
                   borderColor: mensagemError && '#ff375b'
                 }]}
-                placeholder="Digite o CEP"
+                placeholder="Digite o CEP da sua residência"
                 keyboardType="numeric"
                 onChangeText={handleInputChange}
                 value={cep} 

@@ -99,16 +99,6 @@ const TelaCalendario = () => {
 
         <Text style={{ fontSize: 30, marginTop: 30, marginLeft: 139 }}>Eventos</Text>
 
-        <View
-          style={{
-            backgroundColor: '#B1D3C1',
-            marginTop: 10,
-            borderRadius: 35,
-            width: 365,
-            height: 150,
-            marginLeft: 18,
-          }}
-        >
           {/* Renderizar eventos do dia */}
           {dados.map((evento, index) => (
             <TouchableOpacity
@@ -181,7 +171,6 @@ const TelaCalendario = () => {
               </View>
             </TouchableOpacity>
           ))}
-        </View>
       </ScrollView>
       <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
 
