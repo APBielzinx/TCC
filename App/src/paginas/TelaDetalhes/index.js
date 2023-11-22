@@ -16,6 +16,8 @@ export default function TelaDetalhes({ route }) {
   const [text, setText] = useState('');
   const [parkLocation, setParkLocation] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
+  const [dados, setDados] = useState([]);
+
 
   const handleTextInputChange = (inputText) => {
     setText(inputText);
@@ -26,7 +28,7 @@ export default function TelaDetalhes({ route }) {
       const token = await AsyncStorage.getItem("token");
       const idUsuario = await AsyncStorage.getItem("id");
 
-
+        console.log("oi")
 
       if (token) {
         const headers = {
@@ -63,6 +65,40 @@ export default function TelaDetalhes({ route }) {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
+
+  async function buscarAvaliacao() {
+    try {
+      const token = await AsyncStorage.getItem("token");
+
+        console.log("oi")
+
+      if (token) {
+        const headers = {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': `Bearer ${token}`
+        };
+
+        const response = await fetch('https://tcc-production-e100.up.railway.app/api/avaliacao/parque/'+route.params.idLazer, {
+          method: 'GET',
+          headers: headers,
+        });
+
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log("Dados da resposta:", data);
+          setDados(data)
+        } else {
+          console.error("Erro na solicitação:", response.status);
+        }
+      } else {
+        console.log("Token não encontrado em AsyncStorage.");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação:", error);
+    }
+  }
+
+  buscarAvaliacao()
 
   useEffect(() => {
     fetch(`https://nominatim.openstreetmap.org/search?q=${route.params.nome}&format=json`)
@@ -287,6 +323,11 @@ export default function TelaDetalhes({ route }) {
               fontSize: 25,
             }}
           >Avaliações</Text>
+
+            {dados.map((avaliacao, index) => (
+            <Text key={index}>          {avaliacao.usuario.email} comentario: {avaliacao.comentario}</Text>
+           
+          ))}
         </View>
 
         <TouchableOpacity
