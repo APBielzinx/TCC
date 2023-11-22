@@ -283,25 +283,12 @@ export default function TelaDetalhes({ route }) {
           >Avaliações</Text>
 
             {dados.map((avaliacao, index) => (
-            <Text key={index}>          {avaliacao.usuario.email} comentario: {avaliacao.comentario}</Text>
+            <Text key={index}>{avaliacao.usuario.email}                                             comentario: {avaliacao.comentario}</Text>
            
           ))}
         </View>
 
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#17A558',
-            marginTop: 8,
-            borderRadius: 35,
-            width: 135,
-            height: 60,
-            marginLeft: 135
-          }}
-          onPress={maps}
-        >
-          <Text style={{ marginLeft: 20, marginTop: 18, fontSize: 18, color: '#fff' }}>Ir agora</Text>
-          <Icon name="rightcircle" size={25} color='#fff' style={{ marginLeft: 90, marginTop: -20 }} />
-        </TouchableOpacity>
+        
 
         {/* Adicione o componente de mapa */}
         {parkLocation && (

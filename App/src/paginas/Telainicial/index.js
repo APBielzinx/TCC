@@ -28,7 +28,7 @@ if(route.params == null ){
           <ScrollView>
           <View style={styles.view}>
                 <TouchableOpacity onPress={ () => navigation.navigate('Usuario')}><Image source= {require('../../Imagens/perfilimg.jpg')} style={styles.Imagem} /></TouchableOpacity>
-                <TouchableOpacity onPress={ () => navigation.navigate('Pesquisa')}><Icon name="search1"size={30} color='#17A558' style={{marginLeft: 300, marginTop: 11}}/></TouchableOpacity>
+                <TouchableOpacity  style={{width: 30}} onPress={ () => navigation.navigate('Pesquisa')}><Icon name="search1"size={30} color='#17A558' style={{marginLeft: 300, marginTop: 11, width: 30}}/></TouchableOpacity>
             </View>
 
             <Carrosel></Carrosel> 
