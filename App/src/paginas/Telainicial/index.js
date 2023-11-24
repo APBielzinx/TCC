@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Image, TextInput, TouchableOpacity, Text, Alert, ScrollView} from 'react-native';
 import Iconss from 'react-native-vector-icons/FontAwesome';
 import Iconsss from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,6 +8,7 @@ import Carrosel from '../../componentes/carrosel';
 import styles from './style';
 import Routes from '../../componentes/menu/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Swiper from 'react-native-swiper';
 
 
 export default function TelaInicial({ route }){ 
@@ -22,6 +23,46 @@ if(route.params == null ){
 
 }
 
+const [dados, setDados] = useState([]);
+
+
+    async function buscarparques() {
+        try {
+          // Obtém o token de AsyncStorage
+          const token = await AsyncStorage.getItem("token");
+
+            
+        
+          if (token) {
+            // Construa o cabeçalho Authorization
+            const headers = {
+              'Content-type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            };
+      
+            // Faça a solicitação usando o cabeçalho personalizado
+            const response = await fetch('https://tcc-production-e100.up.railway.app/api/lazer', {
+              method: 'GET', // ou outro método HTTP
+              headers: headers
+            });
+      
+            if (response.status === 200) {
+              const data = await response.json();
+              setDados(data)
+              console.log(dados)
+            } else {
+              console.error("Erro na solicitação:", response.status, idUsuario);
+            }
+          } else {
+            console.log("Token não encontrado em AsyncStorage.");
+          }
+        } catch (error) {
+          console.error("Erro ao fazer a solicitação:", error);
+        }
+      }
+      
+
+      buscarparques();
 
       return(
         <View style= {{flex:1, backgroundColor: '#FFF'}}>
@@ -34,56 +75,65 @@ if(route.params == null ){
             <Carrosel></Carrosel> 
 
             <View style={styles.views}>
-            <TouchableOpacity style={{backgroundColor: '#B1D3C1', width: 60, height: 55, marginLeft: 45, marginTop: 25, borderRadius: 30}} onPress={ () => navigation.navigate('TelaParques') }><Iconsss name="tree-outline" size={40} color='#526856' style={{marginLeft: 10, marginTop: 5}}/></TouchableOpacity> 
-            <TouchableOpacity style={{backgroundColor: '#B1D3C1', width: 60, height: 55, marginLeft: 50, marginTop: 25, borderRadius: 30}} onPress={ () => navigation.navigate('TelaLazer') }><Iconss name="bicycle" size={40} color='#526856' style={{marginLeft: 4, marginTop: 6}}/></TouchableOpacity> 
-            <TouchableOpacity style={{backgroundColor: '#B1D3C1', width: 60, height: 55, marginLeft: 50, marginTop: 25, borderRadius: 30}} onPress={ () => navigation.navigate('TelaCalendario') }><Iconsss name="calendar-month" size={40} color='#526856' style={{marginLeft: 10, marginTop: 7}}/></TouchableOpacity>
+            <TouchableOpacity style={{backgroundColor: '#B1D3C1', width: 70, height: 65, marginLeft: 45, marginTop: 25, borderRadius: 20}} onPress={ () => navigation.navigate('TelaParques') }><Iconsss name="tree-outline" size={40} color='#526856' style={{marginLeft: 15, marginTop: 12}}/></TouchableOpacity> 
+            <TouchableOpacity style={{backgroundColor: '#B1D3C1', width: 70, height: 65, marginLeft: 50, marginTop: 25, borderRadius: 20}} onPress={ () => navigation.navigate('TelaLazer') }><Iconss name="bicycle" size={40} color='#526856' style={{marginLeft: 10, marginTop: 12}}/></TouchableOpacity> 
+            <TouchableOpacity style={{backgroundColor: '#B1D3C1', width: 70, height: 65, marginLeft: 50, marginTop: 25, borderRadius: 20}} onPress={ () => navigation.navigate('TelaEventos') }><Iconsss name="calendar-star" size={40} color='#526856' style={{marginLeft: 15, marginTop: 12}}/></TouchableOpacity>
             </View>
 
             <View style={styles.vieww}>
-              <Text style={{marginLeft: 35}}>Parques</Text>
-              <Text style={{marginLeft: 66}}>Locais</Text>
-              <Text style={{marginLeft: 55}}>Calendário</Text>
+              <Text style={{marginLeft: 38}}>Parques</Text>
+              <Text style={{marginLeft: 75}}>Locais</Text>
+              <Text style={{marginLeft: 77}}>Eventos</Text>
             </View>
 
-            <Text style={{fontSize:30, marginTop: 30, marginLeft: 55}}>Parque Recomendado</Text>
+            <Text style={{fontSize:30, marginTop: 30, marginLeft: 55}}>Parques bem avaliados</Text>
  
 
-            <TouchableOpacity style={{height: 160}} onPress={ () => navigation.navigate('TelaDetalhes')}>
-            <View style={{backgroundColor: '#B1D3C1',
-                borderRadius: 35,
-                padding: 10,
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 20,
-                marginRight: 20,
-                marginTop: 25
-              }}>
-                        <Image source= {require('../../Imagens/PQDC.jpg')} style={styles.Imagens} />
-                        <View style={{ marginLeft: 10, flexShrink: 1 }}>
-                        <Text style={{
-                             fontSize: 18,
-                             marginBottom: 5,
-                             flexShrink: 1,
-                             flexWrap: 'wrap',
-                            }}>Parque da Consciência Negra
-                        </Text>
-
-                        <Text style={{
-                         fontSize: 10,
-                         flexShrink: 1,
-                         flexWrap: 'wrap',
-                            }}>Localizado na Cidade Tiradentes,
-                          Zona Leste da capital paulista e foi criado para preservar as nascentes do Córrego Itaquera.
-                        </Text>
-                        </View>
-
-              </View>
-
-                        
-            </TouchableOpacity>
+            <Swiper autoplay loop autoplayTimeout={5} style={{height:250}}>
+      {dados.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={{
+            height: 160,
+            marginLeft: 20,
+            marginRight: 20,
+            marginTop: 25,
+          }}
+          onPress={() => navigation.navigate('TelaDetalhes', item)}>
+          <View
+            style={{
+              backgroundColor: '#B1D3C1',
+              borderRadius: 35,
+              padding: 10,
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Image source={{uri: item.imagem}} style={styles.Imagens} />
+            <View style={{ marginLeft: 10, flexShrink: 1 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  marginBottom: 5,
+                  flexShrink: 1,
+                  flexWrap: 'wrap',
+                }}>
+                {item.nome}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 10,
+                  flexShrink: 1,
+                  flexWrap: 'wrap',
+                }}>
+                {item.descricao}
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      ))}
+    </Swiper>
             
-            <TouchableOpacity style={{color: '#B1D3C1'}}></TouchableOpacity>
-            <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+            <Text>{'\n'}{'\n'}{'\n'}</Text>
         
 
             </ScrollView>

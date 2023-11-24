@@ -10,13 +10,14 @@ import TelaInicial from './src/paginas/Telainicial';
 import TelaLazer from './src/paginas/TelaLazer';
 import TelaDetalhes from './src/paginas/TelaDetalhes';
 import Usuario from './src/paginas/Usuario';
-import TelaCalendario from './src/paginas/TelaCalendario';
+import TelaEventos from './src/paginas/TelaEventos';
 import Favoritos from './src/paginas/Favoritos';
 import TelaSobreoApp from './src/paginas/TelaSobreoApp';
 import TelaContatos from './src/paginas/TelaContatos';
 import TelaChat from './src/paginas/TelaChat';
 import Pesquisa from './src/componentes/pesquisa'
 import TelaMaps from './src/paginas/TelaMaps';
+import TelaDetalhesEventos from './src/paginas/TelaDetalhesEventos';
 
 const Stack = createNativeStackNavigator()
 
@@ -82,8 +83,8 @@ export default function App(){
           }}
           />
           <Stack.Screen
-           name='TelaCalendario'
-           component={TelaCalendario}
+           name='TelaEventos'
+           component={TelaEventos}
            options={{
             headerShown: false
           }}
@@ -126,6 +127,13 @@ export default function App(){
           <Stack.Screen
            name='TelaMaps'
            component={TelaMaps}
+           options={{
+            headerShown: false
+          }}
+          />
+          <Stack.Screen
+           name='TelaDetalhesEventos'
+           component={TelaDetalhesEventos}
            options={{
             headerShown: false
           }}

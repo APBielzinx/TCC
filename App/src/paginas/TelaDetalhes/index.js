@@ -181,7 +181,6 @@ export default function TelaDetalhes({ route }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
-      <ScrollView>
         <TouchableOpacity style={styles.botaopular} onPress={() => navigation.navigate("TelaInicial")}>
           <Text style={{ color: '#000', fontSize: 25, left: 15, marginTop: 60 }}>
             <Icon name="leftcircle" size={37} color='#17A558' /> {route.params.lazer && route.params.lazer.nome
@@ -189,6 +188,8 @@ export default function TelaDetalhes({ route }) {
             : route.params.nome}
           </Text>
         </TouchableOpacity>
+
+        <ScrollView>
 
         <View>
           <Image
@@ -264,29 +265,32 @@ export default function TelaDetalhes({ route }) {
           <TouchableOpacity onPress={avaliacao}><Icon name="rightcircle" size={30} color='#17A558' style={{ marginLeft: 290, marginTop: -40 }} /></TouchableOpacity>
         </View>
 
-        <View
-          style={{
-            backgroundColor: '#B1D3C1',
-            marginTop: 10,
-            borderRadius: 35,
-            width: 365,
-            height: 230,
-            marginLeft: 19
-          }}
-        >
+
           <Text
             style={{
-              marginLeft: 120,
+              marginLeft: 140,
               marginTop: 22,
               fontSize: 25,
             }}
           >Avaliações</Text>
 
             {dados.map((avaliacao, index) => (
-            <Text key={index}>{avaliacao.usuario.email}                                             comentario: {avaliacao.comentario}</Text>
+              <View  style={{
+                backgroundColor: '#B1D3C1',
+                borderRadius: 35,
+                padding: 10,
+                flexDirection: 'list',
+                alignItems: 'center',
+                marginLeft: 10,
+                flexShrink: 1 
+              }}>
+                 <Text key={index} style={{fontSize: 18}}>{avaliacao.usuario.email}</Text>
+                 <Text style={{fontSize: 10,flexShrink: 1,flexWrap: 'wrap'}}>Comentario: {avaliacao.comentario}</Text>
+              </View>
+           
            
           ))}
-        </View>
+
 
         
 
