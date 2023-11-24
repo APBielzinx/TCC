@@ -282,7 +282,8 @@ export default function TelaDetalhes({ route }) {
                 flexDirection: 'list',
                 alignItems: 'center',
                 marginLeft: 10,
-                flexShrink: 1 
+                flexShrink: 1 ,
+                marginTop: 10
               }}>
                  <Text key={index} style={{fontSize: 18}}>{avaliacao.usuario.email}</Text>
                  <Text style={{fontSize: 10,flexShrink: 1,flexWrap: 'wrap'}}>Comentario: {avaliacao.comentario}</Text>
