@@ -23,15 +23,8 @@ public class EventoService {
     private LazerRepository lazerRepository;
 
     public List<Evento> ListarEvento(){
-
-         var evento = eventoRepository.findAll();
-
-         var dataTermino = evento.get(4);
-
-         System.out.println(dataTermino);
-
+        
          return eventoRepository.findAll();
-         //if (dataTermino == LocalDate.now()){}
 
     }
 

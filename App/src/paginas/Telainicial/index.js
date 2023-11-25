@@ -11,58 +11,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Swiper from 'react-native-swiper';
 
 
-export default function TelaInicial({ route }){ 
+export default function TelaInicial(){ 
   const navigation = useNavigation();
 
-if(route.params == null ){
- 
-}else if(AsyncStorage.getItem("logado")== "logado"){
-  AsyncStorage.setItem("logado","logado")
-}else{
-  AsyncStorage.setItem("logado","logado")
-
-}
 
 const [dados, setDados] = useState([]);
 
+useEffect(() => {
+  async function fetchData() {
+    try {
+      // Obtém o token de AsyncStorage
+      const token = await AsyncStorage.getItem("token");
 
-    async function buscarparques() {
-        try {
-          // Obtém o token de AsyncStorage
-          const token = await AsyncStorage.getItem("token");
+      if (token) {
+        // Construa o cabeçalho Authorization
+        const headers = {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        };
 
-            
-        
-          if (token) {
-            // Construa o cabeçalho Authorization
-            const headers = {
-              'Content-type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            };
-      
-            // Faça a solicitação usando o cabeçalho personalizado
-            const response = await fetch('https://tcc-production-e100.up.railway.app/api/lazer', {
-              method: 'GET', // ou outro método HTTP
-              headers: headers
-            });
-      
-            if (response.status === 200) {
-              const data = await response.json();
-              setDados(data)
-              console.log(dados)
-            } else {
-              console.error("Erro na solicitação:", response.status, idUsuario);
-            }
-          } else {
-            console.log("Token não encontrado em AsyncStorage.");
-          }
-        } catch (error) {
-          console.error("Erro ao fazer a solicitação:", error);
+        // Faça a solicitação usando o cabeçalho personalizado
+        const response = await fetch('https://tcc-production-e100.up.railway.app/api/lazer', {
+          method: 'GET',
+          headers: headers
+        });
+
+        if (response.status === 200) {
+          const data = await response.json();
+          setDados(data);
+          console.log(data);
+        } else {
+          console.error("Erro na solicitação:", response.status);
         }
+      } else {
+        console.log("Token não encontrado em AsyncStorage.");
       }
-      
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação:", error);
+    }
+  }
 
-      buscarparques();
+  fetchData();
+}, []); // O segundo argument
 
       return(
         <View style= {{flex:1, backgroundColor: '#FFF'}}>
