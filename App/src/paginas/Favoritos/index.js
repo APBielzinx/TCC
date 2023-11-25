@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity, Text, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from './style';
@@ -11,31 +11,30 @@ export default function TelaLazer(){
     const [dados, setDados] = useState([]);
 
 
-    async function fazerSolicitacaoComToken() {
+    useEffect(() => {
+      async function fetchData() {
         try {
           // Obtém o token de AsyncStorage
           const token = await AsyncStorage.getItem("token");
           const idUsuario = await AsyncStorage.getItem("id");
-
-            
-        
+  
           if (token) {
             // Construa o cabeçalho Authorization
             const headers = {
               'Content-type': 'application/json',
               'Authorization': `Bearer ${token}`
             };
-      
+  
             // Faça a solicitação usando o cabeçalho personalizado
-            const response = await fetch('https://tcc-production-e100.up.railway.app/api/favorito/'+idUsuario, {
+            const response = await fetch('https://tcc-production-e100.up.railway.app/api/favorito/' + idUsuario, {
               method: 'GET', // ou outro método HTTP
               headers: headers
             });
-      
+  
             if (response.status === 200) {
               const data = await response.json();
               console.log("Dados da resposta:", data);
-              setDados(data)
+              setDados(data);
             } else {
               console.error("Erro na solicitação:", response.status, idUsuario);
             }
@@ -46,9 +45,10 @@ export default function TelaLazer(){
           console.error("Erro ao fazer a solicitação:", error);
         }
       }
-      
-
-      fazerSolicitacaoComToken();
+  
+      fetchData();
+    }, []); // O segundo argumento do useEffect é uma array de dependências, vazia significa que será executado uma vez na montagem
+  
     return(
       <View style= {{flex:1, backgroundColor: '#FFF'}}>
      
