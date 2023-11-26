@@ -6,7 +6,7 @@ import Routes from '../../componentes/menu/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export default function TelaLazer(){
+export default function TelaLazer({ route }){
   const navigation = useNavigation();
   const [dados, setDados] = useState([]);
 
@@ -31,28 +31,30 @@ export default function TelaLazer(){
 
         if (response.status === 200) {
           const data = await response.json();
-            console.log(data)
           const userLatitude = parseFloat(await AsyncStorage.getItem('latitude'));
-          const userLongetude = parseFloat(await AsyncStorage.getItem('longetude'));
+          const userLongitude = parseFloat(await AsyncStorage.getItem('longetude'));
 
-          data.forEach(lazer => {
-            if (lazer.latitude && lazer.longetude) {
-              const distancia = calcularDistancia(userLatitude, userLongetude, lazer.latitude, lazer.longetude);
-              lazer.distanciaUsuario = distancia.toFixed(2); // Adicionando a propriedade 'distanciaUsuario' ao objeto do parque
+          await Promise.all(data.map(async (evento) => {
+            const enderecoEvento = encodeURI(evento.local);
+
+            const responseLocal = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${enderecoEvento}`);
+            const dadosLocal = await responseLocal.json();
+
+            if (dadosLocal && dadosLocal.length > 0) {
+              const latitudeEvento = parseFloat(dadosLocal[0].lat);
+              const longitudeEvento = parseFloat(dadosLocal[0].lon);
+
+              const distancia = calcularDistancia(userLatitude, userLongitude, latitudeEvento, longitudeEvento);
+              evento.distanciaUsuario = distancia.toFixed(2);
+
+              return evento;
             } else {
-              lazer.distanciaUsuario = 'Indisponível';
+              evento.distanciaUsuario = 'Indisponível';
+              return evento;
             }
+          })).then(updatedData => {
+            setDados(updatedData);
           });
-
-          const ordenarPorProximidade = (lazer) => {
-            return lazer.sort((a, b) => {
-              if (a.distanciaUsuario === 'Indisponível') return 1;
-              if (b.distanciaUsuario === 'Indisponível') return -1;
-              return parseFloat(a.distanciaUsuario) - parseFloat(b.distanciaUsuario);
-            });
-          };
-
-          setDados(ordenarPorProximidade(data));
         } else {
           console.error('Erro na solicitação:', response.status);
         }
