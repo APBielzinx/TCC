@@ -20,4 +20,6 @@ public interface FavoritoRepository extends JpaRepository<Favorito, Long> {
 
     boolean existsByLazerAndUsuario(Lazer lazer, Usuario usuario);
 
+    void deleteByLazer(Lazer lazer);
+
 }

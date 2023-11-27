@@ -18,5 +18,6 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao , Long> {
 
    List <Avaliacao> findByLazer(Lazer lazer);
 
+   void deleteByLazer(Lazer lazer);
 
 }

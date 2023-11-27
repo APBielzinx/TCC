@@ -32,6 +32,9 @@ public class Evento {
     @Column(nullable = false)
     private int status;
 
+    @Column(nullable = false)
+    private String imagem;
+
     @ManyToOne
     @JoinColumn (name = "idLazer")
     @JsonBackReference

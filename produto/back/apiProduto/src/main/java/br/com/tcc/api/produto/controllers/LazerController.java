@@ -139,7 +139,7 @@ public class LazerController {
     })
     public ResponseEntity<?> ExcluirLazer(@PathVariable("id") Long id){
 
-        return lazerService.ExcluirLazer(id);
+        return lazerService.excluirLazer(id);
 
     }
 
