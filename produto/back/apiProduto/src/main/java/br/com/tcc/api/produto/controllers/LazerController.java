@@ -105,9 +105,8 @@ public class LazerController {
             @ApiResponse(responseCode = "404", description = "Não encontrado", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", description = "Sem autorização necessária", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> Cadastrar(@Parameter(hidden = true) @RequestBody Lazer lazer, @RequestParam("file") MultipartFile file){
-       lazer.setImagem(file.getOriginalFilename());
-        return lazerService.Cadastrar(lazer, file );
+    public ResponseEntity<?> Cadastrar(@Parameter(hidden = true) @RequestBody Lazer lazer){
+        return lazerService.Cadastrar(lazer);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
