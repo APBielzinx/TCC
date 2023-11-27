@@ -53,20 +53,12 @@ public class LazerService {
     }
 
     @Transactional
-    public ResponseEntity<?> Cadastrar(Lazer lazer, MultipartFile file) {
+    public ResponseEntity<?> Cadastrar(Lazer lazer) {
         if (lazerRepository.existsByNome(lazer.getNome())) {
 
             return new ResponseEntity<>("Já existe uma area de lazer com esse nome", HttpStatus.BAD_REQUEST);
         } else {
-            try {
-                byte[] bytes = file.getBytes();
-                Path path = Paths.get("uploads", file.getOriginalFilename());
-                Files.write(path, bytes);
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Trate os erros de upload, se necessário
-            }
-
+           
             lazerRepository.save(lazer);
             return new ResponseEntity<>("Cadastrado com sucesso", HttpStatus.CREATED);
 
