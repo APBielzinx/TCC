@@ -87,47 +87,26 @@ public class LazerService {
         }
     }
 
-    public ResponseEntity<?> ExcluirLazer(Long id) {
-        if (lazerRepository.existsByIdLazer(id)) {
-           var lazer = lazerRepository.findByIdLazer(id);
-           var avaliacao = avaliacaoRepository.findByLazer(lazer);
-           var favorito = favoritoRepository.findByLazer(lazer);
-           var solicitacoes = solicitacoesRepository.findByLazer(lazer);
-           var adm = administradorRepository.findByLazer(lazer);
-           if (avaliacao != null && favorito != null && solicitacoes != null){
-               avaliacaoRepository.delete((Avaliacao) avaliacao);
-               favoritoRepository.delete(favorito);
-               solicitacoesRepository.deleteAllByLazer(lazer);
-               lazerRepository.delete(lazer);
-           }else if (avaliacao != null ){
-               avaliacaoRepository.delete((Avaliacao) avaliacao);
-               lazerRepository.delete(lazer);
-           }else if (favorito != null ){
-               favoritoRepository.delete(favorito);
-               lazerRepository.delete(lazer);
-           }else if(solicitacoes != null ) {
-               solicitacoesRepository.deleteAllByLazer(lazer);
-               lazerRepository.delete(lazer);
-           }else if(adm != null){
-               List<Administrador> administradoresParaExcluir = adm;
-               for (Administrador administrador : administradoresParaExcluir) {
-                   administradorRepository.delete(administrador);
-               }
+  @Transactional
+public ResponseEntity<?> excluirLazer(Long id) {
+    Optional<Lazer> lazerOptional = lazerRepository.findByIdLazer(id);
 
-               lazerRepository.delete(lazer);
-           }
-           else {
-               lazerRepository.delete(lazer);
-           }
+    if (lazerOptional.isPresent()) {
+        Lazer lazer = lazerOptional.get();
 
-            return new ResponseEntity<>("deletado com sucesso", HttpStatus.OK);
+        avaliacaoRepository.deleteByLazer(lazer);
+        favoritoRepository.deleteByLazer(lazer);
+        solicitacoesRepository.deleteAllByLazer(lazer);
+        administradorRepository.deleteByLazer(lazer);
 
-        } else {
+        lazerRepository.delete(lazer);
 
-            return new ResponseEntity<>("Area de lazer não encontrada", HttpStatus.NO_CONTENT);
-
-        }
+        return new ResponseEntity<>("Deletado com sucesso", HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>("Área de lazer não encontrada", HttpStatus.NO_CONTENT);
     }
+}
+
 
 
     public ResponseEntity<?> BuscarPorIdAdm(Long id) {
