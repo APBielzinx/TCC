@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, TouchableOpacity, Text, ScrollView } from 'react-native';
+import { View, Image, TouchableOpacity, Text, ScrollView, Modal, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './style';
 import Routes from '../../componentes/menu/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
-import PickerSelect from 'react-native-picker-select';
 
 export default function TelaLazer({ route }){
   const navigation = useNavigation();
   const [dados, setDados] = useState([]);
-  const [showFilter, setShowFilter] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
+  const [showLocalModal, setShowLocalModal] = useState(false);
+  const [locaisDisponiveis, setLocaisDisponiveis] = useState([]);
+  const [selectedLocal, setSelectedLocal] = useState(null);
+
+
 
   useEffect(() => {
     fazerSolicitacaoComToken();
@@ -36,6 +41,14 @@ export default function TelaLazer({ route }){
           const data = await response.json();
           const userLatitude = parseFloat(await AsyncStorage.getItem('latitude'));
           const userLongitude = parseFloat(await AsyncStorage.getItem('longetude'));
+
+          const locais = data.map(evento => evento.local);
+          const locaisUnicos = [...new Set(locais)]; // Remover duplicatas
+          setLocaisDisponiveis(locaisUnicos);
+
+          console.log("Locais Disponíveis:", locaisDisponiveis);
+          console.log("Dados Atualizados:", updatedData);
+
 
           await Promise.all(data.map(async (evento) => {
             const enderecoEvento = encodeURI(evento.local);
@@ -85,41 +98,48 @@ export default function TelaLazer({ route }){
     return dist;
   };
 
-  const formatarData = (data) => {
-    const year = data.substr(0, 4);
-    const month = data.substr(4, 2);
-    const day = data.substr(6, 2);
-    return `${year}-${month}-${day}`;
-  };
+
+  const handleFilterSelect = (value) => {
+    setSelectedFilter(value);
+    setShowModal(false);
   
-  // Função para filtrar por data mais próxima
+    // Lógica de aplicação do filtro com base no valor selecionado
+    if (value === 'data') {
+      filtrarPorData();
+    } else if (value === 'distancia') {
+      filtrarPorDistancia();
+    } else if (value === 'local') {
+      filtrarPorLocal();
+    }
+  };
+
   const filtrarPorData = () => {
     const dadosOrdenados = [...dados].sort((a, b) => {
-      const dataA = formatarData(a.data);
-      const dataB = formatarData(b.data);
-      return new Date(dataA) - new Date(dataB);
+      const dataA = new Date(a.data);
+      const dataB = new Date(b.data);
+      return dataA - dataB;
     });
-    setDados(dadosOrdenados);
-    setShowFilter(false);
+    setFilteredData(dadosOrdenados);
   };
   
-// Função para filtrar por distância (do mais próximo para o mais distante)
-const filtrarPorDistancia = () => {
-  const dadosOrdenados = [...dados].sort((a, b) => a.distanciaUsuario - b.distanciaUsuario);
-  setDados(dadosOrdenados);
-  setShowFilter(false);
-};
-
-// Função para filtrar por local
-const filtrarPorLocal = (localSelecionado) => {
-  if (localSelecionado) {
-    const eventosFiltrados = dados.filter(evento => evento.local === localSelecionado);
-    setDados(eventosFiltrados);
-  } else {
-    setDados([...dados]); // Caso nenhum local seja selecionado, exibir todos os eventos novamente
-  }
-  setShowFilter(false);
-};
+  const filtrarPorDistancia = () => {
+    const dadosOrdenados = [...dados].sort((a, b) => parseFloat(a.distanciaUsuario) - parseFloat(b.distanciaUsuario));
+    setFilteredData(dadosOrdenados);
+  };
+  
+  const filtrarPorLocal = (localSelecionado) => {
+    if (localSelecionado) {
+      const eventosFiltrados = dados.filter(evento => evento.local === localSelecionado);
+      setFilteredData(eventosFiltrados);
+    } else {
+      setFilteredData([...dados]);
+    }
+  };
+  const handleLocalSelect = (local) => {
+    setSelectedLocal(local);
+    setShowLocalModal(false);
+    filtrarPorLocal(local);
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
@@ -130,35 +150,59 @@ const filtrarPorLocal = (localSelecionado) => {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => setShowFilter(!showFilter)}>
-      <Text style={{ fontSize: 20, marginTop: 10, marginLeft: 20 }}>
-        Filtrar
-      </Text>
-    </TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowModal(true)}>
+        <Text>Selecione um filtro</Text>
+      </TouchableOpacity>
 
-    {showFilter && (
-      <PickerSelect
-        onValueChange={(value) => {
-          setSelectedFilter(value);
-          if (value === 'data') {
-            filtrarPorData();
-          } else if (value === 'distancia') {
-            filtrarPorDistancia();
-          } else if (value === 'local') {
-            filtrarPorLocal();
-          }
-        }}
-        items={[
-          { label: 'Data mais próxima', value: 'data' },
-          { label: 'Distância', value: 'distancia' },
-          { label: 'Local', value: 'local' },
-        ]}
-      />
-    )}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showModal}
+        onRequestClose={() => setShowModal(false)}
+      >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{ backgroundColor: '#fff', padding: 20 }}>
+          <FlatList
+              data={[
+                { label: 'Data mais próxima', value: 'data' },
+                { label: 'Distância', value: 'distancia' },
+                { label: 'Local', value: 'local' },
+              ]}
+              keyExtractor={(item) => item.value}
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => handleFilterSelect(item.value)}>
+                  <Text>{item.label}</Text>
+                </TouchableOpacity>
+              )}
+          />
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showLocalModal}
+        onRequestClose={() => setShowLocalModal(false)}
+      >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{ backgroundColor: '#fff', padding: 20 }}>
+            <FlatList
+              data={locaisDisponiveis}
+              keyExtractor={(item) => item}
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => handleLocalSelect(item)}>
+                  <Text>{item}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </View>
+      </Modal>
 
         <ScrollView>
 
-        {dados.map((evento, index) => (
+        {(filteredData.length > 0 ? filteredData : dados).map((evento, index) => (
           <TouchableOpacity
             key={evento}
             style={{ marginBottom: 20 }} // Espaço entre os parques
