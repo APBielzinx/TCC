@@ -5,10 +5,13 @@ import styles from './style';
 import Routes from '../../componentes/menu/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
+import PickerSelect from 'react-native-picker-select';
 
 export default function TelaLazer({ route }){
   const navigation = useNavigation();
   const [dados, setDados] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState(null);
 
   useEffect(() => {
     fazerSolicitacaoComToken();
@@ -82,6 +85,42 @@ export default function TelaLazer({ route }){
     return dist;
   };
 
+  const formatarData = (data) => {
+    const year = data.substr(0, 4);
+    const month = data.substr(4, 2);
+    const day = data.substr(6, 2);
+    return `${year}-${month}-${day}`;
+  };
+  
+  // Função para filtrar por data mais próxima
+  const filtrarPorData = () => {
+    const dadosOrdenados = [...dados].sort((a, b) => {
+      const dataA = formatarData(a.data);
+      const dataB = formatarData(b.data);
+      return new Date(dataA) - new Date(dataB);
+    });
+    setDados(dadosOrdenados);
+    setShowFilter(false);
+  };
+  
+// Função para filtrar por distância (do mais próximo para o mais distante)
+const filtrarPorDistancia = () => {
+  const dadosOrdenados = [...dados].sort((a, b) => a.distanciaUsuario - b.distanciaUsuario);
+  setDados(dadosOrdenados);
+  setShowFilter(false);
+};
+
+// Função para filtrar por local
+const filtrarPorLocal = (localSelecionado) => {
+  if (localSelecionado) {
+    const eventosFiltrados = dados.filter(evento => evento.local === localSelecionado);
+    setDados(eventosFiltrados);
+  } else {
+    setDados([...dados]); // Caso nenhum local seja selecionado, exibir todos os eventos novamente
+  }
+  setShowFilter(false);
+};
+
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
       
@@ -90,6 +129,32 @@ export default function TelaLazer({ route }){
             <Icon name="leftcircle" size={40} color='#17A558' />  Eventos
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => setShowFilter(!showFilter)}>
+      <Text style={{ fontSize: 20, marginTop: 10, marginLeft: 20 }}>
+        Filtrar
+      </Text>
+    </TouchableOpacity>
+
+    {showFilter && (
+      <PickerSelect
+        onValueChange={(value) => {
+          setSelectedFilter(value);
+          if (value === 'data') {
+            filtrarPorData();
+          } else if (value === 'distancia') {
+            filtrarPorDistancia();
+          } else if (value === 'local') {
+            filtrarPorLocal();
+          }
+        }}
+        items={[
+          { label: 'Data mais próxima', value: 'data' },
+          { label: 'Distância', value: 'distancia' },
+          { label: 'Local', value: 'local' },
+        ]}
+      />
+    )}
 
         <ScrollView>
 
@@ -133,6 +198,12 @@ export default function TelaLazer({ route }){
                 </Text>
                 <Text style={{ fontSize: 10, marginTop: 5 }}>
                   Distância: {evento.distanciaUsuario} km da sua residência
+                </Text>
+                <Text style={{ fontSize: 12 }}>
+                  Data de Início: {evento.dataInicio} {/* Adicione aqui a data de início */}
+                </Text>
+                <Text style={{ fontSize: 12 }}>
+                  Local: {evento.local} {/* Adicione aqui a data de início */}
                 </Text>
               </View>
             </View>
