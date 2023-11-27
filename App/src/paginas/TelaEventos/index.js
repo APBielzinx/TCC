@@ -15,6 +15,7 @@ export default function TelaLazer({ route }){
   const [showLocalModal, setShowLocalModal] = useState(false);
   const [locaisDisponiveis, setLocaisDisponiveis] = useState([]);
   const [selectedLocal, setSelectedLocal] = useState(null);
+  const [updatedData, setupdatedData] = useState(null);
 
 
 
