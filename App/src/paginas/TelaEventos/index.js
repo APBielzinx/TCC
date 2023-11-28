@@ -173,16 +173,21 @@ useEffect(() => {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
-      
-        <TouchableOpacity style={styles.botaopular} onPress={() => navigation.navigate('TelaInicial')}>
-          <Text style={{ color: '#000', fontSize: 35, left: 30, marginTop: 60 }}>
-            <Icon name="leftcircle" size={40} color='#17A558' />  Eventos
-          </Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => setShowModal(true)}>
-        <Text>Selecione um filtro</Text>
-      </TouchableOpacity>
+      <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity style={styles.botaopular} onPress={() => navigation.navigate('TelaInicial')}>
+              <Text style={{ color: '#000', fontSize: 35, left: 30, marginTop: 60 }}>
+                <Icon name="leftcircle" size={40} color='#17A558' />  Eventos
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{ backgroundColor: '#17A558', borderRadius: 25, padding: 5, width: '25%', color: '#FFF', left: 100, height:35, marginTop: 65 }} onPress={() => setShowModal(true)}>
+            <Text style={{color: '#FFF', fontSize: 17, marginTop: 1, left: 12  }}>
+            <Icon name="filter" size={25} color='#FFF' style={{right: 15}} />Filtro</Text>
+          </TouchableOpacity>
+      </View>
+      
+        
 
       <Modal
         animationType="slide"
@@ -191,7 +196,7 @@ useEffect(() => {
         onRequestClose={() => setShowModal(false)}
       >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-          <View style={{ backgroundColor: '#FFFFFF', borderRadius: 10, padding: 20, width: '80%' }}>
+          <View style={{ backgroundColor: '#FFFFFF', borderRadius: 25, padding: 20, width: '80%' }}>
             <FlatList
               data={[
                 { label: 'Data mais próxima', value: 'data' },
