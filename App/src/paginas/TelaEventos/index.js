@@ -18,10 +18,28 @@ export default function TelaLazer({ route }){
   const [updatedData, setupdatedData] = useState(null);
 
 
+  const currentDate = new Date(); // Data atual
 
-  useEffect(() => {
-    fazerSolicitacaoComToken();
-  }, []);
+const filtrarEventosPassados = () => {
+  const eventosFuturos = dados.filter(evento => {
+    const ano = parseInt(evento.dataInicio.slice(0, 4), 10);
+    const mes = parseInt(evento.dataInicio.slice(4, 6), 10) - 1; // Mês começa do zero (janeiro é 0)
+    const dia = parseInt(evento.dataInicio.slice(6, 8), 10);
+    
+    const eventoDate = new Date(ano, mes, dia);
+
+    return eventoDate >= currentDate;
+  });
+  setFilteredData(eventosFuturos);
+};
+
+useEffect(() => {
+  fazerSolicitacaoComToken();
+}, []);
+
+useEffect(() => {
+  filtrarEventosPassados(); // Chama a função de filtro quando os dados são atualizados
+}, [dados]); 
 
   async function fazerSolicitacaoComToken() {
     try {
@@ -103,14 +121,15 @@ export default function TelaLazer({ route }){
   const handleFilterSelect = (value) => {
     setSelectedFilter(value);
     setShowModal(false);
-  
-    // Lógica de aplicação do filtro com base no valor selecionado
+    
     if (value === 'data') {
       filtrarPorData();
-    } else if (value === 'distancia') {
-      filtrarPorDistancia();
+    } else if (value === 'distanciaProxima') {
+      filtrarPorDistancia('distanciaProxima');
+    } else if (value === 'distanciaLonge') {
+      filtrarPorDistancia('distanciaLonge');
     } else if (value === 'local') {
-      filtrarPorLocal();
+      setShowLocalModal(true); // Exibir o modal de locais ao selecionar "Local"
     }
   };
 
@@ -123,8 +142,17 @@ export default function TelaLazer({ route }){
     setFilteredData(dadosOrdenados);
   };
   
-  const filtrarPorDistancia = () => {
-    const dadosOrdenados = [...dados].sort((a, b) => parseFloat(a.distanciaUsuario) - parseFloat(b.distanciaUsuario));
+  const filtrarPorDistancia = (selectedFilter) => {
+    let dadosOrdenados;
+    
+    if (selectedFilter === 'distanciaProxima') {
+      dadosOrdenados = [...dados].sort((a, b) => parseFloat(a.distanciaUsuario) - parseFloat(b.distanciaUsuario));
+    } else if (selectedFilter === 'distanciaLonge') {
+      dadosOrdenados = [...dados].sort((a, b) => parseFloat(b.distanciaUsuario) - parseFloat(a.distanciaUsuario));
+    } else {
+      dadosOrdenados = [...dados];
+    }
+    
     setFilteredData(dadosOrdenados);
   };
   
@@ -136,6 +164,7 @@ export default function TelaLazer({ route }){
       setFilteredData([...dados]);
     }
   };
+
   const handleLocalSelect = (local) => {
     setSelectedLocal(local);
     setShowLocalModal(false);
@@ -162,20 +191,42 @@ export default function TelaLazer({ route }){
         onRequestClose={() => setShowModal(false)}
       >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-          <View style={{ backgroundColor: '#fff', padding: 20 }}>
-          <FlatList
+          <View style={{ backgroundColor: '#FFFFFF', borderRadius: 10, padding: 20, width: '80%' }}>
+            <FlatList
               data={[
                 { label: 'Data mais próxima', value: 'data' },
-                { label: 'Distância', value: 'distancia' },
+                { label: 'Distância mais próxima', value: 'distanciaProxima' },
+                { label: 'Distância mais longe', value: 'distanciaLonge' },
                 { label: 'Local', value: 'local' },
               ]}
               keyExtractor={(item) => item.value}
               renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => handleFilterSelect(item.value)}>
-                  <Text>{item.label}</Text>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: '#E5E5E5',
+                    padding: 15,
+                    borderRadius: 8,
+                    marginBottom: 10,
+                    alignItems: 'center',
+                  }}
+                  onPress={() => handleFilterSelect(item.value)}
+                >
+                  <Text style={{ fontSize: 16 }}>{item.label}</Text>
                 </TouchableOpacity>
               )}
-          />
+            />
+            <TouchableOpacity
+              style={{
+                backgroundColor: '#FF6347',
+                padding: 15,
+                borderRadius: 8,
+                marginTop: 10,
+                alignItems: 'center',
+              }}
+              onPress={() => setShowModal(false)}
+            >
+              <Text style={{ fontSize: 16, color: '#FFF' }}>Fechar</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -187,18 +238,40 @@ export default function TelaLazer({ route }){
         onRequestClose={() => setShowLocalModal(false)}
       >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-          <View style={{ backgroundColor: '#fff', padding: 20 }}>
-            <FlatList
-              data={locaisDisponiveis}
-              keyExtractor={(item) => item}
-              renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => handleLocalSelect(item)}>
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        </View>
+    <View style={{ backgroundColor: '#FFFFFF', borderRadius: 10, padding: 20, width: '80%' }}>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>Escolha um Local</Text>
+      <FlatList
+        data={locaisDisponiveis}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#E5E5E5',
+              padding: 15,
+              borderRadius: 8,
+              marginBottom: 10,
+              alignItems: 'center',
+            }}
+            onPress={() => handleLocalSelect(item)}
+          >
+            <Text style={{ fontSize: 16 }}>{item}</Text>
+          </TouchableOpacity>
+        )}
+      />
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#FF6347',
+          padding: 15,
+          borderRadius: 8,
+          marginTop: 10,
+          alignItems: 'center',
+        }}
+        onPress={() => setShowLocalModal(false)}
+      >
+        <Text style={{ fontSize: 16, color: '#FFF' }}>Fechar</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
       </Modal>
 
         <ScrollView>
