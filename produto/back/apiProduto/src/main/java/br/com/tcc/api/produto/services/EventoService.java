@@ -67,9 +67,13 @@ public class EventoService {
            e.setDataInicio(evento.getDataInicio());
            e.setDataTermino(evento.getDataTermino());
            e.setDescricao(evento.getDescricao());
+           if (evento.getImagem() == null || evento.getImagem().equals("")){
+               e.setImagem(e.getImagem());
+               eventoRepository.save(e);
+           }
            e.setImagem(evento.getImagem());
-
            eventoRepository.save(e);
+
             return new ResponseEntity<>("Evento atualizado com sucesso",HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>("Não foi possivel realizar a solicitação",HttpStatus.BAD_REQUEST);
