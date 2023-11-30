@@ -23,7 +23,7 @@ public class EventoService {
     private LazerRepository lazerRepository;
 
     public List<Evento> ListarEvento(){
-        
+
          return eventoRepository.findAll();
 
     }
