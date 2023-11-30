@@ -5,6 +5,7 @@ import styles from './style';
 import Routes from '../../componentes/menu/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
+import moment from 'moment';
 
 export default function TelaLazer({ route }){
   const navigation = useNavigation();
@@ -200,8 +201,8 @@ useEffect(() => {
             <FlatList
               data={[
                 { label: 'Data mais próxima', value: 'data' },
-                { label: 'Distância mais próxima', value: 'distanciaProxima' },
-                { label: 'Distância mais longe', value: 'distanciaLonge' },
+                { label: 'Local mais próximo', value: 'distanciaProxima' },
+                { label: 'Local mais longe', value: 'distanciaLonge' },
                 { label: 'Local', value: 'local' },
               ]}
               keyExtractor={(item) => item.value}
@@ -299,13 +300,15 @@ useEffect(() => {
                   marginTop: 6,
               }}
             >
+              <Image source={{ uri: evento.imagem }} style={styles.Imagens} />
               <View style={{ marginLeft: 10, flexShrink: 1 }}>
                 <Text
                   style={{
                     fontSize: 18,
                     marginBottom: 5,
                     flexShrink: 1,
-                    flexWrap: 'wrap', // Permite que o texto quebre em várias linhas
+                    flexWrap: 'wrap',
+                    fontWeight: 'bold' // Permite que o texto quebre em várias linhas
                   }}
                 >
                   {evento.nomeEvento}
@@ -314,18 +317,22 @@ useEffect(() => {
                   style={{
                     fontSize: 10,
                     flexShrink: 1,
-                    flexWrap: 'wrap', // Permite que o texto quebre em várias linhas
+                    flexWrap: 'wrap',
+                    fontWeight: 'bold' // Permite que o texto quebre em várias linhas
                   }}
                 >
-                  {evento.descricao}
+                 Descrição: {evento.descricao}
                 </Text>
-                <Text style={{ fontSize: 10, marginTop: 5 }}>
+                <Text style={{ fontSize: 10, marginTop: 5, fontWeight: 'bold' }}>
                   Distância: {evento.distanciaUsuario} km da sua residência
                 </Text>
-                <Text style={{ fontSize: 12 }}>
-                  Data de Início: {evento.dataInicio} {/* Adicione aqui a data de início */}
+                <Text style={{ fontSize: 12, fontWeight: 'bold' }}>
+                  Data de Início: {moment(evento.dataInicio, "YYYYMMDD").format("DD/MM/YYYY")}
                 </Text>
-                <Text style={{ fontSize: 12 }}>
+                <Text style={{ fontSize: 12, fontWeight: 'bold' }}>
+                  Data de Término: {moment(evento.dataTermino, "YYYYMMDD").format("DD/MM/YYYY")}
+                </Text>
+                <Text style={{ fontSize: 12, fontWeight: 'bold' }}>
                   Local: {evento.local} {/* Adicione aqui a data de início */}
                 </Text>
               </View>
