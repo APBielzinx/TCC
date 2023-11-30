@@ -67,6 +67,7 @@ public class EventoService {
            e.setDataInicio(evento.getDataInicio());
            e.setDataTermino(evento.getDataTermino());
            e.setDescricao(evento.getDescricao());
+           e.setImagem(evento.getImagem());
 
            eventoRepository.save(e);
             return new ResponseEntity<>("Evento atualizado com sucesso",HttpStatus.OK);
