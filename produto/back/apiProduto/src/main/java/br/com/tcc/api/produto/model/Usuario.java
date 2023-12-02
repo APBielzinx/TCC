@@ -1,5 +1,6 @@
 package br.com.tcc.api.produto.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +42,10 @@ public class Usuario implements UserDetails {
     private String senha;
     private UserRole role;
 
-
+    @ManyToOne
+    @JoinColumn(name = "idEvento")
+    @JsonBackReference
+    private Evento evento;
 
     public Usuario(String login, String password, UserRole role){
         this.email = login;

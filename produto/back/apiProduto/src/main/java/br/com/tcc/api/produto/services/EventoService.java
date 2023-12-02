@@ -2,8 +2,11 @@ package br.com.tcc.api.produto.services;
 
 import br.com.tcc.api.produto.model.Evento;
 import br.com.tcc.api.produto.model.Lazer;
+import br.com.tcc.api.produto.model.Usuario;
 import br.com.tcc.api.produto.repository.EventoRepository;
 import br.com.tcc.api.produto.repository.LazerRepository;
+import br.com.tcc.api.produto.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventoService {
@@ -21,6 +25,10 @@ public class EventoService {
 
     @Autowired
     private LazerRepository lazerRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
 
     public List<Evento> ListarEvento(){
 
@@ -43,6 +51,40 @@ public class EventoService {
 
         return new ResponseEntity<>(evento, HttpStatus.OK);
     }
+
+    @Transactional
+    public ResponseEntity<?> queroIr(Evento evento, Long idUsuario) {
+        try {
+            Optional<Usuario> usuarioOptional = usuarioRepository.findById(idUsuario);
+
+            if (usuarioOptional.isEmpty()) {
+                return new ResponseEntity<>("Usuário não encontrado", HttpStatus.BAD_REQUEST);
+            }
+
+            Usuario usuario = usuarioOptional.get();
+
+            if (eventoRepository.existsByIdEventoAndUsuarios(evento.getIdEvento(), usuario)) {
+                return new ResponseEntity<>("Você já adicionou esse evento ao quero ir", HttpStatus.BAD_REQUEST);
+            }
+
+            var eventoExistente = eventoRepository.findByIdEvento(evento.getIdEvento());
+
+            if (eventoExistente != null) {
+                eventoExistente.getUsuarios().add(usuario);
+                usuario.setEvento(evento);
+                usuarioRepository.save(usuario);
+                eventoRepository.save(eventoExistente);
+                return new ResponseEntity<>("Quero ir adicionado com sucesso", HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>("Evento não encontrado", HttpStatus.BAD_REQUEST);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>("Houve um problema ao criar o evento" + e, HttpStatus.BAD_REQUEST);
+        }
+    }
+
     public ResponseEntity<?> CriarNovoEvento(Evento evento){
          System.out.println((evento));
         try{

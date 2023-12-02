@@ -33,9 +33,13 @@ public class EventoController {
     public ResponseEntity<?>buscarPorData(@PathVariable("dataEvento")String data){
         return eventoService.BuscarEventoPorData(data);
     }
+    @PostMapping(value = "/queroir/{idUsuario}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>queroIr(@RequestBody  Evento evento, @PathVariable("idUsuario")long idUsuario){
+        return eventoService.queroIr(evento, idUsuario);
+    }
 
-@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<?>cadastrar(@RequestBody  Evento evento){
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>cadastrar(@RequestBody  Evento evento){
     return eventoService.CriarNovoEvento(evento);
 }
 

@@ -2,6 +2,7 @@ package br.com.tcc.api.produto.repository;
 
 import br.com.tcc.api.produto.model.Evento;
 import br.com.tcc.api.produto.model.Lazer;
+import br.com.tcc.api.produto.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
@@ -16,4 +17,8 @@ public interface EventoRepository extends JpaRepository<Evento, Long> {
    List<Evento> findByLazer(Lazer lazer);
 
    List<Evento>findByDataInicio(LocalDate data);
+
+   boolean existsByIdEventoAndUsuarios(long idevento, Usuario usuario);
+
+
 }

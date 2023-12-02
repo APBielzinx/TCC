@@ -1,13 +1,20 @@
 package br.com.tcc.api.produto.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Evento {
 
     @Id
@@ -34,6 +41,11 @@ public class Evento {
 
     @Column(nullable = false)
     private String imagem;
+
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<Usuario> usuarios;
 
     @ManyToOne
     @JoinColumn (name = "idLazer")
