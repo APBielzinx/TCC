@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Favoritar from '../../componentes/favoritar cor'
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import moment from 'moment';
+import { date } from 'yup';
 
 export default function TelaDetalhesEventos({ route }) {
   const navigation = useNavigation();
@@ -18,7 +19,6 @@ export default function TelaDetalhesEventos({ route }) {
   const [parkLocation, setParkLocation] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [dados, setDados] = useState([]);
-  const [idUsuario, setIdUsuario] = useState();
 
   const handleTextInputChange = (inputText) => {
     setText(inputText);
@@ -64,52 +64,58 @@ export default function TelaDetalhesEventos({ route }) {
 
     InAppBrowser.open(`https://www.google.com/maps/dir/${userLocation.latitude},${userLocation.longitude}/${parkLocation.latitude},${parkLocation.longitude}`);
   };
+  console.log(route.params)
+  async function tenhoInteresse(){
+   
+   const idUsuario = await AsyncStorage.getItem("id")
+   const token = await AsyncStorage.getItem("token");
+    
+ 
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        // Obtém o token de AsyncStorage
-        const token = await AsyncStorage.getItem("token");
-        const idUsuario = await AsyncStorage.getItem("id");
-
-        if (token) {
-          // Construa o cabeçalho Authorization
-          const headers = {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          };
-
-          // Faça a solicitação usando o cabeçalho personalizado
-          const response = await fetch('https://tcc-production-e100.up.railway.app/api/favorito/' + idUsuario, {
-            method: 'GET', // ou outro método HTTP
-            headers: headers
-          });
-
-          if (response.status === 200) {
-            const data = await response.json();
-            console.log("Dados da resposta:", data);
-            setDados(data);
-          } else {
-            console.error("Erro na solicitação:", response.status, idUsuario);
-          }
-        } else {
-          console.log("Token não encontrado em AsyncStorage.");
+    if(token){
+      try{
+        const dados = {
+          "idEvento": route.params.idEvento,
+          "nomeEvento": route.params.nomeEvento,
+          "descricao": route.params.descricao,
+          "local": route.params.local,
+          "dataInicio": route.params.dataInicio,
+          "dataTermino": route.params.dataTermino,
+          "status": route.params.status,
+          "imagem": route.params.imagem,
+          "usuarios": [
+            {
+              "idUsuario": idUsuario,
+            }
+          ]
         }
-      } catch (error) {
+        const headers = {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        };
+        const jsonData = JSON.stringify(dados);
+        const response = await fetch('https://tcc-production-e100.up.railway.app/api/evento/queroir/'+ idUsuario, {
+          method: 'POST', // ou outro método HTTP
+          headers: headers,
+          body:jsonData
+        });
+  
+        if (response.status === 201) {
+          
+          alert("Adicionado com sucesso")
+
+        } else if(response.status === 400){
+          alert("você já tem esse evento adicionado ao quero ir")
+
+        }
+      } catch(error){
         console.error("Erro ao fazer a solicitação:", error);
+
       }
+    }else {
+      console.log("Token não encontrado em AsyncStorage.");
     }
-
-    fetchData();
-  }, []);
-
-  const tenhoInteresse = () => {
-    if (idUsuario) {
-      alert("BOTÃO PRESSIONADO");
-      console.log("ID DO USUÁRIO:" + idUsuario);
-    } else {
-      console.log("ID do usuário não está disponível.");
-    }
+     
   };
 
   return (
