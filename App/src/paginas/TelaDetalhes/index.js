@@ -17,6 +17,8 @@ export default function TelaDetalhes({ route }) {
   const [parkLocation, setParkLocation] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [dados, setDados] = useState([]);
+  const [favoritos, setFavoritos] = useState([]); // Estado para armazenar os favoritos
+
 
 
   const handleTextInputChange = (inputText) => {
@@ -139,35 +141,36 @@ export default function TelaDetalhes({ route }) {
     InAppBrowser.open(`https://www.google.com/maps/dir/${userLocation.latitude},${userLocation.longitude}/${parkLocation.latitude},${parkLocation.longitude}`);
   };
 
-  async function favoritos(data) {
-    console.log("oi");
+  async function adicionarOuRemoverFavorito(parque) {
     try {
       const token = await AsyncStorage.getItem("token");
       const idUsuario = await AsyncStorage.getItem("id");
-
+  
       if (token) {
         const headers = {
           'Content-type': 'application/json; charset=UTF-8',
           'Authorization': `Bearer ${token}`
         };
-
+  
+        const body = {
+          "usuario": {
+            "idUsuario": idUsuario,
+          },
+          "lazer": {
+            "idLazer": parque.idLazer
+          }
+        };
+  
         const response = await fetch('https://tcc-production-e100.up.railway.app/api/favorito', {
           method: 'POST',
           headers: headers,
-          body: JSON.stringify({
-            "usuario": {
-              "idUsuario": idUsuario,
-            },
-            "lazer": {
-              "idLazer": data.idLazer
-            }
-          })
+          body: JSON.stringify(body)
         });
-
+  
         if (response.status === 200) {
           console.log("adicionado com sucesso");
         } else if (response.status === 400) {
-          Alert.alert("isso já está na sua lista de favoritos");
+          Alert.alert("Este parque já está na sua lista de favoritos");
           console.error("Erro na solicitação:", response.status);
         }
       } else {
@@ -177,6 +180,25 @@ export default function TelaDetalhes({ route }) {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
+
+  const toggleFavorito = async (parqueId) => {
+    try {
+      // ... lógica para obter token e idUsuario do AsyncStorage
+
+      // Verifica se parqueId já está nos favoritos
+      const parqueFavoritado = favoritos.includes(parqueId);
+      if (parqueFavoritado) {
+        const novosFavoritos = favoritos.filter((id) => id !== parqueId);
+        setFavoritos(novosFavoritos);
+        // Aqui você pode adicionar lógica para remover o parque dos favoritos no backend, se necessário
+      } else {
+        setFavoritos([...favoritos, parqueId]);
+        // Aqui você pode adicionar lógica para adicionar o parque aos favoritos no backend, se necessário
+      }
+    } catch (error) {
+      console.error("Erro ao lidar com favoritos:", error);
+    }
+  };
 
 
   return (
@@ -217,9 +239,14 @@ export default function TelaDetalhes({ route }) {
             halfStar={<Iconsss name={'star-half'} style={[styles.myStarStyle]} />}
           />
 
-          <TouchableOpacity onPress={() => favoritos(route.params)}>
-            <Icon name="hearto" size={27} style={{ marginTop: -26, left: 350 }} />
-          </TouchableOpacity>
+      <TouchableOpacity onPress={() => toggleFavorito(route.params.idLazer)}>
+        <Icon
+          name={favoritos.includes(route.params.idLazer) ? 'heart' : 'hearto'}
+          size={27}
+          style={{ marginTop: -26, left: 350 }}
+          color={favoritos.includes(route.params.idLazer) ? 'red' : 'black'}
+        />
+      </TouchableOpacity>
         </View>
 
         <View
