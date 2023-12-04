@@ -132,8 +132,13 @@ public class EventoService {
 
    public ResponseEntity<?> deletarEvento(Long id){
 
-        var e = eventoRepository.findByIdEvento(id);
-        eventoRepository.delete(e);
+       var evento = eventoRepository.findByIdEvento(id);
+
+       // Assuming evento has a reference to usuario
+       usuarioRepository.removerReferenciaEvento(id);
+
+       // Agora você pode excluir o evento com segurança
+       eventoRepository.delete(evento);
         return new ResponseEntity<>("evento deletado",HttpStatus.NO_CONTENT);
 
     }
