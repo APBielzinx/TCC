@@ -81,8 +81,8 @@ export default function TelaInteresse(){
             }}
           >
              <Image  source={{uri: item.imagem}} style={styles.Imagens} />
-            <TouchableOpacity style={{marginTop: -100, left: 180}} onPress={() => retirarQueroIr()} >
-            <Icon name="delete" size={30} color='#17A558'/>
+            <TouchableOpacity style={{marginTop: -90, left: 170}} onPress={() => retirarQueroIr()} >
+            <Icon name="delete" size={35} color='#17A558'/>
             </TouchableOpacity>
              
              <View style={{ marginLeft: 10, flexShrink: 1 }}>

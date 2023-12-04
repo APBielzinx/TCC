@@ -206,21 +206,11 @@ export default function TelaDetalhes({ route }) {
           />
         </View>
 
-        <View style={styles.container}>
-          <Stars
-            default={2.5}
-            count={5}
-            half={true}
-            starSize={30}
-            fullStar={<Iconsss name={'star'} style={[styles.myStarStyle]} />}
-            emptyStar={<Iconsss name={'star-outline'} style={[styles.myStarStyle, styles.myEmptyStarStyle]} />}
-            halfStar={<Iconsss name={'star-half'} style={[styles.myStarStyle]} />}
-          />
 
           <TouchableOpacity onPress={() => favoritos(route.params)}>
-            <Icon name="hearto" size={27} style={{ marginTop: -26, left: 350 }} />
+            <Icon name="hearto" size={27} style={{ marginTop: 6, left: 350 }} />
           </TouchableOpacity>
-        </View>
+
 
         <View
           style={{

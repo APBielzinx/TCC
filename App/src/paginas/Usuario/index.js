@@ -55,41 +55,23 @@ export default function Usuario(){
             }}
             
           >
-            <Image source= {require('../../Imagens/perfilimg.jpg')} style={styles.Imagem} />
+            <Image source= {require('../../Imagens/perfil-de-usuario.jpg')} style={styles.Imagem} />
             
 
             <Text style={{marginTop:-65, marginLeft:90, fontSize:19}}>{email}</Text>
           </View>
 
-
-
-          <View
-            style={{
-              backgroundColor: '#B1D3C1',
-              marginTop: 50,
-
-              borderRadius: 20,
-              width: 365,
-              height: 125,
-              marginLeft: 22,
-            }}
-          >
-          
-
-            <TouchableOpacity><Text style={{marginTop:25, marginLeft:30, fontSize:20}}>Alterar senha</Text></TouchableOpacity>
-            <TouchableOpacity onPress={ () => navigation.navigate('Login')}><Text style={{marginTop:20, marginLeft:30, fontSize:20}}>Alterar conta</Text></TouchableOpacity>
-          </View>
           <View
             style={{
               backgroundColor: '#B1D3C1',
               marginTop: 15,
               borderRadius: 20,
               width: 365,
-              height: 120,
+              height: 150,
               marginLeft: 22,
             }}
           >
-
+            <TouchableOpacity onPress={ () => navigation.navigate('Login')}><Text style={{marginTop:20, marginLeft:30, fontSize:20}}>Alterar conta</Text></TouchableOpacity>  
             <TouchableOpacity onPress={ () => navigation.navigate('TelaSobreoApp')}><Text style={{marginTop:20, marginLeft:30, fontSize:20}}>Sobre App</Text></TouchableOpacity>
             <TouchableOpacity onPress={ () => navigation.navigate('Iniciar')}><Text style={{marginTop:20, marginLeft:30, fontSize:20}}>Sair</Text></TouchableOpacity>
 
