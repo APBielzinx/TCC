@@ -29,7 +29,7 @@ export default function Routes(){
                     <View 
                     style={{ 
                         marginTop: 15,
-                        marginLeft: 5 , 
+                        marginLeft: -5 , 
                         }}>
                     <Icons 
                         name="home"
@@ -41,32 +41,27 @@ export default function Routes(){
                            </TouchableOpacity>
                            
 
-                <TouchableOpacity
-                    style={{
-                         marginLeft: 55,
-                        backgroundColor: '#17A558',
-                         borderRadius: 45,
-                        width: 70,
-                         height: 65,
-                         marginTop: -33
-                         }}
-                         onPress={ () => navigation.navigate('TelaMaps',latitude,longetude) }
-                         >
-                        <Icons name="location-pin"
-                        size={45}
-                        color='#fff' 
-                        style={{
-                             marginLeft: 12,
-                            marginTop: 10
-                         }}/>
-                 </TouchableOpacity>
+                           <TouchableOpacity onPress={ () => navigation.navigate('TelaInteresse') }>
+                    <View 
+                    style={{ 
+                        marginTop: 15,
+                        marginLeft: 60 , 
+                        }}>
+                    <Icon 
+                        name="like1"
+                        size={40}
+                        color='#526856'
+                        />
+
+                            </View>
+                           </TouchableOpacity>
 
 
                         <TouchableOpacity onPress={ () => navigation.navigate('Favoritos') }>
                     <View 
                         style={{ 
                                 marginTop: 15,
-                                marginLeft: 55 , 
+                                marginLeft: 60 , 
                                 }}>
                             <Icons 
                                 name="heart"

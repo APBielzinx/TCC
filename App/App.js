@@ -18,6 +18,7 @@ import TelaChat from './src/paginas/TelaChat';
 import Pesquisa from './src/componentes/pesquisa'
 import TelaMaps from './src/paginas/TelaMaps';
 import TelaDetalhesEventos from './src/paginas/TelaDetalhesEventos';
+import TelaInteresse from './src/paginas/TelaInteresse'
 
 const Stack = createNativeStackNavigator()
 
@@ -134,6 +135,13 @@ export default function App(){
           <Stack.Screen
            name='TelaDetalhesEventos'
            component={TelaDetalhesEventos}
+           options={{
+            headerShown: false
+          }}
+          />
+          <Stack.Screen
+           name='TelaInteresse'
+           component={TelaInteresse}
            options={{
             headerShown: false
           }}

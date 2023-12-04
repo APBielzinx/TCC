@@ -6,22 +6,22 @@ import Routes from '../../componentes/menu/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export default function TelaLazer(){
+export default function TelaInteresse(){
     const navigation = useNavigation();
     const [dados, setDados] = useState([]);
 
-    async function ExcluirFavoritos(){
-      const idUsuario = await AsyncStorage.getItem("id");
-         console.log(idUsuario)
-     }
- 
+
+    async function retirarQueroIr(){
+     const idUsuario = await AsyncStorage.getItem("id");
+        console.log(idUsuario)
+    }
 
     useEffect(() => {
       async function fetchData() {
         try {
           // Obtém o token de AsyncStorage
           const token = await AsyncStorage.getItem("token");
-
+          const idUsuario = await AsyncStorage.getItem("id");
   
           if (token) {
             // Construa o cabeçalho Authorization
@@ -31,7 +31,7 @@ export default function TelaLazer(){
             };
   
             // Faça a solicitação usando o cabeçalho personalizado
-            const response = await fetch('https://tcc-production-e100.up.railway.app/api/favorito/' + idUsuario, {
+            const response = await fetch('https://tcc-production-e100.up.railway.app/api/evento/usuario/' + idUsuario, {
               method: 'GET', // ou outro método HTTP
               headers: headers
             });
@@ -58,7 +58,7 @@ export default function TelaLazer(){
       <View style= {{flex:1, backgroundColor: '#FFF'}}>
      
                 <TouchableOpacity style={styles.botaopular} onPress={ () => navigation.navigate('TelaInicial')} >
-                <Text style={{color: '#000',fontSize: 35, left: 30, marginTop: 60}}><Icon name="leftcircle" size={40} color='#17A558'/>  Favoritos</Text>
+                <Text style={{color: '#000',fontSize: 35, left: 30, marginTop: 60}}><Icon name="leftcircle" size={40} color='#17A558'/>  Quero ir</Text>
             </TouchableOpacity>
 
             <ScrollView>
@@ -67,7 +67,7 @@ export default function TelaLazer(){
         <TouchableOpacity
           key={item.id}
           style={{ marginBottom: 20 }}
-          onPress={ () => navigation.navigate('TelaDetalhes',item)}
+          onPress={ () => navigation.navigate('TelaDetalhesEventos',item)}
         >
           <View
             style={{
@@ -80,10 +80,11 @@ export default function TelaLazer(){
               marginRight: 20,
             }}
           >
-             <Image  source={{uri: item.lazer.imagem}} style={styles.Imagens} />
-             <TouchableOpacity style={{marginTop: -100, left: 180}} onPress={() => ExcluirFavoritos()} >
+             <Image  source={{uri: item.imagem}} style={styles.Imagens} />
+            <TouchableOpacity style={{marginTop: -100, left: 180}} onPress={() => retirarQueroIr()} >
             <Icon name="delete" size={30} color='#17A558'/>
             </TouchableOpacity>
+             
              <View style={{ marginLeft: 10, flexShrink: 1 }}>
             <Text
               style={{
@@ -93,7 +94,7 @@ export default function TelaLazer(){
                     flexWrap: 'wrap',
               }}
             >
-              {item.lazer.nome}
+              {item.nomeEvento}
             </Text>
 
             <Text
@@ -103,7 +104,7 @@ export default function TelaLazer(){
                 flexWrap: 'wrap',
               }}
             >
-              {item.lazer.descricao}
+              {item.descricao}
             </Text>
           </View>
           </View>

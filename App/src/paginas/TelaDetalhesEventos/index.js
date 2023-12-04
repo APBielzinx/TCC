@@ -143,34 +143,29 @@ export default function TelaDetalhesEventos({ route }) {
             }}
           />
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: 10 ,marginBottom: 20 }}>
-          <View style={{ flex: 1 }}>
-            <Text>Data de Início: </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text>{moment(route.params.dataInicio, "YYYYMMDD").format("DD/MM/YYYY")}</Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text>Data de Término: </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text>{moment(route.params.dataTermino, "YYYYMMDD").format("DD/MM/YYYY")}</Text>
-          </View>
-        </View>
-
 
         <View style={{ flexDirection: 'row'}}>
-          <Text onPress={tenhoInteresse} style={{marginLeft: 32}}>Tenho interesse em ir</Text>
+        <View style={{ flexDirection: 'list', justifyContent: 'left', alignItems: 'left', marginLeft: 20 ,marginBottom: 20 }}>
+          <View style={{ flex: 1 }}>
+            <Text>Data de Início: {moment(route.params.dataInicio, "YYYYMMDD").format("DD/MM/YYYY")}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text>Data de Término: {moment(route.params.dataTermino, "YYYYMMDD").format("DD/MM/YYYY")}</Text>
+          </View>
+        </View>
+        <Text onPress={tenhoInteresse} style={{marginLeft: 15, marginTop: 10}}>Tenho interesse em ir</Text>
           <TouchableOpacity onPress={tenhoInteresse}>
-            <Icon name="like2" size={27} style={{ marginTop: -11, left: 10 }} />
+            <Icon name="like2" size={27} style={{ marginTop: 2, left: 5 }} />
           </TouchableOpacity>
         </View>
+
+
        
 
         <View
           style={{
             backgroundColor: '#B1D3C1',
-            marginTop: 15,
+            marginTop: 10,
             borderRadius: 35,
             width: 365,
             height: 130,
