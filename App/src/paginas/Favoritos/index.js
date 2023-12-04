@@ -20,6 +20,7 @@ export default function TelaLazer(){
       async function fetchData() {
         try {
           // Obtém o token de AsyncStorage
+          const idUsuario = await AsyncStorage.getItem("id");
           const token = await AsyncStorage.getItem("token");
 
   

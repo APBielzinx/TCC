@@ -115,6 +115,8 @@ public class EventoService {
            e.setDataInicio(evento.getDataInicio());
            e.setDataTermino(evento.getDataTermino());
            e.setDescricao(evento.getDescricao());
+           e.setHoraInicio(evento.getHoraInicio());
+           e.setHoraTermino(evento.getHoraTermino());
            if (evento.getImagem() == null || evento.getImagem().equals("")){
                e.setImagem(e.getImagem());
                eventoRepository.save(e);

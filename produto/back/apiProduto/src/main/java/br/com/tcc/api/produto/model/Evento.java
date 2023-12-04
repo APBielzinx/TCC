@@ -37,6 +37,12 @@ public class Evento {
     private LocalDate dataTermino;
 
     @Column(nullable = false)
+    private String horaInicio ;
+
+    @Column(nullable = false)
+    private String horaTermino ;
+
+    @Column(nullable = false)
     private int status;
 
     @Column(nullable = false)
