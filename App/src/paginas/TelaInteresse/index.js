@@ -11,11 +11,32 @@ export default function TelaInteresse(){
     const [dados, setDados] = useState([]);
 
 
-    async function retirarQueroIr(){
+    async function retirarQueroIr(id){
      const idUsuario = await AsyncStorage.getItem("id");
-    const token = await AsyncStorage.getItem("token");
+     const token = await AsyncStorage.getItem("token");
+      console.log(id)
+     if (token) {
+      // Construa o cabeçalho Authorization
+      const headers = {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      };
 
-        console.log(idUsuario)
+      // Faça a solicitação usando o cabeçalho personalizado
+      const response = await fetch(`https://tcc-production-e100.up.railway.app/api/evento/usuario/${idUsuario}/evento/${id}`, {
+        method: 'DELETE', // ou outro método HTTP
+        headers: headers
+      });
+
+      if (response.status === 204) {
+        alert("deletado com sucesso")
+      } else {
+        console.error("Erro na solicitação:", response.status, idUsuario);
+      }
+    } else {
+      console.log("Token não encontrado em AsyncStorage.");
+    }
+  
     }
 
     useEffect(() => {
@@ -67,7 +88,7 @@ export default function TelaInteresse(){
 
             {dados.map((item, index) => (
         <TouchableOpacity
-          key={item.id}
+          key={item.idEvento}
           style={{ marginBottom: 20 }}
           onPress={ () => navigation.navigate('TelaDetalhesEventos',item)}
         >
@@ -83,7 +104,7 @@ export default function TelaInteresse(){
             }}
           >
              <Image  source={{uri: item.imagem}} style={styles.Imagens} />
-            <TouchableOpacity style={{marginTop: -90, left: 170}} onPress={() => retirarQueroIr()} >
+                         <TouchableOpacity style={{marginTop: -90, left: 170}} onPress={() => retirarQueroIr(item.idEvento)} >
             <Icon name="delete" size={35} color='#17A558'/>
             </TouchableOpacity>
              
