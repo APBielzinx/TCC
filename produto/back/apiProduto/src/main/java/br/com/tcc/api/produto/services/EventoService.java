@@ -42,6 +42,12 @@ public class EventoService {
 
         return new ResponseEntity<>(evento, HttpStatus.OK);
     }
+    public ResponseEntity<?> BuscarEventoPorIdUsuario(long id){
+        var usuario = usuarioRepository.findByIdUsuario(id);
+        List<Evento> evento = eventoRepository.findByUsuarios(usuario);
+
+        return new ResponseEntity<>(evento, HttpStatus.OK);
+    }
     public ResponseEntity<?> BuscarEventoPorData(String data){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(data,formatter);

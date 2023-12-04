@@ -16,6 +16,8 @@ public interface EventoRepository extends JpaRepository<Evento, Long> {
 
    List<Evento> findByLazer(Lazer lazer);
 
+    List<Evento> findByUsuarios(Usuario usuario);
+
    List<Evento>findByDataInicio(LocalDate data);
 
    boolean existsByIdEventoAndUsuarios(long idevento, Usuario usuario);

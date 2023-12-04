@@ -27,7 +27,10 @@ public class EventoController {
     public ResponseEntity<?>buscarPorLazer(@PathVariable("idEvento")long id){
         return eventoService.BuscarEventoPorLazer(id);
     }
-
+    @GetMapping(value = "/usuario/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>buscarPorIdUsuario(@PathVariable("idUsuario")long id){
+        return eventoService.BuscarEventoPorIdUsuario(id);
+    }
 
     @GetMapping(value = "data/{dataEvento}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?>buscarPorData(@PathVariable("dataEvento")String data){

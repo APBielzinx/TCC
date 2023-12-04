@@ -40,7 +40,7 @@ public class FavoritoController {
             description = "exemplo: url_da_api/favorito/{idfavorito}",
             tags = {"Favorito","Get"}
     )
-    public ResponseEntity<?> BuscarPorLazer(@PathVariable("idUsuario")long id){
+    public ResponseEntity<?> BuscarPorUsuario(@PathVariable("idUsuario")long id){
         return favoritoService.BuscarPorUsuario(id);
     }
 

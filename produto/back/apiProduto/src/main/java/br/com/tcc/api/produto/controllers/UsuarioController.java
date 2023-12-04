@@ -55,7 +55,7 @@ public class UsuarioController {
     }
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
-            summary = "Buscar usuarios por Id",
+            summary = "Buscar usuario por Id",
             description = "exemplo: 'url_da_api'/usuarios/{idUsr} ",
             tags = {"Usuario", "Get"}
     )
