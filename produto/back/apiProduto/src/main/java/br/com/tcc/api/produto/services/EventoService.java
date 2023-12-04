@@ -142,14 +142,23 @@ public class EventoService {
         return new ResponseEntity<>("evento deletado",HttpStatus.NO_CONTENT);
 
     }
+    public ResponseEntity<?> deletarUsuarioDoevento(Long idUsuario, Long idEvento) {
+        Optional<Evento> optionalEvento = eventoRepository.findById(idEvento);
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(idUsuario);
 
-    public ResponseEntity<?> deletarUsuarioDoevento(Long id){
+        if (optionalEvento.isPresent() && optionalUsuario.isPresent()) {
+            Evento evento = optionalEvento.get();
+            Usuario usuario = optionalUsuario.get();
 
-        var e = eventoRepository.findByIdEvento(id);
-        eventoRepository.delete(e);
-        return new ResponseEntity<>("evento deletado",HttpStatus.NO_CONTENT);
+            evento.removerUsuario(usuario);
+            usuario.removerEvento();
 
+            eventoRepository.save(evento);
+
+            return new ResponseEntity<>("Usuário removido do evento", HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>("Usuário ou evento não encontrado", HttpStatus.NOT_FOUND);
+        }
     }
-
 
 }

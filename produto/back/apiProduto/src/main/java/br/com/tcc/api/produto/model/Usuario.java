@@ -90,4 +90,12 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+    public void removerEvento() {
+        if (evento != null) {
+            evento.getUsuarios().remove(this);
+            evento = null;
+        }
+    }
 }

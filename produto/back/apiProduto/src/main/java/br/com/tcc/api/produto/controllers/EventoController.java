@@ -56,9 +56,9 @@ public class EventoController {
         return eventoService.deletarEvento(id);
     }
 
-    @DeleteMapping(value = {"/usuario/{idUsuario}"},consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?>deletarUsuarioDoEvento(@PathVariable("idUsuario")long id){
-        return eventoService.deletarUsuarioDoevento(id);
+    @DeleteMapping(value = {"/usuario/{idUsuario}/evento/{idEvento}"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deletarUsuarioDoEvento(@PathVariable("idUsuario") long idUsuario, @PathVariable("idEvento") long idEvento) {
+        return eventoService.deletarUsuarioDoevento(idUsuario, idEvento);
     }
 
 }

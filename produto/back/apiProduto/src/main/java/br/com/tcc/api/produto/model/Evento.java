@@ -59,4 +59,12 @@ public class Evento {
     private Lazer lazer;
 
 
+    public void removerUsuario(Usuario usuario) {
+        if (usuarios != null) {
+            usuarios.remove(usuario);
+            usuario.setEvento(null);
+        }
+    }
+
+
 }

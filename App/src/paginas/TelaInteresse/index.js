@@ -13,6 +13,8 @@ export default function TelaInteresse(){
 
     async function retirarQueroIr(){
      const idUsuario = await AsyncStorage.getItem("id");
+    const token = await AsyncStorage.getItem("token");
+
         console.log(idUsuario)
     }
 
