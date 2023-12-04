@@ -62,7 +62,7 @@ public class FavoritoController {
         return favoritoService.Favoritar(favorito);
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = {"/{idFavorito}"},produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "desFavoritar",
             description = "exemplo: { 'usuario' : {idUsuario : (idUsr)}, <br> 'lazer' : {'idLazer' : (idLazr)} <br> }",
