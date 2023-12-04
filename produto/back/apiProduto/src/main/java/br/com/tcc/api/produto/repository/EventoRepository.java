@@ -23,4 +23,5 @@ public interface EventoRepository extends JpaRepository<Evento, Long> {
    boolean existsByIdEventoAndUsuarios(long idevento, Usuario usuario);
 
 
+
 }

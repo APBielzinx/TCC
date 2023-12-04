@@ -22,4 +22,5 @@ public interface FavoritoRepository extends JpaRepository<Favorito, Long> {
 
     void deleteByLazer(Lazer lazer);
 
+    Favorito findById(long id);
 }

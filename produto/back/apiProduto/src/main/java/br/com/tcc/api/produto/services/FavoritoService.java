@@ -46,7 +46,8 @@ public class FavoritoService {
         }
     }
 
-    public ResponseEntity<?> RetirarFavorito(Favorito favorito){
+    public ResponseEntity<?> RetirarFavorito(long id){
+       var favorito = favoritoRepository.findById(id);
         if (favoritoRepository.existsByLazer(favorito.getLazer())){
             favoritoRepository.delete(favorito);
             return new ResponseEntity<>("Favorito retirado com sucesso", HttpStatus.OK);

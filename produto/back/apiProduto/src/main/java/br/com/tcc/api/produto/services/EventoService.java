@@ -138,5 +138,13 @@ public class EventoService {
 
     }
 
+    public ResponseEntity<?> deletarUsuarioDoevento(Long id){
+
+        var e = eventoRepository.findByIdEvento(id);
+        eventoRepository.delete(e);
+        return new ResponseEntity<>("evento deletado",HttpStatus.NO_CONTENT);
+
+    }
+
 
 }

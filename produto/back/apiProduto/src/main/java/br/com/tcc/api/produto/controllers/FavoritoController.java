@@ -73,8 +73,8 @@ public class FavoritoController {
             @ApiResponse(responseCode = "501", description = "Não está favoritado", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", description = "Precisa estar logado", content = { @Content(schema = @Schema()) })
     })
-    public ResponseEntity<?> RetirarFavorito (@RequestBody Favorito favorito){
-        return favoritoService.RetirarFavorito(favorito);
+    public ResponseEntity<?> RetirarFavorito (@PathVariable("idFavorito") long id){
+        return favoritoService.RetirarFavorito(id);
     }
 
 }
