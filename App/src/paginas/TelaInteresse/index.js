@@ -6,76 +6,71 @@ import Routes from '../../componentes/menu/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export default function TelaInteresse(){
-    const navigation = useNavigation();
-    const [dados, setDados] = useState([]);
+export default function TelaInteresse() {
+  const navigation = useNavigation();
+  const [dados, setDados] = useState([]);
+  const [reloadData, setReloadData] = useState(false); // Estado para controlar a recarga de dados
 
+  async function retirarQueroIr(id) {
+    const idUsuario = await AsyncStorage.getItem("id");
+    const token = await AsyncStorage.getItem("token");
 
-    async function retirarQueroIr(id){
-     const idUsuario = await AsyncStorage.getItem("id");
-     const token = await AsyncStorage.getItem("token");
-      console.log(id)
-     if (token) {
-      // Construa o cabeçalho Authorization
+    if (token) {
       const headers = {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${token}`
       };
 
-      // Faça a solicitação usando o cabeçalho personalizado
       const response = await fetch(`https://tcc-production-e100.up.railway.app/api/evento/usuario/${idUsuario}/evento/${id}`, {
-        method: 'DELETE', // ou outro método HTTP
+        method: 'DELETE',
         headers: headers
       });
 
       if (response.status === 204) {
-        alert("deletado com sucesso")
+        alert("Deletado com sucesso");
+        setReloadData(!reloadData); // Atualiza o estado para recarregar os dados
       } else {
         console.error("Erro na solicitação:", response.status, idUsuario);
       }
     } else {
       console.log("Token não encontrado em AsyncStorage.");
     }
-  
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const token = await AsyncStorage.getItem("token");
+        const idUsuario = await AsyncStorage.getItem("id");
+
+        if (token) {
+          const headers = {
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          };
+
+          const response = await fetch('https://tcc-production-e100.up.railway.app/api/evento/usuario/' + idUsuario, {
+            method: 'GET',
+            headers: headers
+          });
+
+          if (response.status === 200) {
+            const data = await response.json();
+            console.log("Dados da resposta:", data);
+            setDados(data);
+          } else {
+            console.error("Erro na solicitação:", response.status, idUsuario);
+          }
+        } else {
+          console.log("Token não encontrado em AsyncStorage.");
+        }
+      } catch (error) {
+        console.error("Erro ao fazer a solicitação:", error);
+      }
     }
 
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          // Obtém o token de AsyncStorage
-          const token = await AsyncStorage.getItem("token");
-          const idUsuario = await AsyncStorage.getItem("id");
-  
-          if (token) {
-            // Construa o cabeçalho Authorization
-            const headers = {
-              'Content-type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            };
-  
-            // Faça a solicitação usando o cabeçalho personalizado
-            const response = await fetch('https://tcc-production-e100.up.railway.app/api/evento/usuario/' + idUsuario, {
-              method: 'GET', // ou outro método HTTP
-              headers: headers
-            });
-  
-            if (response.status === 200) {
-              const data = await response.json();
-              console.log("Dados da resposta:", data);
-              setDados(data);
-            } else {
-              console.error("Erro na solicitação:", response.status, idUsuario);
-            }
-          } else {
-            console.log("Token não encontrado em AsyncStorage.");
-          }
-        } catch (error) {
-          console.error("Erro ao fazer a solicitação:", error);
-        }
-      }
-  
-      fetchData();
-    }, []); // O segundo argumento do useEffect é uma array de dependências, vazia significa que será executado uma vez na montagem
+    fetchData();
+  }, [reloadData]);
   
     return(
       <View style= {{flex:1, backgroundColor: '#FFF'}}>

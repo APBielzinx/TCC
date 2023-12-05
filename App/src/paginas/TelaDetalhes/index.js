@@ -178,10 +178,17 @@ export default function TelaDetalhes({ route }) {
     }
   }
 
+  const handleBackNavigation = () => {
+    if (route.params.categoria === 'parque') {
+      navigation.navigate('TelaParques');
+    } else {
+      navigation.navigate('TelaLazer'); // Substitua 'TelaLazer' pelo nome correto da tela de lazer
+    }
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
-        <TouchableOpacity style={styles.botaopular} onPress={() => navigation.navigate("TelaInicial")}>
+        <TouchableOpacity style={styles.botaopular} onPress={handleBackNavigation}>
           <Text style={{ color: '#000', fontSize: 25, left: 15, marginTop: 60 }}>
             <Icon name="leftcircle" size={37} color='#17A558' /> {route.params.lazer && route.params.lazer.nome
             ? route.params.lazer.nome
