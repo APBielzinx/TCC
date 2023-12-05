@@ -243,13 +243,13 @@
           <h3 class="text-uppercase">Contato</h3>
           <form action="https://api.staticforms.xyz/submit" method="post">
             <input  class="form-control"  placeholder="nome"  name="name" id="name" >
-            <input type="email"  class="form-control"  placeholder="E-mail"  name="email" >
+            <input type="email" class="form-control" placeholder="E-mail" name="email" id="email">
             <textarea  class="form-control" name="message" id="text"  placeholder="Digite a sua mensagem" ></textarea> <!-- Optional -->
             <input  class="form-control" type="hidden" name="accessKey" value="d7137214-6bf6-48fb-ab69-e46bdcc950c3">
             <input  class="form-control" type="hidden" name="subject" value="Sugestão de Cliente" />
             <input  class="form-control" type="hidden" name="replyTo" value="gabrielbtcyt@gmail.com">
             <input  class="form-control" type="hidden" name="redirectTo" value="https://tcc-dun.vercel.app/#contato"> <!-- Optional -->
-            <button class="btn" type="submit" onclick="enviando()"id="botao">Enviar Mensagem</button>
+            <button class="btn" type="submit" onclick="validateForm()" id="botao">Enviar Mensagem</button>
         </form>
         </div>
       </div>
@@ -263,26 +263,24 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     
-function enviando(){
-  swal("Aguarde!", "...os dados estão sendo enviados");
-  swal({
-    title: "Sucesso",
-    text: "Mensagem enviada com sucesso",
-    icon: "success",
-  });
-  
+    function validateForm(event) {
+  event.preventDefault(); // Evita o envio padrão do formulário
+
+  var email = document.getElementById('email').value;
+
+  if (!email.includes('@')) {
+    alert('Por favor, insira um endereço de e-mail válido.');
+  } else {
+    // Simulando o envio do formulário com sucesso após 2 segundos
+    setTimeout(function () {
+      swal("Sucesso!", "Mensagem enviada com sucesso", "success");
+      document.getElementById('email').value = ''; // Limpa o campo de e-mail após o envio
+      setTimeout(function () {
+        swal.close(); // Fecha o alerta após 10 segundos
+      }, 10000); // Tempo para manter o alerta por 10 segundos (10000 milissegundos)
+    }, 2000); // Tempo para simular o envio bem-sucedido após 2 segundos (2000 milissegundos)
+  }
 }
-
-
-function validateEmail(email)
-{
- var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
- if (reg.test(email)){
- return true; }
- else{
- return false;
- }
-} 
   </script>
 
 
