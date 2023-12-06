@@ -98,7 +98,6 @@ useEffect(() => {
         console.log('Token não encontrado em AsyncStorage.');
       }
     } catch (error) {
-      console.error('Erro ao fazer a solicitação:', error);
     }
   }
 
@@ -284,8 +283,8 @@ useEffect(() => {
 
         {(filteredData.length > 0 ? filteredData : dados).map((evento, index) => (
           <TouchableOpacity
-            key={evento}
-            style={{ marginBottom: 20 }} // Espaço entre os parques
+            key={evento.id} // ou qualquer propriedade única do evento
+            style={{ marginBottom: 20 }}
             onPress={() => navigation.navigate('TelaDetalhesEventos', evento)}
           >
             <View
