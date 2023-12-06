@@ -124,10 +124,9 @@ export default function TelaDetalhes({ route }) {
             latitude: parseFloat(data[0].lat),
             longitude: parseFloat(data[0].lon),
           };
-          setParkLocation(parkCoordinates);
         }
       })
-      .catch(error => console.error('Erro ao obter informações de localização:', error));
+      .catch();
   }, [route.params.nome]);
 
   const maps = () => {
