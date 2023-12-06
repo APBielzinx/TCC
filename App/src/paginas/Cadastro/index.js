@@ -139,6 +139,8 @@ const [cep, setCep] = useState('');
 
   };
 
+  
+
   const handleInputChangeeee = (text) => {
     // Expressão regular para verificar se o texto contém apenas letras e espaços
 
@@ -181,14 +183,14 @@ const [cep, setCep] = useState('');
               <TextInput
                 style={[styles.Inputs, {
                   border: mensagemError && 2,
-                  borderColor: mensagemError && '#ff375b'
+                  borderColor: mensagemError && 'black'
                 }]}
                 placeholder="Digite o CEP da sua residência"
                 keyboardType="numeric"
                 onChangeText={handleInputChange}
                 value={cep} 
               />
-              {mensagemError !== '' && <Text style={{ color: '#ff375b', marginTop: 10, left: 10 }}>{mensagemError}</Text>}
+
 
            {endereco !== '' && <Text style={{ marginTop: 20 }}>{endereco}</Text>}
 
