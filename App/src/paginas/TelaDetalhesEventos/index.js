@@ -153,9 +153,18 @@ export default function TelaDetalhesEventos({ route }) {
             <Text>Data de Término: {moment(route.params.dataTermino, "YYYYMMDD").format("DD/MM/YYYY")}</Text>
           </View>
         </View>
-        <Text onPress={tenhoInteresse} style={{marginLeft: 15, marginTop: 10}}>Tenho interesse em ir</Text>
+        <View style={{ flexDirection: 'list', justifyContent: 'left', alignItems: 'left', marginLeft: 20 ,marginBottom: 20 }}>
+          <View style={{ flex: 1 }}>
+          <Text>Hora de Inicio: {route.params.horaInicio}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text>Hora de Término: {route.params.horaTermino}</Text>
+          </View>
+        </View>
+
+        <Text onPress={tenhoInteresse} style={{marginLeft: -355, marginTop: 60}}>Tenho interesse em ir</Text>
           <TouchableOpacity onPress={tenhoInteresse}>
-            <Icon name="like2" size={27} style={{ marginTop: 2, left: 5 }} />
+            <Icon name="like2" size={27} style={{ marginTop: 50, left: 5 }} />
           </TouchableOpacity>
         </View>
 
